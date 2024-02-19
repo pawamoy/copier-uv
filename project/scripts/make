@@ -3,6 +3,7 @@
 export PYTHON_VERSIONS=${PYTHON_VERSIONS-3.8 3.9 3.10 3.11 3.12}
 
 exe=""
+prefix=""
 
 options() {
     local shift_count=0
@@ -45,6 +46,7 @@ activate() {
     if [ -f "$1/Scripts/activate.bat" ]; then
         "$1/Scripts/activate.bat"
         exe=".exe"
+        prefix="$1/Scripts/"
         return 0
     fi
     echo "run: Cannot activate venv $1" >&2
@@ -57,10 +59,10 @@ multirun() {
 
     if [ -n "${PYTHON_VERSIONS}" ]; then
         for version in ${PYTHON_VERSIONS}; do
-            (activate ".venvs/${version}" && MULTIRUN=1 "${cmd}${exe}" "$@")
+            (activate ".venvs/${version}" && MULTIRUN=1 "${prefix}${cmd}${exe}" "$@")
         done
     else
-        (activate .venv && "${cmd}${exe}" "$@")
+        (activate .venv && "${prefix}${cmd}${exe}" "$@")
     fi
 }
 
