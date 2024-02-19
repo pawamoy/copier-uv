@@ -2,6 +2,9 @@ name: release
 
 on: push
 
+permissions:
+  contents: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -12,7 +15,9 @@ jobs:
     - name: Fetch all tags
       run: git fetch --depth=1 --tags
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
     - name: Install git-changelog
       run: pip install git-changelog
     - name: Prepare release notes
