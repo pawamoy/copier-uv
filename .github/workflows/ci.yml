@@ -19,7 +19,6 @@ jobs:
 
   tests:
     strategy:
-      max-parallel: 4
       matrix:
         os:
         - ubuntu-latest
@@ -41,17 +40,19 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Set up PDM
-      uses: pdm-project/setup-pdm@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
+
+    - name: Install uv
+      run: pip install uv
 
     - name: Set up tools
       run: |
         git config --global init.defaultBranch main
         git config --global user.email "pawamoy@pm.me"
         git config --global user.name "Timothée Mazzucotelli"
-        pdm config python.use_venv false
 
     - name: Set up the project
       run: pip install copier copier-templates-extensions

@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+
+export PYTHON_VERSIONS=${PYTHON_VERSIONS:-3.8 3.9 3.10 3.11 3.12}
+
+options() {
+    local shift_count=0
+    for arg in "$@"; do
+        if [[ "${arg}" =~ ^- || "${arg}" =~ ^.+= ]]; then
+            echo "${arg}"
+            ((shift_count++))
+        else
+            break
+        fi
+    done
+    return ${shift_count}
+}
+
+setup() {
+    if ! command -v uv &>/dev/null; then
+        echo "make: setup: uv must be installed, see https://github.com/astral-sh/uv" >&2
+        return 1
+    fi
+
+    if [ -n "${PYTHON_VERSIONS}" ]; then
+        for version in ${PYTHON_VERSIONS}; do
+            if [ ! -d ".venvs/${version}" ]; then
+                uv venv --seed --python "${version}" ".venvs/${version}"
+            fi
+            VIRTUAL_ENV="${PWD}/.venvs/${version}" uv pip install -r devdeps.txt
+        done
+    fi
+
+    if [ ! -d .venv ]; then uv venv --seed; fi
+    uv pip install -r devdeps.txt
+}
+
+activate() {
+    local path
+    for path in "$1/bin/activate" "$1/Scripts/activate.bat"; do
+        if [ -f "${path}" ]; then
+            source "${path}"
+            return 0
+        fi
+    done
+    echo "run: Cannot activate venv $1" >&2
+    return 1
+}
+
+multirun() {
+    local cmd="$1"
+    shift
+
+    if [ -n "${PYTHON_VERSIONS}" ]; then
+        for version in ${PYTHON_VERSIONS}; do
+            (activate ".venvs/${version}" && MULTIRUN=1 "${cmd}" "$@")
+        done
+    else
+        (activate .venv && "${cmd}" "$@")
+    fi
+}
+
+singlerun() {
+    PYTHON_VERSIONS= multirun "$@"
+}
+
+main() {
+    local cmd
+    while [ $# -ne 0 ]; do
+        cmd="$1"
+        shift
+
+        # Handle `run` early to simplify `case` below.
+        if [ "${cmd}" = "run" ]; then
+            singlerun "$@"
+            exit $?
+        fi
+
+        # Handle `multirun` early to simplify `case` below.
+        if [ "${cmd}" = "multirun" ]; then
+            multirun "$@"
+            exit $?
+        fi
+
+        # All commands except run can use this.
+        # Some of them might print warnings/errors
+        # if options were given on the CLI.
+        opts=($(options "$@")); shift $?
+
+        case "${cmd}" in
+            help|"")
+                singlerun duty --list ;;
+            setup)
+                setup ;;
+            check) 
+                multirun duty check-quality check-types check-docs
+                singlerun duty check-dependencies check-api
+            ;;
+            check-quality|\
+            check-docs|\
+            check-types|\
+            test)
+                multirun duty "${cmd}" "${opts[@]}" ;;
+            *)
+                singlerun duty "${cmd}" "${opts[@]}" ;;
+        esac
+    done
+}
+
+main "$@"

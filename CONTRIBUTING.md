@@ -5,12 +5,12 @@ Every little bit helps, and credit will always be given.
 
 ## Environment setup
 
-You only need two tools, [PDM](https://github.com/pdm-project/pdm)
+You only need two tools, [uv](https://github.com/astral-sh/uv)
 and [Copier](https://github.com/copier-org/copier).
 
 ```bash
 python3 -m pip install --user pipx
-pipx install pdm
+pipx install uv
 pipx install copier
 ```
 

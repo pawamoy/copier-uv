@@ -3,19 +3,19 @@
 To generate a project, run the following command:
 
 ```bash
-copier copy --trust "https://github.com/pawamoy/copier-pdm.git" /path/to/your/new/project
+copier copy --trust "https://github.com/pawamoy/copier-uv.git" /path/to/your/new/project
 ```
 
 Or with a shorter command:
 
 ```bash
-copier copy --trust "gh:pawamoy/copier-pdm" /path/to/your/new/project
+copier copy --trust "gh:pawamoy/copier-uv" /path/to/your/new/project
 ```
 
 You can even generate a project without installing copier, using `pipx`:
 
 ```bash
-pipx run copier copy --trust "gh:pawamoy/copier-pdm" /path/to/your/new/project
+pipx run copier copy --trust "gh:pawamoy/copier-uv" /path/to/your/new/project
 ```
 
 ## Questions

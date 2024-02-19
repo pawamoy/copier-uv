@@ -5,4 +5,4 @@ git init .
 git remote add origin git@github.com:pawamoy/pawamoy-testing
 git add -A
 git commit -m "initial commit"
-git push origin master -f
+git push origin main -f

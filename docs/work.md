@@ -62,7 +62,7 @@ See [PDM Multirun](https://pawamoy.github.io/pdm-multirun/).
 
 ## Dependencies and virtual environments
 
-Dependencies are managed by [PDM](https://github.com/pdm-project/pdm).
+Dependencies are managed by [uv](https://github.com/astral-sh/uv).
 
 Use `pdm install` to install the dependencies.
 
