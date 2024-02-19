@@ -36,12 +36,14 @@ setup() {
 
 activate() {
     local path
-    for path in "$1/bin/activate" "$1/Scripts/activate.bat"; do
-        if [ -f "${path}" ]; then
-            source "${path}"
-            return 0
-        fi
-    done
+    if [ -f "$1/bin/activate" ]; then
+        source "$1/bin/activate"
+        return 0
+    fi
+    if [ -f "$1/Scripts/activate.bat" ]; then
+        "$1/Scripts/activate.bat"
+        return 0
+    fi
     echo "run: Cannot activate venv $1" >&2
     return 1
 }
