@@ -20,7 +20,10 @@ pipx run copier copy --trust "gh:pawamoy/copier-uv" /path/to/your/new/project
 
 ## Questions
 
-Copier will then ask you to answer some questions:
+*The following examples are not up-to-date,
+they simply illustrate how the template works.*
+
+Copier will ask you to answer some questions:
 
 ```
 Your project name

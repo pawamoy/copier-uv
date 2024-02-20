@@ -7,7 +7,6 @@ The generated project has this structure:
 ├── 📄 CHANGELOG.md --------------- # 
 ├── 📄 CODE_OF_CONDUCT.md --------- # 
 ├── 📁 config --------------------- # tools configuration files
-│   ├── 📄 black.toml ------------- # 
 │   ├── 📄 coverage.ini ----------- # 
 │   ├── 📄 mypy.ini --------------- # 
 │   ├── 📄 pytest.ini ------------- # 
@@ -25,15 +24,14 @@ The generated project has this structure:
 │   └── 📄 license.md ------------- # 
 ├── 📄 duties.py ------------------ # the project's tasks
 ├── 📄 LICENSE -------------------- # 
-├── 📄 Makefile ------------------- # 
-├── 📄 mkdocs.insiders.yml -------- # 
+├── 📄 Makefile ------------------- # for auto-completion (it calls scripts/make)
 ├── 📄 mkdocs.yml ----------------- # docs configuration
 ├── 📄 pyproject.toml ------------- # project metadata and dependencies
 ├── 📄 README.md ------------------ # 
 ├── 📁 scripts -------------------- # helper scripts
 │   ├── 📄 gen_credits.py --------- # script to generate credits
 │   ├── 📄 gen_ref_nav.py --------- # script to generate code reference nav
-│   └── 📄 setup.sh --------------- # to install dependencies for multiple Python versions
+│   └── 📄 make ------------------- # a convenience script to run tasks
 ├── 📁 src ------------------------ # the source code directory
 │   └── 📁 your_package ----------- # your package
 │       ├── 📄 cli.py ------------- # the command line entry point
@@ -46,29 +44,47 @@ The generated project has this structure:
     └── 📄 test_cli.py ------------ # 
 ```
 
+## Environment
+
+The project is configured to use [direnv](https://direnv.net/).
+If direnv is loaded in your shell, allow it in the project with
+`direnv allow`. It will add the `scripts` folder to your PATH
+when you enter the repository (and remove it when you exit it).
+The `scripts` folder has a `make` Bash script in it:
+it will shadow any `make` command you have in your PATH
+(this is indented!).
+
+If you don't have or don't use direnv, you can still use
+the official `make` command, though you won't be able
+to pass arguments to some of the actions.
+
+In the rest of the documentation, we will use `make` commands,
+but you can also directly call `scripts/make`.
+
+See [Tasks](#tasks) to learn more.
+
 ## Python versions
 
 To specify which Python versions you would like to work with,
-define the `PDM_MULTIRUN_VERSIONS` environment variable:
+define the `PYTHON_VERSIONS` environment variable:
 
 ```bash
-export PDM_MULTIRUN_VERSIONS="3.10 3.11 3.12"
+export PYTHON_VERSIONS="3.10 3.11 3.12"
 ```
 
 By default it is set to active versions of Python
 (non-EOL, in development).
 
-See [PDM Multirun](https://pawamoy.github.io/pdm-multirun/).
-
 ## Dependencies and virtual environments
 
 Dependencies are managed by [uv](https://github.com/astral-sh/uv).
 
-Use `pdm install` to install the dependencies.
+Use `make setup` or `uv venv; uv pip install -r devdeps.txt` to install the dependencies.
 
-Dependencies are written in `pyproject.toml`,
-under the `[project]`, `[project.optional-dependencies]`
-and `[tool.pdm.dev-dependencies]` sections.
+Runtime dependencies are written in `pyproject.toml`,
+under the `[project]` and `[project.optional-dependencies]`
+sections, and development dependencies are listed in `devdeps.txt`.
+
 Example:
 
 ```toml title="pyproject.toml"
@@ -78,61 +94,6 @@ dependencies = [
   "importlib-metadata>=2.0",
 ]
 ```
-
-You can write them there manually, or use the commands provided by PDM:
-
-```bash
-pdm add numpy  # add as a required dependency
-pdm add -G math numpy  # add as an optional dependency in the "math" group
-pdm add -d numpy  # or add as a development dependency in the "dev" group
-pdm add -dG stats numpy  # or add as a development dependency in the "stats" group
-
-# the "remove" equivalent
-pdm remove numpy
-pdm remove -G math numpy
-pdm remove -d numpy
-pdm remove -dG stats numpy
-```
-
-- Use `pdm update` the re-lock the dependencies
-  (write the complete dependency resolution in `pdm.lock`)
-  and install their updated version.
-- Use `pdm lock` to just re-lock the dependencies.
-- Use `pdm run CMD [ARGS...]` to run a command installed in `__pypackages__`
-- Use `pdm list` to show the list of dependencies.
-
-See `pdm COMMAND --help` for details about each command.
-
-### Installing in `__pypackages__` (PEP 582)
-
-Configure PDM to install dependencies in `__pypackages__`:
-
-```bash
-pdm config python.use_venv false
-```
-
-### Installing in virtualenvs
-
-Configure PDM to create the different virtualenvs outside of the project:
-
-```bash
-pdm config python.use_venv true
-pdm config venv.in_project false
-```
-
-Then create some virtualenvs:
-
-```bash
-pdm venv create 3.8
-pdm venv create 3.9
-pdm venv create 3.10
-pdm venv create 3.11
-pdm venv create 3.12
-```
-
-And export the `PDM_MULTIRUN_USE_VENVS=1` environment variable.
-You can hardcode it in `Makefile` or the `duties.py`
-to make it permanent.
 
 ## Tasks
 
@@ -150,9 +111,9 @@ def check_docs(ctx):
     ctx.run("mkdocs build -s", title="Building documentation")
 ```
 
-To run a task, use `pdm run duty TASK [ARG=VALUE...]`.
-You can run multiple tasks at once: `pdm run duty TASK1 ARG=VALUE TASK2`.
-You can list the available tasks with `pdm run duty --list`.
+To run a task, use `make TASK [ARG=VALUE...]`.
+You can run multiple tasks at once: `make TASK1 ARG=VALUE TASK2`.
+You can list the available tasks with `make help`.
 
 Available tasks:
 
@@ -187,9 +148,19 @@ Available tasks:
 - `vscode`: Configure VSCode for the project.
   See [VSCode setup](#vscode-setup).
 
+To run arbitrary commands in the default Python virtual environment,
+use `make run command --args`. To run arbitrary commands in *all* Python
+virtual environments, use `make multirun command --args`.
+
+For example, to install a local project as an editable dependency:
+
+```bash
+make multirun pip install -e ../some-project
+```
+
 ### VSCode setup
 
-If you work in VSCode, we provide a `make vscode` action (`pdm run duty vscode`)
+If you work in VSCode, we provide a `make vscode` action
 that configures settings and tasks. **It will overwrite the following existing
 files, so make sure to back them up:**
 
@@ -199,27 +170,10 @@ files, so make sure to back them up:**
 
 ### Makefile
 
-A Makefile is available for convenience. It's just a shortcut to run duties.
-
-Available rules are the same, with additional rules: `help`, `lock` and `setup`.
-
-- `changelog`
-- `check`
-- `check-quality`
-- `check-dependencies`
-- `check-docs`
-- `check-types`
-- `clean`
-- `coverage`
-- `docs`
-- `format`
-- `lock`
-- `release`
-- `setup`
-- `test`
-
-The default rule is `help`, so running `make` will show the available rules.
-The `setup` rule is explained below.
+You will notice a Makefile in the repository.
+It's main purpose is to enable auto-completion for the `make` Bash script.
+See [Environment](#environment) on how to transparently call the Bash script
+with auto-completion instead of the Makefile.
 
 ## Workflow
 
@@ -230,24 +184,15 @@ make setup
 ```
 
 If you don't have the `make` command,
-you can use `bash scripts/setup.sh` directly,
-or even just `pdm install`
+you can use `scripts/make setup` directly,
+or even just `uv venv; uv pip install`
 if you don't plan on using multiple Python versions.
 
-This will install the project's dependencies in `__pypackages__`:
-one folder per chosen Python version.
-The chosen Python versions are defined in the Makefile.
-If you would like to use *virtual environments (venvs)* instead,
-set the PDM configuration item `python.use_venv` to true:
+This will install the project's dependencies in virtual environments:
+one venv per chosen Python version in `.venvs/$python_version`,
+and one default venv in `.venv/`.
 
-```bash
-pdm config --local python.use_venv
-```
-
-Remove the `--local` flag to enable using venvs for all your local projects.
-
-When venvs are enabled, the setup script will create named venvs (`name=3.xx`) 
-in your `venv.location` directory (PDM configuration).
+The chosen Python versions are defined in the `scripts/make` Bash script.
 
 Now you can start writing and editing code in `src/your_package`.
 
@@ -279,8 +224,6 @@ make changelog  # to update the changelog
 
 make release version=x.y.z
 ```
-
-Remember that `make` is just a shortcut for `pdm run duty` here.
 
 ## Quality analysis
 

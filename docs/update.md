@@ -37,12 +37,12 @@ And the file looks like this:
 # Changes here will be overwritten by Copier
 _commit: 0.1.10
 _src_path: gh:pawamoy/copier-uv
-author_email: pawamoy@pm.me
+author_email: dev@pawamoy.fr
 author_fullname: "Timothée Mazzucotelli"
 author_username: pawamoy
 copyright_date: '2020'
 copyright_holder: "Timothée Mazzucotelli"
-copyright_holder_email: pawamoy@pm.me
+copyright_holder_email: dev@pawamoy.fr
 copyright_license: ISC License
 project_description: Automatic documentation from sources, for MkDocs.
 project_name: mkdocstrings
@@ -50,7 +50,7 @@ python_package_command_line_name: ""
 python_package_distribution_name: mkdocstrings
 python_package_import_name: mkdocstrings
 repository_name: mkdocstrings
-repository_namespace: pawamoy
+repository_namespace: mkdocstrings
 repository_provider: github.com
 ```
 
