@@ -52,7 +52,7 @@ jobs:
     - name: Set up tools
       run: |
         git config --global init.defaultBranch main
-        git config --global user.email "pawamoy@pm.me"
+        git config --global user.email "dev@pawamoy.fr"
         git config --global user.name "Timothée Mazzucotelli"
 
     - name: Set up the project

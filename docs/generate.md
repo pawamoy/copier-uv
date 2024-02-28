@@ -60,7 +60,7 @@ The full name will appear as "author" in the project's metadata.
 ```
 Your email
 author_email? Format: str
-🎤 [None]: pawamoy@pm.me
+🎤 [None]: dev@pawamoy.fr
 ```
 
 The email will appear as "author email" in the project's metadata.
@@ -127,7 +127,7 @@ It defaults to the full name your provided.
 ```
 The email of the person/entity holding the copyright
 copyright_holder_email? Format: str
-🎤 [pawamoy@pm.me]: 
+🎤 [dev@pawamoy.frr]: 
 ```
 
 The email of the person or entity holding the copyright on the project.

@@ -53,7 +53,7 @@ for license in "${LICENSES[@]}"; do
     -d project_description='Testing this great template' \
     -d author_fullname="Timothée Mazzucotelli" \
     -d author_username="pawamoy" \
-    -d author_email="pawamoy@pm.me" \
+    -d author_email="dev@pawamoy.fr" \
     -d copyright_license="${license}" &>/dev/null
   (
     cd "${output}"
