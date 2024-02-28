@@ -29,7 +29,7 @@ import re
 with open(".copier-answers.yml") as file:
     answers = file.read()
 with open(".copier-answers.yml", "w") as file:
-    file.write(re.sub(r"(_commit: [^-]+)-.*", r"\1", answers))
+    file.write(re.sub(r"(_commit: [a-z0-9.]+)(-.*|$)", r"\1", answers))
 EOF
 cat .copier-answers.yml
 git add -A .
