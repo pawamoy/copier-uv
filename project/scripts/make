@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -e
 export PYTHON_VERSIONS=${PYTHON_VERSIONS-3.8 3.9 3.10 3.11 3.12}
 
 exe=""
@@ -9,8 +10,8 @@ prefix=""
 # Install runtime and development dependencies,
 # as well as current project in editable mode.
 uv_install() {
-    uv pip install --no-deps -r <(uv pip compile pyproject.toml devdeps.txt)
-    uv pip install --no-deps -e .
+    uv pip install -r <(uv pip compile pyproject.toml devdeps.txt)
+    uv pip install -e .
 }
 
 
@@ -130,7 +131,7 @@ main() {
                 singlerun duty --list ;;
             setup)
                 setup ;;
-            check) 
+            check)
                 multirun duty check-quality check-types check-docs
                 singlerun duty check-dependencies check-api
             ;;
