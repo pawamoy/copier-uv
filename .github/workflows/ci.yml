@@ -18,7 +18,34 @@ env:
 
 jobs:
 
-  tests:
+  test-filenames:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Test file names
+      run: bash tests/test_filenames.sh
+
+  test-licenses:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Configure Git
+      run: |
+        git config --global init.defaultBranch main
+        git config --global user.email "dev@pawamoy.fr"
+        git config --global user.name "Timothée Mazzucotelli"
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+    - name: Install Copier
+      run: pip install copier copier-templates-extensions
+    - name: Test licenses
+      run: bash tests/test_licenses.sh
+
+  test-project:
     strategy:
       matrix:
         os:
@@ -31,9 +58,10 @@ jobs:
         - "3.10"
         - "3.11"
         - "3.12"
+        - "3.13"
 
     runs-on: ${{ matrix.os }}
-    continue-on-error: ${{ matrix.os == 'windows-latest' || matrix.python-version == '3.13'}}
+    continue-on-error: ${{ matrix.python-version == '3.13'}}
 
     steps:
     - name: Checkout
@@ -41,22 +69,20 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-
-    - name: Install uv
-      run: pip install uv
-
-    - name: Set up tools
+    - name: Configure Git
       run: |
         git config --global init.defaultBranch main
         git config --global user.email "dev@pawamoy.fr"
         git config --global user.name "Timothée Mazzucotelli"
+  
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        allow-prereleases: true
 
-    - name: Set up the project
-      run: pip install copier copier-templates-extensions
+    - name: Install Copier and uv
+      run: pip install copier copier-templates-extensions uv
 
-    - name: Run the test suite
-      run: make test
+    - name: Test project generation and workflow
+      run: bash tests/test_generate.sh
