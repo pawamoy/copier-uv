@@ -6,6 +6,14 @@ exe=""
 prefix=""
 
 
+# Install runtime and development dependencies,
+# as well as current project in editable mode.
+uv_install() {
+    uv pip install --no-deps -r <(uv pip compile pyproject.toml devdeps.txt)
+    uv pip install --no-deps -e .
+}
+
+
 # Setup the development environment by installing dependencies
 # in multiple Python virtual environments with uv:
 # one venv per Python version in `.venvs/$py`,
@@ -21,12 +29,12 @@ setup() {
             if [ ! -d ".venvs/${version}" ]; then
                 uv venv --seed --python "${version}" ".venvs/${version}"
             fi
-            VIRTUAL_ENV="${PWD}/.venvs/${version}" uv pip install -r devdeps.txt
+            VIRTUAL_ENV="${PWD}/.venvs/${version}" uv_install
         done
     fi
 
     if [ ! -d .venv ]; then uv venv --seed; fi
-    uv pip install -r devdeps.txt
+    uv_install
 }
 
 
