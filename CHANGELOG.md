@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.0.4](https://github.com/pawamoy/copier-uv/releases/tag/1.0.4) - 2024-02-28
+
+<small>[Compare with 1.0.3](https://github.com/pawamoy/copier-uv/compare/1.0.3...1.0.4)</small>
+
+### Bug Fixes
+
+- I AM SO ANNOYED BY THIS OS ([2c5beb4](https://github.com/pawamoy/copier-uv/commit/2c5beb4f341f510ebb7d04ab29a02cf99c46195e) by Timothée Mazzucotelli).
+- Fix dependencies installation in CI ([af33aab](https://github.com/pawamoy/copier-uv/commit/af33aabbbf75e8f76e05b82d20f8ac3f4cbb51aa) by Timothée Mazzucotelli).
+
 ## [1.0.3](https://github.com/pawamoy/copier-uv/releases/tag/1.0.3) - 2024-02-28
 
 <small>[Compare with 1.0.2](https://github.com/pawamoy/copier-uv/compare/1.0.2...1.0.3)</small>
