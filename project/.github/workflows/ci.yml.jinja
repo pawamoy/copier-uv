@@ -32,15 +32,13 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: "3.8"
+        python-version: "3.11"
 
     - name: Install uv
       run: pip install uv
 
     - name: Install dependencies
-      run: |
-        uv venv
-        uv pip install -r devdeps.txt
+      run: make setup
 
     - name: Check if the documentation builds correctly
       run: make check-docs
