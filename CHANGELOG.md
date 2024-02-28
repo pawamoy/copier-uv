@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.0.1](https://github.com/pawamoy/copier-uv/releases/tag/1.0.1) - 2024-02-28
+
+<small>[Compare with 1.0.0](https://github.com/pawamoy/copier-uv/compare/1.0.0...1.0.1)</small>
+
+### Bug Fixes
+
+- Fix credits generation, preventing dev-deps to appear as runtime ones ([dfa6ed4](https://github.com/pawamoy/copier-uv/commit/dfa6ed40ab7caaa7aa475d6d48f3fbbaf8c32b38) by Timothée Mazzucotelli).
+- Fix re-installation of deps ([ace356a](https://github.com/pawamoy/copier-uv/commit/ace356a0cea6bf6d074af8a8bbe35e846661abf0) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Update Ruff config file ([71713de](https://github.com/pawamoy/copier-uv/commit/71713defd32eb6e8597c90279fe23171a470c2e8) by Timothée Mazzucotelli).
+- Clean up config files ([a9d58ac](https://github.com/pawamoy/copier-uv/commit/a9d58ac5a39ea043605d060e4863e6c36bbc0f8a) by Timothée Mazzucotelli).
+
 ## [1.0.0](https://github.com/pawamoy/copier-uv/releases/tag/1.0.0) - 2024-02-19
 
 <small>[Compare with first commit](https://github.com/pawamoy/copier-uv/compare/ad5932b04cecfcc6e6d1311f10082289cbc6ed76...1.0.0)</small>
