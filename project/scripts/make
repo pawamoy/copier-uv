@@ -10,7 +10,7 @@ prefix=""
 # Install runtime and development dependencies,
 # as well as current project in editable mode.
 uv_install() {
-    uv pip install -r <(uv pip compile pyproject.toml devdeps.txt)
+    uv pip compile pyproject.toml devdeps.txt | uv pip install -r -
     uv pip install -e .
 }
 
@@ -34,7 +34,7 @@ setup() {
         done
     fi
 
-    if [ ! -d .venv ]; then uv venv --seed; fi
+    if [ ! -d .venv ]; then uv venv --seed --python python; fi
     uv_install
 }
 
