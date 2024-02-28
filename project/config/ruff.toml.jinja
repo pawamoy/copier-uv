@@ -1,5 +1,7 @@
 target-version = "py38"
 line-length = 120
+
+[lint]
 exclude = [
     "fixtures",
     "site",
@@ -45,7 +47,7 @@ ignore = [
     "TRY003",  # Avoid specifying long messages outside the exception class
 ]
 
-[per-file-ignores]
+[lint.per-file-ignores]
 "src/*/cli.py" = [
     "T201",  # Print statement
 ]
@@ -63,16 +65,16 @@ ignore = [
     "S101",  # Use of assert detected
 ]
 
-[flake8-quotes]
+[lint.flake8-quotes]
 docstring-quotes = "double"
 
-[flake8-tidy-imports]
+[lint.flake8-tidy-imports]
 ban-relative-imports = "all"
 
-[isort]
+[lint.isort]
 known-first-party = ["{{ python_package_import_name }}"]
 
-[pydocstyle]
+[lint.pydocstyle]
 convention = "google"
 
 [format]
