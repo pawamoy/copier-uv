@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import os
-import re
 import sys
 from collections import defaultdict
 from importlib.metadata import distributions
@@ -14,6 +13,7 @@ from typing import Dict, Iterable, Union
 
 from jinja2 import StrictUndefined
 from jinja2.sandbox import SandboxedEnvironment
+from packaging.requirements import Requirement
 
 # TODO: Remove once support for Python 3.10 is dropped.
 if sys.version_info >= (3, 11):
@@ -26,7 +26,6 @@ with project_dir.joinpath("pyproject.toml").open("rb") as pyproject_file:
     pyproject = tomllib.load(pyproject_file)
 project = pyproject["project"]
 project_name = project["name"]
-regex = re.compile(r"(?P<dist>[\w.-]+)(?P<spec>.*)$")
 with open("devdeps.txt") as devdeps_file:
     devdeps = [line.strip() for line in devdeps_file if not line.startswith("-e")]
 
@@ -55,12 +54,24 @@ def _norm_spec(spec: str) -> set[str]:
     return set()
 
 
+def _requirements(deps: list[str]) -> dict[str, Requirement]:
+    return {_norm_name((req := Requirement(dep)).name): req for dep in deps}
+
+
+def _extra_marker(requirement: Requirement) -> str | None:
+    try:
+        return next(marker[2].value for marker in requirement.marker._markers if marker[0].value == "extra")
+    except (AttributeError, StopIteration):
+        return None
+
+
 def _get_metadata() -> Metadata:
     metadata = {}
     for pkg in distributions():
         name = _norm_name(pkg.name)  # type: ignore[attr-defined,unused-ignore]
         metadata[name] = _merge_fields(pkg.metadata)  # type: ignore[arg-type]
         metadata[name]["spec"] = set()
+        metadata[name]["extras"] = set()
         _set_license(metadata[name])
     return metadata
 
@@ -78,15 +89,13 @@ def _set_license(metadata: PackageMetadata) -> None:
     metadata["license"] = license_name or "?"
 
 
-def _get_deps(base_deps: list[str], metadata: Metadata) -> Metadata:
+def _get_deps(base_deps: dict[str, Requirement], metadata: Metadata) -> Metadata:
     deps = {}
-    for dep in base_deps:
-        parsed = regex.match(dep).groupdict()  # type: ignore[union-attr]
-        dep_name = _norm_name(parsed["dist"])
+    for dep_name, dep_req in base_deps.items():
         if dep_name not in metadata:
             continue
-        if spec := _norm_spec(parsed["spec"]):
-            metadata[dep_name]["spec"] |= spec  # type: ignore[operator]
+        metadata[dep_name]["spec"] |= set(str(spec) for spec in dep_req.specifier)
+        metadata[dep_name]["extras"] |= dep_req.extras
         deps[dep_name] = metadata[dep_name]
 
     again = True
@@ -95,11 +104,16 @@ def _get_deps(base_deps: list[str], metadata: Metadata) -> Metadata:
         for pkg_name in metadata:
             if pkg_name in deps:
                 for pkg_dependency in metadata[pkg_name].get("requires-dist", []):
-                    parsed = regex.match(pkg_dependency).groupdict()  # type: ignore[union-attr]
-                    dep_name = _norm_name(parsed["dist"])
-                    if dep_name in metadata and dep_name not in deps and dep_name != project["name"]:
-                        if spec := _norm_spec(parsed["spec"]):
-                            metadata[dep_name]["spec"] |= spec  # type: ignore[operator]
+                    requirement = Requirement(pkg_dependency)
+                    dep_name = _norm_name(requirement.name)
+                    extra_marker = _extra_marker(requirement)
+                    if (
+                        dep_name in metadata
+                        and dep_name not in deps
+                        and dep_name != project["name"]
+                        and (not extra_marker or extra_marker in deps[pkg_name]["extras"])
+                    ):
+                        metadata[dep_name]["spec"] |= set(str(spec) for spec in requirement.specifier)
                         deps[dep_name] = metadata[dep_name]
                         again = True
 
@@ -108,11 +122,13 @@ def _get_deps(base_deps: list[str], metadata: Metadata) -> Metadata:
 
 def _render_credits() -> str:
     metadata = _get_metadata()
-    dev_dependencies = _get_deps(devdeps, metadata)
+    dev_dependencies = _get_deps(_requirements(devdeps), metadata)
     prod_dependencies = _get_deps(
-        chain(  # type: ignore[arg-type]
-            project.get("dependencies", []),
-            chain(*project.get("optional-dependencies", {}).values()),
+        _requirements(
+            chain(  # type: ignore[arg-type]
+                project.get("dependencies", []),
+                chain(*project.get("optional-dependencies", {}).values()),
+            ),
         ),
         metadata,
     )
