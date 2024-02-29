@@ -10,6 +10,11 @@ for Python projects managed by [uv](https://github.com/astral-sh/uv).
 This copier template is mainly for my own usage,
 but feel free to try it out, or fork it!
 
+Similar templates:
+
+- [copier-pdm](https://github.com/pawamoy/copier-pdm), with [PDM](https://github.com/pdm-project/pdm)
+- [copier-poetry](https:///github.com/pawamoy/copier-poetry), with [Poetry](https://github.com/python-poetry/poetry)
+
 ## Features
 
 - [uv](https://github.com/astral-sh/uv) setup, with pre-defined `pyproject.toml`
