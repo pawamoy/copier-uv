@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.0.6](https://github.com/pawamoy/copier-uv/releases/tag/1.0.6) - 2024-03-02
+
+<small>[Compare with 1.0.5](https://github.com/pawamoy/copier-uv/compare/1.0.5...1.0.6)</small>
+
+### Code Refactoring
+
+- Improve Insiders features paragraph ([8179314](https://github.com/pawamoy/copier-uv/commit/81793149195d112676c9b222510655f37955d6c9) by Timothée Mazzucotelli).
+
 ## [1.0.5](https://github.com/pawamoy/copier-uv/releases/tag/1.0.5) - 2024-02-29
 
 <small>[Compare with 1.0.4](https://github.com/pawamoy/copier-uv/compare/1.0.4...1.0.5)</small>
