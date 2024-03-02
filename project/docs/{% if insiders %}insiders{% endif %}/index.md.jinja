@@ -60,17 +60,39 @@ data_source = "docs/insiders/goals.yml"
 ```
 
 <!-- blacken-docs:off -->
-```python exec="1" session="insiders"
+```python exec="1" session="insiders" idprefix=""
 --8<-- "scripts/insiders.py"
 
-print(
-    f"""The moment you <a href="#how-to-become-a-sponsor">become a sponsor</a>, you'll get **immediate
-    access to {len(unreleased_features)} additional features** that you can start using right away, and
-    which are currently exclusively available to sponsors:\n"""
-)
+if unreleased_features:
+    print(
+        "The moment you [become a sponsor](#how-to-become-a-sponsor), you'll get **immediate "
+        f"access to {len(unreleased_features)} additional features** that you can start using right away, and "
+        "which are currently exclusively available to sponsors:\n"
+    )
 
-for feature in unreleased_features:
-    feature.render(badge=True)
+    for feature in unreleased_features:
+        feature.render(badge=True)
+    {%- if author_username == "pawamoy" %}
+
+    print(
+        "\n\nThese are just the features related to this project. "
+        "[See the complete feature list on the author's main Insiders page](https://pawamoy.github.io/insiders/#whats-in-it-for-me)."
+    )
+    {%- endif %}
+else:
+    print(
+        "The moment you [become a sponsor](#how-to-become-a-sponsor), you'll get immediate "
+        "access to all released features that you can start using right away, and "
+        "which are exclusively available to sponsors. At this moment, there are no "
+        "Insiders features for this project, but checkout the [next funding goals](#goals) "
+        "to see what's coming
+        {%- if author_username == "pawamoy" -%}
+          , as well as **[the feature list for all Insiders projects](https://pawamoy.github.io/insiders/#whats-in-it-for-me).**
+        {%- else -%}
+          .
+        {%- endif -%}
+        "
+    )
 ```
 <!-- blacken-docs:on -->
 
@@ -185,23 +207,6 @@ and configuration options are either backward-compatible or implemented behind
 feature flags. Most Insiders features enhance the overall experience,
 though while these features add value for the users of your project, they
 shouldn't be necessary for previewing when making changes to content.
-
-{# Currently, the only content-related features in Insiders
-that can't be properly previewed by non-Insiders users are:
-
-- [Feature 1][]
-
-This means that outside collaborators are able to use *{{ project_name }}*
-locally and when they push their changes, your CI pipeline will build it with Insiders.
-When using built-in plugins that are exclusive to Insiders,
-it's recommended to split configuration into a base `mkdocs.yml`
-and one with plugin overrides via [configuration inheritance].
-
-See the [getting started guide] for more information.
-
-  [configuration inheritance]: https://www.mkdocs.org/user-guide/configuration/#configuration-inheritance
-  [getting started guide]: getting-started.md#caveats
-#}
 
 ### Payment
 
