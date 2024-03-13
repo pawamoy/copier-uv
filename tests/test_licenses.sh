@@ -38,17 +38,9 @@ LICENSES=(
 )
 
 output=tests/tmp
-template=$(mktemp -d)
-cp -rf . "${template}"
-(
-  cd "${template}" || exit 1
-  git add . -A || true
-  git commit -m "test" || true
-  git tag 99.99.99
-)
 
 for license in "${LICENSES[@]}"; do
-  copier copy -f --trust "${template}" "${output}" \
+  copier copy -fr HEAD --trust . "${output}" \
     -d project_name="Pawamoy Testing" \
     -d project_description='Testing this great template' \
     -d author_fullname="Timothée Mazzucotelli" \
