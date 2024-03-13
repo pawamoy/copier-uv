@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.0.8](https://github.com/pawamoy/copier-uv/releases/tag/1.0.8) - 2024-03-13
+
+<small>[Compare with 1.0.7](https://github.com/pawamoy/copier-uv/compare/1.0.7...1.0.8)</small>
+
+### Bug Fixes
+
+- Remove prefix from completed goals HTML ids ([3e1d865](https://github.com/pawamoy/copier-uv/commit/3e1d865c27c48fb760a96928055e64460dcab765) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Link to global goal when there are no features ([fe6c538](https://github.com/pawamoy/copier-uv/commit/fe6c5382672f7c57b50de091c0af6aca9d4ffdfc) by Timothée Mazzucotelli).
+- Prepare goal names ([fe89ca7](https://github.com/pawamoy/copier-uv/commit/fe89ca781f3c9758b61573cb5490183fd0661b13) by Timothée Mazzucotelli).
+
 ## [1.0.7](https://github.com/pawamoy/copier-uv/releases/tag/1.0.7) - 2024-03-13
 
 <small>[Compare with 1.0.6](https://github.com/pawamoy/copier-uv/compare/1.0.6...1.0.7)</small>
