@@ -11,7 +11,11 @@ prefix=""
 # as well as current project in editable mode.
 uv_install() {
     uv pip compile pyproject.toml devdeps.txt | uv pip install -r -
-    uv pip install -e .
+    if [ -z "${CI}" ]; then
+        uv pip install -e .
+    else
+        uv pip install "{{ python_package_distribution_name }} @ ."
+    fi
 }
 
 

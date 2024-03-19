@@ -114,10 +114,7 @@ jobs:
       run: pip install uv
 
     - name: Install dependencies
-      run: |
-        uv venv
-        uv pip install -r devdeps.txt
-        uv pip install "{{ python_package_distribution_name }} @ ."
+      run: make setup
 
     - name: Run the test suite
       run: make test
