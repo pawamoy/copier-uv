@@ -74,7 +74,10 @@ jobs:
             {"python-version": "3.13"}
           ]' | tr -d '[:space:]' >> $GITHUB_OUTPUT
         else
-          echo 'jobs=[]' >> $GITHUB_OUTPUT
+          echo 'jobs=[
+            {"os": "macos-latest", "resolution": "lowest-direct"},
+            {"os": "windows-latest", "resolution": "lowest-direct"}
+          ]' | tr -d '[:space:]' >> $GITHUB_OUTPUT
         fi
 
   {% endif -%}
@@ -96,8 +99,17 @@ jobs:
         - "3.11"
         - "3.12"
         - "3.13"
+        resolution:
+        - highest
+        - lowest-direct
         {%- if insiders %}
         exclude: {% raw %}${{ fromJSON(needs.exclude-test-jobs.outputs.jobs) }}{% endraw %}
+        {%- else %}
+        exclude:
+        - os: macos-latest
+          resolution: lowest-direct
+        - os: windows-latest
+          resolution: lowest-direct
         {%- endif %}
     runs-on: {% raw %}${{ matrix.os }}{% endraw %}
     continue-on-error: {% raw %}${{ matrix.python-version == '3.13' }}{% endraw %}
@@ -116,6 +128,8 @@ jobs:
       run: pip install uv
 
     - name: Install dependencies
+      env:
+        UV_RESOLUTION: {% raw %}${{ matrix.resolution }}{% endraw %}
       run: make setup
 
     - name: Run the test suite

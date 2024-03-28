@@ -10,11 +10,15 @@ prefix=""
 # Install runtime and development dependencies,
 # as well as current project in editable mode.
 uv_install() {
-    uv pip compile pyproject.toml devdeps.txt | uv pip install -r -
+    local uv_opts
+    if [ -n "${UV_RESOLUTION}" ]; then
+        uv_opts="--resolution=${UV_RESOLUTION}"
+    fi
+    uv pip compile ${uv_opts} pyproject.toml devdeps.txt | uv pip install -r -
     if [ -z "${CI}" ]; then
-        uv pip install -e .
+        uv pip install --no-deps -e .
     else
-        uv pip install .
+        uv pip install --no-deps .
     fi
 }
 
