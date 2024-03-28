@@ -70,7 +70,8 @@ jobs:
             {"python-version": "3.9"},
             {"python-version": "3.10"},
             {"python-version": "3.11"},
-            {"python-version": "3.12"}
+            {"python-version": "3.12"},
+            {"python-version": "3.13"}
           ]' | tr -d '[:space:]' >> $GITHUB_OUTPUT
         else
           echo 'jobs=[]' >> $GITHUB_OUTPUT
@@ -94,11 +95,12 @@ jobs:
         - "3.10"
         - "3.11"
         - "3.12"
+        - "3.13"
         {%- if insiders %}
         exclude: {% raw %}${{ fromJSON(needs.exclude-test-jobs.outputs.jobs) }}{% endraw %}
         {%- endif %}
     runs-on: {% raw %}${{ matrix.os }}{% endraw %}
-    continue-on-error: {% raw %}${{ matrix.python-version == '3.12' }}{% endraw %}
+    continue-on-error: {% raw %}${{ matrix.python-version == '3.13' }}{% endraw %}
 
     steps:
     - name: Checkout
