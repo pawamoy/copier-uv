@@ -14,7 +14,7 @@ uv_install() {
     if [ -z "${CI}" ]; then
         uv pip install -e .
     else
-        uv pip install "{{ python_package_distribution_name }} @ ."
+        uv pip install .
     fi
 }
 
