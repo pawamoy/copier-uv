@@ -21,10 +21,12 @@ gen generate:
 	@bash -c 'source tests/helpers.sh && generate ${PWD} tests/tmp'
 
 reset-history: gen
-	@./reset-history.sh
+	@bash tests/reset_history.sh
 
 test: cleantests
-	@./runtests.sh
+	@bash tests/test_filenames.sh
+	@bash tests/test_project.sh
+	@bash tests/test_licenses.sh
 
 changelog:
 	@git-changelog -Tio CHANGELOG.md -Bauto -c angular

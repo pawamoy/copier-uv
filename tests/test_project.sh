@@ -41,11 +41,20 @@ if [ -z "${SKIP_SETUP:-}" ]; then
     make setup
     echo
 fi
+echo ">>> Formatting and asserting there are no changes"
+make format
+diff="$(git status --porcelain=v1 2>/dev/null)"
+if [ -n "${diff}" ]; then
+    echo
+    echo "Status:"
+    echo "${diff}"
+    echo "Diff:"
+    git diff
+    exit 1
+fi
+echo
 echo ">>> Running initial quality checks"
 make check
-echo
-echo ">>> Formatting, and re-running quality checks"
-make format check-quality
 echo
 echo ">>> Running tests"
 make test

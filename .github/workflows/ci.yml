@@ -85,4 +85,4 @@ jobs:
       run: pip install copier copier-templates-extensions uv
 
     - name: Test project generation and workflow
-      run: bash tests/test_generate.sh
+      run: bash tests/test_project.sh
