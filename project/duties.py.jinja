@@ -156,6 +156,7 @@ def clean(ctx: Context) -> None:
     Parameters:
         ctx: The context instance (passed automatically).
     """
+
     def _rm(*targets: str) -> None:
         for target in targets:
             ctx.run(f"rm -rf {target}")
