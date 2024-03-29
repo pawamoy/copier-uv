@@ -36,11 +36,25 @@ git add -A .
 git commit -am "feat: Initial commit"
 git tag v0.1.0
 echo
+echo ">>> Printing help"
+make help
+echo
 if [ -z "${SKIP_SETUP:-}" ]; then
     echo ">>> Setting up Python environments"
     make setup
     echo
 fi
+echo ">>> Configuring VSCode"
+make vscode
+echo
+echo ">>> Testing arbitrary commands"
+pycode="import sys; print(sys.version.split(' ', 1)[0].rsplit('.', 1)[0])"
+make run python -c "print('run: ', end=''); ${pycode}"
+make multirun python -c "print('multirun: ', end=''); ${pycode}"
+make allrun python -c "print('allrun: ', end=''); ${pycode}"
+version="$(python -c "${pycode}")"
+make "${version}" python -c "print('3.x: ', end=''); ${pycode}" | grep -F "${version}"
+echo
 echo ">>> Formatting and asserting there are no changes"
 make format
 diff="$(git status --porcelain=v1 2>/dev/null)"
@@ -53,7 +67,7 @@ if [ -n "${diff}" ]; then
     exit 1
 fi
 echo
-echo ">>> Running initial quality checks"
+echo ">>> Running quality checks"
 make check
 echo
 echo ">>> Running tests"
@@ -72,3 +86,6 @@ make run failprint -- grep 'v0\.1\.0' CHANGELOG.md
 make run failprint -- grep 'v0\.1\.1' CHANGELOG.md
 make run failprint -- grep 'Features' CHANGELOG.md
 make run failprint -- grep 'Bug Fixes' CHANGELOG.md
+echo
+echo ">>> Cleaning directory"
+make clean
