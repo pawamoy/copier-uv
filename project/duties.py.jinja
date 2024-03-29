@@ -149,26 +149,6 @@ def check_api(ctx: Context) -> None:
     )
 
 
-@duty(silent=True)
-def clean(ctx: Context) -> None:
-    """Delete temporary files.
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
-
-    def _rm(*targets: str) -> None:
-        for target in targets:
-            ctx.run(f"rm -rf {target}")
-
-    def _find_rm(*targets: str) -> None:
-        for target in targets:
-            ctx.run(f"find . -type d -name '{target}' | xargs rm -rf")
-
-    _rm("build", "dist", ".coverage*", "htmlcov", "site", ".pdm-build")
-    _find_rm(".cache", ".pytest_cache", ".mypy_cache", ".ruff_cache", "__pycache__")
-
-
 @duty
 def docs(ctx: Context, host: str = "127.0.0.1", port: int = 8000) -> None:
     """Serve the documentation (localhost:8000).
@@ -289,28 +269,3 @@ def test(ctx: Context, match: str = "") -> None:
         title=pyprefix("Running tests"),
         command=f"pytest -c config/pytest.ini -n auto -k{match!r} --color=yes tests",
     )
-
-
-@duty
-def vscode(ctx: Context) -> None:
-    """Configure VSCode.
-
-    This task will overwrite the following files,
-    so make sure to back them up:
-
-    - `.vscode/launch.json`
-    - `.vscode/settings.json`
-    - `.vscode/tasks.json`
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
-
-    def update_config(filename: str) -> None:
-        source_file = Path("config", "vscode", filename)
-        target_file = Path(".vscode", filename)
-        target_file.parent.mkdir(exist_ok=True)
-        target_file.write_text(source_file.read_text())
-
-    for filename in ("launch.json", "settings.json", "tasks.json"):
-        ctx.run(update_config, args=[filename], title=f"Update .vscode/{filename}")
