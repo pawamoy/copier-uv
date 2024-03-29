@@ -174,7 +174,7 @@ def format(ctx: Context) -> None:
 
 
 @duty{% if not testing %}(post=["docs-deploy"]){% endif %}
-def release(ctx: Context, version: str) -> None:
+def release(ctx: Context, version: str | None = None) -> None:
     """Release a new Python package.
 
     Parameters:
@@ -188,6 +188,8 @@ def release(ctx: Context, version: str) -> None:
             title="Not releasing from insiders repository (do that from public repo instead!)",
         )
     {%- endif %}
+    if not (version := (version or input("> Version to release: ")).strip()):
+        ctx.run("false", title="A version must be provided")
     ctx.run("git add pyproject.toml CHANGELOG.md", title="Staging files", pty=PTY)
     ctx.run(["git", "commit", "-m", f"chore: Prepare release {version}"], title="Committing changes", pty=PTY)
     ctx.run(f"git tag {version}", title="Tagging commit", pty=PTY)
