@@ -46,11 +46,7 @@ def material_insiders() -> Iterator[bool]:  # noqa: D103
 
 @duty
 def changelog(ctx: Context) -> None:
-    """Update the changelog in-place with latest commits.
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
+    """Update the changelog in-place with latest commits."""
     from git_changelog.cli import main as git_changelog
 
     ctx.run(git_changelog, args=[[]], title="Updating changelog")
@@ -58,20 +54,12 @@ def changelog(ctx: Context) -> None:
 
 @duty(pre=["check_quality", "check_types", "check_docs", "check_dependencies", "check-api"])
 def check(ctx: Context) -> None:  # noqa: ARG001
-    """Check it all!
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
+    """Check it all!"""
 
 
 @duty
 def check_quality(ctx: Context) -> None:
-    """Check the code quality.
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
+    """Check the code quality."""
     ctx.run(
         ruff.check(*PY_SRC_LIST, config="config/ruff.toml"),
         title=pyprefix("Checking code quality"),
@@ -81,11 +69,7 @@ def check_quality(ctx: Context) -> None:
 
 @duty
 def check_dependencies(ctx: Context) -> None:
-    """Check for vulnerabilities in dependencies.
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
+    """Check for vulnerabilities in dependencies."""
     # retrieve the list of dependencies
     requirements = ctx.run(
         ["uv", "pip", "freeze"],
@@ -102,11 +86,7 @@ def check_dependencies(ctx: Context) -> None:
 
 @duty
 def check_docs(ctx: Context) -> None:
-    """Check if the documentation builds correctly.
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
+    """Check if the documentation builds correctly."""
     Path("htmlcov").mkdir(parents=True, exist_ok=True)
     Path("htmlcov/index.html").touch(exist_ok=True)
     with material_insiders():
@@ -119,11 +99,7 @@ def check_docs(ctx: Context) -> None:
 
 @duty
 def check_types(ctx: Context) -> None:
-    """Check that the code is correctly typed.
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
+    """Check that the code is correctly typed."""
     ctx.run(
         mypy.run(*PY_SRC_LIST, config_file="config/mypy.ini"),
         title=pyprefix("Type-checking"),
@@ -133,11 +109,7 @@ def check_types(ctx: Context) -> None:
 
 @duty
 def check_api(ctx: Context) -> None:
-    """Check for API breaking changes.
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
+    """Check for API breaking changes."""
     from griffe.cli import check as g_check
 
     griffe_check = lazy(g_check, name="griffe.check")
@@ -154,7 +126,6 @@ def docs(ctx: Context, host: str = "127.0.0.1", port: int = 8000) -> None:
     """Serve the documentation (localhost:8000).
 
     Parameters:
-        ctx: The context instance (passed automatically).
         host: The host to serve the docs from.
         port: The port to serve the docs on.
     """
@@ -168,11 +139,7 @@ def docs(ctx: Context, host: str = "127.0.0.1", port: int = 8000) -> None:
 
 @duty
 def docs_deploy(ctx: Context) -> None:
-    """Deploy the documentation on GitHub pages.
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
+    """Deploy the documentation on GitHub pages."""
     os.environ["DEPLOY"] = "true"
     with material_insiders() as insiders:
         if not insiders:
@@ -198,21 +165,12 @@ def docs_deploy(ctx: Context) -> None:
 
 @duty
 def format(ctx: Context) -> None:
-    """Run formatting tools on the code.
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
+    """Run formatting tools on the code."""
     ctx.run(
         ruff.check(*PY_SRC_LIST, config="config/ruff.toml", fix_only=True, exit_zero=True),
         title="Auto-fixing code",
     )
     ctx.run(ruff.format(*PY_SRC_LIST, config="config/ruff.toml"), title="Formatting code")
-    {#- ctx.run(
-        blacken_docs.run(*PY_SRC_LIST, "docs", exts=["py", "md"], line_length=120),
-        title="Formatting docs",
-        nofail=True,
-    ) #}
 
 
 @duty{% if not testing %}(post=["docs-deploy"]){% endif %}
@@ -220,7 +178,6 @@ def release(ctx: Context, version: str) -> None:
     """Release a new Python package.
 
     Parameters:
-        ctx: The context instance (passed automatically).
         version: The new version number to use.
     """
     {%- if insiders %}
@@ -244,11 +201,7 @@ def release(ctx: Context, version: str) -> None:
 
 @duty(silent=True, aliases=["coverage"])
 def cov(ctx: Context) -> None:
-    """Report coverage as text and HTML.
-
-    Parameters:
-        ctx: The context instance (passed automatically).
-    """
+    """Report coverage as text and HTML."""
     ctx.run(coverage.combine, nofail=True)
     ctx.run(coverage.report(rcfile="config/coverage.ini"), capture=False)
     ctx.run(coverage.html(rcfile="config/coverage.ini"))
@@ -259,7 +212,6 @@ def test(ctx: Context, match: str = "") -> None:
     """Run the test suite.
 
     Parameters:
-        ctx: The context instance (passed automatically).
         match: A pytest expression to filter selected tests.
     """
     py_version = f"{sys.version_info.major}{sys.version_info.minor}"
