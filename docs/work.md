@@ -148,15 +148,24 @@ Available tasks:
 - `vscode`: Configure VSCode for the project.
   See [VSCode setup](#vscode-setup).
 
-To run arbitrary commands in the default Python virtual environment,
-use `make run command --args`. To run arbitrary commands in *all* Python
-virtual environments, use `make multirun command --args`.
+The `make` script provides some additional commands:
 
-For example, to install a local project as an editable dependency:
-
-```bash
-make multirun pip install -e ../some-project
-```
+- `make help`: Print available commands and tasks.
+- `make setup`: Install project and dependencies for all configured Python versions,
+  as well as in a default virtual environment (`.venv` + `.venvs/*`).
+- `make run command --args`: run arbitrary commands in the default Python virtual environment (`.venv`).
+  This command can be useful to run a Python interpreter without having to activate the venv:
+  `make run python`.
+- `make multirun command --args`: run arbitrary commands for all configured Python versions (`.venvs/*`).
+  This command can be useful to check something on all Python versions:
+  `make multirun python -c 'import sys; print(sys.version_info)'`.
+- `make allrun command --args`: run arbitrary commands in *all* Python virtual environments (`.venv` + `.venvs/*`).
+  This command can be useful to override some of the installed dependencies,
+  or to install local packages as editable:
+  `make allrun pip install -U some-dependency==2.0`, `make allrun pip install -e ../some-project`.
+- `make 3.x command --args`: run arbitrary commands for a specific Python versions (`.venvs/3.x`).
+  This command can be useful to check something on a specific Python version:
+  `make 3.13 duty docs`.
 
 ### VSCode setup
 
@@ -167,13 +176,6 @@ files, so make sure to back them up:**
 - `.vscode/launch.json`
 - `.vscode/settings.json`
 - `.vscode/tasks.json`
-
-### Makefile
-
-You will notice a Makefile in the repository.
-It's main purpose is to enable auto-completion for the `make` Bash script.
-See [Environment](#environment) on how to transparently call the Bash script
-with auto-completion instead of the Makefile.
 
 ## Workflow
 

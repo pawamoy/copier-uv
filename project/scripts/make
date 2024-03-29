@@ -66,28 +66,41 @@ activate() {
     return 1
 }
 
+# Run a command in a specific virtual environment.
+run() {
+    local version="$1"
+    local cmd="$2"
+    shift 2
 
-# Run a command in all configured Python virtual environments.
-# We handle the case when the `PYTHON_VERSIONS` environment variable
-# is unset or empty, for robustness.
-multirun() {
-    local cmd="$1"
-    shift
-
-    if [ -n "${PYTHON_VERSIONS}" ]; then
-        for version in ${PYTHON_VERSIONS}; do
-            (activate ".venvs/${version}" && MULTIRUN=1 "${prefix}${cmd}${exe}" "$@")
-        done
-    else
+    if [ "${version}" = "default" ]; then
         (activate .venv && "${prefix}${cmd}${exe}" "$@")
+    else
+        (activate ".venvs/${version}" && MULTIRUN=1 "${prefix}${cmd}${exe}" "$@")
     fi
 }
 
 
-# Run a command in the default Python virtual environment.
-# We rely on `multirun`'s handling of empty `PYTHON_VERSIONS`.
-singlerun() {
-    PYTHON_VERSIONS= multirun "$@"
+# Run a command in all configured Python virtual environments.
+# We allow `PYTHON_VERSIONS` to be empty, and in that case
+# we run the command in the default virtual environment only.
+multirun() {
+    if [ -n "${PYTHON_VERSIONS}" ]; then
+        for version in ${PYTHON_VERSIONS}; do
+            run "${version}" "$@"
+        done
+    else
+        run default "$@"
+    fi
+}
+
+
+# Run a command in all configured Python virtual environments,
+# as well as in the default virtual environment.
+allrun() {
+    run default "$@"
+    if [ -n "${PYTHON_VERSIONS}" ]; then
+        multirun "$@"
+    fi
 }
 
 
@@ -112,19 +125,46 @@ options() {
 # Main function.
 main() {
     local cmd
+
+    if [ $# -eq 0 ] || [ "$1" = "help" ]; then
+        echo "Available commands"
+        echo "  help        Print this help. Add task name to print help."
+        echo "  setup       Setup all virtual environments (install dependencies)."
+        echo "  run         Run a command in the default virtual environment."
+        echo "  multirun    Run a command for all configured Python versions."
+        echo "  allrun      Run a command in all virtual environments."
+        echo "  3.x         Run a command in the virtual environment for Python 3.x."
+        echo
+        echo "Available tasks"
+        run default duty --list
+        exit 0
+    fi
+
     while [ $# -ne 0 ]; do
         cmd="$1"
         shift
 
         # Handle `run` early to simplify `case` below.
         if [ "${cmd}" = "run" ]; then
-            singlerun "$@"
+            run default "$@"
             exit $?
         fi
 
         # Handle `multirun` early to simplify `case` below.
         if [ "${cmd}" = "multirun" ]; then
             multirun "$@"
+            exit $?
+        fi
+
+        # Handle `allrun` early to simplify `case` below.
+        if [ "${cmd}" = "allrun" ]; then
+            allrun "$@"
+            exit $?
+        fi
+
+        # Handle `3.x` early to simplify `case` below.
+        if [[ "${cmd}" = 3.* ]]; then
+            run "${cmd}" "$@"
             exit $?
         fi
 
@@ -138,13 +178,11 @@ main() {
 
         case "${cmd}" in
             # The following commands require special handling.
-            help|"")
-                singlerun duty --list ;;
             setup)
                 setup ;;
             check)
                 multirun duty check-quality check-types check-docs
-                singlerun duty check-dependencies check-api
+                run default duty check-dependencies check-api
             ;;
 
             # The following commands run in all venvs.
@@ -156,7 +194,7 @@ main() {
 
             # The following commands run in the default venv only.
             *)
-                singlerun duty "${cmd}" "${opts[@]}" ;;
+                run default duty "${cmd}" "${opts[@]}" ;;
         esac
     done
 }
