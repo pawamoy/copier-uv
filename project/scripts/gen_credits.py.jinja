@@ -131,8 +131,8 @@ def _render_credits() -> str:
 
     template_data = {
         "project_name": project_name,
-        "prod_dependencies": sorted(prod_dependencies.values(), key=lambda dep: str(dep["name"])),
-        "dev_dependencies": sorted(dev_dependencies.values(), key=lambda dep: str(dep["name"])),
+        "prod_dependencies": sorted(prod_dependencies.values(), key=lambda dep: str(dep["name"]).lower()),
+        "dev_dependencies": sorted(dev_dependencies.values(), key=lambda dep: str(dep["name"]).lower()),
         "more_credits": "{% if author_username == "pawamoy" %}http://pawamoy.github.io/credits/{% endif %}",
     }
     template_text = dedent(
