@@ -169,9 +169,11 @@ main() {
             echo "  3.x                   Run a command in the virtual environment for Python 3.x."
             echo "  clean                 Delete build artifacts and cache files."
             echo "  vscode                Configure VSCode to work on this project."
-            echo
-            echo "Available tasks"
-            run default duty --list
+            if run default python -V &>/dev/null; then
+                echo
+                echo "Available tasks"
+                run default duty --list
+            fi
         fi
         exit 0
     fi

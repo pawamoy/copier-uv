@@ -43,6 +43,9 @@ if [ -z "${SKIP_SETUP:-}" ]; then
     echo ">>> Setting up Python environments"
     make setup
     echo
+    echo ">>> Printing help again"
+    make help
+    echo
 fi
 echo ">>> Configuring VSCode"
 make vscode
