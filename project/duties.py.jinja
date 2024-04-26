@@ -199,15 +199,15 @@ def publish(ctx: Context) -> None:
 
     ctx.run(
         twine_upload,
-        args=[["upload", "-r", "pypi", "dist/*"]],
+        args=[["upload", "-r", "pypi", "--skip-existing", "dist/*"]],
         title="Publish source and wheel distributions to PyPI",
-        command="twine upload -r pypi dist/*",
+        command="twine upload -r pypi --skip-existing dist/*",
         pty=PTY,
     )
 
 
-@duty{% if not testing %}(post=["docs-deploy", "build", "publish"]){% endif %}
-def release(ctx: Context, version: str | None = None) -> None:
+@duty{% if not testing %}(post=["build", "publish", "docs-deploy"]){% endif %}
+def release(ctx: Context, version: str = "") -> None:
     """Release a new Python package.
 
     Parameters:
@@ -229,8 +229,6 @@ def release(ctx: Context, version: str | None = None) -> None:
     {%- if not testing %}
     ctx.run("git push", title="Pushing commits", pty=False)
     ctx.run("git push --tags", title="Pushing tags", pty=False)
-    ctx.run("pyproject-build", title="Building dist/wheel", pty=PTY)
-    ctx.run("twine upload --skip-existing dist/*", title="Publishing version", pty=PTY)
     {%- endif %}
 
 
