@@ -40,10 +40,10 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: "3.11"
-    - name: Install Copier
-      run: pip install copier copier-templates-extensions
+    - name: Install Jinja2
+      run: pip install jinja2
     - name: Test licenses
-      run: bash tests/test_licenses.sh
+      run: python tests/test_licenses.py
 
   test-project:
     strategy:

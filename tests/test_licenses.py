@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 from pathlib import Path
 from jinja2 import Environment
 
