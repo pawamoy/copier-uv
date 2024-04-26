@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.2.3](https://github.com/pawamoy/copier-uv/releases/tag/1.2.3) - 2024-04-26
+
+<small>[Compare with 1.2.2](https://github.com/pawamoy/copier-uv/compare/1.2.2...1.2.3)</small>
+
+### Bug Fixes
+
+- Further fixes to release/publish duties ([263580a](https://github.com/pawamoy/copier-uv/commit/263580a69cb725e0bf927c6cda5598f372087b73) by Timothée Mazzucotelli).
+
 ## [1.2.2](https://github.com/pawamoy/copier-uv/releases/tag/1.2.2) - 2024-04-26
 
 <small>[Compare with 1.2.1](https://github.com/pawamoy/copier-uv/compare/1.2.1...1.2.2)</small>
