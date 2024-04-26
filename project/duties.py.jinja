@@ -45,11 +45,16 @@ def material_insiders() -> Iterator[bool]:  # noqa: D103
 
 
 @duty
-def changelog(ctx: Context) -> None:
-    """Update the changelog in-place with latest commits."""
+def changelog(ctx: Context, bump: str | None = None) -> None:
+    """Update the changelog in-place with latest commits.
+
+    Parameters:
+        bump: Bump option passed to git-changelog.
+    """
     from git_changelog.cli import main as git_changelog
 
-    ctx.run(git_changelog, args=[[]], title="Updating changelog")
+    args = [f"--bump={bump}"] if bump is not None else []
+    ctx.run(git_changelog, args=[args], title="Updating changelog")
 
 
 @duty(pre=["check_quality", "check_types", "check_docs", "check_dependencies", "check-api"])
