@@ -117,6 +117,7 @@ You can list the available tasks with `make help`.
 
 Available tasks:
 
+- `build`: Build source and wheel distributions.
 - `changelog`: Update the changelog in-place with latest commits.
   See [the Changelog section](#changelog).
 - `check`: Check it all!
@@ -137,6 +138,7 @@ Available tasks:
     - `host="127.0.0.1"`: The host to serve the docs from.
     - `port=8000`: The port to serve the docs on.
 - `format`: Run formatting tools on the code.
+- `publish`: Publish source and wheel distributions to PyPI.
 - `release`: Release a new Python package.
   See [the Releases section](#releases).
   Arguments:

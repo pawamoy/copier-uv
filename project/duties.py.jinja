@@ -178,7 +178,23 @@ def format(ctx: Context) -> None:
     ctx.run(ruff.format(*PY_SRC_LIST, config="config/ruff.toml"), title="Formatting code")
 
 
-@duty{% if not testing %}(post=["docs-deploy"]){% endif %}
+@duty
+def build(ctx: Context) -> None:
+    """Build source and wheel distributions."""
+    from build.cli import main as pyproject_build
+
+    ctx.run(pyproject_build, title="Building dist/wheel", pty=PTY, command="pyproject-build")
+
+
+@duty
+def publish(ctx: Context) -> None:
+    """Publish source and wheel distributions to PyPI."""
+    from twine.cli import main as twine_upload
+
+    ctx.run(twine_upload, title="Publish sdist and wheel to PyPI", pty=PTY, command="twine upload -r pypi dist/*")
+
+
+@duty{% if not testing %}(post=["docs-deploy", "build", "publish"]){% endif %}
 def release(ctx: Context, version: str | None = None) -> None:
     """Release a new Python package.
 
