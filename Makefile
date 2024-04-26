@@ -29,7 +29,7 @@ test: cleantests
 	@bash tests/test_licenses.sh
 
 changelog:
-	@git-changelog -Tio CHANGELOG.md -Bauto -c angular
+	@git-changelog -Tio CHANGELOG.md -Bauto -c angular -n pep440
 
 release:
 	@test -n "$(version)" || { echo "error: usage: make release version=x.y.z" >&2; exit 1; }
