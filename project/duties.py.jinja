@@ -181,17 +181,29 @@ def format(ctx: Context) -> None:
 @duty
 def build(ctx: Context) -> None:
     """Build source and wheel distributions."""
-    from build.cli import main as pyproject_build
+    from build.__main__ import main as pyproject_build
 
-    ctx.run(pyproject_build, title="Building dist/wheel", pty=PTY, command="pyproject-build")
+    ctx.run(
+        pyproject_build,
+        args=[()],
+        title="Building source and wheel distributions",
+        command="pyproject-build",
+        pty=PTY,
+    )
 
 
 @duty
 def publish(ctx: Context) -> None:
     """Publish source and wheel distributions to PyPI."""
-    from twine.cli import main as twine_upload
+    from twine.cli import dispatch as twine_upload
 
-    ctx.run(twine_upload, title="Publish sdist and wheel to PyPI", pty=PTY, command="twine upload -r pypi dist/*")
+    ctx.run(
+        twine_upload,
+        args=[["upload", "-r", "pypi", "dist/*"]],
+        title="Publish source and wheel distributions to PyPI",
+        command="twine upload -r pypi dist/*",
+        pty=PTY,
+    )
 
 
 @duty{% if not testing %}(post=["docs-deploy", "build", "publish"]){% endif %}
