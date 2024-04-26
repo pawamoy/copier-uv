@@ -197,9 +197,12 @@ def publish(ctx: Context) -> None:
     """Publish source and wheel distributions to PyPI."""
     from twine.cli import dispatch as twine_upload
 
+    if not Path("dist").exists():
+        ctx.run("false", title="No distribution files found")
+    dists = [str(dist) for dist in Path("dist").iterdir()]
     ctx.run(
         twine_upload,
-        args=[["upload", "-r", "pypi", "--skip-existing", "dist/*"]],
+        args=[["upload", "-r", "pypi", "--skip-existing", *dists]],
         title="Publish source and wheel distributions to PyPI",
         command="twine upload -r pypi --skip-existing dist/*",
         pty=PTY,
