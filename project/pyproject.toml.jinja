@@ -121,3 +121,9 @@ version = {source = "scm"}
 [tool.pdm.build]
 package-dir = "src"
 editable-backend = "editables"
+source-includes = ["share"]
+
+[tool.pdm.build.wheel-data]
+data = [
+    {path = "share/**/*", relative-to = "."},
+]
