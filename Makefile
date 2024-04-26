@@ -1,5 +1,8 @@
 .PHONY: $(MAKECMDGOALS)
 
+changelog:
+	@.venv/bin/git-changelog -Tio CHANGELOG.md -Bauto -c angular -n pep440
+
 clean:
 	@rm -rf tests/tmp
 
@@ -9,27 +12,19 @@ cleantests:
 	@rm -rf tests/tmp/CHANGELOG.md
 
 docs:
-	@mkdocs serve
+	@.venv/bin/mkdocs serve
 
 docs-deploy:
-	@mkdocs gh-deploy
+	@.venv/bin/mkdocs gh-deploy
 
 format:
-	@ruff format
+	@.venv/bin/ruff format
 
 gen generate:
 	@bash -c 'source tests/helpers.sh && generate ${PWD} tests/tmp'
 
 reset-history: gen
 	@bash tests/reset_history.sh
-
-test: cleantests
-	@bash tests/test_filenames.sh
-	@bash tests/test_project.sh
-	@bash tests/test_licenses.sh
-
-changelog:
-	@git-changelog -Tio CHANGELOG.md -Bauto -c angular -n pep440
 
 release:
 	@test -n "$(version)" || { echo "error: usage: make release version=x.y.z" >&2; exit 1; }
@@ -38,6 +33,15 @@ release:
 	@git tag $(version)
 	@git push
 	@git push --tags
+
+setup:
+	@uv venv --seed
+	@uv pip install -r requirements.txt
+
+test: cleantests
+	@bash tests/test_filenames.sh
+	@bash tests/test_project.sh
+	@.venv/bin/python tests/test_licenses.py
 
 DUTIES = \
 	test-changelog \

@@ -1,0 +1,6 @@
+jinja2
+markdown-callouts
+mkdocs
+mkdocs-material
+git-changelog
+ruff

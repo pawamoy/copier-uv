@@ -14,33 +14,26 @@ pipx install uv
 pipx install copier
 ```
 
+Then you can clone the repository, enter it and set it up with:
+
+```bash
+git clone https://github.com/pawamoy/copier-uv
+cd copier-uv
+make setup
+```
+
 ## Running tests
 
 To run the tests, use:
 
-```
+```bash
 make test
 ```
 
 ## Serving docs
 
-You can create a new virtualenv
-and install `mkdocs` and `mkdocs-material`:
+To serve the docs locally, use:
 
 ```bash
-python3 -m venv venv
-. venv/bin/activate
-pip install mkdocs mkdocs-material
-mkdocs serve
-```
-
-You can also install `mkdocs` with `pipx` and
-inject `mkdocs-material` in its venv,
-this way you don't need to create one yourself:
-
-```bash
-python3 -m pip install --user pipx
-pipx install mkdocs
-pipx inject mkdocs mkdocs-material
-mkdocs serve
+make docs
 ```
