@@ -124,8 +124,6 @@ Available tasks:
   See [the Quality Analysis section](#quality-analysis).
 - `check-quality`: Check the code quality.
   See [the check-quality section](#check-quality).
-- `check-dependencies`: Check for vulnerabilities in dependencies.
-  See [the check-dependencies section](#check-dependencies).
 - `check-docs`: Check if the documentation builds correctly.
   See [the check-docs section](#check-docs).
 - `check-types`: Check that the code is correctly typed.
@@ -240,7 +238,6 @@ make check
 This action is actually a composition of several checks:
 
 - `check-quality`: Check the code quality.
-- `check-dependencies`: Check for vulnerabilities in dependencies.
 - `check-docs`: Check if the documentation builds correctly.
 - `check-types`: Check if the code is correctly typed.
 - `check-api`: Check for breaking changes in your Python API.
@@ -316,28 +313,6 @@ You can also disable warnings per file, like so:
 "src/your_package/your_module.py" = [
     "T201",  # Print statement
 ]
-```
-
-### check-dependencies
-
-This action uses the tool [`safety`](https://github.com/pyupio/safety)
-to check if the **production** dependencies used in the project
-are subject to CVEs by querying an online database.
-
-An example of full report looks like the following:
-
-```
-+==============================================================================+
-| REPORT                                                                       |
-+============================+===========+==========================+==========+
-| package                    | installed | affected                 | ID       |
-+============================+===========+==========================+==========+
-| django                     | 1.2       | <1.2.2                   | 25701    |
-+==============================================================================+
-| Cross-site scripting (XSS) vulnerability in Django 1.2.x before 1.2.2 allows |
-|  remote attackers to inject arbitrary web script or HTML via a csrfmiddlewar |
-| etoken (aka csrf_token) cookie.                                              |
-+==============================================================================+
 ```
 
 ### check-docs

@@ -218,7 +218,7 @@ main() {
             # The following commands require special handling.
             check)
                 multirun duty check-quality check-types check-docs
-                run default duty check-dependencies check-api
+                run default duty check-api
             ;;
             clean|setup|vscode)
                 "${cmd}" ;;

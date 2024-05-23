@@ -21,7 +21,6 @@ Similar templates:
 - Pre-configured tools for code formatting, quality analysis and testing:
   [ruff](https://github.com/charliermarsh/ruff),
   [mypy](https://github.com/python/mypy),
-  [safety](https://github.com/pyupio/safety)
 - Tests run with [pytest](https://github.com/pytest-dev/pytest) and plugins, with [coverage](https://github.com/nedbat/coveragepy) support
 - Documentation built with [MkDocs](https://github.com/mkdocs/mkdocs)
   ([Material theme](https://github.com/squidfunk/mkdocs-material)

@@ -47,7 +47,6 @@ DUTIES = \
 	test-changelog \
 	test-check \
 	test-check-api \
-	test-check-dependencies \
 	test-check-docs \
 	test-check-quality \
 	test-check-types \

@@ -7,7 +7,6 @@ actions = \
 	changelog \
 	check \
 	check-api \
-	check-dependencies \
 	check-docs \
 	check-quality \
 	check-types \
