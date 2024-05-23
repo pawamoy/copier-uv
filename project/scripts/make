@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Management commands."""
 
 import os
 import shutil
@@ -6,6 +7,7 @@ import subprocess
 import sys
 from contextlib import contextmanager
 from pathlib import Path
+from typing import Any, Iterator
 
 PYTHON_VERSIONS = os.getenv("PYTHON_VERSIONS", "3.8 3.9 3.10 3.11 3.12 3.13").split()
 
@@ -14,11 +16,13 @@ prefix = ""
 
 
 def shell(cmd: str) -> None:
-    subprocess.run(cmd, shell=True, check=True)
+    """Run a shell command."""
+    subprocess.run(cmd, shell=True, check=True)  # noqa: S602
 
 
 @contextmanager
-def environ(**kwargs):
+def environ(**kwargs: str) -> Iterator[None]:
+    """Temporarily set environment variables."""
     original = dict(os.environ)
     os.environ.update(kwargs)
     try:
@@ -28,7 +32,8 @@ def environ(**kwargs):
         os.environ.update(original)
 
 
-def uv_install():
+def uv_install() -> None:
+    """Install dependencies using uv."""
     uv_opts = ""
     if "UV_RESOLUTION" in os.environ:
         uv_opts = f"--resolution={os.getenv('UV_RESOLUTION')}"
@@ -40,12 +45,12 @@ def uv_install():
         shell("uv pip install --no-deps .")
 
 
-def setup():
+def setup() -> None:
+    """Setup the project."""
     if not shutil.which("uv"):
-        print("make: setup: uv must be installed, see https://github.com/astral-sh/uv", file=sys.stderr)
-        return 1
+        raise ValueError("make: setup: uv must be installed, see https://github.com/astral-sh/uv")
 
-    print("Installing dependencies (default environment)")
+    print("Installing dependencies (default environment)")  # noqa: T201
     default_venv = Path(".venv")
     if not default_venv.exists():
         shell("uv venv --python python")
@@ -53,7 +58,7 @@ def setup():
 
     if PYTHON_VERSIONS:
         for version in PYTHON_VERSIONS:
-            print(f"\nInstalling dependencies (python{version})")
+            print(f"\nInstalling dependencies (python{version})")  # noqa: T201
             venv_path = Path(f".venvs/{version}")
             if not venv_path.exists():
                 shell(f"uv venv --python {version} {venv_path}")
@@ -61,8 +66,9 @@ def setup():
                 uv_install()
 
 
-def activate(path):
-    global exe, prefix
+def activate(path: str) -> None:
+    """Activate a virtual environment."""
+    global exe, prefix  # noqa: PLW0603
 
     if (bin := Path(path, "bin")).exists():
         activate_script = bin / "activate_this.py"
@@ -76,21 +82,23 @@ def activate(path):
     if not activate_script.exists():
         raise ValueError(f"make: activate: Cannot find activation script in {path}")
 
-    exec(activate_script.read_text(), dict(__file__=str(activate_script)))
+    exec(activate_script.read_text(), {"__file__": str(activate_script)})  # noqa: S102
 
 
-def run(version, cmd, *args, **kwargs):
+def run(version: str, cmd: str, *args: str, **kwargs: Any) -> None:
+    """Run a command in a virtual environment."""
     kwargs = {"check": True, **kwargs}
     if version == "default":
         activate(".venv")
-        subprocess.run([f"{prefix}{cmd}{exe}", *args], **kwargs)
+        subprocess.run([f"{prefix}{cmd}{exe}", *args], **kwargs)  # noqa: S603, PLW1510
     else:
         activate(f".venvs/{version}")
         os.environ["MULTIRUN"] = "1"
-        subprocess.run([f"{prefix}{cmd}{exe}", *args], **kwargs)
+        subprocess.run([f"{prefix}{cmd}{exe}", *args], **kwargs)  # noqa: S603, PLW1510
 
 
-def multirun(cmd, *args, **kwargs):
+def multirun(cmd: str, *args: str, **kwargs: Any) -> None:
+    """Run a command for all configured Python versions."""
     if PYTHON_VERSIONS:
         for version in PYTHON_VERSIONS:
             run(version, cmd, *args, **kwargs)
@@ -98,49 +106,53 @@ def multirun(cmd, *args, **kwargs):
         run("default", cmd, *args, **kwargs)
 
 
-def allrun(cmd, *args, **kwargs):
+def allrun(cmd: str, *args: str, **kwargs: Any) -> None:
+    """Run a command in all virtual environments."""
     run("default", cmd, *args, **kwargs)
     if PYTHON_VERSIONS:
         multirun(cmd, *args, **kwargs)
 
 
-def clean():
+def clean() -> None:
+    """Delete build artifacts and cache files."""
     paths_to_clean = ["build", "dist", "htmlcov", "site", ".coverage*", ".pdm-build"]
     for path in paths_to_clean:
         shell(f"rm -rf {path}")
 
     cache_dirs = [".cache", ".pytest_cache", ".mypy_cache", ".ruff_cache", "__pycache__"]
-    for path in Path(".").rglob("*"):
-        if any(path.match(pattern) for pattern in cache_dirs) and not (path.match(".venv") or path.match(".venvs")):
-            shutil.rmtree(path)
+    for dirpath in Path(".").rglob("*"):
+        if any(dirpath.match(pattern) for pattern in cache_dirs) and not (dirpath.match(".venv") or dirpath.match(".venvs")):
+            shutil.rmtree(path, ignore_errors=True)
 
 
-def vscode():
+def vscode() -> None:
+    """Configure VSCode to work on this project."""
     Path(".vscode").mkdir(parents=True, exist_ok=True)
     shell("cp -v config/vscode/* .vscode")
 
 
-def main():
+def main() -> int:
+    """Main entry point."""
     args = list(sys.argv[1:])
     if not args or args[0] == "help":
         if len(args) > 1:
             run("default", "duty", "--help", args[1])
         else:
-            print("Available commands")
-            print("  help                  Print this help. Add task name to print help.")
-            print("  setup                 Setup all virtual environments (install dependencies).")
-            print("  run                   Run a command in the default virtual environment.")
-            print("  multirun              Run a command for all configured Python versions.")
-            print("  allrun                Run a command in all virtual environments.")
-            print("  3.x                   Run a command in the virtual environment for Python 3.x.")
-            print("  clean                 Delete build artifacts and cache files.")
-            print("  vscode                Configure VSCode to work on this project.")
+            print("Available commands")  # noqa: T201
+            print("  help                  Print this help. Add task name to print help.")  # noqa: T201
+            print("  setup                 Setup all virtual environments (install dependencies).")  # noqa: T201
+            print("  run                   Run a command in the default virtual environment.")  # noqa: T201
+            print("  multirun              Run a command for all configured Python versions.")  # noqa: T201
+            print("  allrun                Run a command in all virtual environments.")  # noqa: T201
+            print("  3.x                   Run a command in the virtual environment for Python 3.x.")  # noqa: T201
+            print("  clean                 Delete build artifacts and cache files.")  # noqa: T201
+            print("  vscode                Configure VSCode to work on this project.")  # noqa: T201
             try:
                 run("default", "python", "-V", capture_output=True)
             except (subprocess.CalledProcessError, ValueError):
                 pass
             else:
-                print("\nAvailable tasks")
+                print("\nAvailable tasks")  # noqa: T201
                 run("default", "duty", "--list")
         return 0
 
@@ -181,6 +193,11 @@ def main():
         else:
             run("default", "duty", cmd, *opts)
 
+    return 0
+
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except Exception:  # noqa: BLE001
+        sys.exit(1)
