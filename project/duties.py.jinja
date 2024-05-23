@@ -199,8 +199,8 @@ def release(ctx: Context, version: str = "") -> None:
     {%- endif %}
 
 
-@duty(silent=True, aliases=["coverage"])
-def cov(ctx: Context) -> None:
+@duty(silent=True, aliases=["cov"])
+def coverage(ctx: Context) -> None:
     """Report coverage as text and HTML."""
     ctx.run(tools.coverage.combine(), nofail=True)
     ctx.run(tools.coverage.report(rcfile="config/coverage.ini"), capture=False)
