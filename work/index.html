@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19+insiders-4.53.7">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24+insiders-4.53.10">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.d5b5f0fd.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.c0d16a3a.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -802,17 +802,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#check-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        check-dependencies
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#check-docs" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1135,17 +1124,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#check-dependencies" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        check-dependencies
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#check-docs" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1409,8 +1387,6 @@ You can list the available tasks with <code>make help</code>.</p>
   See <a href="#quality-analysis">the Quality Analysis section</a>.</li>
 <li><code>check-quality</code>: Check the code quality.
   See <a href="#check-quality">the check-quality section</a>.</li>
-<li><code>check-dependencies</code>: Check for vulnerabilities in dependencies.
-  See <a href="#check-dependencies">the check-dependencies section</a>.</li>
 <li><code>check-docs</code>: Check if the documentation builds correctly.
   See <a href="#check-docs">the check-docs section</a>.</li>
 <li><code>check-types</code>: Check that the code is correctly typed.
@@ -1516,7 +1492,6 @@ make<span class="w"> </span>release<span class="w"> </span><span class="nv">vers
 <p>This action is actually a composition of several checks:</p>
 <ul>
 <li><code>check-quality</code>: Check the code quality.</li>
-<li><code>check-dependencies</code>: Check for vulnerabilities in dependencies.</li>
 <li><code>check-docs</code>: Check if the documentation builds correctly.</li>
 <li><code>check-types</code>: Check if the code is correctly typed.</li>
 <li><code>check-api</code>: Check for breaking changes in your Python API.</li>
@@ -1569,23 +1544,6 @@ into the list in <code>config/ruff.toml</code>.</p>
 <span class="s2">&quot;src/your_package/your_module.py&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="s2">&quot;T201&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># Print statement</span>
 <span class="p">]</span>
-</code></pre></div>
-<h3 id="check-dependencies">check-dependencies<a class="headerlink" href="#check-dependencies" title="Permanent link">¤</a></h3>
-<p>This action uses the tool <a href="https://github.com/pyupio/safety"><code>safety</code></a>
-to check if the <strong>production</strong> dependencies used in the project
-are subject to CVEs by querying an online database.</p>
-<p>An example of full report looks like the following:</p>
-<div class="highlight"><pre><span></span><code>+==============================================================================+
-| REPORT                                                                       |
-+============================+===========+==========================+==========+
-| package                    | installed | affected                 | ID       |
-+============================+===========+==========================+==========+
-| django                     | 1.2       | &lt;1.2.2                   | 25701    |
-+==============================================================================+
-| Cross-site scripting (XSS) vulnerability in Django 1.2.x before 1.2.2 allows |
-|  remote attackers to inject arbitrary web script or HTML via a csrfmiddlewar |
-| etoken (aka csrf_token) cookie.                                              |
-+==============================================================================+
 </code></pre></div>
 <h3 id="check-docs">check-docs<a class="headerlink" href="#check-docs" title="Permanent link">¤</a></h3>
 <p>This action builds the documentation with strict behavior:
@@ -1959,7 +1917,7 @@ and enable the project on ReadTheDocs.</p>
     <script id="__config" type="application/json">{"base": "..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.1e90e0fb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.993eca2e.min.js"></script>
+      <script src="../assets/javascripts/bundle.e3055991.min.js"></script>
       
     
   </body>
