@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.2.6](https://github.com/pawamoy/copier-uv/releases/tag/1.2.6) - 2024-05-23
+
+<small>[Compare with 1.2.5](https://github.com/pawamoy/copier-uv/compare/1.2.5...1.2.6)</small>
+
+### Code Refactoring
+
+- Reformat make script ([734f664](https://github.com/pawamoy/copier-uv/commit/734f6641dc360a04e19e00dfc090778eb66d9f2c) by Timothée Mazzucotelli).
+
 ## [1.2.5](https://github.com/pawamoy/copier-uv/releases/tag/1.2.5) - 2024-05-23
 
 <small>[Compare with 1.2.4](https://github.com/pawamoy/copier-uv/compare/1.2.4...1.2.5)</small>
