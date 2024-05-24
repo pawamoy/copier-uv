@@ -43,6 +43,9 @@ test: cleantests
 	@bash tests/test_project.sh
 	@.venv/bin/python tests/test_licenses.py
 
+wait-ci:
+	@bash tests/wait_ci.sh
+
 DUTIES = \
 	test-changelog \
 	test-check \

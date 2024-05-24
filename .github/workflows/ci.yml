@@ -86,3 +86,30 @@ jobs:
 
     - name: Test project generation and workflow
       run: bash tests/test_project.sh
+
+  test-project-ci:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Configure Git
+      run: |
+        git config --global init.defaultBranch main
+        git config --global user.email "dev@pawamoy.fr"
+        git config --global user.name "Timothée Mazzucotelli"
+  
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install Copier and uv
+      run: pip install copier copier-templates-extensions uv
+
+    - name: Trigger and wait project's own CI
+      env:
+        GH_TOKEN: ${{ secrets.TESTING_PUSH_TOKEN }}
+      run: bash tests/wait_ci.sh
