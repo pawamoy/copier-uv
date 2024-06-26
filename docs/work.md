@@ -361,7 +361,7 @@ Code source coverage is computed thanks to
 Sometimes you don't want to run the whole test suite,
 but rather one particular test, or group of tests.
 Pytest provides a `-k` option to allow filtering the tests.
-The Makefile `test` rule therefore accept a `match=` argument
+The `test` command therefore accept a `match=` argument
 to specify the value of Pytest's `-k` option:
 
 ```
@@ -512,8 +512,8 @@ make release version=x.y.z
 
 ## Releases
 
-As seen in the previous section, you can use the `release` rule
-of the Makefile to publish new versions of the Python package.
+As seen in the previous section, you can use the `release` command
+to publish new versions of the Python package.
 
 Usually, just before running `make release version=x.y.z`,
 you run `make changelog` to update the changelog and
