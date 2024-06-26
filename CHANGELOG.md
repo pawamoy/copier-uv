@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.3.0](https://github.com/pawamoy/copier-uv/releases/tag/1.3.0) - 2024-06-26
+
+<small>[Compare with 1.2.11](https://github.com/pawamoy/copier-uv/compare/1.2.11...1.3.0)</small>
+
+### Features
+
+- Add docs update and change request issue templates ([8f41407](https://github.com/pawamoy/copier-uv/commit/8f41407d7cb626ff00e9269c62c287628f67ae5c) by Timothée Mazzucotelli). [Issue-27](https://github.com/pawamoy/copier-uv/issues/27)
+
+### Bug Fixes
+
+- Fix make script to be compatible with Python < 3.10 ([795f39f](https://github.com/pawamoy/copier-uv/commit/795f39f42a51a9ecb8c316e8dc5546a56e4e2f8f) by Timothée Mazzucotelli).
+- Update contributing docs (mention `make` script instead of Makefile) ([7e76e47](https://github.com/pawamoy/copier-uv/commit/7e76e47fed603703b0fd6868dca4b318cb0c585c) by Timothée Mazzucotelli). [Issue-28](https://github.com/pawamoy/copier-uv/issues/28)
+
 ## [1.2.11](https://github.com/pawamoy/copier-uv/releases/tag/1.2.11) - 2024-06-26
 
 <small>[Compare with 1.2.10](https://github.com/pawamoy/copier-uv/compare/1.2.10...1.2.11)</small>
