@@ -202,5 +202,7 @@ def main() -> int:
 if __name__ == "__main__":
     try:
         sys.exit(main())
-    except Exception:  # noqa: BLE001
-        sys.exit(1)
+    except subprocess.CalledProcessError as process:
+        if process.output:
+            print(process.output, file=sys.stderr)  # noqa: T201
+        sys.exit(process.returncode)
