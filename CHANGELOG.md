@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.2.11](https://github.com/pawamoy/copier-uv/releases/tag/1.2.11) - 2024-06-26
+
+<small>[Compare with 1.2.10](https://github.com/pawamoy/copier-uv/compare/1.2.10...1.2.11)</small>
+
+### Bug Fixes
+
+- Make sure to print errors in case of failure of `make` command ([54696f3](https://github.com/pawamoy/copier-uv/commit/54696f3ced18fee3b6d7262989f9f97b5d2218ea) by Timothée Mazzucotelli). [Issue-26](https://github.com/pawamoy/copier-uv/issues/26)
+- Make sure `setup` returns non-0 exit code when uv fails to resolve dependencies ([ba5c4dc](https://github.com/pawamoy/copier-uv/commit/ba5c4dcc8128afa06abd1d2c679c263e4761fd59) by Timothée Mazzucotelli).
+- Fix Twine dependency (5.1 has been yanked) ([e022917](https://github.com/pawamoy/copier-uv/commit/e022917f40db2e82c07f5b4a3e2eb31f947c48a6) by Timothée Mazzucotelli).
+
 ## [1.2.10](https://github.com/pawamoy/copier-uv/releases/tag/1.2.10) - 2024-06-18
 
 <small>[Compare with 1.2.9](https://github.com/pawamoy/copier-uv/compare/1.2.9...1.2.10)</small>
