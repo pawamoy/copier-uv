@@ -15,9 +15,12 @@ exe = ""
 prefix = ""
 
 
-def shell(cmd: str) -> None:
+def shell(cmd: str, capture_output: bool = False, **kwargs: Any) -> str | None:
     """Run a shell command."""
-    subprocess.run(cmd, shell=True, check=True)  # noqa: S602
+    if capture_output:
+        return subprocess.check_output(cmd, shell=True, text=True, **kwargs)  # noqa: S602
+    subprocess.run(cmd, shell=True, check=True, stderr=subprocess.STDOUT, **kwargs)  # noqa: S602
+    return None
 
 
 @contextmanager
@@ -37,8 +40,8 @@ def uv_install() -> None:
     uv_opts = ""
     if "UV_RESOLUTION" in os.environ:
         uv_opts = f"--resolution={os.getenv('UV_RESOLUTION')}"
-    cmd = f"uv pip compile {uv_opts} pyproject.toml devdeps.txt | uv pip install -r -"
-    shell(cmd)
+    requirements = shell(f"uv pip compile {uv_opts} pyproject.toml devdeps.txt", capture_output=True)
+    shell("uv pip install -r -", input=requirements, text=True)
     if "CI" not in os.environ:
         shell("uv pip install --no-deps -e .")
     else:
