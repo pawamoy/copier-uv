@@ -2,17 +2,19 @@
 
 {% raw %}{% block announce %}{% endraw %}
   {% if insiders %}
-    <a href="{% raw %}{{ 'insiders/#how-to-become-a-sponsor' | url }}{% endraw %}"><strong>Sponsorship</strong></a>
-    is now available!
+    <strong>Fund this project</strong> through
+    <a href="{% raw %}{{ 'insiders/#how-to-become-a-sponsor' | url }}{% endraw %}"><strong>sponsorship</strong></a>
     <span class="twemoji heart pulse">
       {% raw %}{% include ".icons/octicons/heart-fill-16.svg" %}{% endraw %}
     </span> &mdash;
   {% endif %}
-  For updates follow <strong>@pawamoy</strong> on
+  Follow
+  <strong>@pawamoy</strong> on
   <a rel="me" href="https://fosstodon.org/@pawamoy">
     <span class="twemoji mastodon">
       {% raw %}{% include ".icons/fontawesome/brands/mastodon.svg" %}{% endraw %}
     </span>
     <strong>Fosstodon</strong>
   </a>
+  for updates
 {% raw %}{% endblock %}{% endraw %}
