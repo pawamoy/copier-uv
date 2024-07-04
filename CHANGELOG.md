@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.4.0](https://github.com/pawamoy/copier-uv/releases/tag/1.4.0) - 2024-07-04
+
+<small>[Compare with 1.3.0](https://github.com/pawamoy/copier-uv/compare/1.3.0...1.4.0)</small>
+
+### Features
+
+- Add feedback system using Giscus ([a69ab13](https://github.com/pawamoy/copier-uv/commit/a69ab13feddbe7fb6f12f3b1d93dda18ecedef30) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Rephrase annoucement ([bc48d13](https://github.com/pawamoy/copier-uv/commit/bc48d139e806d656674848cb0e174902e8f0174d) by Timothée Mazzucotelli).
+- Add note about lower sponsorships ([6a2d804](https://github.com/pawamoy/copier-uv/commit/6a2d8042ed48cba6f763a040e53ba8135b148d16) by Timothée Mazzucotelli).
+
 ## [1.3.0](https://github.com/pawamoy/copier-uv/releases/tag/1.3.0) - 2024-06-26
 
 <small>[Compare with 1.2.11](https://github.com/pawamoy/copier-uv/compare/1.2.11...1.3.0)</small>
