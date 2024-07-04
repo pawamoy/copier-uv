@@ -10,6 +10,7 @@ _jinja_extensions:
 - extensions.py:CurrentYearExtension
 - extensions.py:GitExtension
 - extensions.py:SlugifyExtension
+- extensions.py:GitHubIDsforGiscusExtension
 _skip_if_exists:
 - CHANGELOG.md
 - docs/insiders/changelog.md
