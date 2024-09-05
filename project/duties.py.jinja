@@ -122,9 +122,14 @@ def docs_deploy(ctx: Context) -> None:
         if not insiders:
             ctx.run(lambda: False, title="Not deploying docs without Material for MkDocs Insiders!")
         {%- if insiders %}
-        origin = ctx.run("git config --get remote.origin.url", silent=True)
+        origin = ctx.run("git config --get remote.origin.url", silent=True, allow_overrides=False)
         if "{{ author_username }}-insiders/{{ insiders_repository_name }}" in origin:
-            ctx.run("git remote add upstream git@github.com:{{ repository_namespace }}/{{ repository_name }}", silent=True, nofail=True)
+            ctx.run(
+                "git remote add upstream git@github.com:{{ repository_namespace }}/{{ repository_name }}",
+                silent=True,
+                nofail=True,
+                allow_overrides=False,
+            )
             ctx.run(
                 tools.mkdocs.gh_deploy(remote_name="upstream", force=True),
                 title="Deploying documentation",
