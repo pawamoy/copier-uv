@@ -94,10 +94,10 @@ def clean() -> None:
     for path in paths_to_clean:
         shell(f"rm -rf {path}")
 
-    cache_dirs = [".cache", ".pytest_cache", ".mypy_cache", ".ruff_cache", "__pycache__"]
-    for dirpath in Path(".").rglob("*"):
-        if any(dirpath.match(pattern) for pattern in cache_dirs) and not (dirpath.match(".venv") or dirpath.match(".venvs")):
-            shutil.rmtree(path, ignore_errors=True)
+    cache_dirs = {".cache", ".pytest_cache", ".mypy_cache", ".ruff_cache", "__pycache__"}
+    for dirpath in Path(".").rglob("*/"):
+        if dirpath.parts[0] not in (".venv", ".venvs") and dirpath.name in cache_dirs:
+            shutil.rmtree(dirpath, ignore_errors=True)
 
 
 def vscode() -> None:
