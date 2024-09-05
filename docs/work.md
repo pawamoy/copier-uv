@@ -79,11 +79,11 @@ By default it is set to active versions of Python
 
 Dependencies are managed by [uv](https://github.com/astral-sh/uv).
 
-Use `make setup` or `uv venv; uv pip install -r devdeps.txt` to install the dependencies.
+Use `make setup` or `uv sync` to install the dependencies.
 
-Runtime dependencies are written in `pyproject.toml`,
-under the `[project]` and `[project.optional-dependencies]`
-sections, and development dependencies are listed in `devdeps.txt`.
+Dependencies are written in `pyproject.toml`.
+Runtime dependencies are listed under the `[project]` and `[project.optional-dependencies]` sections,
+and development dependencies are listed under the `[tool.uv]` section.
 
 Example:
 
@@ -92,6 +92,16 @@ Example:
 dependencies = [
   "fastapi>=1.0",
   "importlib-metadata>=2.0",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+]
+
+[tool.uv]
+dev-dependencies = [
+  "ruff",
 ]
 ```
 
