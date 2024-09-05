@@ -145,12 +145,10 @@ plugins:
           show_symbol_type_toc: true
           signature_crossrefs: true
           summary: true
-- git-committers:
+- git-revision-date-localized:
     enabled: !ENV [DEPLOY, false]
-    repository: {{ repository_namespace }}/{{ repository_name }}
-{#- - git-revision-date-localized:
     enable_creation_date: true
-    type: timeago #}
+    type: timeago
 - minify:
     minify_html: !ENV [DEPLOY, false]
 - group:
