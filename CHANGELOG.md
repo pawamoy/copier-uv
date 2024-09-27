@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.4.5](https://github.com/pawamoy/copier-uv/releases/tag/1.4.5) - 2024-09-27
+
+<small>[Compare with 1.4.4](https://github.com/pawamoy/copier-uv/compare/1.4.4...1.4.5)</small>
+
+### Bug Fixes
+
+- Fix make help message indentation ([addb51e](https://github.com/pawamoy/copier-uv/commit/addb51ed8daaeb19d40cd02665f8fc68bb02f4b8) by Timothée Mazzucotelli).
+- Invalidate uv cache based on pyproject.toml ([b78ce88](https://github.com/pawamoy/copier-uv/commit/b78ce880c56b3e346d5b414bda89ac4a8cd22335) by Timothée Mazzucotelli).
+
 ## [1.4.4](https://github.com/pawamoy/copier-uv/releases/tag/1.4.4) - 2024-09-27
 
 <small>[Compare with 1.4.3](https://github.com/pawamoy/copier-uv/compare/1.4.3...1.4.4)</small>
