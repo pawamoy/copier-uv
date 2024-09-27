@@ -36,5 +36,5 @@ done
 
 echo "Deleting all testing releases..."
 for tag in $(gh release list --repo pawamoy/pawamoy-testing --json tagName --jq ".[].tagName"); do
-    gh release delete "${tag}" --repo pawamoy/pawamoy-testing --yes --cleanup-tag
+    gh release delete "${tag}" --repo pawamoy/pawamoy-testing --yes --cleanup-tag || true
 done
