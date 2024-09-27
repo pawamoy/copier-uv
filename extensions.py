@@ -68,11 +68,21 @@ class GitHubIDsforGiscusExtension(ContextHook):
     
         if self.repo_id is None:
             command = f"gh api repos/{repository_namespace}/{repository_name} --jq .node_id"
-            self.repo_id = subprocess.getoutput(command).strip() or self.repo_placeholder
+            try:
+                process = subprocess.run(command, shell=True, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+            except subprocess.CalledProcessError:
+                self.repo_id = self.repo_placeholder
+            else:
+                self.repo_id = process.stdout.strip() or self.repo_placeholder
         context["giscus_repo_id"] = self.repo_id
 
         if self.category_id is None:
             jq_filter = "--jq '.data.repository.discussionCategories.nodes[] | select(.name == \"Documentation\") | .id'"
             command = f"gh api graphql -f query='{self.query}' {jq_filter}" % {"owner": repository_namespace, "name": repository_name}
-            self.category_id = subprocess.getoutput(command).strip() or self.category_placeholder
+            try:
+                process = subprocess.run(command, shell=True, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+            except subprocess.CalledProcessError:
+                self.category_id = self.category_placeholder
+            else:
+                self.category_id = process.stdout.strip() or self.category_placeholder
         context["giscus_discussion_category_id"] = self.category_id
