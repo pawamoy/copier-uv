@@ -81,8 +81,13 @@ jobs:
         python-version: ${{ matrix.python-version }}
         allow-prereleases: true
 
-    - name: Install Copier and uv
-      run: pip install copier copier-templates-extensions uv
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v1
+      with:
+        enable-cache: true
+
+    - name: Install Copier
+      run: pip install copier copier-templates-extensions
 
     - name: Test project generation and workflow
       run: bash tests/test_project.sh
@@ -106,8 +111,13 @@ jobs:
       with:
         python-version: "3.12"
 
-    - name: Install Copier and uv
-      run: pip install copier copier-templates-extensions uv
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v1
+      with:
+        enable-cache: true
+
+    - name: Install Copier
+      run: pip install copier copier-templates-extensions
 
     - name: Trigger and wait project's own CI
       env:

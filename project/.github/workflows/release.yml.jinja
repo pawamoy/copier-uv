@@ -14,14 +14,14 @@ jobs:
     - name: Fetch all tags
       run: git fetch --depth=1 --tags
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
     {%- if insiders %}
     - name: Install build
       if: github.repository_owner == '{{ author_username }}-insiders'
-      run: python -m pip install build
+      run: pip install build
     - name: Build dists
       if: github.repository_owner == '{{ author_username }}-insiders'
-      run: python -m build
+      run: pyproject-build
     - name: Upload dists artifact
       uses: actions/upload-artifact@v4
       if: github.repository_owner == '{{ author_username }}-insiders'
