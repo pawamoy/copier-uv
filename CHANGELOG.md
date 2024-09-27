@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.4.3](https://github.com/pawamoy/copier-uv/releases/tag/1.4.3) - 2024-09-27
+
+<small>[Compare with 1.4.2](https://github.com/pawamoy/copier-uv/compare/1.4.2...1.4.3)</small>
+
+### Code Refactoring
+
+- Upgrade gh-release action version ([d26e9fa](https://github.com/pawamoy/copier-uv/commit/d26e9fa99f715e41642d26a32403fc934da4391d) by Timothée Mazzucotelli).
+
 ## [1.4.2](https://github.com/pawamoy/copier-uv/releases/tag/1.4.2) - 2024-09-27
 
 <small>[Compare with 1.4.1](https://github.com/pawamoy/copier-uv/compare/1.4.1...1.4.2)</small>
