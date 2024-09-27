@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.4.2](https://github.com/pawamoy/copier-uv/releases/tag/1.4.2) - 2024-09-27
+
+<small>[Compare with 1.4.1](https://github.com/pawamoy/copier-uv/compare/1.4.1...1.4.2)</small>
+
+### Bug Fixes
+
+- Better flush help message for make script ([fb2d373](https://github.com/pawamoy/copier-uv/commit/fb2d373b217c1d3c216b01f82e3db5c2f1542558) by Timothée Mazzucotelli).
+- Better handle `gh` command error (when fetching "Documentation" category ID for discussions) ([896dfb3](https://github.com/pawamoy/copier-uv/commit/896dfb39ea6710b3965fd3162fa9b621f916d166) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Update ci and release workflows ([4692788](https://github.com/pawamoy/copier-uv/commit/46927885db4aad4658802707d1f34a129633b83e) by Timothée Mazzucotelli).
+
 ## [1.4.1](https://github.com/pawamoy/copier-uv/releases/tag/1.4.1) - 2024-09-05
 
 <small>[Compare with 1.4.0](https://github.com/pawamoy/copier-uv/compare/1.4.0...1.4.1)</small>
