@@ -85,6 +85,8 @@ jobs:
       uses: astral-sh/setup-uv@v3
       with:
         enable-cache: true
+        cache-dependency-glob: project/pyproject.toml.jinja
+        cache-suffix: py${{ matrix.python-version }}
 
     - name: Install Copier
       run: pip install copier copier-templates-extensions
@@ -115,6 +117,7 @@ jobs:
       uses: astral-sh/setup-uv@v3
       with:
         enable-cache: true
+        cache-dependency-glob: project/pyproject.toml.jinja
 
     - name: Install Copier
       run: pip install copier copier-templates-extensions
