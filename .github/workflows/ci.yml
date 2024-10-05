@@ -39,11 +39,11 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: "3.11"
-    - name: Install Jinja2
-      run: pip install jinja2
+        python-version: "3.12"
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v3
     - name: Test licenses
-      run: python tests/test_licenses.py
+      run: uv run --with jinja2 python tests/test_licenses.py
 
   test-project:
     strategy:
@@ -89,7 +89,7 @@ jobs:
         cache-suffix: py${{ matrix.python-version }}
 
     - name: Install Copier
-      run: pip install copier copier-templates-extensions
+      run: uv tool install copier --with copier-templates-extensions
 
     - name: Test project generation and workflow
       run: bash tests/test_project.sh
@@ -120,7 +120,7 @@ jobs:
         cache-dependency-glob: project/pyproject.toml.jinja
 
     - name: Install Copier
-      run: pip install copier copier-templates-extensions
+      run: uv tool install copier --with copier-templates-extensions
 
     - name: Trigger and wait project's own CI
       env:

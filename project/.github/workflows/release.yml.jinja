@@ -15,25 +15,23 @@ jobs:
       run: git fetch --depth=1 --tags
     - name: Setup Python
       uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v3
     {%- if insiders %}
-    - name: Install build
-      if: github.repository_owner == '{{ author_username }}-insiders'
-      run: pip install build
     - name: Build dists
       if: github.repository_owner == '{{ author_username }}-insiders'
-      run: pyproject-build
+      run: uv tool run --from build pyproject-build
     - name: Upload dists artifact
       uses: actions/upload-artifact@v4
       if: github.repository_owner == '{{ author_username }}-insiders'
       with:
         name: {{ repository_name }}-insiders
         path: ./dist/*
-    - name: Install git-changelog
-      if: github.repository_owner != '{{ author_username }}-insiders'
-      run: pip install git-changelog
     - name: Prepare release notes
       if: github.repository_owner != '{{ author_username }}-insiders'
-      run: git-changelog --release-notes > release-notes.md
+      run: uv tool run git-changelog --release-notes > release-notes.md
     - name: Create release with assets
       uses: softprops/action-gh-release@v2
       if: github.repository_owner == '{{ author_username }}-insiders'
@@ -45,10 +43,8 @@ jobs:
       with:
         body_path: release-notes.md
     {%- else %}
-    - name: Install git-changelog
-      run: pip install git-changelog
     - name: Prepare release notes
-      run: git-changelog --release-notes > release-notes.md
+      run: uv tool run git-changelog --release-notes > release-notes.md
     - name: Create release
       uses: softprops/action-gh-release@v2
       with:
