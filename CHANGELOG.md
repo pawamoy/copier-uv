@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.4.6](https://github.com/pawamoy/copier-uv/releases/tag/1.4.6) - 2024-10-07
+
+<small>[Compare with 1.4.5](https://github.com/pawamoy/copier-uv/compare/1.4.5...1.4.6)</small>
+
+### Bug Fixes
+
+- Use uv to fix pip installs breaking system Python in GHA ([b86d3e9](https://github.com/pawamoy/copier-uv/commit/b86d3e99c34224a5203ac295b34deaa12d85fba2) by Timothée Mazzucotelli).
+
 ## [1.4.5](https://github.com/pawamoy/copier-uv/releases/tag/1.4.5) - 2024-09-27
 
 <small>[Compare with 1.4.4](https://github.com/pawamoy/copier-uv/compare/1.4.4...1.4.5)</small>
