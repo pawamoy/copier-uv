@@ -38,9 +38,12 @@ def environ(**kwargs: str) -> Iterator[None]:
 def uv_install(venv: Path) -> None:
     """Install dependencies using uv."""
     with environ(UV_PROJECT_ENVIRONMENT=str(venv)):
-        shell("uv sync")
- 
+        if "CI" in os.environ:
+            shell("uv sync --no-editable")
+        else:
+            shell("uv sync")
 
+ 
 def setup() -> None:
     """Setup the project."""
     if not shutil.which("uv"):
@@ -62,15 +65,18 @@ def setup() -> None:
                 uv_install(venv_path)
 
 
-def run(version: str, cmd: str, *args: str, **kwargs: Any) -> None:
+def run(version: str, cmd: str, *args: str, no_sync: bool = False, **kwargs: Any) -> None:
     """Run a command in a virtual environment."""
     kwargs = {"check": True, **kwargs}
+    uv_run = ["uv", "run"]
+    if no_sync:
+        uv_run.append("--no-sync")
     if version == "default":
         with environ(UV_PROJECT_ENVIRONMENT=".venv"):
-            subprocess.run(["uv", "run", cmd, *args], **kwargs)  # noqa: S603, PLW1510
+            subprocess.run([*uv_run, cmd, *args], **kwargs)  # noqa: S603, PLW1510
     else:
         with environ(UV_PROJECT_ENVIRONMENT=f".venvs/{version}", MULTIRUN="1"):
-            subprocess.run(["uv", "run", cmd, *args], **kwargs)  # noqa: S603, PLW1510
+            subprocess.run([*uv_run, cmd, *args], **kwargs)  # noqa: S603, PLW1510
 
 
 def multirun(cmd: str, *args: str, **kwargs: Any) -> None:
@@ -132,7 +138,7 @@ def main() -> int:
             )  # noqa: T201
             if os.path.exists(".venv"):
                 print("\nAvailable tasks", flush=True)  # noqa: T201
-                run("default", "duty", "--list")
+                run("default", "duty", "--list", no_sync=True)
         return 0
 
     while args:
