@@ -9,9 +9,8 @@ You only need two tools, [uv](https://github.com/astral-sh/uv)
 and [Copier](https://github.com/copier-org/copier).
 
 ```bash
-python3 -m pip install --user pipx
-pipx install uv
-pipx install copier
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv tool install copier --with copier-templates-extensions
 ```
 
 Then you can clone the repository, enter it and set it up with:
