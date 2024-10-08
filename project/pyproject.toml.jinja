@@ -75,7 +75,7 @@ license = {text = "
     Zlib
     {%- endif %}"}
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 keywords = []
 dynamic = ["version"]
 classifiers = [
@@ -84,12 +84,12 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Documentation",
     "Topic :: Software Development",
     "Topic :: Utilities",
@@ -147,7 +147,7 @@ dev-dependencies = [
     # maintenance
     "build>=1.2",
     "git-changelog>=2.5",
-    "twine>=5.0; python_version < '3.13'",
+    "twine>=5.1",
 
     # ci
     "duty>=1.4",
@@ -172,5 +172,6 @@ dev-dependencies = [
     "mkdocs-material>=9.5",
     "mkdocs-minify-plugin>=0.8",
     "mkdocstrings[python]>=0.25",
+    # YORE: EOL 3.10: Remove line.
     "tomli>=2.0; python_version < '3.11'",
 ]

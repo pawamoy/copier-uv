@@ -7,11 +7,13 @@ import sys
 from contextlib import contextmanager
 from importlib.metadata import version as pkgversion
 from pathlib import Path
-from typing import TYPE_CHECKING, Iterator
+from typing import TYPE_CHECKING
 
 from duty import duty, tools
 
 if TYPE_CHECKING:
+    from collections.abc import Iterator
+
     from duty.context import Context
 
 
