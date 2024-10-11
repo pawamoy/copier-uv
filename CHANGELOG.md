@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.4.7](https://github.com/pawamoy/copier-uv/releases/tag/1.4.7) - 2024-10-11
+
+<small>[Compare with 1.4.6](https://github.com/pawamoy/copier-uv/compare/1.4.6...1.4.7)</small>
+
+### Code Refactoring
+
+- Drop support for Python 3.8, start testing on Python 3.14 ([f24adfe](https://github.com/pawamoy/copier-uv/commit/f24adfe8209db336526b8a819088ff40fdc88a27) by Timothée Mazzucotelli).
+- Use newest uv features, `uv run --no-sync` and `uv sync --no-editable` ([ad2ab81](https://github.com/pawamoy/copier-uv/commit/ad2ab8145193affc6442dd36aa8e6867cb234c3e) by Timothée Mazzucotelli).
+- More uses of uv in docs ([0e3300e](https://github.com/pawamoy/copier-uv/commit/0e3300ec0f4c28546fbce52e34fc7e8d11bba28d) by Timothée Mazzucotelli).
+- Remove GitPod configuration ([977fe75](https://github.com/pawamoy/copier-uv/commit/977fe754314039c1774d996d91baf0b409dc0237) by Timothée Mazzucotelli).
+
 ## [1.4.6](https://github.com/pawamoy/copier-uv/releases/tag/1.4.6) - 2024-10-07
 
 <small>[Compare with 1.4.5](https://github.com/pawamoy/copier-uv/compare/1.4.5...1.4.6)</small>
