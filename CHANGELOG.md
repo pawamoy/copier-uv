@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.5.0](https://github.com/pawamoy/copier-uv/releases/tag/1.5.0) - 2024-10-12
+
+<small>[Compare with 1.4.8](https://github.com/pawamoy/copier-uv/compare/1.4.8...1.5.0)</small>
+
+### Features
+
+- Allow forcing docs deployment ([b8f0b63](https://github.com/pawamoy/copier-uv/commit/b8f0b636355151e0b14edf58de688884f789c513) by Timothée Mazzucotelli).
+
 ## [1.4.8](https://github.com/pawamoy/copier-uv/releases/tag/1.4.8) - 2024-10-11
 
 <small>[Compare with 1.4.7](https://github.com/pawamoy/copier-uv/compare/1.4.7...1.4.8)</small>
