@@ -65,11 +65,13 @@ class GitHubIDsforGiscusExtension(ContextHook):
     def hook(self, context):
         repository_namespace = context["repository_namespace"]
         repository_name = context["repository_name"]
-    
+
         if self.repo_id is None:
             command = f"gh api repos/{repository_namespace}/{repository_name} --jq .node_id"
             try:
-                process = subprocess.run(command, shell=True, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+                process = subprocess.run(
+                    command, shell=True, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL
+                )
             except subprocess.CalledProcessError:
                 self.repo_id = self.repo_placeholder
             else:
@@ -77,10 +79,17 @@ class GitHubIDsforGiscusExtension(ContextHook):
         context["giscus_repo_id"] = self.repo_id
 
         if self.category_id is None:
-            jq_filter = "--jq '.data.repository.discussionCategories.nodes[] | select(.name == \"Documentation\") | .id'"
-            command = f"gh api graphql -f query='{self.query}' {jq_filter}" % {"owner": repository_namespace, "name": repository_name}
+            jq_filter = (
+                "--jq '.data.repository.discussionCategories.nodes[] | select(.name == \"Documentation\") | .id'"
+            )
+            command = f"gh api graphql -f query='{self.query}' {jq_filter}" % {
+                "owner": repository_namespace,
+                "name": repository_name,
+            }
             try:
-                process = subprocess.run(command, shell=True, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+                process = subprocess.run(
+                    command, shell=True, check=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL
+                )
             except subprocess.CalledProcessError:
                 self.category_id = self.category_placeholder
             else:

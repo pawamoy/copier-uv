@@ -43,7 +43,7 @@ def uv_install(venv: Path) -> None:
         else:
             shell("uv sync")
 
- 
+
 def setup() -> None:
     """Setup the project."""
     if not shutil.which("uv"):
