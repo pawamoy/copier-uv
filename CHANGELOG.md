@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.5.2](https://github.com/pawamoy/copier-uv/releases/tag/1.5.2) - 2024-10-17
+
+<small>[Compare with 1.5.1](https://github.com/pawamoy/copier-uv/compare/1.5.1...1.5.2)</small>
+
+### Bug Fixes
+
+- Also remove Gitpod badge since we removed configuration ([65cc91a](https://github.com/pawamoy/copier-uv/commit/65cc91a26231944e8cfd338ff2fca1d6b9db4d7f) by Timothée Mazzucotelli).
+- Only add `force` parameter to docs-deploy duty when insiders is enabled ([8df12ae](https://github.com/pawamoy/copier-uv/commit/8df12ae770ffee8f2966fa8aae41e01125c6250e) by Timothée Mazzucotelli).
+
 ## [1.5.1](https://github.com/pawamoy/copier-uv/releases/tag/1.5.1) - 2024-10-12
 
 <small>[Compare with 1.5.0](https://github.com/pawamoy/copier-uv/compare/1.5.0...1.5.1)</small>
