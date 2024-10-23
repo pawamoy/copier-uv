@@ -90,6 +90,8 @@ jobs:
         cache-suffix: py${{ matrix.python-version }}
 
     - name: Install Copier
+      env:
+        PYO3_USE_ABI3_FORWARD_COMPATIBILITY: "1"
       run: uv tool install copier --with copier-templates-extensions
 
     - name: Test project generation and workflow
