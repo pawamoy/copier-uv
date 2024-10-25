@@ -99,7 +99,7 @@ def clean() -> None:
     """Delete build artifacts and cache files."""
     paths_to_clean = ["build", "dist", "htmlcov", "site", ".coverage*", ".pdm-build"]
     for path in paths_to_clean:
-        shell(f"rm -rf {path}")
+        shutil.rmtree(path, ignore_errors=True)
 
     cache_dirs = {".cache", ".pytest_cache", ".mypy_cache", ".ruff_cache", "__pycache__"}
     for dirpath in Path(".").rglob("*/"):
@@ -109,8 +109,7 @@ def clean() -> None:
 
 def vscode() -> None:
     """Configure VSCode to work on this project."""
-    Path(".vscode").mkdir(parents=True, exist_ok=True)
-    shell("cp -v config/vscode/* .vscode")
+    shutil.copytree("config/vscode", ".vscode", dirs_exist_ok=True)
 
 
 def main() -> int:
