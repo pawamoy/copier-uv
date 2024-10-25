@@ -109,8 +109,7 @@ def clean() -> None:
 
 def vscode() -> None:
     """Configure VSCode to work on this project."""
-    Path(".vscode").mkdir(parents=True, exist_ok=True)
-    shell("cp -v config/vscode/* .vscode")
+    shutil.copytree("config/vscode", ".vscode", dirs_exist_ok=True)
 
 
 def main() -> int:
