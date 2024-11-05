@@ -10,12 +10,16 @@ import sys
 from contextlib import contextmanager
 from pathlib import Path
 from textwrap import dedent
-from typing import Any, Iterator
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from collections.abc import Iterator
+
 
 PYTHON_VERSIONS = os.getenv("PYTHON_VERSIONS", "3.9 3.10 3.11 3.12 3.13 3.14").split()
 
 
-def shell(cmd: str, capture_output: bool = False, **kwargs: Any) -> str | None:
+def shell(cmd: str, *, capture_output: bool = False, **kwargs: Any) -> str | None:
     """Run a shell command."""
     if capture_output:
         return subprocess.check_output(cmd, shell=True, text=True, **kwargs)  # noqa: S602
@@ -49,7 +53,7 @@ def setup() -> None:
     if not shutil.which("uv"):
         raise ValueError("make: setup: uv must be installed, see https://github.com/astral-sh/uv")
 
-    print("Installing dependencies (default environment)")  # noqa: T201
+    print("Installing dependencies (default environment)")
     default_venv = Path(".venv")
     if not default_venv.exists():
         shell("uv venv --python python")
@@ -57,7 +61,7 @@ def setup() -> None:
 
     if PYTHON_VERSIONS:
         for version in PYTHON_VERSIONS:
-            print(f"\nInstalling dependencies (python{version})")  # noqa: T201
+            print(f"\nInstalling dependencies (python{version})")
             venv_path = Path(f".venvs/{version}")
             if not venv_path.exists():
                 shell(f"uv venv --python {version} {venv_path}")
@@ -132,12 +136,12 @@ def main() -> int:
                       3.x                   Run a command in the virtual environment for Python 3.x.
                       clean                 Delete build artifacts and cache files.
                       vscode                Configure VSCode to work on this project.
-                    """
+                    """,
                 ),
                 flush=True,
-            )  # noqa: T201
+            )
             if os.path.exists(".venv"):
-                print("\nAvailable tasks", flush=True)  # noqa: T201
+                print("\nAvailable tasks", flush=True)
                 run("default", "duty", "--list", no_sync=True)
         return 0
 
@@ -186,5 +190,5 @@ if __name__ == "__main__":
         sys.exit(main())
     except subprocess.CalledProcessError as process:
         if process.output:
-            print(process.output, file=sys.stderr)  # noqa: T201
+            print(process.output, file=sys.stderr)
         sys.exit(process.returncode)
