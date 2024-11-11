@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.5.3](https://github.com/pawamoy/copier-uv/releases/tag/1.5.3) - 2024-11-11
+
+<small>[Compare with 1.5.2](https://github.com/pawamoy/copier-uv/compare/1.5.2...1.5.3)</small>
+
+### Bug Fixes
+
+- Don't pass `--python python` to uv, which requires a `python` exec in the PATH ([331db66](https://github.com/pawamoy/copier-uv/commit/331db66178682d9f310280a7ead6bd6d6ca3dbf5) by Timothée Mazzucotelli). [Issue-40](https://github.com/pawamoy/copier-uv/issues/40)
+- Make it so that linters see the make script ([4989d1e](https://github.com/pawamoy/copier-uv/commit/4989d1e628bac45472ffc6b8deaa2879765cde5c) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Improve experience for Windows users ([ece7662](https://github.com/pawamoy/copier-uv/commit/ece7662adab1408d6206740cece7b9cd2206bd6e) by Blair Conrad). [PR-33](https://github.com/pawamoy/copier-uv/pull/33)
+
 ## [1.5.2](https://github.com/pawamoy/copier-uv/releases/tag/1.5.2) - 2024-10-17
 
 <small>[Compare with 1.5.1](https://github.com/pawamoy/copier-uv/compare/1.5.1...1.5.2)</small>
