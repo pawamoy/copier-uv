@@ -75,6 +75,14 @@ export PYTHON_VERSIONS="3.10 3.11 3.12"
 By default it is set to active versions of Python
 (non-EOL, in development).
 
+## Initialize Git Repository
+
+This project uses dynamic versioning based on Git tags. Initialize your project as a Git repository:
+
+```
+git init .
+```
+
 ## Dependencies and virtual environments
 
 Dependencies are managed by [uv](https://github.com/astral-sh/uv).
