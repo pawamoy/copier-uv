@@ -121,6 +121,8 @@ version = {source = "scm"}
 [tool.pdm.build]
 package-dir = "src"
 editable-backend = "editables"
+
+# Include as much as possible in the source distribution, to help redistributors.
 excludes = ["**/.pytest_cache"]
 source-includes = [
     "config",
@@ -135,6 +137,9 @@ source-includes = [
 ]
 
 [tool.pdm.build.wheel-data]
+# Manual pages can be included in the wheel.
+# Depending on the installation tool, they will be accessible to users.
+# pipx supports it, uv does not yet, see https://github.com/astral-sh/uv/issues/4731.
 data = [
     {path = "share/**/*", relative-to = "."},
 ]
