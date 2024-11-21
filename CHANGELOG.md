@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.5.4](https://github.com/pawamoy/copier-uv/releases/tag/1.5.4) - 2024-11-21
+
+<small>[Compare with 1.5.3](https://github.com/pawamoy/copier-uv/compare/1.5.3...1.5.4)</small>
+
+### Code Refactoring
+
+- Declare dev-deps using PEP 735 ([79f05ef](https://github.com/pawamoy/copier-uv/commit/79f05efe32f73c57b44fa9a3bebe9cbf108176b7) by Timothée Mazzucotelli). [Issue-42](https://github.com/pawamoy/copier-uv/issues/42)
+
 ## [1.5.3](https://github.com/pawamoy/copier-uv/releases/tag/1.5.3) - 2024-11-11
 
 <small>[Compare with 1.5.2](https://github.com/pawamoy/copier-uv/compare/1.5.2...1.5.3)</small>
