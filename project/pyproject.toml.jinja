@@ -144,6 +144,12 @@ data = [
     {path = "share/**/*", relative-to = "."},
 ]
 
+[tool.uv]
+# Tell uv to ignore constraints on the main package.
+# This is needed when the current project doesn't have Git tags (fork, CI).
+override-dependencies = ["{{ python_package_distribution_name }}"]
+sources = { {{ python_package_distribution_name }} = { workspace = true } }
+
 [dependency-groups]
 dev = [
     # dev
