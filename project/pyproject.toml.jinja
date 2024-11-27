@@ -119,9 +119,6 @@ Funding = "https://{{ repository_provider }}/sponsors/{{ author_username }}"
 version = {source = "scm"}
 
 [tool.pdm.build]
-package-dir = "src"
-editable-backend = "editables"
-
 # Include as much as possible in the source distribution, to help redistributors.
 excludes = ["**/.pytest_cache"]
 source-includes = [
@@ -152,9 +149,6 @@ sources = { {{ python_package_distribution_name }} = { workspace = true } }
 
 [dependency-groups]
 dev = [
-    # dev
-    "editables>=0.5",
-
     # maintenance
     "build>=1.2",
     "git-changelog>=2.5",
