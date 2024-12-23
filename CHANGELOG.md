@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.5.5](https://github.com/pawamoy/copier-uv/releases/tag/1.5.5) - 2024-12-23
+
+<small>[Compare with 1.5.4](https://github.com/pawamoy/copier-uv/compare/1.5.4...1.5.5)</small>
+
+### Bug Fixes
+
+- Ignore constraints on main package (from dependencies), to allow resolving deps in forks/CI ([d644679](https://github.com/pawamoy/copier-uv/commit/d644679a3e6370244f7e7893dfdbd1d776288096) by Timothée Mazzucotelli). [Issue-uv#8148](https://github.com/astral-sh/uv/issues/8148)
+
+### Code Refactoring
+
+- Always disable re-sync when using `uv run` through `make` ([3fe244b](https://github.com/pawamoy/copier-uv/commit/3fe244b9b3540425323024b0def9b715b9648c4f) by Timothée Mazzucotelli).
+- Remove default PDM settings from pyproject.toml, use default pth-type editable installs ([d6ef6f8](https://github.com/pawamoy/copier-uv/commit/d6ef6f81b94396a4c4f375ee39228bf5e6d40534) by Timothée Mazzucotelli).
+
 ## [1.5.4](https://github.com/pawamoy/copier-uv/releases/tag/1.5.4) - 2024-11-21
 
 <small>[Compare with 1.5.3](https://github.com/pawamoy/copier-uv/compare/1.5.3...1.5.4)</small>
