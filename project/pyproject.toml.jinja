@@ -115,8 +115,9 @@ Funding = "https://{{ repository_provider }}/sponsors/{{ author_username }}"
 
 {% endif -%}
 
-[tool.pdm]
-version = {source = "scm"}
+[tool.pdm.version]
+source = "call"
+getter = "scripts.get_version:get_version"
 
 [tool.pdm.build]
 # Include as much as possible in the source distribution, to help redistributors.
@@ -140,12 +141,6 @@ source-includes = [
 data = [
     {path = "share/**/*", relative-to = "."},
 ]
-
-[tool.uv]
-# Tell uv to ignore constraints on the main package.
-# This is needed when the current project doesn't have Git tags (fork, CI).
-override-dependencies = ["{{ python_package_distribution_name }}"]
-sources = { {{ python_package_distribution_name }} = { workspace = true } }
 
 [dependency-groups]
 dev = [
