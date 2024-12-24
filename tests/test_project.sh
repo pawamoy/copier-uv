@@ -36,7 +36,7 @@ EOF
 cat .copier-answers.yml
 git add -A .
 git commit -am "feat: Initial commit"
-git tag v0.1.0
+git tag 0.1.0
 echo
 echo ">>> Printing help"
 make help
@@ -89,8 +89,8 @@ echo ">>> Updating changelog and releasing version"
 make changelog release version=0.1.1
 echo
 echo ">>> Checking changelog's contents"
-make run failprint -- grep 'v0\.1\.0' CHANGELOG.md
-make run failprint -- grep 'v0\.1\.1' CHANGELOG.md
+make run failprint -- grep '0\.1\.0' CHANGELOG.md
+make run failprint -- grep '0\.1\.1' CHANGELOG.md
 make run failprint -- grep 'Features' CHANGELOG.md
 make run failprint -- grep 'Bug Fixes' CHANGELOG.md
 echo
