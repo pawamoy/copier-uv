@@ -5,6 +5,7 @@ _envops:
   keep_trailing_newline: true
 _subdirectory: project
 _templates_suffix: .jinja
+_preserve_symlinks: true
 _jinja_extensions:
 - copier_templates_extensions.TemplateExtensionLoader
 - extensions.py:CurrentYearExtension
