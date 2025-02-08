@@ -11,8 +11,8 @@ and [what's in it for you][features]!
 *{{ project_name }} Insiders* is a private fork of *{{ project_name }}*, hosted as
 a private GitHub repository. Almost[^1] [all new features][features]
 are developed as part of this fork, which means that they are immediately
-available to all eligible sponsors, as they are made collaborators of this
-repository.
+available to all eligible sponsors, as they are granted access to this
+private repository.
 
   [^1]:
     In general, every new feature is first exclusively released to sponsors, but
@@ -107,28 +107,22 @@ You can use your individual or organization GitHub account for sponsoring.
 
 Sponsorships lower than $10 a month are also very much appreciated, and useful.
 They won't grant you access to Insiders, but they will be counted towards reaching sponsorship goals.
-*Every* sponsorship helps us implementing new features and releasing them to the public.
+Every sponsorship helps us implementing new features and releasing them to the public.
 
-**Important**: If you're sponsoring **[@{{ author_username }}][github sponsor profile]**
-through a GitHub organization, please send a short email
-to {{ insiders_email }} with the name of your
-organization and the GitHub account of the individual
-that should be added as a collaborator.[^4]
+**Important:** By default, when you're sponsoring **[@{{ author_username }}][github sponsor profile]**
+through a GitHub organization, all the publicly visible members of the organization
+will be invited to join our private repositories. If you wish to only grant access
+to a subset of users, please send a short email to {{ insiders_email }} with the name of your
+organization and the GitHub accounts of the users that should be granted access.
+
+**Tip:** to ensure that access is not tied to a particular individual GitHub account,
+you can create a bot account (i.e. a GitHub account that is not tied to a specific
+individual), and use this account for the sponsoring. After being granted access
+to our private repositories, the bot account can create private forks of our
+private repositories into your own organization, which all members of your organization
+will have access to.
 
 You can cancel your sponsorship anytime.[^5]
-
-  [^4]:
-    It's currently not possible to grant access to each member of an
-    organization, as GitHub only allows for adding users. Thus, after
-    sponsoring, please send an email to {{ insiders_email }}, stating which
-    account should become a collaborator of the Insiders repository. We're
-    working on a solution which will make access to organizations much simpler.
-    To ensure that access is not tied to a particular individual GitHub account,
-    create a bot account (i.e. a GitHub account that is not tied to a specific
-    individual), and use this account for the sponsoring. After being added to
-    the list of collaborators, the bot account can create a private fork of the
-    private Insiders GitHub repository, and grant access to all members of the
-    organizations.
 
   [^5]:
     If you cancel your sponsorship, GitHub schedules a cancellation request
@@ -166,7 +160,7 @@ You can cancel your sponsorship anytime.[^5]
 
 The following section lists all funding goals. Each goal contains a list of
 features prefixed with a checkmark symbol, denoting whether a feature is
-:octicons-check-circle-fill-24:{ style="color: #00e676" } already available or 
+:octicons-check-circle-fill-24:{ style="color: #00e676" } already available or
 :octicons-check-circle-fill-24:{ style="color: var(--md-default-fg-color--lightest)" } planned,
 but not yet implemented. When the funding goal is hit,
 the features are released for general availability.
@@ -226,11 +220,11 @@ by the [{{ copyright_license }}][license]. However, we kindly ask you to respect
 
 - Please **don't distribute the source code** of Insiders. You may freely use
   it for public, private or commercial projects, privately fork or mirror it,
-  but please don't make the source code public, as it would counteract the 
+  but please don't make the source code public, as it would counteract the
   sponsorware strategy.
 
-- If you cancel your subscription, you're automatically removed as a
-  collaborator and will miss out on all future updates of Insiders. However, you
+- If you cancel your subscription, your access to the private repository is revoked,
+  and you will miss out on all future updates of Insiders. However, you
   may **use the latest version** that's available to you **as long as you like**.
   Just remember that [GitHub deletes private forks][private forks].
 
