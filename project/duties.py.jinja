@@ -5,9 +5,12 @@ from __future__ import annotations
 import os
 import sys
 from contextlib import contextmanager
+{%- if insiders %}
+from functools import wraps
+{%- endif %}
 from importlib.metadata import version as pkgversion
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING{% if insiders %}, Any, Callable{% endif %}
 
 from duty import duty, tools
 
@@ -31,6 +34,25 @@ def pyprefix(title: str) -> str:
         prefix = f"(python{sys.version_info.major}.{sys.version_info.minor})"
         return f"{prefix:14}{title}"
     return title
+
+
+{%- if insiders %}
+
+
+def not_from_insiders(func: Callable) -> Callable:
+    @wraps(func)
+    def wrapper(ctx: Context, *args: Any, **kwargs: Any) -> None:
+        origin = ctx.run("git config --get remote.origin.url", silent=True)
+        if "pawamoy-insiders/griffe" in origin:
+            ctx.run(
+                lambda: False,
+                title="Not running this task from insiders repository (do that from public repo instead!)",
+            )
+            return
+        func(ctx, *args, **kwargs)
+
+    return wrapper
+{%- endif %}
 
 
 @contextmanager
@@ -180,6 +202,9 @@ def build(ctx: Context) -> None:
 
 
 @duty
+{%- if insiders %}
+@not_from_insiders
+{%- endif %}
 def publish(ctx: Context) -> None:
     """Publish source and wheel distributions to PyPI."""
     if not Path("dist").exists():
@@ -193,20 +218,15 @@ def publish(ctx: Context) -> None:
 
 
 @duty{% if not testing %}(post=["build", "publish", "docs-deploy"]){% endif %}
+{%- if insiders %}
+@not_from_insiders
+{%- endif %}
 def release(ctx: Context, version: str = "") -> None:
     """Release a new Python package.
 
     Parameters:
         version: The new version number to use.
     """
-    {%- if insiders %}
-    origin = ctx.run("git config --get remote.origin.url", silent=True)
-    if "{{ author_username }}-insiders/{{ repository_name }}" in origin:
-        ctx.run(
-            lambda: False,
-            title="Not releasing from insiders repository (do that from public repo instead!)",
-        )
-    {%- endif %}
     if not (version := (version or input("> Version to release: ")).strip()):
         ctx.run("false", title="A version must be provided")
     ctx.run("git add pyproject.toml CHANGELOG.md", title="Staging files", pty=PTY)
