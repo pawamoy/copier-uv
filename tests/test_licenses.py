@@ -1,44 +1,34 @@
+#!/usr/bin/env python3
+import json
 from pathlib import Path
+
+import yaml
+import reuse
 from jinja2 import Environment
+
+
+with open("copier.yml") as file:
+    copier = yaml.safe_load(file)
+licenses = {identifier: name for choice in copier["copyright_license"]["choices"] for name, identifier in choice.items()}
+
+with Path(reuse.__file__).parent.joinpath("resources", "licenses.json").open() as file:
+    reuse_licenses = {ldata["licenseId"]: ldata["name"] for ldata in json.load(file)["licenses"]}
+
+errors = []
+for identifier, name in licenses.items():
+    if identifier not in reuse_licenses:
+        errors.append(f"License {identifier} is not supported by REUSE.")
+    elif name != reuse_licenses[identifier]:
+        errors.append(f"License {identifier} has a different name in REUSE: {name!r} != {reuse_licenses[identifier]!r}")
+
+if errors:
+    print(*errors, sep="\n")
+    raise SystemExit(1)
+
 
 env = Environment()
 template = env.from_string(Path("project/LICENSE.jinja").read_text())
 
-licenses = (
-    "Academic Free License v3.0",
-    "Apache License 2.0",
-    "Artistic License 2.0",
-    'BSD 2-Clause "Simplified" License',
-    "BSD 3-Clause Clear License",
-    'BSD 3-Clause "New" or "Revised" License',
-    "Boost Software License 1.0",
-    "Creative Commons Attribution 4.0",
-    "Creative Commons Attribution Share Alike 4.0",
-    "Creative Commons Zero v1.0 Universal",
-    "Do What The F*ck You Want To Public License",
-    "Educational Community License v2.0",
-    "Eclipse Public License 1.0",
-    "Eclipse Public License 2.0",
-    "European Union Public License 1.1",
-    "European Union Public License 1.2",
-    "GNU Affero General Public License v3.0",
-    "GNU General Public License v2.0",
-    "GNU General Public License v3.0",
-    "GNU Lesser General Public License v2.1",
-    "GNU Lesser General Public License v3.0",
-    "ISC License",
-    "LaTeX Project Public License v1.3c",
-    "MIT License",
-    "Mozilla Public License 2.0",
-    "Microsoft Public License",
-    "Microsoft Reciprocal License",
-    "University of Illinois/NCSA Open Source License",
-    "SIL Open Font License 1.1",
-    "Open Software License 3.0",
-    "PostgreSQL License",
-    "The Unlicense",
-    "zlib License",
-)
 
 for license in licenses:
     print(f"Testing license: {license}")

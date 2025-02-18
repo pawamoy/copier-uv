@@ -6,74 +6,8 @@ build-backend = "pdm.backend"
 name = "{{ python_package_distribution_name }}"
 description = "{{ project_description }}"
 authors = [{name = "{{ author_fullname }}", email = "{{ author_email }}"}]
-license = {text = "
-    {%- if copyright_license == "Academic Free License v3.0" -%}
-    AFL-3.0
-    {%- elif copyright_license == "Apache License 2.0" -%}
-    Apache-2.0
-    {%- elif copyright_license == "Artistic License 2.0" -%}
-    Artistic-2.0
-    {%- elif copyright_license == "BSD 2-Clause \"Simplified\" License" -%}
-    BSD-2-Clause
-    {%- elif copyright_license == "BSD 3-Clause Clear License" -%}
-    BSD-3-Clause-Clear
-    {%- elif copyright_license == "BSD 3-Clause \"New\" or \"Revised\" License" -%}
-    BSD-3-Clause
-    {%- elif copyright_license == "Boost Software License 1.0" -%}
-    BSL-1.0
-    {%- elif copyright_license == "Creative Commons Attribution 4.0" -%}
-    CC-BY-4.0
-    {%- elif copyright_license == "Creative Commons Attribution Share Alike 4.0" -%}
-    CC-BY-SA-4.0
-    {%- elif copyright_license == "Creative Commons Zero v1.0 Universal" -%}
-    CC0-1.0
-    {%- elif copyright_license == "Do What The F*ck You Want To Public License" -%}
-    WTFPL
-    {%- elif copyright_license == "Educational Community License v2.0" -%}
-    ECL-2.0
-    {%- elif copyright_license == "Eclipse Public License 1.0" -%}
-    EPL-1.0
-    {%- elif copyright_license == "Eclipse Public License 2.0" -%}
-    EPL-2.0
-    {%- elif copyright_license == "European Union Public License 1.1" -%}
-    EUPL-1.1
-    {%- elif copyright_license == "European Union Public License 1.2" -%}
-    EUPL-1.2
-    {%- elif copyright_license == "GNU Affero General Public License v3.0" -%}
-    AGPL-3.0
-    {%- elif copyright_license == "GNU General Public License v2.0" -%}
-    GPL-2.0
-    {%- elif copyright_license == "GNU General Public License v3.0" -%}
-    GPL-3.0
-    {%- elif copyright_license == "GNU Lesser General Public License v2.1" -%}
-    LGPL-2.1
-    {%- elif copyright_license == "GNU Lesser General Public License v3.0" -%}
-    LGPL-3.0
-    {%- elif copyright_license == "ISC License" -%}
-    ISC
-    {%- elif copyright_license == "LaTeX Project Public License v1.3c" -%}
-    LPPL-1.3c
-    {%- elif copyright_license == "MIT License" -%}
-    MIT
-    {%- elif copyright_license == "Mozilla Public License 2.0" -%}
-    MPL-2.0
-    {%- elif copyright_license == "Microsoft Public License" -%}
-    MS-PL
-    {%- elif copyright_license == "Microsoft Reciprocal License" -%}
-    MS-RL
-    {%- elif copyright_license == "University of Illinois/NCSA Open Source License" -%}
-    NCSA
-    {%- elif copyright_license == "SIL Open Font License 1.1" -%}
-    OFL-1.1
-    {%- elif copyright_license == "Open Software License 3.0" -%}
-    OSL-3.0
-    {%- elif copyright_license == "PostgreSQL License" -%}
-    PostgreSQL
-    {%- elif copyright_license == "The Unlicense" -%}
-    Unlicense
-    {%- elif copyright_license == "zlib License" -%}
-    Zlib
-    {%- endif %}"}
+license = "{{ copyright_license }}"
+license-files = ["LICENSE"]
 readme = "README.md"
 requires-python = ">=3.9"
 keywords = []

@@ -43,7 +43,7 @@ jobs:
     - name: Setup uv
       uses: astral-sh/setup-uv@v3
     - name: Test licenses
-      run: uv run --with jinja2 python tests/test_licenses.py
+      run: uv run --with reuse --with jinja2 python tests/test_licenses.py
 
   test-project:
     strategy:
