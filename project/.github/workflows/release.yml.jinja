@@ -19,7 +19,7 @@ jobs:
       with:
         python-version: "3.12"
     - name: Setup uv
-      uses: astral-sh/setup-uv@v3
+      uses: astral-sh/setup-uv@v5
     {%- if insiders %}
     - name: Build dists
       if: github.repository_owner == '{{ author_username }}-insiders'

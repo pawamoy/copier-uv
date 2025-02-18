@@ -35,7 +35,7 @@ jobs:
         python-version: "3.12"
 
     - name: Setup uv
-      uses: astral-sh/setup-uv@v3
+      uses: astral-sh/setup-uv@v5
       with:
         enable-cache: true
         cache-dependency-glob: pyproject.toml
@@ -128,11 +128,11 @@ jobs:
         allow-prereleases: true
 
     - name: Setup uv
-      uses: astral-sh/setup-uv@v3
+      uses: astral-sh/setup-uv@v5
       with:
         enable-cache: true
         cache-dependency-glob: pyproject.toml
-        cache-suffix: {% raw %}py${{ matrix.python-version }}{% endraw %}
+        cache-suffix: {% raw %}${{ matrix.resolution }}{% endraw %}
 
     - name: Install dependencies
       env:

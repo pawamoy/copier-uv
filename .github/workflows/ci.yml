@@ -41,7 +41,7 @@ jobs:
       with:
         python-version: "3.12"
     - name: Setup uv
-      uses: astral-sh/setup-uv@v3
+      uses: astral-sh/setup-uv@v5
     - name: Test licenses
       run: uv run --with reuse --with jinja2 python tests/test_licenses.py
 
@@ -83,11 +83,10 @@ jobs:
         allow-prereleases: true
 
     - name: Setup uv
-      uses: astral-sh/setup-uv@v3
+      uses: astral-sh/setup-uv@v5
       with:
         enable-cache: true
         cache-dependency-glob: project/pyproject.toml.jinja
-        cache-suffix: py${{ matrix.python-version }}
 
     - name: Install Copier
       env:
@@ -118,7 +117,7 @@ jobs:
         python-version: "3.12"
 
     - name: Setup uv
-      uses: astral-sh/setup-uv@v3
+      uses: astral-sh/setup-uv@v5
       with:
         enable-cache: true
         cache-dependency-glob: project/pyproject.toml.jinja
