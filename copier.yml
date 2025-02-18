@@ -1,3 +1,6 @@
+# SPDX-License-Identifier: ISC
+# SPDX-FileCopyrightText: 2019 Timothée Mazzucotelli
+
 # CONFIGURATION -------------------------
 _min_copier_version: "9"
 _envops:
@@ -15,6 +18,8 @@ _jinja_extensions:
 _skip_if_exists:
 - CHANGELOG.md
 - docs/insiders/changelog.md
+_tasks:
+- ["{{ _copier_python }}", tasks.py]
 
 # PROMPT --------------------------------
 project_name:

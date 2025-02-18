@@ -1,0 +1,14 @@
+import os
+import subprocess
+
+process = subprocess.run(
+    ["uvx", "reuse", "download", "{{ copyright_license }}", "-o", "LICENSES/{{ copyright_license }}.txt"],
+    check=False,
+    stdout=subprocess.PIPE,
+    stderr=subprocess.STDOUT,
+    text=True,
+)
+if process.returncode == 0 or "already exists" not in process.stdout:
+    print(process.stdout)
+
+os.unlink(__file__)
