@@ -121,7 +121,7 @@ plugins:
     scripts:
     - scripts/gen_api_ref.py
 - literate-nav:
-    nav_file: SUMMARY.md
+    nav_file: SUMMARY.txt
 - coverage
 - mkdocstrings:
     handlers:
@@ -146,6 +146,12 @@ plugins:
           show_symbol_type_toc: true
           signature_crossrefs: true
           summary: true
+- llmstxt:
+    files:
+    - output: llms.txt
+      inputs:
+      - index.md
+      - reference/**.md
 - git-revision-date-localized:
     enabled: !ENV [DEPLOY, false]
     enable_creation_date: true
