@@ -1,4 +1,4 @@
-"""Script to generate the project's credits."""
+# Script to generate the project's credits.
 
 from __future__ import annotations
 

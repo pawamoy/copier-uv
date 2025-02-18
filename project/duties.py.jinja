@@ -26,7 +26,7 @@ PTY = not WINDOWS and not CI
 MULTIRUN = os.environ.get("MULTIRUN", "0") == "1"
 
 
-def pyprefix(title: str) -> str:  # noqa: D103
+def pyprefix(title: str) -> str:
     if MULTIRUN:
         prefix = f"(python{sys.version_info.major}.{sys.version_info.minor})"
         return f"{prefix:14}{title}"
@@ -34,7 +34,7 @@ def pyprefix(title: str) -> str:  # noqa: D103
 
 
 @contextmanager
-def material_insiders() -> Iterator[bool]:  # noqa: D103
+def material_insiders() -> Iterator[bool]:
     if "+insiders" in pkgversion("mkdocs-material"):
         os.environ["MATERIAL_INSIDERS"] = "true"
         try:
