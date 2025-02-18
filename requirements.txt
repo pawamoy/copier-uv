@@ -5,4 +5,5 @@ jinja2
 markdown-callouts
 mkdocs
 mkdocs-material
+reuse
 ruff
