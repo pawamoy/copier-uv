@@ -51,7 +51,7 @@ PASTE TRACEBACK HERE
 
 ```bash
 {% if python_package_command_line_name %}{{ python_package_command_line_name }} --debug-info
-{%- else %}python -m {{ python_package_import_name }}.debug{% endif %}  # | xclip -selection clipboard
+{%- else %}python -m {{ python_package_import_name }}._internal.debug{% endif %}  # | xclip -selection clipboard
 ```
 
 PASTE MARKDOWN OUTPUT HERE

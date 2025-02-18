@@ -5,4 +5,11 @@
 
 from __future__ import annotations
 
+{%- if python_package_command_line_name %}
+
+from {{ python_package_import_name }}._internal.cli import get_parser, main
+
+__all__: list[str] = ["get_parser", "main"]
+{%- else %}
 __all__: list[str] = []
+{%- endif %}

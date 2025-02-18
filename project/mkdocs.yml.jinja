@@ -20,8 +20,7 @@ nav:
   - Credits: credits.md
   - License: license.md
 # defer to gen-files + literate-nav
-- API reference:
-  - {{ project_name }}: reference/
+- API reference: reference/
 - Development:
   - Contributing: contributing.md
   - Code of Conduct: code_of_conduct.md
@@ -52,7 +51,6 @@ theme:
   - content.code.copy
   - content.tooltips
   - navigation.footer
-  - navigation.indexes
   - navigation.instant.preview
   - navigation.path
   - navigation.sections
@@ -118,6 +116,7 @@ markdown_extensions:
 plugins:
 - search
 - markdown-exec
+- section-index
 - gen-files:
     scripts:
     - scripts/gen_api_ref.py
