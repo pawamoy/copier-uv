@@ -46,7 +46,7 @@ class GitHubIDsforGiscusExtension(ContextHook):
     repo_placeholder = "REPLACE WITH REPOSITORY NODE ID"
     category_placeholder = "REPLACE WITH DISCUSSION CATEGORY ID"
     update = False
-    query = """                     
+    query = """
     {
         repository(owner: "%(owner)s", name: "%(name)s") {
             discussionCategories(first: 100) {
@@ -63,8 +63,11 @@ class GitHubIDsforGiscusExtension(ContextHook):
     category_id: str | None = None
 
     def hook(self, context):
-        repository_namespace = context["repository_namespace"]
-        repository_name = context["repository_name"]
+        try:
+            repository_namespace = context["repository_namespace"]
+            repository_name = context["repository_name"]
+        except KeyError:
+            return
 
         if self.repo_id is None:
             command = f"gh api repos/{repository_namespace}/{repository_name} --jq .node_id"
