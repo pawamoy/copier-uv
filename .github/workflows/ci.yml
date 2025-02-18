@@ -75,7 +75,7 @@ jobs:
         git config --global init.defaultBranch main
         git config --global user.email "dev@pawamoy.fr"
         git config --global user.name "Timothée Mazzucotelli"
-  
+
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
@@ -111,7 +111,7 @@ jobs:
         git config --global init.defaultBranch main
         git config --global user.email "dev@pawamoy.fr"
         git config --global user.name "Timothée Mazzucotelli"
-  
+
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
