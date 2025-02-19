@@ -6,6 +6,36 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.6.0](https://github.com/pawamoy/copier-uv/releases/tag/1.6.0) - 2025-02-19
+
+<small>[Compare with 1.5.7](https://github.com/pawamoy/copier-uv/compare/1.5.7...1.6.0)</small>
+
+### Features
+
+- Generate /llms.txt docs file ([2000ef6](https://github.com/pawamoy/copier-uv/commit/2000ef688cc75e71140a6acecf9fd918ee9210b6) by Timothée Mazzucotelli). [Issue-49](https://github.com/pawamoy/copier-uv/issues/49)
+- Add initial API tests ([997155b](https://github.com/pawamoy/copier-uv/commit/997155b69ba48d397433582127302696c08dbb0e) by Timothée Mazzucotelli).
+- Add config to run project, and allow to pass arguments ([bd88519](https://github.com/pawamoy/copier-uv/commit/bd8851921c7105aa523867e7f64a217a562a5a41) by Timothée Mazzucotelli). [Issue-53](https://github.com/pawamoy/copier-uv/issues/53)
+
+### Bug Fixes
+
+- Prevent extension crash with key error ([1d27caf](https://github.com/pawamoy/copier-uv/commit/1d27caf9d79919c1e4d97cb312b19e80bc947d59) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Prevent publishing insiders packages to PyPI ([b51ae0f](https://github.com/pawamoy/copier-uv/commit/b51ae0f48257a83279e97a7adb2c6a240139383b) by Timothée Mazzucotelli). [Issue-44](https://github.com/pawamoy/copier-uv/issues/44)
+- Mention `insiders` instead of `pypi-insiders` in docs ([4c8d09e](https://github.com/pawamoy/copier-uv/commit/4c8d09e914b4e88d9522f4aafb37b9aabd22c780) by Timothée Mazzucotelli). [Issue-45](https://github.com/pawamoy/copier-uv/issues/45)
+- Write comments, not docstrings in internal modules/scripts ([bedf879](https://github.com/pawamoy/copier-uv/commit/bedf8796b76b215c5d228d6b76f5fa22c7a0eddc) by Timothée Mazzucotelli).
+- Use an "internal" layout ([fd500cc](https://github.com/pawamoy/copier-uv/commit/fd500cc25be5b0a169153b08b0715a5c21715f00) by Timothée Mazzucotelli). [Issue-50](https://github.com/pawamoy/copier-uv/issues/50)
+- Remove Ko-Fi and Paypal from funding file ([16f0e0e](https://github.com/pawamoy/copier-uv/commit/16f0e0e8e48bbf8ec7ac1864f3bf54271faab9c0) by Timothée Mazzucotelli). [Issue-55](https://github.com/pawamoy/copier-uv/issues/55)
+- Update setup-uv action version ([52df1c1](https://github.com/pawamoy/copier-uv/commit/52df1c14eed14bc08a3e5d6cb92112376c44d136) by Timothée Mazzucotelli). [Issue-54](https://github.com/pawamoy/copier-uv/issues/54)
+- Enable docs instant preview (link hover) ([59b1229](https://github.com/pawamoy/copier-uv/commit/59b12297d085aeac5d7187c5f2c98e91ce60ba7e) by Timothée Mazzucotelli). [Issue-52](https://github.com/pawamoy/copier-uv/issues/52)
+- Rename mkdocstrings-python `import` option to `inventories` ([c56d1cc](https://github.com/pawamoy/copier-uv/commit/c56d1cc58f4fc357582ee4e17885c11f53e5c200) by Timothée Mazzucotelli).
+- Enable docs navigation breadcrumbs ([15536d7](https://github.com/pawamoy/copier-uv/commit/15536d76e5482bd4ec9738345142e13e5b91f953) by Timothée Mazzucotelli).
+- Rename script that generates API reference ([db1a856](https://github.com/pawamoy/copier-uv/commit/db1a856081b5d0540ad3823cb54299191722c6b7) by Timothée Mazzucotelli).
+- Set metadata title in docs pages ([1837a07](https://github.com/pawamoy/copier-uv/commit/1837a07b751964de44631211dbfa7154ec33a547) by Timothée Mazzucotelli).
+- Update license templating ([84537c7](https://github.com/pawamoy/copier-uv/commit/84537c7ea157c9f5876f626e4a7d92619348a915) by Timothée Mazzucotelli).
+- Update insiders docs now that we better handle beneficiaries ([59bbbb5](https://github.com/pawamoy/copier-uv/commit/59bbbb5334ce0362537e0737df6e38d73f461339) by Timothée Mazzucotelli).
+
 ## [1.5.7](https://github.com/pawamoy/copier-uv/releases/tag/1.5.7) - 2025-01-23
 
 <small>[Compare with 1.5.6](https://github.com/pawamoy/copier-uv/compare/1.5.6...1.5.7)</small>
