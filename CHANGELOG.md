@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.6.1](https://github.com/pawamoy/copier-uv/releases/tag/1.6.1) - 2025-02-19
+
+<small>[Compare with 1.6.0](https://github.com/pawamoy/copier-uv/compare/1.6.0...1.6.1)</small>
+
+### Bug Fixes
+
+- Fix license choices in template configuration ([f26c221](https://github.com/pawamoy/copier-uv/commit/f26c22184aa6326f94a6722dc818b7364e8bb8bc) by Timothée Mazzucotelli).
+
 ## [1.6.0](https://github.com/pawamoy/copier-uv/releases/tag/1.6.0) - 2025-02-19
 
 <small>[Compare with 1.5.7](https://github.com/pawamoy/copier-uv/compare/1.5.7...1.6.0)</small>
