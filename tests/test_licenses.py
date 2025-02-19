@@ -9,7 +9,7 @@ from jinja2 import Environment
 
 with open("copier.yml") as file:
     copier = yaml.safe_load(file)
-licenses = {identifier: name for choice in copier["copyright_license"]["choices"] for name, identifier in choice.items()}
+licenses = {identifier: name for name, identifier in copier["copyright_license"]["choices"].items()}
 
 with Path(reuse.__file__).parent.joinpath("resources", "licenses.json").open() as file:
     reuse_licenses = {ldata["licenseId"]: ldata["name"] for ldata in json.load(file)["licenses"]}
