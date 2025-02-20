@@ -15,7 +15,7 @@ copier copy --trust "gh:pawamoy/copier-uv" /path/to/your/new/project
 You can even generate a project without installing Copier, using [uv](https://docs.astral.sh/uv/):
 
 ```bash
-uvx copier copy --trust "gh:pawamoy/copier-uv" /path/to/your/new/project
+uvx --with copier-templates-extensions copier copy --trust "gh:pawamoy/copier-uv" /path/to/your/new/project
 ```
 
 ## Questions
