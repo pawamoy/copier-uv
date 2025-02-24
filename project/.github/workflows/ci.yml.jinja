@@ -89,8 +89,10 @@ jobs:
   {% endif -%}
   tests:
 
+    needs:
+    - quality
     {% if insiders -%}
-    needs: exclude-test-jobs
+    - exclude-test-jobs
     {% endif -%}
     strategy:
       matrix:
