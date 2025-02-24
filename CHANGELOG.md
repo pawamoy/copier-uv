@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.6.2](https://github.com/pawamoy/copier-uv/releases/tag/1.6.2) - 2025-02-24
+
+<small>[Compare with 1.6.1](https://github.com/pawamoy/copier-uv/compare/1.6.1...1.6.2)</small>
+
+### Code Refactoring
+
+- Store and download objects inventory in CI, enabling API tests ([a55906c](https://github.com/pawamoy/copier-uv/commit/a55906c88042e454547af8a5ee0e946e3ef57d6e) by Timothée Mazzucotelli).
+
 ## [1.6.1](https://github.com/pawamoy/copier-uv/releases/tag/1.6.1) - 2025-02-19
 
 <small>[Compare with 1.6.0](https://github.com/pawamoy/copier-uv/compare/1.6.0...1.6.1)</small>
