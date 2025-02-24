@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.6.4](https://github.com/pawamoy/copier-uv/releases/tag/1.6.4) - 2025-02-24
+
+<small>[Compare with 1.6.3](https://github.com/pawamoy/copier-uv/compare/1.6.3...1.6.4)</small>
+
+### Code Refactoring
+
+- Stop depending on Black now that mkdocstrings-python supports Ruff for formatting signatures ([6554451](https://github.com/pawamoy/copier-uv/commit/65544511a65dc075157ee3f3686882108e93ed6d) by Timothée Mazzucotelli).
+
 ## [1.6.3](https://github.com/pawamoy/copier-uv/releases/tag/1.6.3) - 2025-02-24
 
 <small>[Compare with 1.6.2](https://github.com/pawamoy/copier-uv/compare/1.6.2...1.6.3)</small>
