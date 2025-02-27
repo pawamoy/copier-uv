@@ -77,13 +77,12 @@ data = [
 ]
 
 [dependency-groups]
-dev = [
-    # maintenance
+maintain = [
     "build>=1.2",
     "git-changelog>=2.5",
     "twine>=5.1",
-
-    # ci
+]
+ci = [
     "duty>=1.4",
     "ruff>=0.4",
     "pytest>=8.2",
@@ -93,8 +92,8 @@ dev = [
     "mypy>=1.10",
     "types-markdown>=3.6",
     "types-pyyaml>=6.0",
-
-    # docs
+]
+ docs = [
     "markdown-callouts>=0.4",
     "markdown-exec>=1.8",
     "mkdocs>=1.6",
@@ -110,3 +109,6 @@ dev = [
     # YORE: EOL 3.10: Remove line.
     "tomli>=2.0; python_version < '3.11'",
 ]
+
+[tool.uv]
+default-groups = ["maintain", "ci", "docs"]
