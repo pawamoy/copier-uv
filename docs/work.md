@@ -91,7 +91,7 @@ Use `make setup` or `uv sync` to install the dependencies.
 
 Dependencies are written in `pyproject.toml`.
 Runtime dependencies are listed under the `[project]` and `[project.optional-dependencies]` sections,
-and development dependencies are listed under the `[tool.uv]` section.
+and development dependencies are listed under the `[dependency-groups]` section.
 
 Example:
 
@@ -107,8 +107,8 @@ test = [
   "pytest",
 ]
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+ci = [
   "ruff",
 ]
 ```
