@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.7.0](https://github.com/pawamoy/copier-uv/releases/tag/1.7.0) - 2025-03-01
+
+<small>[Compare with 1.6.4](https://github.com/pawamoy/copier-uv/compare/1.6.4...1.7.0)</small>
+
+### Features
+
+- Check legacy code with Yore each time the changelog is updated ([63e4af5](https://github.com/pawamoy/copier-uv/commit/63e4af5bd318c1625e4f51e9a5d24a7b941d7277) by Timothée Mazzucotelli). [Issue-60](https://github.com/pawamoy/copier-uv/issues/60)
+- Split dependency-groups in sections ([bae928e](https://github.com/pawamoy/copier-uv/commit/bae928ece555c14ac8eae8e1ad4b7c0d6f98faf0) by Dennis Bücker). [Discussion-58](https://github.com/pawamoy/copier-uv/discussions/58), [PR-59](https://github.com/pawamoy/copier-uv/pull/59)
+
 ## [1.6.4](https://github.com/pawamoy/copier-uv/releases/tag/1.6.4) - 2025-02-24
 
 <small>[Compare with 1.6.3](https://github.com/pawamoy/copier-uv/compare/1.6.3...1.6.4)</small>
