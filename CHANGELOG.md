@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.7.1](https://github.com/pawamoy/copier-uv/releases/tag/1.7.1) - 2025-03-02
+
+<small>[Compare with 1.7.0](https://github.com/pawamoy/copier-uv/compare/1.7.0...1.7.1)</small>
+
+### Bug Fixes
+
+- Output llms-full.txt, not llms.txt ([2c8b4f8](https://github.com/pawamoy/copier-uv/commit/2c8b4f8d55d7e66d8c14c0ec897828d065969fb5) by Timothée Mazzucotelli).
+
 ## [1.7.0](https://github.com/pawamoy/copier-uv/releases/tag/1.7.0) - 2025-03-01
 
 <small>[Compare with 1.6.4](https://github.com/pawamoy/copier-uv/compare/1.6.4...1.7.0)</small>
