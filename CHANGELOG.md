@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.8.0](https://github.com/pawamoy/copier-uv/releases/tag/1.8.0) - 2025-03-11
+
+<small>[Compare with 1.7.1](https://github.com/pawamoy/copier-uv/compare/1.7.1...1.8.0)</small>
+
+### Features
+
+- Enable backlinks in API docs ([20aba08](https://github.com/pawamoy/copier-uv/commit/20aba086f2bfe7939bedce9d0fa457a19089159a) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Fully enable autorefs for docs ([152924d](https://github.com/pawamoy/copier-uv/commit/152924dcc5b8238f016abe89297a6402ec779bd8) by Timothée Mazzucotelli).
+- Simplify API docs (stop using gen-files and literate-nav) ([6d1aec8](https://github.com/pawamoy/copier-uv/commit/6d1aec8c12673b10192903f584d40ddc94741dbf) by Timothée Mazzucotelli).
+
 ## [1.7.1](https://github.com/pawamoy/copier-uv/releases/tag/1.7.1) - 2025-03-02
 
 <small>[Compare with 1.7.0](https://github.com/pawamoy/copier-uv/compare/1.7.0...1.7.1)</small>
