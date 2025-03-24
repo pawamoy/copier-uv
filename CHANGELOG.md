@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.8.2](https://github.com/pawamoy/copier-uv/releases/tag/1.8.2) - 2025-03-24
+
+<small>[Compare with 1.8.1](https://github.com/pawamoy/copier-uv/compare/1.8.1...1.8.2)</small>
+
+### Bug Fixes
+
+- Exclude mypy cache folders from sdists ([16011cc](https://github.com/pawamoy/copier-uv/commit/16011cc9c6f3149c03e6c8c3362ecf32160c2bca) by Timothée Mazzucotelli).
+
 ## [1.8.1](https://github.com/pawamoy/copier-uv/releases/tag/1.8.1) - 2025-03-13
 
 <small>[Compare with 1.8.0](https://github.com/pawamoy/copier-uv/compare/1.8.0...1.8.1)</small>
