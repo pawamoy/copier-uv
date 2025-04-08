@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.8.4](https://github.com/pawamoy/copier-uv/releases/tag/1.8.4) - 2025-04-08
+
+<small>[Compare with 1.8.3](https://github.com/pawamoy/copier-uv/compare/1.8.3...1.8.4)</small>
+
+### Code Refactoring
+
+- Format code (new Ruff lints) ([17b874f](https://github.com/pawamoy/copier-uv/commit/17b874f39aecb2400bb2b6a8ed1cc6fb5a92b525) by Timothée Mazzucotelli).
+
 ## [1.8.3](https://github.com/pawamoy/copier-uv/releases/tag/1.8.3) - 2025-04-08
 
 <small>[Compare with 1.8.2](https://github.com/pawamoy/copier-uv/compare/1.8.2...1.8.3)</small>
