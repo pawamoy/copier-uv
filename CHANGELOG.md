@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.8.3](https://github.com/pawamoy/copier-uv/releases/tag/1.8.3) - 2025-04-08
+
+<small>[Compare with 1.8.2](https://github.com/pawamoy/copier-uv/compare/1.8.2...1.8.3)</small>
+
+### Code Refactoring
+
+- Update usage of mkdocs-llmstxt ([93ac1bb](https://github.com/pawamoy/copier-uv/commit/93ac1bb40cf161c0200165b30a3c3f3389a8dce3) by Timothée Mazzucotelli).
+
 ## [1.8.2](https://github.com/pawamoy/copier-uv/releases/tag/1.8.2) - 2025-03-24
 
 <small>[Compare with 1.8.1](https://github.com/pawamoy/copier-uv/compare/1.8.1...1.8.2)</small>
