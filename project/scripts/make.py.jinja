@@ -144,19 +144,31 @@ def main() -> int:
         cmd = args.pop(0)
 
         if cmd == "run":
-            run("default", *args)
+            if not args:
+                print("make: run: missing command", file=sys.stderr)
+                return 1
+            run("default", *args)  # ty: ignore[missing-argument]
             return 0
 
         if cmd == "multirun":
-            multirun(*args)
+            if not args:
+                print("make: run: missing command", file=sys.stderr)
+                return 1
+            multirun(*args)  # ty: ignore[missing-argument]
             return 0
 
         if cmd == "allrun":
-            allrun(*args)
+            if not args:
+                print("make: run: missing command", file=sys.stderr)
+                return 1
+            allrun(*args)  # ty: ignore[missing-argument]
             return 0
 
         if cmd.startswith("3."):
-            run(cmd, *args)
+            if not args:
+                print("make: run: missing command", file=sys.stderr)
+                return 1
+            run(cmd, *args)  # ty: ignore[missing-argument]
             return 0
 
         opts = []
