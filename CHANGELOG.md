@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.8.5](https://github.com/pawamoy/copier-uv/releases/tag/1.8.5) - 2025-07-03
+
+<small>[Compare with 1.8.4](https://github.com/pawamoy/copier-uv/compare/1.8.4...1.8.5)</small>
+
+### Code Refactoring
+
+- Ignore Ruff/ty warnings, prepare ty use ([d581cd6](https://github.com/pawamoy/copier-uv/commit/d581cd6164a82c47924e908a6287b4cfde850412) by Timothée Mazzucotelli).
+
 ## [1.8.4](https://github.com/pawamoy/copier-uv/releases/tag/1.8.4) - 2025-04-08
 
 <small>[Compare with 1.8.3](https://github.com/pawamoy/copier-uv/compare/1.8.3...1.8.4)</small>
