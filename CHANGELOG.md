@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.8.6](https://github.com/pawamoy/copier-uv/releases/tag/1.8.6) - 2025-07-15
+
+<small>[Compare with 1.8.5](https://github.com/pawamoy/copier-uv/compare/1.8.5...1.8.6)</small>
+
+### Code Refactoring
+
+- Use new package name for extensions ([27c1d8e](https://github.com/pawamoy/copier-uv/commit/27c1d8e8b2e55c2b2c7e78af13c655fa5c5ccb08) by Timothée Mazzucotelli).
+- Improve initial output of `make` ([ac0da32](https://github.com/pawamoy/copier-uv/commit/ac0da32484365a593b79b98acf25301704653223) by Timothée Mazzucotelli). [PR-griffe-393](https://github.com/mkdocstrings/griffe/pull/393)
+
 ## [1.8.5](https://github.com/pawamoy/copier-uv/releases/tag/1.8.5) - 2025-07-03
 
 <small>[Compare with 1.8.4](https://github.com/pawamoy/copier-uv/compare/1.8.4...1.8.5)</small>
