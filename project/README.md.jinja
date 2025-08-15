@@ -7,10 +7,7 @@
 {% if not insiders or public_release -%}
 [![pypi version](https://img.shields.io/pypi/v/{{ python_package_distribution_name }}.svg)](https://pypi.org/project/{{ python_package_distribution_name }}/)
 {% endif -%}
-[![gitter](https://img.shields.io/badge/matrix-chat-4db798.svg?style=flat)](https://app.gitter.im/#/room/#{{ repository_name }}:gitter.im)
-{%- if radicle_id %}
-[![radicle](https://img.shields.io/badge/rad-clone-6666FF.svg?style=flat)](https://app.radicle.at/nodes/seed.radicle.at/{{ radicle_id }})
-{%- endif %}
+[![gitter](https://img.shields.io/badge/matrix-chat-4DB798.svg?style=flat)](https://app.gitter.im/#/room/#{{ repository_name }}:gitter.im)
 
 {{ project_description }}
 
