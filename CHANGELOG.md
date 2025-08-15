@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.8.9](https://github.com/pawamoy/copier-uv/releases/tag/1.8.9) - 2025-08-15
+
+<small>[Compare with 1.8.8](https://github.com/pawamoy/copier-uv/compare/1.8.8...1.8.9)</small>
+
+### Code Refactoring
+
+- Be more resilient to errors in latest (dev) Python version ([898db72](https://github.com/pawamoy/copier-uv/commit/898db72f88f12707452727afcd60701c7f7d433c) by Timothée Mazzucotelli).
+- Remove Radicle badge extension (too bothersome, will add badges manually) ([1e2dbfd](https://github.com/pawamoy/copier-uv/commit/1e2dbfdeaa6891d2204ad192bd60e43d702a6d4a) by Timothée Mazzucotelli).
+
 ## [1.8.8](https://github.com/pawamoy/copier-uv/releases/tag/1.8.8) - 2025-08-15
 
 <small>[Compare with 1.8.7](https://github.com/pawamoy/copier-uv/compare/1.8.7...1.8.8)</small>
