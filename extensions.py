@@ -98,3 +98,12 @@ class GitHubIDsforGiscusExtension(ContextHook):
             else:
                 self.category_id = process.stdout.strip() or self.category_placeholder
         context["giscus_discussion_category_id"] = self.category_id
+
+
+class RadicleBadgeExtension(ContextHook):
+    rid = ""
+
+    def hook(self, context):
+        if context["_copier_phase"] == "render" and not self.rid:
+            self.rid = subprocess.getoutput(f"rad inspect {context['_copier_conf']['dst_path']}").strip()
+        context["radicle_id"] = self.rid if self.rid.startswith("rad:") else None

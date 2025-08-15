@@ -12,6 +12,7 @@ _jinja_extensions:
 - extensions.py:GitExtension
 - extensions.py:SlugifyExtension
 - extensions.py:GitHubIDsforGiscusExtension
+- extensions.py:RadicleBadgeExtension
 _skip_if_exists:
 - CHANGELOG.md
 - docs/insiders/changelog.md
