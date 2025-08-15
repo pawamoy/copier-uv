@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.8.7](https://github.com/pawamoy/copier-uv/releases/tag/1.8.7) - 2025-08-15
+
+<small>[Compare with 1.8.6](https://github.com/pawamoy/copier-uv/compare/1.8.6...1.8.7)</small>
+
+### Code Refactoring
+
+- Take control over the Gitter/Matrix badge's color ([a8f9282](https://github.com/pawamoy/copier-uv/commit/a8f92822ddc4bc607cba12bfbf0de8e99faf3a14) by Timothée Mazzucotelli).
+- Add a `rad clone` badge if the repository was `rad init`'d ([ee65aee](https://github.com/pawamoy/copier-uv/commit/ee65aee0375d4a381dbd9e59f4d9b525c9ca5b6b) by Timothée Mazzucotelli).
+
 ## [1.8.6](https://github.com/pawamoy/copier-uv/releases/tag/1.8.6) - 2025-07-15
 
 <small>[Compare with 1.8.5](https://github.com/pawamoy/copier-uv/compare/1.8.5...1.8.6)</small>
