@@ -79,7 +79,7 @@ make check
 echo
 echo ">>> Running ty checks (experimental)"
 make multirun uv pip install ty
-make multirun ty check scripts/*.py duties.py src tests
+make multirun ty check scripts/*.py duties.py src tests || true
 echo
 echo ">>> Running tests"
 make test
