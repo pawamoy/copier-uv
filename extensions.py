@@ -105,5 +105,7 @@ class RadicleBadgeExtension(ContextHook):
 
     def hook(self, context):
         if context["_copier_phase"] == "render" and not self.rid:
+            print(f"Fetching Radicle ID in {context['_copier_conf']['dst_path']}...")
             self.rid = subprocess.getoutput(f"rad inspect {context['_copier_conf']['dst_path']}").strip()
+            print(f"Radicle ID: {self.rid}")
         context["radicle_id"] = self.rid if self.rid.startswith("rad:") else None
