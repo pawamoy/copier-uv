@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.8.8](https://github.com/pawamoy/copier-uv/releases/tag/1.8.8) - 2025-08-15
+
+<small>[Compare with 1.8.7](https://github.com/pawamoy/copier-uv/compare/1.8.7...1.8.8)</small>
+
+### Code Refactoring
+
+- Debug Radicle ID context hook ([d8069b9](https://github.com/pawamoy/copier-uv/commit/d8069b9990c86dcba61ac88cd09d0d4c1613b1fc) by Timothée Mazzucotelli).
+
 ## [1.8.7](https://github.com/pawamoy/copier-uv/releases/tag/1.8.7) - 2025-08-15
 
 <small>[Compare with 1.8.6](https://github.com/pawamoy/copier-uv/compare/1.8.6...1.8.7)</small>
