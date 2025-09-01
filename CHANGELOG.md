@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.9.0](https://github.com/pawamoy/copier-uv/releases/tag/1.9.0) - 2025-09-01
+
+<small>[Compare with 1.8.9](https://github.com/pawamoy/copier-uv/compare/1.8.9...1.9.0)</small>
+
+### Features
+
+- Print file:lineno in API test output ([fce4ee4](https://github.com/pawamoy/copier-uv/commit/fce4ee494b095fdd998f00a695b93580e5518917) by Timothée Mazzucotelli).
+- Add pull request template ([5f60cf1](https://github.com/pawamoy/copier-uv/commit/5f60cf1c6b25490c0798e1b3d5e661160f78a993) by Timothée Mazzucotelli).
+
 ## [1.8.9](https://github.com/pawamoy/copier-uv/releases/tag/1.8.9) - 2025-08-15
 
 <small>[Compare with 1.8.8](https://github.com/pawamoy/copier-uv/compare/1.8.8...1.8.9)</small>
