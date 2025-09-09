@@ -4,30 +4,30 @@ The generated project has this structure:
 
 ```
 📁 your_project ------------------- # your freshly created project!
-├── 📄 CHANGELOG.md --------------- # 
-├── 📄 CODE_OF_CONDUCT.md --------- # 
+├── 📄 CHANGELOG.md --------------- #
+├── 📄 CODE_OF_CONDUCT.md --------- #
 ├── 📁 config --------------------- # tools configuration files
-│   ├── 📄 coverage.ini ----------- # 
-│   ├── 📄 mypy.ini --------------- # 
-│   ├── 📄 pytest.ini ------------- # 
-│   └── 📄 ruff.toml -------------- # 
-├── 📄 CONTRIBUTING.md ------------ # 
+│   ├── 📄 coverage.ini ----------- #
+│   ├── 📄 mypy.ini --------------- #
+│   ├── 📄 pytest.ini ------------- #
+│   └── 📄 ruff.toml -------------- #
+├── 📄 CONTRIBUTING.md ------------ #
 ├── 📁 docs ----------------------- # documentation pages
-│   ├── 📄 changelog.md ----------- # 
-│   ├── 📄 code_of_conduct.md ----- # 
-│   ├── 📄 contributing.md -------- # 
-│   ├── 📄 credits.md ------------- # 
+│   ├── 📄 changelog.md ----------- #
+│   ├── 📄 code_of_conduct.md ----- #
+│   ├── 📄 contributing.md -------- #
+│   ├── 📄 credits.md ------------- #
 │   ├── 📁 css -------------------- # extra CSS files
-│   │   ├── 📄 material.css ------- # 
-│   │   └── 📄 mkdocstrings.css --- # 
-│   ├── 📄 index.md --------------- # 
-│   └── 📄 license.md ------------- # 
+│   │   ├── 📄 material.css ------- #
+│   │   └── 📄 mkdocstrings.css --- #
+│   ├── 📄 index.md --------------- #
+│   └── 📄 license.md ------------- #
 ├── 📄 duties.py ------------------ # the project's tasks
-├── 📄 LICENSE -------------------- # 
+├── 📄 LICENSE -------------------- #
 ├── 📄 Makefile ------------------- # for auto-completion (it calls scripts/make)
 ├── 📄 mkdocs.yml ----------------- # docs configuration
 ├── 📄 pyproject.toml ------------- # project metadata and dependencies
-├── 📄 README.md ------------------ # 
+├── 📄 README.md ------------------ #
 ├── 📁 scripts -------------------- # helper scripts
 │   ├── 📄 gen_credits.py --------- # script to generate credits
 │   ├── 📄 gen_ref_nav.py --------- # script to generate code reference nav
@@ -35,13 +35,13 @@ The generated project has this structure:
 ├── 📁 src ------------------------ # the source code directory
 │   └── 📁 your_package ----------- # your package
 │       ├── 📄 cli.py ------------- # the command line entry point
-│       ├── 📄 __init__.py -------- # 
-│       ├── 📄 __main__.py -------- # 
-│       └── 📄 py.typed ----------- # 
+│       ├── 📄 __init__.py -------- #
+│       ├── 📄 __main__.py -------- #
+│       └── 📄 py.typed ----------- #
 └── 📁 tests ---------------------- # the tests directory
     ├── 📄 conftest.py ------------ # pytest fixtures, etc.
-    ├── 📄 __init__.py ------------ # 
-    └── 📄 test_cli.py ------------ # 
+    ├── 📄 __init__.py ------------ #
+    └── 📄 test_cli.py ------------ #
 ```
 
 ## Environment
@@ -396,9 +396,9 @@ Test session starts (platform: linux, Python 3.8.6, pytest 6.2.1, pytest-sugar 0
 Using --randomly-seed=281943462
 rootdir: /home/pawamoy/data/dev/pawamoy/duty, configfile: config/pytest.ini
 plugins: randomly-3.5.0, xdist-2.2.0, forked-1.3.0, cov-2.10.1, sugar-0.9.4
-collecting ... 
- tests/test_logic.py ✓✓✓✓✓✓✓✓✓✓✓✓                                          15% █▋        
- tests/test_cli.py ✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓ 86% ████████▋ 
+collecting ...
+ tests/test_logic.py ✓✓✓✓✓✓✓✓✓✓✓✓                                          15% █▋
+ tests/test_cli.py ✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓ 86% ████████▋
                    ✓✓✓✓✓✓✓✓✓✓✓                                            100% ██████████
 
 ----------- coverage: platform linux, python 3.8.6-final-0 -----------
@@ -617,6 +617,10 @@ You can document an entire module or even package with a single instruction:
 ```
 
 ...but it's usually better to have each module injected in a separate page.
+
+The generated projects will by default render only the top-level module in the API reference page.
+The template expects that all the API be exposed at the top-level. If you expose public submodules,
+add a new page for each one of these submodules.
 
 For more information about `mkdocstrings`,
 check [its documentation](https://pawamoy.github.io/mkdocstrings).
