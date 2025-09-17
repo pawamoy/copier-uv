@@ -48,7 +48,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: {% raw %}${{ matrix.python-version }}{% raw %}
+        python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
 
     - name: Setup uv
       uses: astral-sh/setup-uv@v5
