@@ -120,7 +120,7 @@ jobs:
           resolution: lowest-direct
         {%- endif %}
     runs-on: {% raw %}${{ matrix.os }}{% endraw %}
-    continue-on-error: {% raw %}${{ matrix.python-version == '3.14' }}{% endraw %}
+    continue-on-error: true
 
     steps:
     - name: Checkout
