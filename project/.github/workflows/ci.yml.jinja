@@ -8,6 +8,10 @@ on:
     branches:
     - main
 
+concurrency:
+  group: {% raw %}${{ github.workflow }}-${{ github.ref }}{% endraw %}
+  cancel-in-progress: {% raw %}${{ github.event_name == 'pull_request' }}{% endraw %}
+
 defaults:
   run:
     shell: bash
