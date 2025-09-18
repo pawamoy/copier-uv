@@ -90,6 +90,7 @@ git add empty
 git commit -m "fix: Fix all bugs"
 echo
 echo ">>> Updating changelog and releasing version"
+sed 's/ctx.run(tools.yore.check(bump=bump or _get_changelog_version()), title="Checking legacy code")/print(open("CHANGELOG.md", "rb").read())/' 'D:\a\copier-uv\copier-uv\tests\tmp\duties.py' --in-place
 make changelog release version=0.1.1
 echo
 echo ">>> Checking changelog's contents"
