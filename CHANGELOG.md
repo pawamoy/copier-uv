@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.10.0](https://github.com/pawamoy/copier-uv/releases/tag/1.10.0) - 2025-10-07
+
+<small>[Compare with 1.9.0](https://github.com/pawamoy/copier-uv/compare/1.9.0...1.10.0)</small>
+
+### Features
+
+- Warn on default encoding in `open()` calls ([f41edb4](https://github.com/pawamoy/copier-uv/commit/f41edb4bf2955944f41905db003ceb3414707286) by Bartosz Sławecki). [PR-77](https://github.com/pawamoy/copier-uv/pull/77)
+- Run quality CI on matrix ([27ffb20](https://github.com/pawamoy/copier-uv/commit/27ffb20707594ae9e8d3c18cee67b8750cff8b66) by Bartosz Sławecki). [PR-73](https://github.com/pawamoy/copier-uv/pull/73)
+- Don't run CI on topic branches without a PR ([0c4f6cd](https://github.com/pawamoy/copier-uv/commit/0c4f6cd4cf5a00e67ec64d61078c8b0cc8891e87) by Bartosz Sławecki). [PR-71](https://github.com/pawamoy/copier-uv/pull/71)
+- Cancel no longer useful runs in the same PR ([34b8778](https://github.com/pawamoy/copier-uv/commit/34b8778f63a3986d26a521917658c7057541ab51) by Bartosz Sławecki). [PR-74](https://github.com/pawamoy/copier-uv/pull/74)
+
+### Code Refactoring
+
+- Support light and dark background logos for premium sponsors ([852105a](https://github.com/pawamoy/copier-uv/commit/852105a6c5fc57f456b4f11b44badff9c939c3cc) by Timothée Mazzucotelli).
+- Don't fail fast ([bce6109](https://github.com/pawamoy/copier-uv/commit/bce61095c99a0b95f89f0edfa9a2a616580b7084) by Bartosz Sławecki). [PR-75](https://github.com/pawamoy/copier-uv/pull/75)
+
 ## [1.9.0](https://github.com/pawamoy/copier-uv/releases/tag/1.9.0) - 2025-09-01
 
 <small>[Compare with 1.8.9](https://github.com/pawamoy/copier-uv/compare/1.8.9...1.9.0)</small>
