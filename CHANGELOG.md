@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.10.1](https://github.com/pawamoy/copier-uv/releases/tag/1.10.1) - 2025-10-09
+
+<small>[Compare with 1.10.0](https://github.com/pawamoy/copier-uv/compare/1.10.0...1.10.1)</small>
+
+### Bug Fixes
+
+- Fix typo in PR template ([b270abc](https://github.com/pawamoy/copier-uv/commit/b270abcd8a4cf25819ac2dbed5de9aa506dfea07) by Timothée Mazzucotelli).
+
 ## [1.10.0](https://github.com/pawamoy/copier-uv/releases/tag/1.10.0) - 2025-10-07
 
 <small>[Compare with 1.9.0](https://github.com/pawamoy/copier-uv/compare/1.9.0...1.10.0)</small>
