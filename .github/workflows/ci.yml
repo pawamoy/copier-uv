@@ -37,7 +37,7 @@ jobs:
         git config --global user.email "dev@pawamoy.fr"
         git config --global user.name "Timothée Mazzucotelli"
     - name: Setup Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: "3.12"
     - name: Setup uv
@@ -77,7 +77,7 @@ jobs:
         git config --global user.name "Timothée Mazzucotelli"
 
     - name: Setup Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
         allow-prereleases: true
@@ -113,7 +113,7 @@ jobs:
         git config --global user.name "Timothée Mazzucotelli"
 
     - name: Setup Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: "3.12"
 
