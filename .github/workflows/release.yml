@@ -18,7 +18,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v6
       with:
-        python-version: "3.12"
+        python-version: "3.13"
     - name: Setup uv
       uses: astral-sh/setup-uv@v5
     - name: Prepare release notes
