@@ -28,3 +28,10 @@ uv tool install {{ python_package_distribution_name }}
 {%- else -%}
 This project is available to sponsors only, through my Insiders program. See Insiders [explanation](https://{{ repository_namespace }}.github.io/{{ repository_name }}/insiders/) and [installation instructions](https://{{ repository_namespace }}.github.io/{{ repository_name }}/insiders/installation/).
 {%- endif %}
+
+{% if author_username == "pawamoy" %}
+## Sponsors
+
+<!-- sponsors-start -->
+<!-- sponsors-end -->
+{% endif %}
