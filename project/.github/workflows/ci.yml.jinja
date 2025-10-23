@@ -81,6 +81,7 @@ jobs:
 
     - name: Store objects inventory for tests
       uses: actions/upload-artifact@v4
+      if: {% raw %}${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13' }}{% endraw %}
       with:
         name: objects.inv
         path: site/objects.inv
