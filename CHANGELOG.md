@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.0](https://github.com/pawamoy/copier-uv/releases/tag/1.11.0) - 2025-10-24
+
+<small>[Compare with 1.10.2](https://github.com/pawamoy/copier-uv/compare/1.10.2...1.11.0)</small>
+
+### Features
+
+- Automate sponsors update in README ([7ab74bd](https://github.com/pawamoy/copier-uv/commit/7ab74bda37e88600207c899fd28fa0f94f335422) by Timothée Mazzucotelli).
+
+### Bug Fixes
+
+- Use specific version of artifact ([91b5c99](https://github.com/pawamoy/copier-uv/commit/91b5c99eb81bcdb826a04cbc7ab61c2042a09552) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Remove match parameter on test duty, since we can pass `-k` directly ([ca104e4](https://github.com/pawamoy/copier-uv/commit/ca104e43275bf60020550c57bcfec92d755a1f11) by Timothée Mazzucotelli).
+- Remove support for Python 3.9, add support for Python 3.14, add testing for Python 3.15 ([946ca5a](https://github.com/pawamoy/copier-uv/commit/946ca5a172c51bcd0e64aa93c990327f453a8110) by Timothée Mazzucotelli).
+- Use Python 3.13 in non-matrix jobs ([9256040](https://github.com/pawamoy/copier-uv/commit/925604062ba14b901b3791182b3fe260a96ea888) by Timothée Mazzucotelli).
+- Upgrade setup-python action to v6 ([86a942d](https://github.com/pawamoy/copier-uv/commit/86a942d8c7ac134d35ef9fc741ce9113fd75e77e) by Timothée Mazzucotelli).
+
 ## [1.10.2](https://github.com/pawamoy/copier-uv/releases/tag/1.10.2) - 2025-10-09
 
 <small>[Compare with 1.10.1](https://github.com/pawamoy/copier-uv/compare/1.10.1...1.10.2)</small>
