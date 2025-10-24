@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo "Fetching previous run number..."
-previous_run=$(gh run list --repo pawamoy/pawamoy-testing --branch 0.1.0 --limit 1 --workflow "ci.yml" --json number --jq ".[0].number")
+previous_run=$(gh run list --repo pawamoy/pawamoy-testing --branch main --limit 1 --workflow "ci.yml" --json number --jq ".[0].number")
 echo "Previous run number: ${previous_run}"
 
 echo "Resetting project's Git history..."
@@ -11,7 +11,7 @@ cd tests/tmp || exit 1
 wait_time=20
 echo "Waiting project's workflow completion (${wait_time}s iterations)..."
 while true; do
-    if output=$(gh run list --repo pawamoy/pawamoy-testing --branch 0.1.0 --limit 1 --workflow "ci.yml" --json number,status,conclusion); then
+    if output=$(gh run list --repo pawamoy/pawamoy-testing --branch main --limit 1 --workflow "ci.yml" --json number,status,conclusion); then
         number=$(jq -r ".[0].number" <<< "$output")
         echo "Current run number: ${number}"
         if [ "${number}" -gt "${previous_run}" ]; then
