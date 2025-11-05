@@ -86,39 +86,10 @@ jobs:
         name: objects.inv
         path: site/objects.inv
 
-  {% if insiders -%}
-  exclude-test-jobs:
-    runs-on: ubuntu-latest
-    outputs:
-      jobs: {% raw %}${{ steps.exclude-jobs.outputs.jobs }}{% endraw %}
-    steps:
-    - id: exclude-jobs
-      run: |
-        if ${{ "{{" }} github.repository_owner == '{{ author_username }}-insiders' {{ "}}" }}; then
-          echo 'jobs=[
-            {"os": "macos-latest"},
-            {"os": "windows-latest"},
-            {"python-version": "3.11"},
-            {"python-version": "3.12"},
-            {"python-version": "3.13"},
-            {"python-version": "3.14"},
-            {"python-version": "3.15"}
-          ]' | tr -d '[:space:]' >> $GITHUB_OUTPUT
-        else
-          echo 'jobs=[
-            {"os": "macos-latest", "resolution": "lowest-direct"},
-            {"os": "windows-latest", "resolution": "lowest-direct"}
-          ]' | tr -d '[:space:]' >> $GITHUB_OUTPUT
-        fi
-
-  {% endif -%}
   tests:
 
     needs:
     - quality
-    {% if insiders -%}
-    - exclude-test-jobs
-    {% endif -%}
     strategy:
       matrix:
         os:
@@ -135,15 +106,11 @@ jobs:
         resolution:
         - highest
         - lowest-direct
-        {%- if insiders %}
-        exclude: {% raw %}${{ fromJSON(needs.exclude-test-jobs.outputs.jobs) }}{% endraw %}
-        {%- else %}
         exclude:
         - os: macos-latest
           resolution: lowest-direct
         - os: windows-latest
           resolution: lowest-direct
-        {%- endif %}
     runs-on: {% raw %}${{ matrix.os }}{% endraw %}
     continue-on-error: true
 

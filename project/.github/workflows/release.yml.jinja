@@ -20,34 +20,10 @@ jobs:
         python-version: "3.13"
     - name: Setup uv
       uses: astral-sh/setup-uv@v5
-    {%- if insiders %}
-    - name: Build dists
-      if: github.repository_owner == '{{ author_username }}-insiders'
-      run: uv tool run --from build pyproject-build
-    - name: Upload dists artifact
-      uses: actions/upload-artifact@v4
-      if: github.repository_owner == '{{ author_username }}-insiders'
-      with:
-        name: {{ repository_name }}-insiders
-        path: ./dist/*
-    - name: Prepare release notes
-      if: github.repository_owner != '{{ author_username }}-insiders'
-      run: uv tool run git-changelog --release-notes > release-notes.md
-    - name: Create release with assets
-      uses: softprops/action-gh-release@v2
-      if: github.repository_owner == '{{ author_username }}-insiders'
-      with:
-        files: ./dist/*
-    - name: Create release
-      uses: softprops/action-gh-release@v2
-      if: github.repository_owner != '{{ author_username }}-insiders'
-      with:
-        body_path: release-notes.md
-    {%- else %}
     - name: Prepare release notes
       run: uv tool run git-changelog --release-notes > release-notes.md
     - name: Create release
       uses: softprops/action-gh-release@v2
       with:
         body_path: release-notes.md
-    {%- endif %}
+

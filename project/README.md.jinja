@@ -1,19 +1,16 @@
 # {{ project_name }}
 
-{% if repository_provider == "github.com" and (not insiders or public_release) -%}
+{% if repository_provider == "github.com" -%}
 [![ci](https://github.com/{{ repository_namespace }}/{{ repository_name }}/workflows/ci/badge.svg)](https://github.com/{{ repository_namespace }}/{{ repository_name }}/actions?query=workflow%3Aci)
 {% endif -%}
 [![documentation](https://img.shields.io/badge/docs-mkdocs-708FCC.svg?style=flat)](https://{{ repository_namespace }}.{{ repository_provider[:-4] }}.io/{{ repository_name }}/)
-{% if not insiders or public_release -%}
 [![pypi version](https://img.shields.io/pypi/v/{{ python_package_distribution_name }}.svg)](https://pypi.org/project/{{ python_package_distribution_name }}/)
-{% endif -%}
 [![gitter](https://img.shields.io/badge/matrix-chat-4DB798.svg?style=flat)](https://app.gitter.im/#/room/#{{ repository_name }}:gitter.im)
 
 {{ project_description }}
 
 ## Installation
 
-{% if not insiders or public_release -%}
 ```bash
 pip install {{ python_package_distribution_name }}
 ```
@@ -25,9 +22,6 @@ With [`uv`](https://docs.astral.sh/uv/):
 uv tool install {{ python_package_distribution_name }}
 ```
 {%- endif -%}
-{%- else -%}
-This project is available to sponsors only, through my Insiders program. See Insiders [explanation](https://{{ repository_namespace }}.github.io/{{ repository_name }}/insiders/) and [installation instructions](https://{{ repository_namespace }}.github.io/{{ repository_name }}/insiders/installation/).
-{%- endif %}
 
 {% if author_username == "pawamoy" %}
 ## Sponsors

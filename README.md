@@ -29,7 +29,6 @@ Similar templates:
 - Support for GitHub workflows
 - Auto-generated `CHANGELOG.md` from Git (conventional) commits
 - All licenses from [choosealicense.com](https://choosealicense.com/appendix/)
-- Support for Insiders versions of projects (e.g. see [@pawamoy's insiders](https://pawamoy.github.io/insiders/))
 
 ## Quick setup and usage
 

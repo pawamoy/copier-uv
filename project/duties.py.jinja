@@ -6,12 +6,9 @@ import os
 import re
 import sys
 from contextlib import contextmanager
-{%- if insiders %}
-from functools import wraps
-{%- endif %}
 from importlib.metadata import version as pkgversion
 from pathlib import Path
-from typing import TYPE_CHECKING{% if insiders %}, Any, Callable{% endif %}
+from typing import TYPE_CHECKING
 
 from duty import duty, tools
 
@@ -37,25 +34,6 @@ def pyprefix(title: str) -> str:
         prefix = f"(python{sys.version_info.major}.{sys.version_info.minor})"
         return f"{prefix:14}{title}"
     return title
-
-
-{%- if insiders %}
-
-
-def not_from_insiders(func: Callable) -> Callable:
-    @wraps(func)
-    def wrapper(ctx: Context, *args: Any, **kwargs: Any) -> None:
-        origin = ctx.run("git config --get remote.origin.url", silent=True)
-        if "pawamoy-insiders/griffe" in origin:
-            ctx.run(
-                lambda: False,
-                title="Not running this task from insiders repository (do that from public repo instead!)",
-            )
-            return
-        func(ctx, *args, **kwargs)
-
-    return wrapper
-{%- endif %}
 
 
 @contextmanager
@@ -150,45 +128,13 @@ def docs(ctx: Context, *cli_args: str, host: str = "127.0.0.1", port: int = 8000
 
 
 @duty
-def docs_deploy(ctx: Context{% if insiders %}, *, force: bool = False{% endif %}) -> None:
-    """Deploy the documentation to GitHub pages.
-    {%- if insiders %}
-
-    Parameters:
-        force: Whether to force deployment, even from non-Insiders version.
-    {% endif -%}
-    """
+def docs_deploy(ctx: Context) -> None:
+    """Deploy the documentation to GitHub pages."""
     os.environ["DEPLOY"] = "true"
     with material_insiders() as insiders:
         if not insiders:
             ctx.run(lambda: False, title="Not deploying docs without Material for MkDocs Insiders!")
-        {%- if insiders %}
-        origin = ctx.run("git config --get remote.origin.url", silent=True, allow_overrides=False)
-        if "{{ author_username }}-insiders/{{ insiders_repository_name }}" in origin:
-            ctx.run(
-                "git remote add upstream git@github.com:{{ repository_namespace }}/{{ repository_name }}",
-                silent=True,
-                nofail=True,
-                allow_overrides=False,
-            )
-            ctx.run(
-                tools.mkdocs.gh_deploy(remote_name="upstream", force=True),
-                title="Deploying documentation",
-            )
-        elif force:
-            ctx.run(
-                tools.mkdocs.gh_deploy(force=True),
-                title="Deploying documentation",
-            )
-        else:
-            ctx.run(
-                lambda: False,
-                title="Not deploying docs from public repository (do that from insiders instead!)",
-                nofail=True,
-            )
-        {%- else %}
         ctx.run(tools.mkdocs.gh_deploy(), title="Deploying documentation")
-        {%- endif %}
 
 
 @duty
@@ -212,9 +158,6 @@ def build(ctx: Context) -> None:
 
 
 @duty
-{%- if insiders %}
-@not_from_insiders
-{%- endif %}
 def publish(ctx: Context) -> None:
     """Publish source and wheel distributions to PyPI."""
     if not Path("dist").exists():
@@ -228,9 +171,6 @@ def publish(ctx: Context) -> None:
 
 
 @duty{% if not testing %}(post=["build", "publish", "docs-deploy"]){% endif %}
-{%- if insiders %}
-@not_from_insiders
-{%- endif %}
 def release(ctx: Context, version: str = "") -> None:
     """Release a new Python package.
 
