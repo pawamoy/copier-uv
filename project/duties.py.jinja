@@ -181,7 +181,7 @@ def release(ctx: Context, version: str = "") -> None:
         ctx.run("false", title="A version must be provided")
     ctx.run("git add pyproject.toml CHANGELOG.md", title="Staging files", pty=PTY)
     ctx.run(["git", "commit", "-m", f"chore: Prepare release {version}"], title="Committing changes", pty=PTY)
-    ctx.run(f"git tag {version}", title="Tagging commit", pty=PTY)
+    ctx.run(f"git tag -m '' -a {version}", title="Tagging commit", pty=PTY)
     {%- if not testing %}
     ctx.run("git push", title="Pushing commits", pty=False)
     ctx.run("git push --tags", title="Pushing tags", pty=False)
