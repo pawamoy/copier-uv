@@ -134,7 +134,7 @@ def docs_deploy(ctx: Context) -> None:
     with material_insiders() as insiders:
         if not insiders:
             ctx.run(lambda: False, title="Not deploying docs without Material for MkDocs Insiders!")
-        ctx.run(tools.mkdocs.gh_deploy(), title="Deploying documentation")
+        ctx.run(tools.mkdocs.gh_deploy(force=True), title="Deploying documentation")
 
 
 @duty
