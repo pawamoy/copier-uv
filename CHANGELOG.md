@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.1](https://github.com/pawamoy/copier-uv/releases/tag/1.11.1) - 2025-11-08
+
+<small>[Compare with 1.11.0](https://github.com/pawamoy/copier-uv/compare/1.11.0...1.11.1)</small>
+
+### Bug Fixes
+
+- Fix tagging commit when signed commits are enabled? ([f1f0950](https://github.com/pawamoy/copier-uv/commit/f1f095096134da1dbd0f1d138303938db7b81405) by Timothée Mazzucotelli).
+- Always force docs deployment ([c41b8fe](https://github.com/pawamoy/copier-uv/commit/c41b8fe3e80aef11539191ad903d2b8d3f8419fd) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Remove Insiders-related contents ([79737bf](https://github.com/pawamoy/copier-uv/commit/79737bff38ac2e3d8e0aa98a80a2742627db3506) by Timothée Mazzucotelli).
+
 ## [1.11.0](https://github.com/pawamoy/copier-uv/releases/tag/1.11.0) - 2025-10-24
 
 <small>[Compare with 1.10.2](https://github.com/pawamoy/copier-uv/compare/1.10.2...1.11.0)</small>
