@@ -36,7 +36,7 @@ EOF
 cat .copier-answers.yml
 git add -A .
 git commit -am "feat: Initial commit"
-git tag 0.1.0
+git tag -m "" -a 0.1.0
 echo
 echo ">>> Printing help"
 make help

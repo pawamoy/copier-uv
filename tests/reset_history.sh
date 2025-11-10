@@ -9,5 +9,5 @@ else
 fi
 git add -A
 git commit -m "feat: Initial commit"
-git tag 0.1.0
+git tag -m "" -a 0.1.0
 git push origin main -f --tags
