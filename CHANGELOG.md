@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.2](https://github.com/pawamoy/copier-uv/releases/tag/1.11.2) - 2025-11-20
+
+<small>[Compare with 1.11.1](https://github.com/pawamoy/copier-uv/compare/1.11.1...1.11.2)</small>
+
+### Code Refactoring
+
+- Stop using mkdocs-material-insiders ([0d015fe](https://github.com/pawamoy/copier-uv/commit/0d015fe2510c0c0ba1ac3c9b51132d127a733569) by Timothée Mazzucotelli).
+
 ## [1.11.1](https://github.com/pawamoy/copier-uv/releases/tag/1.11.1) - 2025-11-08
 
 <small>[Compare with 1.11.0](https://github.com/pawamoy/copier-uv/compare/1.11.0...1.11.1)</small>
