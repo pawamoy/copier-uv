@@ -5,12 +5,13 @@
 
 from __future__ import annotations
 
-from {{ python_package_import_name }}._internal.logging import configure_logging, logger
-{%- if python_package_command_line_name %}
+{% if python_package_command_line_name -%}
 from {{ python_package_import_name }}._internal.cli import get_parser, main
+{% endif -%}
+from {{ python_package_import_name }}._internal.logging import configure_logging, logger
 
+{% if python_package_command_line_name -%}
 __all__: list[str] = ["configure_logging", "get_parser", "logger", "main"]
-{%- else %}
-
+{% else -%}
 __all__: list[str] = ["configure_logging", "logger"]
-{%- endif %}
+{% endif -%}
