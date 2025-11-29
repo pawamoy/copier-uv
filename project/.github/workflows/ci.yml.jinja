@@ -34,21 +34,22 @@ jobs:
         - macos-latest
         - windows-latest
         python-version:
-        - "3.10"
+        - "3.12"
+        - "3.13"
         - "3.14"
         include:
-        - os: ubuntu-latest
-          python-version: "3.11"
         - os: ubuntu-latest
           python-version: "3.12"
         - os: ubuntu-latest
           python-version: "3.13"
+        - os: ubuntu-latest
+          python-version: "3.14"
 
     runs-on: {% raw %}${{ matrix.os }}{% endraw %}
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         fetch-depth: 0
         fetch-tags: true
@@ -59,7 +60,7 @@ jobs:
         python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
 
     - name: Setup uv
-      uses: astral-sh/setup-uv@v5
+      uses: astral-sh/setup-uv@v7
       with:
         enable-cache: true
         cache-dependency-glob: pyproject.toml
@@ -80,7 +81,7 @@ jobs:
       run: make check-api
 
     - name: Store objects inventory for tests
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       if: {% raw %}${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13' }}{% endraw %}
       with:
         name: objects.inv
@@ -97,12 +98,9 @@ jobs:
         - macos-latest
         - windows-latest
         python-version:
-        - "3.10"
-        - "3.11"
         - "3.12"
         - "3.13"
         - "3.14"
-        - "3.15"
         resolution:
         - highest
         - lowest-direct
@@ -116,7 +114,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         fetch-depth: 0
         fetch-tags: true
@@ -128,7 +126,7 @@ jobs:
         allow-prereleases: true
 
     - name: Setup uv
-      uses: astral-sh/setup-uv@v5
+      uses: astral-sh/setup-uv@v7
       with:
         enable-cache: true
         cache-dependency-glob: pyproject.toml
@@ -140,7 +138,7 @@ jobs:
       run: make setup
 
     - name: Download objects inventory
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v6
       with:
         name: objects.inv
         path: site/
