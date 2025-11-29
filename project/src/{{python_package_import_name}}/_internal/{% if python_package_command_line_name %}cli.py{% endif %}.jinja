@@ -18,6 +18,8 @@ from typing import Any
 from {{ python_package_import_name }}._internal import debug
 from {{ python_package_import_name }}._internal.logging import configure_logging, logger
 
+_VERBOSE_DEBUG = 2  # -vv for DEBUG level
+
 
 class _DebugInfo(argparse.Action):
     def __init__(self, nargs: int | str | None = 0, **kwargs: Any) -> None:
@@ -77,7 +79,7 @@ def main(args: list[str] | None = None) -> int:
     log_level = "WARNING"
     if opts.verbose == 1:
         log_level = "INFO"
-    elif opts.verbose >= 2:
+    elif opts.verbose >= _VERBOSE_DEBUG:
         log_level = "DEBUG"
 
     configure_logging(level=log_level, json_logs=opts.json_logs)
