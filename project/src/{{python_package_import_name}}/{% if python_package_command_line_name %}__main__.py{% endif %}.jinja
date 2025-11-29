@@ -10,5 +10,5 @@ import sys
 
 from {{ python_package_import_name }}._internal.cli import main
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     sys.exit(main(sys.argv[1:]))

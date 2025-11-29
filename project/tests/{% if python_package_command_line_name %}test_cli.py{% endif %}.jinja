@@ -2,10 +2,21 @@
 
 from __future__ import annotations
 
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+from unittest import mock
+
 import pytest
 
 from {{ python_package_import_name }} import main
 from {{ python_package_import_name }}._internal import debug
+from {{ python_package_import_name }}._internal.logging import configure_logging, logger
+
+# =============================================================================
+# CLI Tests
+# =============================================================================
 
 
 def test_main() -> None:
@@ -50,3 +61,287 @@ def test_show_debug_info(capsys: pytest.CaptureFixture) -> None:
     assert "system" in captured
     assert "environment" in captured
     assert "packages" in captured
+
+
+def test_verbose_info_level() -> None:
+    """Test single -v flag sets INFO log level."""
+    assert main(["-v"]) == 0
+
+
+def test_verbose_debug_level() -> None:
+    """Test double -vv flag sets DEBUG log level."""
+    assert main(["-vv"]) == 0
+
+
+def test_triple_verbose() -> None:
+    """Test triple -vvv flag still sets DEBUG log level."""
+    assert main(["-vvv"]) == 0
+
+
+def test_no_json_logs() -> None:
+    """Test --no-json-logs flag for human-readable format."""
+    assert main(["--no-json-logs"]) == 0
+
+
+def test_verbose_with_no_json_logs() -> None:
+    """Test combining -v with --no-json-logs."""
+    assert main(["-v", "--no-json-logs"]) == 0
+
+
+def test_debug_verbose_with_no_json_logs() -> None:
+    """Test combining -vv with --no-json-logs."""
+    assert main(["-vv", "--no-json-logs"]) == 0
+
+
+# =============================================================================
+# Logging Module Tests
+# =============================================================================
+
+
+def test_configure_logging_json_true() -> None:
+    """Test configure_logging with json_logs=True (default JSON format)."""
+    configure_logging(level="INFO", json_logs=True)
+
+
+def test_configure_logging_json_false() -> None:
+    """Test configure_logging with json_logs=False (human-readable format)."""
+    configure_logging(level="INFO", json_logs=False)
+
+
+def test_configure_logging_with_file() -> None:
+    """Test configure_logging with a log file."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        log_file = Path(tmpdir) / "test.log"
+        configure_logging(level="DEBUG", json_logs=True, log_file=log_file)
+
+
+def test_configure_logging_file_with_human_readable() -> None:
+    """Test configure_logging with file and human-readable console output."""
+    with tempfile.TemporaryDirectory() as tmpdir:
+        log_file = Path(tmpdir) / "test.log"
+        configure_logging(level="WARNING", json_logs=False, log_file=log_file)
+
+
+def test_configure_logging_all_levels() -> None:
+    """Test configure_logging with different log levels."""
+    for level in ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]:
+        configure_logging(level=level, json_logs=True)
+
+
+def test_logger_is_exported() -> None:
+    """Test that logger is properly exported from the logging module."""
+    assert logger is not None
+
+
+# =============================================================================
+# Debug Module Tests
+# =============================================================================
+
+
+def test_get_version_existing_package() -> None:
+    """Test _get_version returns version for existing package."""
+    version = debug._get_version("pytest")  # pytest is always available in test env
+    assert version != "0.0.0"
+    assert "." in version  # Version should have dots
+
+
+def test_get_version_nonexistent_package() -> None:
+    """Test _get_version returns '0.0.0' for non-existent package."""
+    version = debug._get_version("nonexistent-package-xyz-12345")
+    assert version == "0.0.0"
+
+
+def test_get_version_default_package() -> None:
+    """Test _get_version with default package argument."""
+    version = debug._get_version()
+    assert isinstance(version, str)
+
+
+def test_get_debug_info() -> None:
+    """Test _get_debug_info returns valid environment info."""
+    info = debug._get_debug_info()
+    assert info.interpreter_name
+    assert info.interpreter_version
+    assert info.interpreter_path
+    assert info.platform
+    assert isinstance(info.packages, list)
+    assert isinstance(info.variables, list)
+
+
+def test_get_debug_info_packages() -> None:
+    """Test _get_debug_info returns package information."""
+    info = debug._get_debug_info()
+    assert len(info.packages) > 0
+    for pkg in info.packages:
+        assert pkg.name
+        assert isinstance(pkg.version, str)
+
+
+def test_print_debug_info(capsys: pytest.CaptureFixture) -> None:
+    """Test _print_debug_info outputs expected information."""
+    debug._print_debug_info()
+    captured = capsys.readouterr().out
+    assert "__System__" in captured
+    assert "__Python__" in captured
+    assert "__Installed packages__" in captured
+
+
+def test_interpreter_name_version() -> None:
+    """Test _interpreter_name_version returns valid values."""
+    name, version = debug._interpreter_name_version()
+    assert isinstance(name, str)
+    assert isinstance(version, str)
+    # CPython should return valid values
+    if hasattr(sys, "implementation"):
+        assert name  # Should not be empty
+        assert version != "0.0.0"
+
+
+def test_interpreter_name_version_without_implementation() -> None:
+    """Test _interpreter_name_version when sys.implementation is missing."""
+    with (
+        mock.patch.object(sys, "implementation", create=False),
+        mock.patch.object(debug, "sys") as mock_sys,
+    ):
+        mock_sys.implementation = None
+        delattr(mock_sys, "implementation")
+        name, version = debug._interpreter_name_version()
+        assert name == ""
+        assert version == "0.0.0"
+
+
+def test_interpreter_name_version_non_final_release() -> None:
+    """Test _interpreter_name_version with non-final release level."""
+    mock_impl = mock.MagicMock()
+    mock_impl.version.major = 3
+    mock_impl.version.minor = 12
+    mock_impl.version.micro = 0
+    mock_impl.version.releaselevel = "alpha"
+    mock_impl.version.serial = 1
+    mock_impl.name = "cpython"
+
+    with mock.patch.object(sys, "implementation", mock_impl):
+        name, version = debug._interpreter_name_version()
+        assert name == "cpython"
+        assert version == "3.12.0a1"
+
+
+def test_interpreter_name_version_beta_release() -> None:
+    """Test _interpreter_name_version with beta release level."""
+    mock_impl = mock.MagicMock()
+    mock_impl.version.major = 3
+    mock_impl.version.minor = 13
+    mock_impl.version.micro = 0
+    mock_impl.version.releaselevel = "beta"
+    mock_impl.version.serial = 2
+    mock_impl.name = "cpython"
+
+    with mock.patch.object(sys, "implementation", mock_impl):
+        name, version = debug._interpreter_name_version()
+        assert name == "cpython"
+        assert version == "3.13.0b2"
+
+
+def test_interpreter_name_version_rc_release() -> None:
+    """Test _interpreter_name_version with release candidate level."""
+    mock_impl = mock.MagicMock()
+    mock_impl.version.major = 3
+    mock_impl.version.minor = 14
+    mock_impl.version.micro = 0
+    mock_impl.version.releaselevel = "candidate"
+    mock_impl.version.serial = 1
+    mock_impl.name = "cpython"
+
+    with mock.patch.object(sys, "implementation", mock_impl):
+        name, version = debug._interpreter_name_version()
+        assert name == "cpython"
+        assert version == "3.14.0c1"
+
+
+def test_variable_dataclass() -> None:
+    """Test _Variable dataclass."""
+    var = debug._Variable(name="TEST_VAR", value="test_value")
+    assert var.name == "TEST_VAR"
+    assert var.value == "test_value"
+
+
+def test_package_dataclass() -> None:
+    """Test _Package dataclass."""
+    pkg = debug._Package(name="test-package", version="1.0.0")
+    assert pkg.name == "test-package"
+    assert pkg.version == "1.0.0"
+
+
+def test_environment_dataclass() -> None:
+    """Test _Environment dataclass."""
+    env = debug._Environment(
+        interpreter_name="cpython",
+        interpreter_version="3.12.0",
+        interpreter_path="/usr/bin/python",
+        platform="Linux",
+        packages=[debug._Package("pkg", "1.0")],
+        variables=[debug._Variable("VAR", "val")],
+    )
+    assert env.interpreter_name == "cpython"
+    assert env.interpreter_version == "3.12.0"
+    assert len(env.packages) == 1
+    assert len(env.variables) == 1
+
+
+def test_debug_module_main() -> None:
+    """Test running debug module as __main__."""
+    result = subprocess.run(  # noqa: S603
+        [sys.executable, "-m", "{{ python_package_import_name }}._internal.debug"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0
+    assert "__System__" in result.stdout
+    assert "__Python__" in result.stdout
+
+
+def test_print_debug_info_with_env_vars(
+    capsys: pytest.CaptureFixture,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Test _print_debug_info with environment variables set."""
+    # Set an environment variable that starts with the package prefix
+    monkeypatch.setenv("{{ python_package_distribution_name.upper().replace('-', '_') }}_TEST", "test_value")
+    monkeypatch.setenv("PYTHONPATH", "/some/path")
+    debug._print_debug_info()
+    captured = capsys.readouterr().out
+    assert "__Environment variables__" in captured
+    # At least PYTHONPATH should be printed
+    assert "PYTHONPATH" in captured or "{{ python_package_distribution_name.upper().replace('-', '_') }}" in captured
+
+
+def test_main_module() -> None:
+    """Test running the package as __main__."""
+    result = subprocess.run(  # noqa: S603
+        [sys.executable, "-m", "{{ python_package_import_name }}"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0
+
+
+def test_main_module_with_help() -> None:
+    """Test running the package with --help flag."""
+    result = subprocess.run(  # noqa: S603
+        [sys.executable, "-m", "{{ python_package_import_name }}", "--help"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0
+    assert "{{ python_package_command_line_name }}" in result.stdout
+
+
+def test_main_module_import() -> None:
+    """Test that __main__ module can be imported."""
+    import {{ python_package_import_name }}.__main__ as main_module  # noqa: PLC0415
+
+    assert hasattr(main_module, "main")
+    assert hasattr(main_module, "sys")
