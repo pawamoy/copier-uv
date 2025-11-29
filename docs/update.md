@@ -36,21 +36,21 @@ And the file looks like this:
 ```yaml
 # Changes here will be overwritten by Copier
 _commit: 0.1.10
-_src_path: gh:pawamoy/copier-uv
-author_email: dev@pawamoy.fr
-author_fullname: "Timothée Mazzucotelli"
-author_username: pawamoy
-copyright_date: '2020'
-copyright_holder: "Timothée Mazzucotelli"
-copyright_holder_email: dev@pawamoy.fr
+_src_path: gh:oedokumaci/copier-uv
+author_email: your@email.com
+author_fullname: "Your Name"
+author_username: your-username
+copyright_date: '2025'
+copyright_holder: "Your Name"
+copyright_holder_email: your@email.com
 copyright_license: ISC License
-project_description: Automatic documentation from sources, for MkDocs.
-project_name: mkdocstrings
-python_package_command_line_name: ""
-python_package_distribution_name: mkdocstrings
-python_package_import_name: mkdocstrings
-repository_name: mkdocstrings
-repository_namespace: mkdocstrings
+project_description: My awesome project description.
+project_name: my-project
+python_package_command_line_name: my-project
+python_package_distribution_name: my-project
+python_package_import_name: my_project
+repository_name: my-project
+repository_namespace: your-username
 repository_provider: github.com
 ```
 

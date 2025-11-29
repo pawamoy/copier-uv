@@ -16,7 +16,7 @@ uv tool install copier --with copier-templates-extensions
 Then you can clone the repository, enter it and set it up with:
 
 ```bash
-git clone https://github.com/pawamoy/copier-uv
+git clone https://github.com/oedokumaci/copier-uv
 cd copier-uv
 make setup
 ```

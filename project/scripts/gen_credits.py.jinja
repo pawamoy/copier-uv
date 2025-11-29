@@ -135,7 +135,7 @@ def _render_credits() -> str:
 
         [Python](https://www.python.org/) |
         [uv](https://github.com/astral-sh/uv) |
-        [copier-uv](https://github.com/pawamoy/copier-uv)
+        [copier-uv](https://github.com/oedokumaci/copier-uv)
 
         {% macro dep_line(dep) -%}
         [{{ dep.name }}](https://pypi.org/project/{{ dep.name }}/) | {{ dep.summary }} | {{ ("`" ~ dep.spec|sort(reverse=True)|join(", ") ~ "`") if dep.spec else "" }} | `{{ dep.version }}` | {{ dep.license }}

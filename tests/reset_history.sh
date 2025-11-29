@@ -3,9 +3,9 @@ cd tests/tmp || exit 1
 rm -rf .git
 git init .
 if [ -n "${GH_TOKEN}" ]; then
-    git remote add origin https://pawamoy:${GH_TOKEN}@github.com/pawamoy/pawamoy-testing.git
+    git remote add origin https://oedokumaci:${GH_TOKEN}@github.com/oedokumaci/oedokumaci-testing.git
 else
-    git remote add origin git@github.com:pawamoy/pawamoy-testing.git
+    git remote add origin git@github.com:oedokumaci/oedokumaci-testing.git
 fi
 git add -A
 git commit -m "feat: Initial commit"
