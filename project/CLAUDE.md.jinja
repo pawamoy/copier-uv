@@ -364,6 +364,43 @@ def test_with_fixture(sample_data: list[str]) -> None:
 - Use fixtures for shared test data
 - Tests run in parallel with `pytest-xdist`
 
+### Testing Philosophy: TDD with Behavior-Based Tests
+
+**Always write tests first** following Test-Driven Development:
+
+1. **Red**: Write a failing test that describes the desired behavior
+2. **Green**: Write the minimum code to make the test pass
+3. **Refactor**: Clean up the code while keeping tests green
+
+**Test behavior, not implementation.** Tests should verify *what* the code does, not *how* it does it. This makes tests resilient to refactoring.
+
+```python
+# ✅ GOOD: Tests behavior/outcome
+def test_user_can_be_found_after_registration() -> None:
+    """Registered users can be retrieved by email."""
+    register_user(email="test@example.com", password="secure123")
+    user = get_user_by_email("test@example.com")
+    assert user is not None
+    assert user.email == "test@example.com"
+
+# ❌ BAD: Tests implementation details (brittle, breaks on refactor)
+def test_registration_calls_database_insert() -> None:
+    """Test that internal SQL method is called."""
+    with patch("app._internal.db._execute_sql") as mock:
+        register_user(email="test@example.com", password="secure123")
+        mock.assert_called_once()  # Breaks if we switch ORMs
+```
+
+**Guidelines for resilient tests:**
+
+| DO | DON'T |
+|----|-------|
+| Test public API and observable outcomes | Test private methods or internal state |
+| Assert on return values and side effects | Assert on exact method call sequences |
+| Use meaningful test data | Tie tests to implementation details |
+| Test edge cases and error conditions | Mock internal collaborators excessively |
+| Mock external dependencies (I/O, network, time) | Mock everything |
+
 ## Dependencies
 
 ### Adding Dependencies
