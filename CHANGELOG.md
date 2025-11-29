@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.1.1](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.1) - 2025-11-29
+
+<small>[Compare with 0.1.0](https://github.com/oedokumaci/copier-uv/compare/0.1.0...0.1.1)</small>
+
 ## [0.1.0](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.0) - 2025-11-29
 
 <small>[Compare with first commit](https://github.com/oedokumaci/copier-uv/compare/ad5932b04cecfcc6e6d1311f10082289cbc6ed76...0.1.0)</small>
