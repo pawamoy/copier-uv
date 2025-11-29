@@ -25,7 +25,7 @@ nav:
 theme:
   name: material
   icon:
-    logo: material/currency-sign
+    logo: material/content-copy
   features:
   - content.action.edit
   - content.action.view

@@ -28,7 +28,6 @@ for Python projects managed by [uv](https://github.com/astral-sh/uv).
 - **[marimo](https://marimo.io/) notebooks** support with `make marimo` commands
 - **[loguru](https://github.com/Delgan/loguru)** for structured JSON logging
 - **CLAUDE.md** for AI assistant guidance
-- Sandbox and watch modes enabled by default for notebooks
 
 ## Quick setup and usage
 
