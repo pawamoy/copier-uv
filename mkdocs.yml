@@ -1,8 +1,8 @@
 site_name: "Copier UV"
 site_description: "Copier template for Python projects managed by uv"
-site_url: "https://pawamoy.github.io/copier-uv"
-repo_url: "https://github.com/pawamoy/copier-uv"
-repo_name: "pawamoy/copier-uv"
+site_url: "https://oedokumaci.github.io/copier-uv"
+repo_url: "https://github.com/oedokumaci/copier-uv"
+repo_name: "oedokumaci/copier-uv"
 
 validation:
   omitted_files: warn
@@ -20,7 +20,7 @@ nav:
   - Generating a project: generate.md
   - Working on a project: work.md
   - Updating a project: update.md
-- Author's website: https://pawamoy.github.io/
+- Original Author: https://pawamoy.github.io/
 
 theme:
   name: material
@@ -77,13 +77,7 @@ markdown_extensions:
 extra:
   social:
   - icon: fontawesome/brands/github
-    link: https://github.com/pawamoy
-  - icon: fontawesome/brands/mastodon
-    link: https://fosstodon.org/@pawamoy
-  - icon: fontawesome/brands/twitter
-    link: https://twitter.com/pawamoy
-  - icon: fontawesome/brands/gitter
-    link: https://app.gitter.im/#/room/#copier-uv/community:gitter.im
+    link: https://github.com/oedokumaci
 
 extra_css:
   - css/custom.css
