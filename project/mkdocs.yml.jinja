@@ -91,8 +91,6 @@ markdown_extensions:
         case: lower
 - pymdownx.tasklist:
     custom_checkbox: true
-- toc:
-    permalink: {% if author_username == "pawamoy" %}"¤"{% else %}true{% endif %}
 
 plugins:
 - search
@@ -140,19 +138,6 @@ plugins:
 - typeset
 
 extra:
-  social:
-  - icon: fontawesome/brands/{{ repository_provider.rsplit(".", 1)[0] }}
-    link: https://{{ repository_provider }}/{{ author_username }}
-  {%- if author_username == "pawamoy" %}
-  - icon: fontawesome/brands/mastodon
-    link: https://fosstodon.org/@{{ author_username }}
-  - icon: fontawesome/brands/twitter
-    link: https://twitter.com/{{ author_username }}
-  {%- endif %}
-  - icon: fontawesome/brands/gitter
-    link: https://gitter.im/{{ repository_name }}/community
-  - icon: fontawesome/brands/python
-    link: https://pypi.org/project/{{ python_package_distribution_name }}/
   analytics:
     feedback:
       title: Was this page helpful?

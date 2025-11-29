@@ -38,9 +38,6 @@ Repository = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ re
 Issues = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}/issues"
 Discussions = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}/discussions"
 Gitter = "https://gitter.im/{% if repository_namespace != author_username %}{{ repository_namespace }}/{{ repository_name }}{% else %}{{ repository_name }}/community{% endif %}"
-{%- if repository_provider == "github.com" %}
-Funding = "https://{{ repository_provider }}/sponsors/{{ author_username }}"
-{%- endif %}
 
 {% if python_package_command_line_name -%}
 [project.scripts]
