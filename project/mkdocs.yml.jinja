@@ -22,19 +22,11 @@ nav:
 - API reference: reference/api.md
 - Development:
   - Contributing: contributing.md
-  - Code of Conduct: code_of_conduct.md
   - Coverage report: coverage.md
-{%- if author_username == "pawamoy" %}
-- Author's website: https://{{ author_username }}.{{ repository_provider.rsplit('.', 1)[0] }}.io/
-{%- endif %}
 
 theme:
   name: material
   custom_dir: docs/.overrides
-  {%- if author_username == "pawamoy" %}
-  icon:
-    logo: material/currency-sign
-  {%- endif %}
   features:
   - announce.dismiss
   - content.action.edit

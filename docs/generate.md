@@ -236,7 +236,6 @@ At this point, Copier will generate the project in the specified directory:
     create  LICENSE
     create  CREDITS.md
     create  CONTRIBUTING.md
-    create  CODE_OF_CONDUCT.md
     create  CHANGELOG.md
     create  .gitignore
     create  tests/
@@ -256,7 +255,6 @@ At this point, Copier will generate the project in the specified directory:
     create  docs/index.md
     create  docs/credits.md
     create  docs/contributing.md
-    create  docs/code_of_conduct.md
     create  docs/changelog.md
     create  docs/reference/
     create  docs/reference/cli.md

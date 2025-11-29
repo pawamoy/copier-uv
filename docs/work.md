@@ -5,7 +5,6 @@ The generated project has this structure:
 ```
 📁 your_project ------------------- # your freshly created project!
 ├── 📄 CHANGELOG.md --------------- #
-├── 📄 CODE_OF_CONDUCT.md --------- #
 ├── 📁 config --------------------- # tools configuration files
 │   ├── 📄 coverage.ini ----------- #
 │   ├── 📄 mypy.ini --------------- #
@@ -14,7 +13,6 @@ The generated project has this structure:
 ├── 📄 CONTRIBUTING.md ------------ #
 ├── 📁 docs ----------------------- # documentation pages
 │   ├── 📄 changelog.md ----------- #
-│   ├── 📄 code_of_conduct.md ----- #
 │   ├── 📄 contributing.md -------- #
 │   ├── 📄 credits.md ------------- #
 │   ├── 📁 css -------------------- # extra CSS files

@@ -13,7 +13,6 @@ nav:
 - Home:
   - Overview: index.md
   - Contributing: contributing.md
-  - Code of Conduct: code_of_conduct.md
   - Changelog: changelog.md
   - License: license.md
 - Usage:
