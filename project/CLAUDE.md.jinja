@@ -207,7 +207,8 @@ class Configuration:
 {%- if python_package_command_line_name %}
 │       │   ├── cli.py           # CLI implementation
 {%- endif %}
-│       │   └── debug.py         # Debug utilities
+│       │   ├── debug.py         # Debug utilities
+│       │   └── logging.py       # Loguru configuration (JSON logging)
 {%- if python_package_command_line_name %}
 │       └── __main__.py          # Entry point for `python -m`
 {%- endif %}
@@ -447,23 +448,65 @@ class ValidationError({{ python_package_import_name | title | replace("_", "") }
         super().__init__(f"{field}: {message}")
 ```
 
-### Logging
+### Logging (Loguru with JSON Lines)
+
+This project uses [loguru](https://github.com/Delgan/loguru) for structured JSON logging.
 
 ```python
 from __future__ import annotations
 
-import logging
+from {{ python_package_import_name }}._internal.logging import configure_logging, logger
 
-logger = logging.getLogger(__name__)
+
+# Configure at application startup
+configure_logging(level="INFO", json_logs=True)
 
 
 def process(data: str) -> str:
     """Process data with logging."""
-    logger.debug("Processing: %s", data)
+    # Structured logging with extra fields
+    logger.debug("Processing data", input_data=data, length=len(data))
     result = data.upper()
-    logger.info("Processed successfully")
+    logger.info("Processing complete", output_data=result)
     return result
+
+
+# Log with context
+logger.info("User action", user_id=123, action="login", ip="192.168.1.1")
+
+# Log exceptions with traceback
+try:
+    risky_operation()
+except Exception:
+    logger.exception("Operation failed")
 ```
+
+**JSON Output Example:**
+```json
+{"text": "User action", "record": {"level": {"name": "INFO"}, "time": {"timestamp": 1234567890.123}, "extra": {"user_id": 123, "action": "login", "ip": "192.168.1.1"}}}
+```
+
+**Configuration Options:**
+
+```python
+from {{ python_package_import_name }}._internal.logging import configure_logging
+
+# JSON logs (default) - for production/log aggregation
+configure_logging(level="INFO", json_logs=True)
+
+# Human-readable logs - for development
+configure_logging(level="DEBUG", json_logs=False)
+
+# With file output
+from pathlib import Path
+configure_logging(level="INFO", json_logs=True, log_file=Path("app.log"))
+```
+
+**Key Points:**
+- Always use `logger` from `_internal.logging`, not `loguru.logger` directly
+- Pass structured data as keyword arguments, not in the message string
+- JSON logs are the default for production compatibility
+- Use `-v` (INFO) or `-vv` (DEBUG) CLI flags for verbosity
 
 ### Context Managers
 
@@ -517,5 +560,7 @@ def temporary_state(value: int) -> Iterator[int]:
 - ❌ Add dependencies without updating `pyproject.toml`
 - ❌ Ignore mypy or ruff errors (fix them or document why ignored)
 - ❌ Write docstrings for internal module `__init__.py` files
-- ❌ Use `print()` for debugging (use `logging` or remove before commit)
+- ❌ Use `print()` for debugging (use `logger` from `_internal.logging`)
+- ❌ Use `loguru.logger` directly (use the configured `logger` from `_internal.logging`)
+- ❌ Put data in log message strings (use keyword arguments for structured logging)
 

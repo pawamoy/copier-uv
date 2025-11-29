@@ -179,6 +179,21 @@ marimo export md notebooks/analysis.py -o analysis.md
 
 ## Tips & Tricks
 
+### Structured Logging
+
+This project uses [loguru](https://github.com/Delgan/loguru) for JSON structured logging:
+
+```python
+from {{ python_package_import_name }} import configure_logging, logger
+
+# Configure logging (call once at notebook start)
+configure_logging(level="DEBUG", json_logs=False)  # Human-readable for notebooks
+
+# Log with structured context
+logger.info("Loading dataset", file="data.csv", rows=1000)
+logger.debug("Processing complete", duration_ms=150)
+```
+
 ### Caching Expensive Operations
 
 ```python

@@ -16,6 +16,7 @@ import sys
 from typing import Any
 
 from {{ python_package_import_name }}._internal import debug
+from {{ python_package_import_name }}._internal.logging import configure_logging, logger
 
 
 class _DebugInfo(argparse.Action):
@@ -36,6 +37,25 @@ def get_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="{{ python_package_command_line_name }}")
     parser.add_argument("-V", "--version", action="version", version=f"%(prog)s {debug._get_version()}")
     parser.add_argument("--debug-info", action=_DebugInfo, help="Print debug information.")
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="count",
+        default=0,
+        help="Increase verbosity. Use -v for INFO, -vv for DEBUG.",
+    )
+    parser.add_argument(
+        "--json-logs",
+        action="store_true",
+        default=True,
+        help="Output logs as JSON lines (default: True).",
+    )
+    parser.add_argument(
+        "--no-json-logs",
+        action="store_false",
+        dest="json_logs",
+        help="Output logs in human-readable format.",
+    )
     return parser
 
 
@@ -52,5 +72,17 @@ def main(args: list[str] | None = None) -> int:
     """
     parser = get_parser()
     opts = parser.parse_args(args=args)
-    print(opts)
+
+    # Configure logging based on verbosity
+    log_level = "WARNING"
+    if opts.verbose == 1:
+        log_level = "INFO"
+    elif opts.verbose >= 2:
+        log_level = "DEBUG"
+
+    configure_logging(level=log_level, json_logs=opts.json_logs)
+
+    logger.info("Starting {{ python_package_command_line_name }}", version=debug._get_version())
+    logger.debug("Parsed arguments", args=vars(opts))
+
     return 0

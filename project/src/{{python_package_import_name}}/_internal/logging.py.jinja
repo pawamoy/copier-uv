@@ -1,0 +1,70 @@
+from __future__ import annotations
+
+import sys
+from typing import TYPE_CHECKING
+
+from loguru import logger
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+# Remove default handler
+logger.remove()
+
+
+def configure_logging(
+    *,
+    level: str = "INFO",
+    json_logs: bool = True,
+    log_file: Path | None = None,
+) -> None:
+    """Configure loguru for the application.
+
+    Sets up structured JSON logging by default, suitable for log aggregation
+    and analysis tools.
+
+    Parameters:
+        level: Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL).
+        json_logs: If True, output logs as JSON lines. If False, use human-readable format.
+        log_file: Optional file path to write logs to (in addition to stderr).
+
+    Examples:
+        >>> from {{ python_package_import_name }}._internal.logging import configure_logging, logger
+        >>> configure_logging(level="DEBUG", json_logs=True)
+        >>> logger.info("Application started", user_id=123)
+    """
+    # Remove any existing handlers
+    logger.remove()
+
+    # JSON format for structured logging (default)
+    if json_logs:
+        logger.add(
+            sys.stderr,
+            level=level,
+            format="{message}",
+            serialize=True,  # Output as JSON
+        )
+    else:
+        # Human-readable format for development
+        logger.add(
+            sys.stderr,
+            level=level,
+            format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>",
+            colorize=True,
+        )
+
+    # Optionally add file handler
+    if log_file is not None:
+        logger.add(
+            log_file,
+            level=level,
+            format="{message}",
+            serialize=True,  # Always JSON for files
+            rotation="10 MB",
+            retention="1 week",
+            compression="gz",
+        )
+
+
+__all__ = ["configure_logging", "logger"]
+
