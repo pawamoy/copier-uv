@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.1.2](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.2) - 2025-11-29
+
+<small>[Compare with 0.1.1](https://github.com/oedokumaci/copier-uv/compare/0.1.1...0.1.2)</small>
+
+### Bug Fixes
+
+- Replace magic number with constant in CLI verbosity check ([df34686](https://github.com/oedokumaci/copier-uv/commit/df346862aaabf22e630d1151bbe7c9e43b2580c8) by oedokumaci).
+
+### Code Refactoring
+
+- Update minimum Python version to 3.12 and fix template formatting ([45bd484](https://github.com/oedokumaci/copier-uv/commit/45bd484d7acdfea9864ee5df0ed7e10c760fa626) by oedokumaci).
+- Simplify type annotations and clean up unused imports in scripts ([d855425](https://github.com/oedokumaci/copier-uv/commit/d855425b3c1641bed922fcf233e5a3fe5ad8a209) by oedokumaci).
+
 ## [0.1.1](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.1) - 2025-11-29
 
 <small>[Compare with 0.1.0](https://github.com/oedokumaci/copier-uv/compare/0.1.0...0.1.1)</small>
