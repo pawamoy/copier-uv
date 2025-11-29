@@ -3,7 +3,7 @@ name: Bug report
 about: Create a bug report to help us improve.
 title: "bug: "
 labels: unconfirmed
-assignees: [pawamoy]
+assignees: [{{ author_username }}]
 ---
 
 ### Description of the bug
@@ -17,8 +17,8 @@ assignees: [pawamoy]
      Example:
 
      ```
-     git clone https://github.com/username/repro
-     cd repro
+     git clone https://github.com/{{ repository_namespace }}/{{ repository_name }}/repro
+     cd {{ repository_name }}
      python -m venv .venv
      . .venv/bin/activate
      pip install -r requirements.txt
@@ -27,7 +27,7 @@ assignees: [pawamoy]
 -->
 
 ```
-WRITE MRE / INSTRUCTIONS HERE
+WRITE MORE / INSTRUCTIONS HERE
 ```
 
 ### Full traceback
