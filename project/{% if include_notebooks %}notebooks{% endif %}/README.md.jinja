@@ -28,23 +28,40 @@ uv pip install "marimo[recommended]"
 
 The `[recommended]` extra includes SQL support, AI completion, and additional features.
 
-### Essential Commands
+### Make Commands
+
+Use `make marimo` for consistent notebook management:
 
 ```bash
-# Create or edit a notebook
-marimo edit notebooks/my_notebook.py
+# Edit notebooks
+make marimo edit                      # Edit starter notebook (default)
+make marimo edit notebooks/my.py      # Edit specific notebook
 
-# Run as an interactive app (code hidden)
-marimo run notebooks/starter.py
+# Run as interactive app
+make marimo run                       # Run starter notebook
+make marimo run notebooks/my.py       # Run specific notebook
 
-# Execute as a Python script
-python notebooks/starter.py
+# Create new notebook
+make marimo new my_analysis           # Creates notebooks/my_analysis.py
 
 # Convert from Jupyter
-marimo convert old_notebook.ipynb > notebooks/new_notebook.py
+make marimo convert old.ipynb         # Convert Jupyter notebook
 
-# Run interactive tutorial
-marimo tutorial intro
+# Export notebooks
+make marimo export html my.py -o report.html
+
+# Tutorial
+make marimo tutorial                  # Run interactive tutorial
+```
+
+### Direct marimo Commands
+
+You can also use marimo directly:
+
+```bash
+marimo edit notebooks/my_notebook.py
+marimo run notebooks/starter.py
+python notebooks/starter.py           # Execute as script
 ```
 
 ### Sandbox Mode (Recommended)

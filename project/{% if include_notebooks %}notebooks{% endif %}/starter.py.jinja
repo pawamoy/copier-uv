@@ -46,13 +46,16 @@ def _(mo):
         r"""
         ## 🚀 Quick Start
 
+        Use `make marimo` for consistent notebook management:
+
         | Command | Description |
         |---------|-------------|
-        | `marimo edit notebook.py` | Create or edit a notebook |
-        | `marimo run notebook.py` | Run as an interactive app |
-        | `python notebook.py` | Execute as a script |
-        | `marimo convert notebook.ipynb` | Convert from Jupyter |
-        | `marimo tutorial intro` | Interactive tutorial |
+        | `make marimo edit` | Edit this starter notebook |
+        | `make marimo edit notebooks/my.py` | Edit specific notebook |
+        | `make marimo run` | Run starter as interactive app |
+        | `make marimo new my_analysis` | Create new notebook |
+        | `make marimo convert old.ipynb` | Convert from Jupyter |
+        | `make marimo tutorial` | Interactive tutorial |
         """
     )
     return

@@ -31,6 +31,21 @@ You can run the application with `make run {{ python_package_command_line_name }
 {% endif -%}
 
 Run `make help` to see all the available actions!
+{% if include_notebooks %}
+
+## Notebooks
+
+This project uses [marimo](https://marimo.io/) for interactive notebooks. Use `make marimo` commands:
+
+```bash
+make marimo edit                    # Edit starter notebook
+make marimo edit notebooks/my.py    # Edit specific notebook
+make marimo run                     # Run notebook as app
+make marimo new my_analysis         # Create new notebook
+```
+
+See `notebooks/README.md` for more details.
+{% endif %}
 
 ## Tasks
 

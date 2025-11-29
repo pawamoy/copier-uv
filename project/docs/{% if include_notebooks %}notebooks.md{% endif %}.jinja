@@ -8,21 +8,33 @@ This project uses [marimo](https://marimo.io/) for interactive notebooks — a *
 
 ## Quick Start
 
+Use `make marimo` for consistent notebook management:
+
 ```bash
-# Edit a notebook
-marimo edit notebooks/starter.py
+# Edit notebooks
+make marimo edit                      # Edit starter notebook
+make marimo edit notebooks/my.py      # Edit specific notebook
 
-# Create a new notebook
-marimo edit notebooks/my_notebook.py
+# Run as interactive app
+make marimo run                       # Run starter notebook
+make marimo run notebooks/my.py       # Run specific notebook
 
-# Run as an interactive app
-marimo run notebooks/starter.py
-
-# Execute as a script
-python notebooks/starter.py
+# Create new notebook
+make marimo new my_analysis           # Creates notebooks/my_analysis.py
 
 # Convert from Jupyter
-marimo convert old.ipynb > notebooks/new.py
+make marimo convert old.ipynb         # Convert Jupyter notebook
+
+# Tutorial
+make marimo tutorial                  # Interactive tutorial
+```
+
+Or use marimo directly:
+
+```bash
+marimo edit notebooks/starter.py
+marimo run notebooks/starter.py
+python notebooks/starter.py           # Execute as script
 ```
 
 ## Why marimo?

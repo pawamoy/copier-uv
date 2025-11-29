@@ -126,6 +126,43 @@ def vscode() -> None:
     """Configure VSCode to work on this project."""
     shutil.copytree("config/vscode", ".vscode", dirs_exist_ok=True)
 
+{% if include_notebooks %}
+def marimo(action: str, *args: str) -> None:
+    """Run marimo commands for notebook management.
+
+    Parameters:
+        action: The marimo action (edit, run, new, convert, export, tutorial).
+        *args: Additional arguments passed to marimo.
+    """
+    valid_actions = {"edit", "run", "new", "convert", "export", "tutorial"}
+    if action not in valid_actions:
+        print(f"make: marimo: unknown action '{action}'", file=sys.stderr)
+        print(f"Valid actions: {', '.join(sorted(valid_actions))}", file=sys.stderr)
+        sys.exit(1)
+
+    # Default to notebooks directory for edit/run/new if no path specified
+    if action in {"edit", "run", "new"} and not args:
+        if action == "new":
+            print("make: marimo new: please specify a notebook name", file=sys.stderr)
+            print("Example: make marimo new my_notebook", file=sys.stderr)
+            sys.exit(1)
+        # Default to starter notebook for edit/run
+        args = ("notebooks/starter.py",)
+
+    # For 'new', automatically add notebooks/ prefix if not present
+    if action == "new" and args:
+        notebook_name = args[0]
+        if not notebook_name.startswith("notebooks/"):
+            notebook_name = f"notebooks/{notebook_name}"
+        if not notebook_name.endswith(".py"):
+            notebook_name = f"{notebook_name}.py"
+        args = (notebook_name, *args[1:])
+        # Use 'edit' to create new notebooks
+        action = "edit"
+
+    run("default", "marimo", action, *args)
+{% endif %}
+
 
 def main() -> int:
     """Main entry point."""
@@ -146,6 +183,16 @@ def main() -> int:
                       3.x                   Run a command in the virtual environment for Python 3.x.
                       clean                 Delete build artifacts and cache files.
                       vscode                Configure VSCode to work on this project.
+                    {%- if include_notebooks %}
+
+                    Notebook commands (marimo)
+                      marimo edit [FILE]    Edit a notebook (default: notebooks/starter.py).
+                      marimo run [FILE]     Run a notebook as an app (default: notebooks/starter.py).
+                      marimo new NAME       Create a new notebook in notebooks/.
+                      marimo convert FILE   Convert a Jupyter notebook to marimo.
+                      marimo export ...     Export a notebook (html, ipynb, md).
+                      marimo tutorial       Run the marimo tutorial.
+                    {%- endif %}
                     """,
                 ),
                 flush=True,
@@ -196,6 +243,14 @@ def main() -> int:
             setup()
         elif cmd == "vscode":
             vscode()
+        {%- if include_notebooks %}
+        elif cmd == "marimo":
+            if not args:
+                print("make: marimo: missing action (edit, run, new, convert, export, tutorial)", file=sys.stderr)
+                return 1
+            marimo(args.pop(0), *args)
+            return 0
+        {%- endif %}
         elif cmd == "check":
             multirun("duty", "check-quality", "check-types", "check-docs")
             run("default", "duty", "check-api")

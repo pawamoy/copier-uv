@@ -21,6 +21,10 @@ make check          # Run all quality checks
 make test           # Run test suite
 make format         # Auto-format code
 make docs           # Serve documentation locally
+{%- if include_notebooks %}
+make marimo edit    # Edit notebooks
+make marimo run     # Run notebook as app
+{%- endif %}
 ```
 
 ## Commit Message Convention
@@ -403,8 +407,13 @@ make check-docs     # Verify build
 This project uses [marimo](https://marimo.io/) for interactive notebooks.
 
 ```bash
-marimo edit notebooks/starter.py    # Edit notebook
-marimo run notebooks/starter.py     # Run as app
+make marimo edit                    # Edit starter notebook
+make marimo edit notebooks/my.py    # Edit specific notebook
+make marimo run                     # Run starter as app
+make marimo run notebooks/my.py     # Run specific notebook as app
+make marimo new my_analysis         # Create new notebook
+make marimo convert old.ipynb       # Convert from Jupyter
+make marimo tutorial                # Run marimo tutorial
 ```
 
 See `notebooks/README.md` for guidelines.
