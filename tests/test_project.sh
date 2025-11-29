@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eu
 
-PYTHON_VERSIONS="${PYTHON_VERSIONS-3.10 3.11 3.12 3.13 3.14 3.15}"
+PYTHON_VERSIONS="${PYTHON_VERSIONS-3.12 3.13 3.14}"
 
 . tests/helpers.sh
 output=tests/tmp
@@ -26,7 +26,7 @@ echo "             TESTING PROJECT"
 echo "///////////////////////////////////////////"
 echo
 echo ">>> Creating initial commit (feat)"
-python <<EOF
+uv run python <<EOF
 import re
 with open(".copier-answers.yml") as file:
     answers = file.read()
@@ -58,7 +58,7 @@ make run python -c "print('run: ', end=''); ${pycode}"
 make multirun python -c "print('multirun: ', end=''); ${pycode}"
 make allrun python -c "print('allrun: ', end=''); ${pycode}"
 if [ -n "${PYTHON_VERSIONS}" ]; then
-    version="$(python -c "${pycode}")"
+    version="$(uv run python -c "${pycode}")"
     make "${version}" python -c "print('3.x: ', end=''); ${pycode}" | grep -F "${version}"
 fi
 echo

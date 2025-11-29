@@ -67,7 +67,7 @@ To specify which Python versions you would like to work with,
 define the `PYTHON_VERSIONS` environment variable:
 
 ```bash
-export PYTHON_VERSIONS="3.10 3.11 3.12"
+export PYTHON_VERSIONS="3.12 3.13 3.14"
 ```
 
 By default it is set to active versions of Python

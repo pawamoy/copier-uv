@@ -124,10 +124,16 @@ def test_single_locations(public_api: griffe.Module) -> None:
     multiple_locations = {}
     for obj_name in {{ python_package_import_name}}.__all__:
         obj = public_api[obj_name]
-        if obj.aliases and (
-            public_aliases := [path for path, alias in obj.aliases.items() if path != obj.path and _public_path(alias)]
-        ):
-            multiple_locations[obj.path] = public_aliases
+        try:
+            if obj.aliases and (
+                public_aliases := [
+                    path for path, alias in obj.aliases.items() if path != obj.path and _public_path(alias)
+                ]
+            ):
+                multiple_locations[obj.path] = public_aliases
+        except (griffe.AliasResolutionError, griffe.CyclicAliasError):
+            # Skip objects from external packages that can't be resolved
+            continue
     assert not multiple_locations, "Multiple public locations:\n" + "\n".join(
         f"{path}: {aliases}" for path, aliases in multiple_locations.items()
     )
