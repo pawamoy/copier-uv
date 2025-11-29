@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.1.4](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.4) - 2025-11-29
+
+<small>[Compare with 0.1.3](https://github.com/oedokumaci/copier-uv/compare/0.1.3...0.1.4)</small>
+
+### Code Refactoring
+
+- Add pragma to main checks and enhance CLI tests ([5f31fd0](https://github.com/oedokumaci/copier-uv/commit/5f31fd0fe0447c4c50bc35d66aab5a4e7d7c2869) by oedokumaci).
+
 ## [0.1.3](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.3) - 2025-11-29
 
 <small>[Compare with 0.1.2](https://github.com/oedokumaci/copier-uv/compare/0.1.2...0.1.3)</small>
