@@ -1,0 +1,219 @@
+# /// script
+# requires-python = ">=3.10"
+# dependencies = [
+#     "marimo[recommended]",
+# ]
+# ///
+
+import marimo
+
+__generated_with = "0.18.0"
+app = marimo.App(width="medium")
+
+
+@app.cell
+def _():
+    import marimo as mo
+
+    return (mo,)
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        # {{ project_name }} - Starter Notebook
+
+        Welcome to your [marimo](https://marimo.io/) notebook! marimo is a **reactive** Python notebook
+        that's Git-friendly, reproducible, and deployable as an interactive web app.
+
+        ## ✨ Key Features
+
+        - **Reactive execution**: Run a cell and marimo automatically runs dependent cells
+        - **No hidden state**: Delete a cell and its variables are scrubbed from memory
+        - **Git-friendly**: Stored as pure Python `.py` files
+        - **SQL support**: Query dataframes and databases with native SQL cells
+        - **AI-native**: Generate code with AI assistants tailored for data work
+        - **Deployable**: Run notebooks as interactive web apps with `marimo run`
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        ## 🚀 Quick Start
+
+        | Command | Description |
+        |---------|-------------|
+        | `marimo edit notebook.py` | Create or edit a notebook |
+        | `marimo run notebook.py` | Run as an interactive app |
+        | `python notebook.py` | Execute as a script |
+        | `marimo convert notebook.ipynb` | Convert from Jupyter |
+        | `marimo tutorial intro` | Interactive tutorial |
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md("## 🎛️ Interactive UI Elements")
+    return
+
+
+@app.cell
+def _(mo):
+    # Interactive slider with label
+    slider = mo.ui.slider(1, 100, value=50, label="Pick a number")
+    slider
+    return (slider,)
+
+
+@app.cell
+def _(mo, slider):
+    # Cells automatically re-run when UI elements change
+    mo.md(f"You selected: **{slider.value}** → squared = **{slider.value ** 2}**")
+    return
+
+
+@app.cell
+def _(mo):
+    # Dropdown selection
+    framework = mo.ui.dropdown(
+        options=["pandas", "polars", "duckdb"],
+        value="pandas",
+        label="Favorite DataFrame library",
+    )
+    framework
+    return (framework,)
+
+
+@app.cell
+def _(framework, mo):
+    messages = {
+        "pandas": "📊 Classic choice! Great ecosystem and documentation.",
+        "polars": "⚡ Blazing fast! Rust-powered performance.",
+        "duckdb": "🦆 SQL power! Perfect for analytical queries.",
+    }
+    mo.callout(messages.get(framework.value, ""), kind="info")
+    return (messages,)
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        ## 📊 Working with Data
+
+        marimo has first-class support for dataframes, SQL, and plotting.
+        Use `mo.ui.table()` for interactive tables or `mo.ui.dataframe()` for a full data explorer.
+
+        ```python
+        # Interactive table with search, filter, sort
+        table = mo.ui.table(df)
+
+        # Full dataframe explorer
+        explorer = mo.ui.dataframe(df)
+
+        # SQL cells (use the SQL button in the editor)
+        # SELECT * FROM df WHERE column > 10
+        ```
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        ## 🤖 AI-Powered Development
+
+        marimo includes AI assistants for generating code. Since you installed `marimo[recommended]`,
+        you have access to AI features:
+
+        - **Generate cells**: Press `Ctrl/Cmd + Shift + E` to generate code with AI
+        - **AI chat**: Use the AI panel to ask questions about your data
+        - **Zero-shot notebooks**: Generate entire notebooks from a description
+
+        Configure your AI provider in the marimo settings or via environment variables.
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        ## 📦 Package Management
+
+        marimo has built-in package management:
+
+        - **Auto-install on import**: Missing packages are installed automatically
+        - **Sandbox mode**: Run with `marimo edit --sandbox` to track dependencies
+        - **Inline dependencies**: Packages are serialized in the script header
+
+        ```python
+        # /// script
+        # requires-python = ">=3.10"
+        # dependencies = [
+        #     "marimo[recommended]",
+        #     "pandas",
+        #     "plotly",
+        # ]
+        # ///
+        ```
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        ## 📚 Resources
+
+        - 📖 [Documentation](https://docs.marimo.io/) - Comprehensive guides and API reference
+        - 🎓 [Tutorials](https://docs.marimo.io/getting_started/key_concepts) - Learn key concepts
+        - 🎬 [YouTube](https://www.youtube.com/@maraboroda) - Video tutorials and concepts
+        - 💬 [Discord](https://discord.gg/JE7nhX6mD8) - Community discussions
+        - 🐙 [GitHub](https://github.com/marimo-team/marimo) - Source code and examples
+        - ☁️ [molab](https://marimo.io/) - Cloud notebooks like Google Colab
+
+        ### Useful Commands
+
+        ```bash
+        # List all tutorials
+        marimo tutorial --help
+
+        # Export to HTML
+        marimo export html notebook.py -o report.html
+
+        # Export to Jupyter (if needed)
+        marimo export ipynb notebook.py -o notebook.ipynb
+        ```
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        ---
+
+        💡 **Tip**: This notebook is stored as a pure Python file.
+        You can lint it with `ruff check notebooks/` and format with `ruff format notebooks/`.
+        """
+    )
+    return
+
+
+if __name__ == "__main__":
+    app.run()

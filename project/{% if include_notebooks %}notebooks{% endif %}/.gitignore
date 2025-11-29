@@ -1,0 +1,7 @@
+# Jupyter notebooks - use marimo instead
+*.ipynb
+.ipynb_checkpoints/
+
+# marimo layout cache (auto-generated, can be regenerated)
+__marimo__/
+

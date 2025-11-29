@@ -1,0 +1,521 @@
+# CLAUDE.md
+
+This file provides guidance for AI assistants (Claude, Cursor, etc.) working on this codebase.
+
+## Project Overview
+
+**{{ project_name }}** is a Python package managed with [uv](https://github.com/astral-sh/uv) and built with [PDM backend](https://pdm-backend.fming.dev/). The project uses [duty](https://github.com/pawamoy/duty) for task automation.
+
+- **Package name**: `{{ python_package_distribution_name }}`
+- **Import name**: `{{ python_package_import_name }}`
+{%- if python_package_command_line_name %}
+- **CLI command**: `{{ python_package_command_line_name }}`
+{%- endif %}
+- **Python versions**: 3.12, 3.13, 3.14
+
+## Quick Reference
+
+```bash
+make setup          # Install all dependencies
+make check          # Run all quality checks
+make test           # Run test suite
+make format         # Auto-format code
+make docs           # Serve documentation locally
+```
+
+## Commit Message Convention
+
+**CRITICAL**: All commits MUST follow the Angular/Karma convention for automatic changelog generation.
+
+### Format
+
+```
+<type>[(scope)]: Subject
+
+[Body]
+```
+
+### Rules
+
+1. **Subject**: Proper casing (uppercase first letter), no period at end
+2. **Type** (required): One of the following:
+   - `feat`: New feature
+   - `fix`: Bug fix
+   - `docs`: Documentation only
+   - `style`: Code style/formatting (no logic change)
+   - `refactor`: Code change that neither fixes a bug nor adds a feature
+   - `perf`: Performance improvement
+   - `test`: Adding or updating tests
+   - `build`: Build system or external dependencies
+   - `ci`: CI configuration
+   - `chore`: Maintenance tasks
+   - `deps`: Dependency updates
+3. **Scope** (optional): Component or area affected
+4. **Body** (optional): Detailed explanation
+
+### Examples
+
+```bash
+# Good
+feat: Add user authentication endpoint
+fix(parser): Handle empty input gracefully
+docs: Update API reference for v2
+refactor: Extract validation logic into separate module
+test: Add integration tests for payment flow
+
+# Bad
+Fixed bug                    # No type
+feat: added new feature.     # Lowercase, period at end
+FEAT: Something              # Uppercase type
+```
+
+### Changelog Sections
+
+Only these types appear in the changelog: `build`, `deps`, `feat`, `fix`, `refactor`
+
+## Code Style Requirements
+
+### Type Hints (MANDATORY)
+
+**Every function, method, and variable MUST have type hints.** This is non-negotiable.
+
+```python
+# ✅ CORRECT - Fully typed
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Iterator, Sequence
+
+def process_items(items: Sequence[str], *, limit: int = 10) -> list[str]:
+    """Process a sequence of items.
+
+    Parameters:
+        items: Items to process.
+        limit: Maximum items to return.
+
+    Returns:
+        Processed items.
+    """
+    result: list[str] = []
+    for item in items:
+        if len(result) >= limit:
+            break
+        result.append(item.strip())
+    return result
+
+
+# ❌ WRONG - Missing types
+def process_items(items, limit=10):
+    result = []
+    for item in items:
+        result.append(item.strip())
+    return result
+```
+
+### Import Style
+
+```python
+# Always use this at the top of every file
+from __future__ import annotations
+
+# Type-checking imports go in TYPE_CHECKING block
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Callable, Iterator
+    from pathlib import Path
+```
+
+### Docstrings (Google Style)
+
+All public functions, classes, and methods MUST have docstrings:
+
+```python
+def calculate_total(
+    prices: list[float],
+    *,
+    tax_rate: float = 0.0,
+    discount: float = 0.0,
+) -> float:
+    """Calculate the total price with tax and discount.
+
+    Parameters:
+        prices: List of item prices.
+        tax_rate: Tax rate as decimal (e.g., 0.08 for 8%).
+        discount: Discount as decimal (e.g., 0.1 for 10%).
+
+    Returns:
+        The final calculated total.
+
+    Raises:
+        ValueError: If prices is empty or contains negative values.
+
+    Examples:
+        >>> calculate_total([10.0, 20.0], tax_rate=0.1)
+        33.0
+    """
+```
+
+### Class Structure
+
+```python
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from pathlib import Path
+
+
+@dataclass
+class Configuration:
+    """Application configuration.
+
+    Attributes:
+        debug: Enable debug mode.
+        log_level: Logging level.
+        output_dir: Output directory path.
+    """
+
+    debug: bool = False
+    log_level: str = "INFO"
+    output_dir: Path | None = None
+
+    def validate(self) -> None:
+        """Validate configuration values.
+
+        Raises:
+            ValueError: If configuration is invalid.
+        """
+        valid_levels = {"DEBUG", "INFO", "WARNING", "ERROR"}
+        if self.log_level not in valid_levels:
+            raise ValueError(f"Invalid log level: {self.log_level}")
+```
+
+## Project Structure
+
+```
+{{ repository_name }}/
+├── src/
+│   └── {{ python_package_import_name }}/
+│       ├── __init__.py          # Public API exports
+│       ├── _internal/           # Internal implementation (not public API)
+│       │   ├── __init__.py
+{%- if python_package_command_line_name %}
+│       │   ├── cli.py           # CLI implementation
+{%- endif %}
+│       │   └── debug.py         # Debug utilities
+{%- if python_package_command_line_name %}
+│       └── __main__.py          # Entry point for `python -m`
+{%- endif %}
+├── tests/
+│   ├── conftest.py              # Pytest fixtures
+{%- if python_package_command_line_name %}
+│   ├── test_cli.py              # CLI tests
+{%- endif %}
+│   └── test_api.py              # API tests
+├── docs/                        # Documentation (MkDocs)
+├── config/                      # Tool configurations
+│   ├── coverage.ini
+│   ├── mypy.ini
+│   ├── pytest.ini
+│   └── ruff.toml
+{%- if include_notebooks %}
+├── notebooks/                   # Marimo notebooks
+{%- endif %}
+├── scripts/
+│   └── make.py                  # Build/task runner
+├── pyproject.toml               # Project metadata and dependencies
+└── duties.py                    # Task definitions (duty)
+```
+
+### Internal vs Public API
+
+- **Public API**: Everything exported in `src/{{ python_package_import_name }}/__init__.py`
+- **Internal**: Everything in `_internal/` - implementation details, not for external use
+- Names starting with `_` are private
+
+## Developer Workflow
+
+### 1. Setup
+
+```bash
+# Clone and setup
+git clone {{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}
+cd {{ repository_name }}
+make setup
+```
+
+### 2. Create Feature Branch
+
+```bash
+git switch -c feat/my-feature
+# or
+git switch -c fix/bug-description
+```
+
+### 3. Development Cycle
+
+```bash
+# Make changes, then:
+make format       # Auto-format code
+make check        # Run all checks (quality, types, docs, API)
+make test         # Run tests
+
+# If working on docs:
+make docs         # Serve at localhost:8000
+```
+
+### 4. Before Committing
+
+Run the full check suite:
+
+```bash
+make format && make check && make test
+```
+
+### 5. Commit with Proper Message
+
+```bash
+git add .
+git commit -m "feat: Add new validation logic"
+```
+
+## Quality Checks
+
+The `make check` command runs:
+
+1. **check-quality**: Ruff linting (code quality, style)
+2. **check-types**: Mypy type checking
+3. **check-docs**: MkDocs build verification
+4. **check-api**: Griffe API breaking changes detection
+
+### Ruff Configuration
+
+- Line length: 120 characters
+- Target: Python 3.12+
+- Style: Comprehensive (A, ANN, ARG, B, C, D, E, F, I, N, PL, PT, RUF, S, T, UP, W, etc.)
+- Docstrings: Google convention
+- Imports: Absolute only (no relative imports)
+
+### Type Checking (Mypy)
+
+- All code must pass `mypy` with strict settings
+- Use `# type: ignore[error-code]` sparingly and with specific error codes
+
+## Testing
+
+### Running Tests
+
+```bash
+make test                    # Run all tests
+make run pytest tests/ -x    # Stop on first failure
+make run pytest tests/ -k "test_name"  # Run specific test
+```
+
+### Writing Tests
+
+```python
+"""Tests for the feature module."""
+
+from __future__ import annotations
+
+import pytest
+
+from {{ python_package_import_name }} import some_function
+
+
+def test_some_function_basic() -> None:
+    """Test basic functionality."""
+    result = some_function("input")
+    assert result == "expected"
+
+
+def test_some_function_edge_case() -> None:
+    """Test edge case handling."""
+    with pytest.raises(ValueError, match="Invalid input"):
+        some_function("")
+
+
+@pytest.fixture
+def sample_data() -> list[str]:
+    """Provide sample test data."""
+    return ["a", "b", "c"]
+
+
+def test_with_fixture(sample_data: list[str]) -> None:
+    """Test using fixture data."""
+    assert len(sample_data) == 3
+```
+
+### Test Requirements
+
+- All tests must have type hints
+- All tests must have docstrings
+- Use `pytest.raises` for exception testing
+- Use fixtures for shared test data
+- Tests run in parallel with `pytest-xdist`
+
+## Dependencies
+
+### Adding Dependencies
+
+Edit `pyproject.toml`:
+
+```toml
+# Runtime dependencies
+dependencies = [
+    "httpx>=0.27",
+    "pydantic>=2.0",
+]
+
+# Development dependencies (in dependency-groups)
+[dependency-groups]
+ci = [
+    "pytest>=8.0",
+    "mypy>=1.10",
+]
+```
+
+Then run:
+
+```bash
+make setup  # Reinstall with new dependencies
+```
+
+## Documentation
+
+- Built with [MkDocs](https://www.mkdocs.org/) + [Material theme](https://squidfunk.github.io/mkdocs-material/)
+- API docs auto-generated by [mkdocstrings](https://mkdocstrings.github.io/)
+- All public API must be documented
+
+```bash
+make docs           # Serve locally at localhost:8000
+make check-docs     # Verify build
+```
+{% if include_notebooks %}
+## Notebooks
+
+This project uses [marimo](https://marimo.io/) for interactive notebooks.
+
+```bash
+marimo edit notebooks/starter.py    # Edit notebook
+marimo run notebooks/starter.py     # Run as app
+```
+
+See `notebooks/README.md` for guidelines.
+{% endif %}
+## CI/CD Pipeline
+
+GitHub Actions runs on every push/PR to `main`:
+
+1. **Quality checks** on Ubuntu, macOS, Windows × Python 3.12, 3.13, 3.14
+2. **Tests** with highest and lowest-direct dependency resolutions
+3. **API breaking change detection**
+
+## Key Files to Know
+
+| File | Purpose |
+|------|---------|
+| `pyproject.toml` | Project metadata, dependencies |
+| `duties.py` | Task definitions for `duty` |
+| `scripts/make.py` | CLI for running tasks |
+| `config/ruff.toml` | Linting and formatting rules |
+| `config/mypy.ini` | Type checking configuration |
+| `mkdocs.yml` | Documentation configuration |
+
+## Common Patterns
+
+### Error Handling
+
+```python
+from __future__ import annotations
+
+
+class {{ python_package_import_name | title | replace("_", "") }}Error(Exception):
+    """Base exception for {{ python_package_import_name }}."""
+
+
+class ValidationError({{ python_package_import_name | title | replace("_", "") }}Error):
+    """Raised when validation fails."""
+
+    def __init__(self, field: str, message: str) -> None:
+        self.field = field
+        super().__init__(f"{field}: {message}")
+```
+
+### Logging
+
+```python
+from __future__ import annotations
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+def process(data: str) -> str:
+    """Process data with logging."""
+    logger.debug("Processing: %s", data)
+    result = data.upper()
+    logger.info("Processed successfully")
+    return result
+```
+
+### Context Managers
+
+```python
+from __future__ import annotations
+
+from contextlib import contextmanager
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from collections.abc import Iterator
+
+
+@contextmanager
+def temporary_state(value: int) -> Iterator[int]:
+    """Temporarily set a state value.
+
+    Parameters:
+        value: The temporary value.
+
+    Yields:
+        The temporary value.
+    """
+    previous = get_state()
+    set_state(value)
+    try:
+        yield value
+    finally:
+        set_state(previous)
+```
+
+## Do's and Don'ts
+
+### DO
+
+- ✅ Add type hints to ALL functions, methods, and class attributes
+- ✅ Write Google-style docstrings for all public APIs
+- ✅ Use `from __future__ import annotations` in every file
+- ✅ Follow commit message conventions exactly
+- ✅ Run `make format && make check && make test` before committing
+- ✅ Use absolute imports only
+- ✅ Keep functions focused and small
+- ✅ Write tests for new functionality
+
+### DON'T
+
+- ❌ Skip type hints (even for "obvious" types)
+- ❌ Use relative imports
+- ❌ Commit without running checks
+- ❌ Write commit messages without type prefix
+- ❌ Add dependencies without updating `pyproject.toml`
+- ❌ Ignore mypy or ruff errors (fix them or document why ignored)
+- ❌ Write docstrings for internal module `__init__.py` files
+- ❌ Use `print()` for debugging (use `logging` or remove before commit)
+

@@ -104,6 +104,11 @@ ci = [
     # YORE: EOL 3.10: Remove line.
     "tomli>=2.0; python_version < '3.11'",
 ]
+{% if include_notebooks %}
+notebooks = [
+    "marimo[recommended]>=0.18",
+]
+{% endif %}
 
 [tool.uv]
-default-groups = ["maintain", "ci", "docs"]
+default-groups = ["maintain", "ci", "docs"{% if include_notebooks %}, "notebooks"{% endif %}]

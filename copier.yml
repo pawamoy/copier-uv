@@ -27,17 +27,17 @@ project_description:
 author_fullname:
   type: str
   help: Your full name
-  default: "{{ 'Timothée Mazzucotelli' | git_user_name }}"
+  default: "{{ git_user_name }}"
 
 author_email:
   type: str
   help: Your email
-  default: "{{ 'dev@pawamoy.fr' | git_user_email }}"
+  default: "{{ git_user_email }}"
 
 author_username:
   type: str
   help: Your username (e.g. on GitHub)
-  default: pawamoy
+  default: oedokumaci
 
 repository_provider:
   type: str
@@ -124,3 +124,8 @@ python_package_command_line_name:
   type: str
   help: Your CLI name if any (for use in the shell)
   default: "{{ project_name | slugify }}"
+
+include_notebooks:
+  type: bool
+  help: Include marimo notebooks support for data science workflows
+  default: true
