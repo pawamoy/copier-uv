@@ -18,7 +18,7 @@ docs-deploy:
 	@.venv/bin/mkdocs gh-deploy
 
 format:
-	@.venv/bin/ruff format . project/scripts/make
+	@.venv/bin/ruff format .
 
 gen generate:
 	@bash -c 'source tests/helpers.sh && generate ${PWD} tests/tmp'
