@@ -54,7 +54,7 @@ repository_namespace:
 repository_name:
   type: str
   help: Your repository name
-  default: "{{ project_name }}"
+  default: "{{ project_name | slugify }}"
 
 copyright_holder:
   type: str
@@ -113,17 +113,17 @@ copyright_license:
 python_package_distribution_name:
   type: str
   help: Your Python package distribution name (for `pip install NAME`)
-  default: "{{ project_name }}"
+  default: "{{ project_name | slugify }}"
 
 python_package_import_name:
   type: str
   help: Your Python package import name (for `import NAME` in Python code)
-  default: "{{ project_name }}"
+  default: "{{ project_name | slugify('_') }}"
 
 python_package_command_line_name:
   type: str
   help: Your CLI name if any (for use in the shell)
-  default: "{{ project_name }}"
+  default: "{{ project_name | slugify }}"
 
 include_notebooks:
   type: bool
