@@ -50,12 +50,16 @@ def _(mo):
 
         | Command | Description |
         |---------|-------------|
-        | `make marimo edit` | Edit this starter notebook |
+        | `make marimo edit` | Edit notebook with `--sandbox --watch` |
         | `make marimo edit notebooks/my.py` | Edit specific notebook |
         | `make marimo run` | Run starter as interactive app |
         | `make marimo new my_analysis` | Create new notebook |
         | `make marimo convert old.ipynb` | Convert from Jupyter |
         | `make marimo tutorial` | Interactive tutorial |
+
+        **Default flags for edit mode:**
+        - `--sandbox`: Dependencies are tracked in the notebook header
+        - `--watch`: Auto-reload when your project modules change
         """
     )
     return

@@ -33,8 +33,8 @@ The `[recommended]` extra includes SQL support, AI completion, and additional fe
 Use `make marimo` for consistent notebook management:
 
 ```bash
-# Edit notebooks
-make marimo edit                      # Edit starter notebook (default)
+# Edit notebooks (includes --sandbox --watch by default)
+make marimo edit                      # Edit starter notebook
 make marimo edit notebooks/my.py      # Edit specific notebook
 
 # Run as interactive app
@@ -54,9 +54,20 @@ make marimo export html my.py -o report.html
 make marimo tutorial                  # Run interactive tutorial
 ```
 
+#### Default Edit Flags
+
+When you run `make marimo edit`, these flags are automatically included:
+
+| Flag | Description |
+|------|-------------|
+| `--sandbox` | Track dependencies in notebook header for reproducibility |
+| `--watch` | Auto-reload when imported modules change |
+
+This means your notebooks will automatically track which packages they use (saved in the `# /// script` header), and any changes to your project's modules will trigger a reload.
+
 ### Direct marimo Commands
 
-You can also use marimo directly:
+You can also use marimo directly (without the default flags):
 
 ```bash
 marimo edit notebooks/my_notebook.py

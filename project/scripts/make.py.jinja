@@ -127,12 +127,20 @@ def vscode() -> None:
     shutil.copytree("config/vscode", ".vscode", dirs_exist_ok=True)
 
 {% if include_notebooks %}
+# Default flags for marimo edit mode
+MARIMO_EDIT_FLAGS = ("--sandbox", "--watch")
+
+
 def marimo(action: str, *args: str) -> None:
     """Run marimo commands for notebook management.
 
     Parameters:
         action: The marimo action (edit, run, new, convert, export, tutorial).
         *args: Additional arguments passed to marimo.
+
+    Default flags for edit mode:
+        --sandbox: Track dependencies in notebook header for reproducibility.
+        --watch: Auto-reload when imported modules change.
     """
     valid_actions = {"edit", "run", "new", "convert", "export", "tutorial"}
     if action not in valid_actions:
@@ -160,6 +168,10 @@ def marimo(action: str, *args: str) -> None:
         # Use 'edit' to create new notebooks
         action = "edit"
 
+    # Add default flags for edit mode (sandbox + watch)
+    if action == "edit":
+        args = (*MARIMO_EDIT_FLAGS, *args)
+
     run("default", "marimo", action, *args)
 {% endif %}
 
@@ -186,8 +198,8 @@ def main() -> int:
                     {%- if include_notebooks %}
 
                     Notebook commands (marimo)
-                      marimo edit [FILE]    Edit a notebook (default: notebooks/starter.py).
-                      marimo run [FILE]     Run a notebook as an app (default: notebooks/starter.py).
+                      marimo edit [FILE]    Edit a notebook with --sandbox --watch flags.
+                      marimo run [FILE]     Run a notebook as an app.
                       marimo new NAME       Create a new notebook in notebooks/.
                       marimo convert FILE   Convert a Jupyter notebook to marimo.
                       marimo export ...     Export a notebook (html, ipynb, md).

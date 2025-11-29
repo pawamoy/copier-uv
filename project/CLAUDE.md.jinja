@@ -407,7 +407,7 @@ make check-docs     # Verify build
 This project uses [marimo](https://marimo.io/) for interactive notebooks.
 
 ```bash
-make marimo edit                    # Edit starter notebook
+make marimo edit                    # Edit starter notebook (--sandbox --watch)
 make marimo edit notebooks/my.py    # Edit specific notebook
 make marimo run                     # Run starter as app
 make marimo run notebooks/my.py     # Run specific notebook as app
@@ -415,6 +415,10 @@ make marimo new my_analysis         # Create new notebook
 make marimo convert old.ipynb       # Convert from Jupyter
 make marimo tutorial                # Run marimo tutorial
 ```
+
+**Default edit flags:**
+- `--sandbox`: Track dependencies in notebook header for reproducibility
+- `--watch`: Auto-reload when imported modules change
 
 See `notebooks/README.md` for guidelines.
 {% endif %}

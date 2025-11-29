@@ -11,7 +11,7 @@ This project uses [marimo](https://marimo.io/) for interactive notebooks — a *
 Use `make marimo` for consistent notebook management:
 
 ```bash
-# Edit notebooks
+# Edit notebooks (includes --sandbox --watch by default)
 make marimo edit                      # Edit starter notebook
 make marimo edit notebooks/my.py      # Edit specific notebook
 
@@ -29,7 +29,14 @@ make marimo convert old.ipynb         # Convert Jupyter notebook
 make marimo tutorial                  # Interactive tutorial
 ```
 
-Or use marimo directly:
+### Default Edit Flags
+
+`make marimo edit` automatically includes:
+
+- `--sandbox` — Track dependencies in notebook header for reproducibility
+- `--watch` — Auto-reload when imported modules change
+
+Or use marimo directly (without default flags):
 
 ```bash
 marimo edit notebooks/starter.py
