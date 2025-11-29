@@ -27,7 +27,7 @@ project_description:
 author_fullname:
   type: str
   help: Your full name
-  default: "{{ git_user_name }}"
+  default: "Oral Ersoy Dokumaci"
 
 author_email:
   type: str
@@ -54,7 +54,7 @@ repository_namespace:
 repository_name:
   type: str
   help: Your repository name
-  default: "{{ project_name | slugify }}"
+  default: "{{ project_name }}"
 
 copyright_holder:
   type: str
@@ -113,17 +113,17 @@ copyright_license:
 python_package_distribution_name:
   type: str
   help: Your Python package distribution name (for `pip install NAME`)
-  default: "{{ project_name | slugify }}"
+  default: "{{ project_name }}"
 
 python_package_import_name:
   type: str
   help: Your Python package import name (for `import NAME` in Python code)
-  default: "{{ project_name | slugify('_') }}"
+  default: "{{ project_name }}"
 
 python_package_command_line_name:
   type: str
   help: Your CLI name if any (for use in the shell)
-  default: "{{ project_name | slugify }}"
+  default: "{{ project_name }}"
 
 include_notebooks:
   type: bool
