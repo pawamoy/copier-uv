@@ -86,6 +86,10 @@ convention = "google"
 [format]
 exclude = [
     "tests/fixtures/*.py",
+{% if include_notebooks %}
+    "notebooks/*.py",  # Marimo notebooks are formatted automatically
+
+{% endif %}
 ]
 docstring-code-format = true
 docstring-code-line-length = 80

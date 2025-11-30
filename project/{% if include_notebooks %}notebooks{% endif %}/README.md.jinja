@@ -144,12 +144,12 @@ Notebooks are pure Python — use your normal tools:
 # Lint notebooks
 uv run ruff check notebooks/
 
-# Format notebooks
-uv run ruff format notebooks/
-
 # Type check
 uv run mypy notebooks/
 ```
+
+> **Note**: Formatting is handled by marimo automatically when you save in the editor.
+> Ruff formatting is excluded for notebooks to avoid conflicts.
 
 ### Version Control
 

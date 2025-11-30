@@ -7,67 +7,64 @@
 
 import marimo
 
-__generated_with = "0.18.0"
+__generated_with = "0.18.1"
 app = marimo.App(width="medium")
 
 
 @app.cell
 def _():
     import marimo as mo
-
     return (mo,)
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-        # {{ project_name }} - Starter Notebook
+    mo.md(r"""
+    # {{ project_name }} - Starter Notebook
 
-        Welcome to your [marimo](https://marimo.io/) notebook! marimo is a **reactive** Python notebook
-        that's Git-friendly, reproducible, and deployable as an interactive web app.
+    Welcome to your [marimo](https://marimo.io/) notebook! marimo is a **reactive** Python notebook
+    that's Git-friendly, reproducible, and deployable as an interactive web app.
 
-        ## ✨ Key Features
+    ## ✨ Key Features
 
-        - **Reactive execution**: Run a cell and marimo automatically runs dependent cells
-        - **No hidden state**: Delete a cell and its variables are scrubbed from memory
-        - **Git-friendly**: Stored as pure Python `.py` files
-        - **SQL support**: Query dataframes and databases with native SQL cells
-        - **AI-native**: Generate code with AI assistants tailored for data work
-        - **Deployable**: Run notebooks as interactive web apps with `marimo run`
-        """
-    )
+    - **Reactive execution**: Run a cell and marimo automatically runs dependent cells
+    - **No hidden state**: Delete a cell and its variables are scrubbed from memory
+    - **Git-friendly**: Stored as pure Python `.py` files
+    - **SQL support**: Query dataframes and databases with native SQL cells
+    - **AI-native**: Generate code with AI assistants tailored for data work
+    - **Deployable**: Run notebooks as interactive web apps with `marimo run`
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-        ## 🚀 Quick Start
+    mo.md(r"""
+    ## 🚀 Quick Start
 
-        | Command | Description |
-        |---------|-------------|
-        | `uv run marimo edit notebooks/starter.py` | Edit this notebook |
-        | `uv run marimo edit notebooks/my.py` | Edit specific notebook |
-        | `uv run marimo run notebooks/starter.py` | Run as interactive app |
-        | `uv run marimo tutorial intro` | Interactive tutorial |
+    | Command | Description |
+    |---------|-------------|
+    | `uv run marimo edit notebooks/starter.py` | Edit this notebook |
+    | `uv run marimo edit notebooks/my.py` | Edit specific notebook |
+    | `uv run marimo run notebooks/starter.py` | Run as interactive app |
+    | `uv run marimo tutorial intro` | Interactive tutorial |
 
-        **Recommended flags for edit mode:**
-        - `--sandbox`: Dependencies are tracked in the notebook header
-        - `--watch`: Auto-reload when your project modules change
+    **Recommended flags for edit mode:**
+    - `--sandbox`: Dependencies are tracked in the notebook header
+    - `--watch`: Auto-reload when your project modules change
 
-        ```bash
-        uv run marimo edit --sandbox --watch notebooks/my.py
-        ```
-        """
-    )
+    ```bash
+    uv run marimo edit --sandbox --watch notebooks/my.py
+    ```
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md("## 🎛️ Interactive UI Elements")
+    mo.md("""
+    ## 🎛️ Interactive UI Elements
+    """)
     return
 
 
@@ -106,143 +103,131 @@ def _(framework, mo):
         "duckdb": "🦆 SQL power! Perfect for analytical queries.",
     }
     mo.callout(messages.get(framework.value, ""), kind="info")
-    return (messages,)
-
-
-@app.cell
-def _(mo):
-    mo.md(
-        r"""
-        ## 📊 Working with Data
-
-        marimo has first-class support for dataframes, SQL, and plotting.
-        Use `mo.ui.table()` for interactive tables or `mo.ui.dataframe()` for a full data explorer.
-
-        ```python
-        # Interactive table with search, filter, sort
-        table = mo.ui.table(df)
-
-        # Full dataframe explorer
-        explorer = mo.ui.dataframe(df)
-
-        # SQL cells (use the SQL button in the editor)
-        # SELECT * FROM df WHERE column > 10
-        ```
-        """
-    )
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-        ## 🤖 AI-Powered Development
+    mo.md(r"""
+    ## 📊 Working with Data
 
-        marimo includes AI assistants for generating code. Since you installed `marimo[recommended]`,
-        you have access to AI features:
+    marimo has first-class support for dataframes, SQL, and plotting.
+    Use `mo.ui.table()` for interactive tables or `mo.ui.dataframe()` for a full data explorer.
 
-        - **Generate cells**: Press `Ctrl/Cmd + Shift + E` to generate code with AI
-        - **AI chat**: Use the AI panel to ask questions about your data
-        - **Zero-shot notebooks**: Generate entire notebooks from a description
+    ```python
+    # Interactive table with search, filter, sort
+    table = mo.ui.table(df)
 
-        Configure your AI provider in the marimo settings or via environment variables.
-        """
-    )
+    # Full dataframe explorer
+    explorer = mo.ui.dataframe(df)
+
+    # SQL cells (use the SQL button in the editor)
+    # SELECT * FROM df WHERE column > 10
+    ```
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-        ## 📦 Package Management
+    mo.md(r"""
+    ## 🤖 AI-Powered Development
 
-        marimo has built-in package management:
+    marimo includes AI assistants for generating code. Since you installed `marimo[recommended]`,
+    you have access to AI features:
 
-        - **Auto-install on import**: Missing packages are installed automatically
-        - **Sandbox mode**: Run with `marimo edit --sandbox` to track dependencies
-        - **Inline dependencies**: Packages are serialized in the script header
+    - **Generate cells**: Press `Ctrl/Cmd + Shift + E` to generate code with AI
+    - **AI chat**: Use the AI panel to ask questions about your data
+    - **Zero-shot notebooks**: Generate entire notebooks from a description
 
-        ```python
-        # /// script
-        # requires-python = ">=3.12"
-        # dependencies = [
-        #     "marimo[recommended]",
-        #     "pandas",
-        #     "plotly",
-        # ]
-        # ///
-        ```
-        """
-    )
+    Configure your AI provider in the marimo settings or via environment variables.
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-        ## 📝 Structured Logging
+    mo.md(r"""
+    ## 📦 Package Management
 
-        This project uses [loguru](https://github.com/Delgan/loguru) for structured JSON logging:
+    marimo has built-in package management:
 
-        ```python
-        from {{ python_package_import_name }} import configure_logging, logger
+    - **Auto-install on import**: Missing packages are installed automatically
+    - **Sandbox mode**: Run with `marimo edit --sandbox` to track dependencies
+    - **Inline dependencies**: Packages are serialized in the script header
 
-        # Configure logging (JSON by default)
-        configure_logging(level="DEBUG", json_logs=True)
-
-        # Log with structured data
-        logger.info("Processing data", dataset="sales", rows=1000)
-        logger.debug("Step complete", step=1, duration_ms=150)
-        ```
-
-        Logs are output as JSON lines for easy parsing and aggregation.
-        """
-    )
+    ```python
+    # /// script
+    # requires-python = ">=3.12"
+    # dependencies = [
+    #     "marimo[recommended]",
+    #     "pandas",
+    #     "plotly",
+    # ]
+    # ///
+    ```
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-        ## 📚 Resources
+    mo.md(r"""
+    ## 📝 Structured Logging
 
-        - 📖 [Documentation](https://docs.marimo.io/) - Comprehensive guides and API reference
-        - 🎓 [Tutorials](https://docs.marimo.io/getting_started/key_concepts) - Learn key concepts
-        - 🎬 [YouTube](https://www.youtube.com/@marimo-team) - Video tutorials and concepts
-        - 💬 [Discord](https://discord.gg/JE7nhX6mD8) - Community discussions
-        - 🐙 [GitHub](https://github.com/marimo-team/marimo) - Source code and examples
+    This project uses [loguru](https://github.com/Delgan/loguru) for structured JSON logging:
 
-        ### Useful Commands
+    ```python
+    from {{ python_package_import_name }} import configure_logging, logger
 
-        ```bash
-        # List all tutorials
-        uv run marimo tutorial --help
+    # Configure logging (JSON by default)
+    configure_logging(level="DEBUG", json_logs=True)
 
-        # Export to HTML
-        marimo export html notebook.py -o report.html
+    # Log with structured data
+    logger.info("Processing data", dataset="sales", rows=1000)
+    logger.debug("Step complete", step=1, duration_ms=150)
+    ```
 
-        # Export to Jupyter (if needed)
-        marimo export ipynb notebook.py -o notebook.ipynb
-        ```
-        """
-    )
+    Logs are output as JSON lines for easy parsing and aggregation.
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-        ---
+    mo.md(r"""
+    ## 📚 Resources
 
-        💡 **Tip**: This notebook is stored as a pure Python file.
-        You can lint it with `uv run ruff check notebooks/` and format with `uv run ruff format notebooks/`.
-        """
-    )
+    - 📖 [Documentation](https://docs.marimo.io/) - Comprehensive guides and API reference
+    - 🎓 [Tutorials](https://docs.marimo.io/getting_started/key_concepts) - Learn key concepts
+    - 🎬 [YouTube](https://www.youtube.com/@marimo-team) - Video tutorials and concepts
+    - 💬 [Discord](https://discord.gg/JE7nhX6mD8) - Community discussions
+    - 🐙 [GitHub](https://github.com/marimo-team/marimo) - Source code and examples
+
+    ### Useful Commands
+
+    ```bash
+    # List all tutorials
+    uv run marimo tutorial --help
+
+    # Export to HTML
+    marimo export html notebook.py -o report.html
+
+    # Export to Jupyter (if needed)
+    marimo export ipynb notebook.py -o notebook.ipynb
+    ```
+    """)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""
+    ---
+
+    💡 **Tip**: This notebook is stored as a pure Python file.
+    Lint with `uv run ruff check notebooks/`. Formatting is handled by marimo automatically.
+    """)
     return
 
 
