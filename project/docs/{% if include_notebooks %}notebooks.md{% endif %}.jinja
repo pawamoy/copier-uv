@@ -39,9 +39,9 @@ make marimo tutorial                  # Interactive tutorial
 Or use marimo directly (without default flags):
 
 ```bash
-marimo edit notebooks/starter.py
-marimo run notebooks/starter.py
-python notebooks/starter.py           # Execute as script
+uv run marimo edit notebooks/starter.py
+uv run marimo run notebooks/starter.py
+uv run python notebooks/starter.py    # Execute as script
 ```
 
 ## Why marimo?
@@ -114,7 +114,7 @@ With `marimo[recommended]`:
 Use sandbox mode for reproducible notebooks:
 
 ```bash
-marimo edit --sandbox notebooks/analysis.py
+uv run marimo edit --sandbox notebooks/analysis.py
 ```
 
 Dependencies are tracked in the file header:
@@ -130,10 +130,10 @@ Dependencies are tracked in the file header:
 
 ```bash
 # Export to HTML report
-marimo export html notebooks/analysis.py -o report.html
+uv run marimo export html notebooks/analysis.py -o report.html
 
 # Export to Jupyter (if needed)
-marimo export ipynb notebooks/analysis.py -o analysis.ipynb
+uv run marimo export ipynb notebooks/analysis.py -o analysis.ipynb
 ```
 
 ## Resources
@@ -147,6 +147,6 @@ marimo export ipynb notebooks/analysis.py -o analysis.ipynb
 
 !!! tip "Run the Interactive Tutorial"
     ```bash
-    marimo tutorial intro
+    uv run marimo tutorial intro
     ```
     This launches an interactive tutorial in your browser to learn marimo's key concepts.

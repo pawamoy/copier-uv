@@ -70,9 +70,9 @@ This means your notebooks will automatically track which packages they use (save
 You can also use marimo directly (without the default flags):
 
 ```bash
-marimo edit notebooks/my_notebook.py
-marimo run notebooks/starter.py
-python notebooks/starter.py           # Execute as script
+uv run marimo edit notebooks/my_notebook.py
+uv run marimo run notebooks/starter.py
+uv run python notebooks/starter.py    # Execute as script
 ```
 
 ### Sandbox Mode (Recommended)
@@ -80,7 +80,7 @@ python notebooks/starter.py           # Execute as script
 For reproducible notebooks with tracked dependencies:
 
 ```bash
-marimo edit --sandbox notebooks/my_notebook.py
+uv run marimo edit --sandbox notebooks/my_notebook.py
 ```
 
 This automatically tracks packages in the notebook's header:
@@ -156,13 +156,13 @@ Notebooks are pure Python — use your normal tools:
 
 ```bash
 # Lint notebooks
-ruff check notebooks/
+uv run ruff check notebooks/
 
 # Format notebooks
-ruff format notebooks/
+uv run ruff format notebooks/
 
 # Type check
-mypy notebooks/
+uv run mypy notebooks/
 ```
 
 ### Version Control
@@ -175,13 +175,13 @@ mypy notebooks/
 
 ```bash
 # Export to standalone HTML
-marimo export html notebooks/analysis.py -o report.html
+uv run marimo export html notebooks/analysis.py -o report.html
 
 # Export to Jupyter (for colleagues who need it)
-marimo export ipynb notebooks/analysis.py -o analysis.ipynb
+uv run marimo export ipynb notebooks/analysis.py -o analysis.ipynb
 
 # Export to markdown
-marimo export md notebooks/analysis.py -o analysis.md
+uv run marimo export md notebooks/analysis.py -o analysis.md
 ```
 
 ## Resources
@@ -195,7 +195,7 @@ marimo export md notebooks/analysis.py -o analysis.md
 
 ### Learning
 
-- [Interactive Tutorials](https://docs.marimo.io/getting_started/installation) — Run `marimo tutorial --help`
+- [Interactive Tutorials](https://docs.marimo.io/getting_started/installation) — Run `uv run marimo tutorial --help`
 - [YouTube Channel](https://www.youtube.com/@maraboroda) — Video tutorials and concept explanations
 - [Example Gallery](https://marimo.io/) — Browse community notebooks
 
@@ -265,10 +265,10 @@ Deploy notebooks as interactive web applications:
 
 ```bash
 # Local app
-marimo run notebooks/dashboard.py
+uv run marimo run notebooks/dashboard.py
 
 # With authentication
-marimo run notebooks/dashboard.py --token-password="secret"
+uv run marimo run notebooks/dashboard.py --token-password="secret"
 
 # Docker deployment
 docker run -p 8080:8080 -v $(pwd)/notebooks:/app ghcr.io/marimo-team/marimo

@@ -221,7 +221,7 @@ def _(mo):
 
         ```bash
         # List all tutorials
-        marimo tutorial --help
+        uv run marimo tutorial --help
 
         # Export to HTML
         marimo export html notebook.py -o report.html
@@ -241,7 +241,7 @@ def _(mo):
         ---
 
         💡 **Tip**: This notebook is stored as a pure Python file.
-        You can lint it with `ruff check notebooks/` and format with `ruff format notebooks/`.
+        You can lint it with `uv run ruff check notebooks/` and format with `uv run ruff format notebooks/`.
         """
     )
     return

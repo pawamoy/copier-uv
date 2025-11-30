@@ -3,7 +3,7 @@
 # You might be tempted to import things from `__main__` later,
 # but that will cause problems: the code will get executed twice:
 #
-# - When you run `python -m {{ python_package_import_name }}` python will execute
+# - When you run `uv run python -m {{ python_package_import_name }}` python will execute
 #   `__main__.py` as a script. That means there won't be any
 #   `{{ python_package_import_name }}.__main__` in `sys.modules`.
 # - When you import `__main__` it will get executed again (as a module) because
@@ -64,7 +64,7 @@ def get_parser() -> argparse.ArgumentParser:
 def main(args: list[str] | None = None) -> int:
     """Run the main program.
 
-    This function is executed when you type `{{ python_package_command_line_name }}` or `python -m {{ python_package_import_name }}`.
+    This function is executed when you type `{{ python_package_command_line_name }}` or `uv run python -m {{ python_package_import_name }}`.
 
     Parameters:
         args: Arguments passed from the command line.

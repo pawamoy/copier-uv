@@ -214,7 +214,7 @@ class Configuration:
 │       │   ├── debug.py         # Debug utilities
 │       │   └── logging.py       # Loguru configuration (JSON logging)
 {%- if python_package_command_line_name %}
-│       └── __main__.py          # Entry point for `python -m`
+│       └── __main__.py          # Entry point for `uv run python -m`
 {%- endif %}
 ├── tests/
 │   ├── conftest.py              # Pytest fixtures
