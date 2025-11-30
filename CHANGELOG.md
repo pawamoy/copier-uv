@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.1.8](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.8) - 2025-11-30
+
+<small>[Compare with 0.1.7](https://github.com/oedokumaci/copier-uv/compare/0.1.7...0.1.8)</small>
+
+### Bug Fixes
+
+- Update README.md.jinja to include full clone URL for repository ([6c17515](https://github.com/oedokumaci/copier-uv/commit/6c17515304a15811fc7241e24e9b059b3155ff53) by oedokumaci).
+
 ## [0.1.7](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.7) - 2025-11-30
 
 <small>[Compare with 0.1.6](https://github.com/oedokumaci/copier-uv/compare/0.1.6...0.1.7)</small>
