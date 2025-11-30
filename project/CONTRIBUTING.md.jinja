@@ -35,16 +35,22 @@ Run `make help` to see all the available actions!
 
 ## Notebooks
 
-This project uses [marimo](https://marimo.io/) for interactive notebooks. Use `make marimo` commands:
+This project uses [marimo](https://marimo.io/) for interactive notebooks:
 
 ```bash
-make marimo edit                    # Edit notebook (--sandbox --watch)
-make marimo edit notebooks/my.py    # Edit specific notebook
-make marimo run                     # Run notebook as app
-make marimo new my_analysis         # Create new notebook
+uv run marimo edit notebooks/starter.py    # Edit starter notebook
+uv run marimo edit notebooks/my.py         # Edit specific notebook
+uv run marimo run notebooks/starter.py     # Run notebook as app
+uv run marimo tutorial intro               # Interactive tutorial
 ```
 
-The `edit` command includes `--sandbox` (track dependencies) and `--watch` (auto-reload on module changes) by default.
+**Recommended flags** for `edit`:
+- `--sandbox`: Track dependencies in notebook header for reproducibility
+- `--watch`: Auto-reload when imported modules change
+
+```bash
+uv run marimo edit --sandbox --watch notebooks/my.py
+```
 
 See `notebooks/README.md` for more details.
 {% endif %}

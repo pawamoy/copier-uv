@@ -8,40 +8,31 @@ This project uses [marimo](https://marimo.io/) for interactive notebooks — a *
 
 ## Quick Start
 
-Use `make marimo` for consistent notebook management:
-
 ```bash
-# Edit notebooks (includes --sandbox --watch by default)
-make marimo edit                      # Edit starter notebook
-make marimo edit notebooks/my.py      # Edit specific notebook
+# Edit notebooks
+uv run marimo edit notebooks/starter.py    # Edit starter notebook
+uv run marimo edit notebooks/my.py         # Edit specific notebook
 
 # Run as interactive app
-make marimo run                       # Run starter notebook
-make marimo run notebooks/my.py       # Run specific notebook
+uv run marimo run notebooks/starter.py     # Run starter notebook
+uv run marimo run notebooks/my.py          # Run specific notebook
 
-# Create new notebook
-make marimo new my_analysis           # Creates notebooks/my_analysis.py
-
-# Convert from Jupyter
-make marimo convert old.ipynb         # Convert Jupyter notebook
+# Execute as script
+uv run python notebooks/starter.py
 
 # Tutorial
-make marimo tutorial                  # Interactive tutorial
+uv run marimo tutorial intro               # Interactive tutorial
 ```
 
-### Default Edit Flags
-
-`make marimo edit` automatically includes:
+### Recommended Edit Flags
 
 - `--sandbox` — Track dependencies in notebook header for reproducibility
 - `--watch` — Auto-reload when imported modules change
 
-Or use marimo directly (without default flags):
+Example with recommended flags:
 
 ```bash
-uv run marimo edit notebooks/starter.py
-uv run marimo run notebooks/starter.py
-uv run python notebooks/starter.py    # Execute as script
+uv run marimo edit --sandbox --watch notebooks/my.py
 ```
 
 ## Why marimo?

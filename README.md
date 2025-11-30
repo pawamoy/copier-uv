@@ -25,7 +25,7 @@ for Python projects managed by [uv](https://github.com/astral-sh/uv).
 
 ### Additional Features (this fork)
 
-- **[marimo](https://marimo.io/) notebooks** support with `make marimo` commands
+- **[marimo](https://marimo.io/) notebooks** support (use `uv run marimo`)
 - **[loguru](https://github.com/Delgan/loguru)** for structured JSON logging
 - **CLAUDE.md** for AI assistant guidance
 - **Cursor IDE integration** via `.cursorrules` symlink (points to `CLAUDE.md`)

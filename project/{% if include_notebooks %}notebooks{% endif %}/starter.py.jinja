@@ -46,20 +46,20 @@ def _(mo):
         r"""
         ## 🚀 Quick Start
 
-        Use `make marimo` for consistent notebook management:
-
         | Command | Description |
         |---------|-------------|
-        | `make marimo edit` | Edit notebook with `--sandbox --watch` |
-        | `make marimo edit notebooks/my.py` | Edit specific notebook |
-        | `make marimo run` | Run starter as interactive app |
-        | `make marimo new my_analysis` | Create new notebook |
-        | `make marimo convert old.ipynb` | Convert from Jupyter |
-        | `make marimo tutorial` | Interactive tutorial |
+        | `uv run marimo edit notebooks/starter.py` | Edit this notebook |
+        | `uv run marimo edit notebooks/my.py` | Edit specific notebook |
+        | `uv run marimo run notebooks/starter.py` | Run as interactive app |
+        | `uv run marimo tutorial intro` | Interactive tutorial |
 
-        **Default flags for edit mode:**
+        **Recommended flags for edit mode:**
         - `--sandbox`: Dependencies are tracked in the notebook header
         - `--watch`: Auto-reload when your project modules change
+
+        ```bash
+        uv run marimo edit --sandbox --watch notebooks/my.py
+        ```
         """
     )
     return

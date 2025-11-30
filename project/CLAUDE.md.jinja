@@ -22,10 +22,6 @@ make test           # Run test suite
 make format         # Auto-format code
 make docs           # Serve documentation locally
 make build          # Build source and wheel distributions
-{%- if include_notebooks %}
-make marimo edit    # Edit notebooks
-make marimo run     # Run notebook as app
-{%- endif %}
 ```
 
 ## Commit Message Convention
@@ -445,18 +441,22 @@ make check-docs     # Verify build
 This project uses [marimo](https://marimo.io/) for interactive notebooks.
 
 ```bash
-make marimo edit                    # Edit starter notebook (--sandbox --watch)
-make marimo edit notebooks/my.py    # Edit specific notebook
-make marimo run                     # Run starter as app
-make marimo run notebooks/my.py     # Run specific notebook as app
-make marimo new my_analysis         # Create new notebook
-make marimo convert old.ipynb       # Convert from Jupyter
-make marimo tutorial                # Run marimo tutorial
+uv run marimo edit notebooks/starter.py    # Edit starter notebook
+uv run marimo edit notebooks/my.py         # Edit specific notebook
+uv run marimo run notebooks/starter.py     # Run starter as app
+uv run marimo run notebooks/my.py          # Run specific notebook as app
+uv run marimo tutorial intro               # Run marimo tutorial
 ```
 
-**Default edit flags:**
+**Recommended edit flags:**
 - `--sandbox`: Track dependencies in notebook header for reproducibility
 - `--watch`: Auto-reload when imported modules change
+
+Example with flags:
+
+```bash
+uv run marimo edit --sandbox --watch notebooks/starter.py
+```
 
 See `notebooks/README.md` for guidelines.
 {% endif %}
