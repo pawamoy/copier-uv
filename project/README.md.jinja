@@ -4,31 +4,22 @@
 [![ci](https://github.com/{{ repository_namespace }}/{{ repository_name }}/workflows/ci/badge.svg)](https://github.com/{{ repository_namespace }}/{{ repository_name }}/actions?query=workflow%3Aci)
 {% endif -%}
 [![documentation](https://img.shields.io/badge/docs-mkdocs-708FCC.svg?style=flat)](https://{{ repository_namespace }}.{{ repository_provider[:-4] }}.io/{{ repository_name }}/)
-[![pypi version](https://img.shields.io/pypi/v/{{ python_package_distribution_name }}.svg)](https://pypi.org/project/{{ python_package_distribution_name }}/)
-[![gitter](https://img.shields.io/badge/matrix-chat-4DB798.svg?style=flat)](https://app.gitter.im/#/room/#{{ repository_name }}:gitter.im)
 
 {{ project_description }}
 
 ## Installation
 
 ```bash
-uv add {{ python_package_distribution_name }}
+uv add git+https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}
 ```
 
 Or with pip:
 
 ```bash
-pip install {{ python_package_distribution_name }}
+pip install git+https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}
 ```
 
-{% if python_package_command_line_name -%}
-With [`uv`](https://docs.astral.sh/uv/):
 
-```bash
-uv tool install {{ python_package_distribution_name }}
-```
-
-{% endif -%}
 ## Developer Workflow
 
 ### Setup
