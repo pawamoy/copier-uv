@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.1.10](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.10) - 2025-11-30
+
+<small>[Compare with 0.1.9](https://github.com/oedokumaci/copier-uv/compare/0.1.9...0.1.10)</small>
+
+### Bug Fixes
+
+- Update symlink in .cursorrules.jinja to point to CLAUDE.md ([60837b7](https://github.com/oedokumaci/copier-uv/commit/60837b7348087281e24dd2443e664d9f0733a77e) by oedokumaci).
+
 ## [0.1.9](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.9) - 2025-11-30
 
 <small>[Compare with 0.1.8](https://github.com/oedokumaci/copier-uv/compare/0.1.8...0.1.9)</small>
