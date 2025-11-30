@@ -149,7 +149,7 @@ def publish(ctx: Context) -> None:
     )
 
 
-@duty{% if not testing %}(post=["build", "publish", "docs-deploy"]){% endif %}
+@duty{% if not testing %}(post=["build"]){% endif %}
 def release(ctx: Context, version: str = "") -> None:
     """Release a new Python package.
 

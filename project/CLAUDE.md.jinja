@@ -21,6 +21,7 @@ make check          # Run all quality checks
 make test           # Run test suite
 make format         # Auto-format code
 make docs           # Serve documentation locally
+make build          # Build source and wheel distributions
 {%- if include_notebooks %}
 make marimo edit    # Edit notebooks
 make marimo run     # Run notebook as app
@@ -607,12 +608,14 @@ def temporary_state(value: int) -> Iterator[int]:
 - ✅ Use `from __future__ import annotations` in every file
 - ✅ Follow commit message conventions exactly
 - ✅ Run `make format && make check && make test` before committing
+- ✅ Commit changes when explicitly asked (user handles push/release/deploy)
 - ✅ Use absolute imports only
 - ✅ Keep functions focused and small
 - ✅ Write tests for new functionality
 
 ### DON'T
 
+- ❌ Push, release, deploy, or publish (user handles these manually)
 - ❌ Skip type hints (even for "obvious" types)
 - ❌ Use relative imports
 - ❌ Commit without running checks
