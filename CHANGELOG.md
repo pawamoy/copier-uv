@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.1.14](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.14) - 2025-11-30
+
+<small>[Compare with 0.1.13](https://github.com/oedokumaci/copier-uv/compare/0.1.13...0.1.14)</small>
+
+### Bug Fixes
+
+- Update README and starter notebook for marimo formatting ([8ffa8ad](https://github.com/oedokumaci/copier-uv/commit/8ffa8adb1220a10d1faa33060d84149df06fbedf) by oedokumaci).
+
 ## [0.1.13](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.13) - 2025-11-30
 
 <small>[Compare with 0.1.12](https://github.com/oedokumaci/copier-uv/compare/0.1.12...0.1.13)</small>
