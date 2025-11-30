@@ -113,6 +113,8 @@ def test_configure_logging_with_file() -> None:
     with tempfile.TemporaryDirectory() as tmpdir:
         log_file = Path(tmpdir) / "test.log"
         configure_logging(level="DEBUG", json_logs=True, log_file=log_file)
+        # Remove handlers to release file lock (required on Windows)
+        logger.remove()
 
 
 def test_configure_logging_file_with_human_readable() -> None:
@@ -120,6 +122,8 @@ def test_configure_logging_file_with_human_readable() -> None:
     with tempfile.TemporaryDirectory() as tmpdir:
         log_file = Path(tmpdir) / "test.log"
         configure_logging(level="WARNING", json_logs=False, log_file=log_file)
+        # Remove handlers to release file lock (required on Windows)
+        logger.remove()
 
 
 def test_configure_logging_all_levels() -> None:
