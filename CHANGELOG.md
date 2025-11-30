@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.1.7](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.7) - 2025-11-30
+
+<small>[Compare with 0.1.6](https://github.com/oedokumaci/copier-uv/compare/0.1.6...0.1.7)</small>
+
+### Bug Fixes
+
+- Release file lock in logging tests on Windows ([df2d9e5](https://github.com/oedokumaci/copier-uv/commit/df2d9e5f32d64737aa2892f2f425ca278e0a0586) by oedokumaci).
+
 ## [0.1.6](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.6) - 2025-11-30
 
 <small>[Compare with 0.1.5](https://github.com/oedokumaci/copier-uv/compare/0.1.5...0.1.6)</small>
