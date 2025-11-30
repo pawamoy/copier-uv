@@ -5,40 +5,54 @@ The generated project has this structure:
 ```
 📁 your_project ------------------- # your freshly created project!
 ├── 📄 CHANGELOG.md --------------- #
+├── 📄 CLAUDE.md ------------------ # AI assistant guidance
+├── 📄 .cursorrules --------------- # symlink to CLAUDE.md (for Cursor IDE)
 ├── 📁 config --------------------- # tools configuration files
-│   ├── 📄 coverage.ini ----------- #
-│   ├── 📄 mypy.ini --------------- #
-│   ├── 📄 pytest.ini ------------- #
-│   └── 📄 ruff.toml -------------- #
+│   ├── 📄 coverage.ini ----------- #
+│   ├── 📄 mypy.ini --------------- #
+│   ├── 📄 pytest.ini ------------- #
+│   ├── 📄 ruff.toml -------------- #
+│   └── 📁 vscode ----------------- # VSCode/Cursor settings
+│       ├── 📄 launch.json -------- #
+│       ├── 📄 settings.json ------ #
+│       └── 📄 tasks.json --------- #
 ├── 📄 CONTRIBUTING.md ------------ #
 ├── 📁 docs ----------------------- # documentation pages
-│   ├── 📄 changelog.md ----------- #
-│   ├── 📄 contributing.md -------- #
-│   ├── 📄 credits.md ------------- #
-│   ├── 📁 css -------------------- # extra CSS files
-│   │   ├── 📄 material.css ------- #
-│   │   └── 📄 mkdocstrings.css --- #
-│   ├── 📄 index.md --------------- #
-│   └── 📄 license.md ------------- #
+│   ├── 📄 changelog.md ----------- #
+│   ├── 📄 contributing.md -------- #
+│   ├── 📄 credits.md ------------- #
+│   ├── 📁 css -------------------- # extra CSS files
+│   │   ├── 📄 material.css ------- #
+│   │   └── 📄 mkdocstrings.css --- #
+│   ├── 📄 index.md --------------- #
+│   ├── 📄 license.md ------------- #
+│   └── 📄 notebooks.md ----------- # (if notebooks enabled)
 ├── 📄 duties.py ------------------ # the project's tasks
 ├── 📄 LICENSE -------------------- #
 ├── 📄 Makefile ------------------- # for auto-completion (it calls scripts/make)
 ├── 📄 mkdocs.yml ----------------- # docs configuration
+├── 📁 notebooks ------------------ # marimo notebooks (if enabled)
+│   ├── 📄 README.md -------------- #
+│   └── 📄 starter.py ------------- #
 ├── 📄 pyproject.toml ------------- # project metadata and dependencies
 ├── 📄 README.md ------------------ #
 ├── 📁 scripts -------------------- # helper scripts
-│   ├── 📄 gen_credits.py --------- # script to generate credits
-│   ├── 📄 gen_ref_nav.py --------- # script to generate code reference nav
-│   └── 📄 make ------------------- # a convenience script to run tasks
+│   ├── 📄 gen_credits.py --------- # script to generate credits
+│   └── 📄 make ------------------- # a convenience script to run tasks
 ├── 📁 src ------------------------ # the source code directory
-│   └── 📁 your_package ----------- # your package
-│       ├── 📄 cli.py ------------- # the command line entry point
-│       ├── 📄 __init__.py -------- #
-│       ├── 📄 __main__.py -------- #
-│       └── 📄 py.typed ----------- #
+│   └── 📁 your_package ----------- # your package
+│       ├── 📄 __init__.py -------- # public API exports
+│       ├── 📄 __main__.py -------- # entry point for python -m
+│       ├── 📁 _internal ---------- # internal implementation
+│       │   ├── 📄 __init__.py ---- #
+│       │   ├── 📄 cli.py --------- # CLI implementation
+│       │   ├── 📄 debug.py ------- # debug utilities
+│       │   └── 📄 logging.py ----- # loguru configuration
+│       └── 📄 py.typed ----------- #
 └── 📁 tests ---------------------- # the tests directory
     ├── 📄 conftest.py ------------ # pytest fixtures, etc.
     ├── 📄 __init__.py ------------ #
+    ├── 📄 test_api.py ------------ #
     └── 📄 test_cli.py ------------ #
 ```
 
