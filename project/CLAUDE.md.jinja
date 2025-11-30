@@ -477,6 +477,16 @@ GitHub Actions runs on every push/PR to `main`:
 | `config/ruff.toml` | Linting and formatting rules |
 | `config/mypy.ini` | Type checking configuration |
 | `mkdocs.yml` | Documentation configuration |
+| `CLAUDE.md` | AI assistant guidance (this file) |
+| `.cursorrules` | Symlink to `CLAUDE.md` for Cursor IDE |
+
+## Cursor IDE Integration
+
+This project includes a `.cursorrules` symlink pointing to `CLAUDE.md`. This allows Cursor IDE to automatically load project-specific AI guidance.
+
+**Note**: The VSCode setting `"cursor.rules.includeRulesInContext": false` is configured in `config/vscode/settings.json` to prevent duplicate context loading (since CLAUDE.md content is already included via the symlink).
+
+**Platform compatibility**: Git handles symlinks well on Unix-like systems (macOS, Linux). On Windows, symlinks require Developer Mode or admin privileges. If symlinks don't work on your system, you can copy `CLAUDE.md` to `.cursorrules` instead.
 
 ## Common Patterns
 

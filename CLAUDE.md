@@ -188,9 +188,18 @@ refactor: Simplify Jinja2 extensions
 | `copier.yml` | Template configuration, prompts, variables |
 | `extensions.py` | Custom Jinja2 extensions |
 | `project/CLAUDE.md.jinja` | AI guidance for generated projects |
+| `project/.cursorrules.jinja` | Symlink to `CLAUDE.md.jinja` for Cursor IDE |
 | `project/pyproject.toml.jinja` | Generated project's dependencies |
 | `project/duties.py.jinja` | Generated project's task definitions |
 | `project/Makefile.jinja` | Generated project's make targets |
+
+## Cursor IDE Integration
+
+Both this template repository and generated projects include a `.cursorrules` symlink pointing to `CLAUDE.md`. This allows Cursor IDE to automatically load project-specific AI guidance.
+
+**VSCode Setting**: The setting `"cursor.rules.includeRulesInContext": false` is configured in `config/vscode/settings.json` to prevent duplicate context loading (since the rules content is already included via the symlink).
+
+**Platform Compatibility**: Git handles symlinks well on Unix-like systems (macOS, Linux). On Windows, symlinks require Developer Mode or admin privileges. GitHub displays symlinks correctly and preserves them in clones.
 
 ## Attribution
 
