@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.1.15](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.15) - 2025-11-30
+
+<small>[Compare with 0.1.14](https://github.com/oedokumaci/copier-uv/compare/0.1.14...0.1.15)</small>
+
+### Bug Fixes
+
+- Adjust Ruff configuration for notebook exclusion ([90e25c8](https://github.com/oedokumaci/copier-uv/commit/90e25c83f2cc00f60c73aba187b2e86e8f937fa7) by oedokumaci).
+
 ## [0.1.14](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.14) - 2025-11-30
 
 <small>[Compare with 0.1.13](https://github.com/oedokumaci/copier-uv/compare/0.1.13...0.1.14)</small>
