@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+from pathlib import Path
 from typing import Any
 
 from loguru import logger
@@ -60,6 +61,11 @@ def get_parser() -> argparse.ArgumentParser:
         dest="json_logs",
         help="Output logs in human-readable format.",
     )
+    parser.add_argument(
+        "--log-file",
+        type=Path,
+        help="Write logs to file (with rotation and compression).",
+    )
     return parser
 
 
@@ -84,7 +90,7 @@ def main(args: list[str] | None = None) -> int:
     elif opts.verbose >= _VERBOSE_DEBUG:
         log_level = "DEBUG"
 
-    configure_logging(level=log_level, json_logs=opts.json_logs)
+    configure_logging(level=log_level, json_logs=opts.json_logs, log_file=opts.log_file)
 
     logger.info("Starting {{ python_package_command_line_name }}", version=debug._get_version())
     logger.debug("Parsed arguments", args=vars(opts))

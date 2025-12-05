@@ -10,8 +10,10 @@ from {{ python_package_import_name }}._internal.cli import get_parser, main
 {% endif -%}
 {% if not is_library -%}
 from {{ python_package_import_name }}._internal.logging import configure_logging
-{% endif -%}
+{% endif %}
+{% if python_package_command_line_name or not is_library -%}
 
+{% endif -%}
 {% if python_package_command_line_name and not is_library -%}
 __all__: list[str] = ["configure_logging", "get_parser", "main"]
 {% elif python_package_command_line_name -%}
