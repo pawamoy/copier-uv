@@ -29,6 +29,7 @@ for Python projects managed by [uv](https://github.com/astral-sh/uv).
 - **[loguru](https://github.com/Delgan/loguru)** for structured JSON logging
 - **CLAUDE.md** for AI assistant guidance
 - **Cursor IDE integration** via `.cursorrules` symlink (points to `CLAUDE.md`)
+- **Library mode** (`is_library=true`): enables [Griffe](https://github.com/mkdocstrings/griffe) for API breaking change detection
 
 ## Quick setup and usage
 

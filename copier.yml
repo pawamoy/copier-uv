@@ -129,3 +129,8 @@ include_notebooks:
   type: bool
   help: Include marimo notebooks support for data science workflows
   default: true
+
+is_library:
+  type: bool
+  help: Is this project a library? (enables API checks with Griffe)
+  default: false

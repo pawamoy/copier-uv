@@ -198,7 +198,9 @@ def main() -> int:
             vscode()
         elif cmd == "check":
             multirun("duty", "check-quality", "check-types", "check-docs")
+{%- if is_library %}
             run("default", "duty", "check-api")
+{%- endif %}
         elif cmd in {"check-quality", "check-docs", "check-types", "test"}:
             multirun("duty", cmd, *opts)
         else:

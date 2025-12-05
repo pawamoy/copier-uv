@@ -270,7 +270,7 @@ This action is actually a composition of several checks:
 - `check-quality`: Check the code quality.
 - `check-docs`: Check if the documentation builds correctly.
 - `check-types`: Check if the code is correctly typed.
-- `check-api`: Check for breaking changes in your Python API.
+- `check-api`: Check for breaking changes in your Python API (only if `is_library=true`).
 
 For example, if you are only interested in checking types,
 run `make check-types`.
@@ -370,6 +370,8 @@ result = data_dict.get(key, None).value  # type: ignore[ID]
 ...where ID is the name of the warning, for example `arg-type` or `union-attr`.
 
 ### check-api
+
+NOTE: This task is only available when the project is generated with `is_library=true`.
 
 This actions runs [Griffe](https://github.com/mkdocstrings/griffe)
 to search for API breaking changes since latest version. It is set

@@ -49,7 +49,7 @@ def changelog(ctx: Context, bump: str = "") -> None:
     ctx.run(tools.yore.check(bump=bump or _get_changelog_version()), title="Checking legacy code")
 
 
-@duty(pre=["check-quality", "check-types", "check-docs", "check-api"])
+@duty(pre=["check-quality", "check-types", "check-docs"{% if is_library %}, "check-api"{% endif %}])
 def check(ctx: Context) -> None:
     """Check it all!"""
 
@@ -84,6 +84,7 @@ def check_types(ctx: Context) -> None:
     )
 
 
+{% if is_library -%}
 @duty(nofail=PY_VERSION == PY_DEV)
 def check_api(ctx: Context, *cli_args: str) -> None:
     """Check for API breaking changes."""
@@ -94,6 +95,7 @@ def check_api(ctx: Context, *cli_args: str) -> None:
     )
 
 
+{% endif -%}
 @duty
 def docs(ctx: Context, *cli_args: str, host: str = "127.0.0.1", port: int = 8000) -> None:
     """Serve the documentation (localhost:8000).

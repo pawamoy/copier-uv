@@ -31,12 +31,14 @@
             "command": "scripts/make",
             "args": ["check-docs"]
         },
+{%- if is_library %}
         {
             "label": "check-api",
             "type": "process",
             "command": "scripts/make",
             "args": ["check-api"]
         },
+{%- endif %}
         {
             "label": "clean",
             "type": "process",

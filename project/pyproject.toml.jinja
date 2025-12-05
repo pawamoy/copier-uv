@@ -89,6 +89,9 @@ ci = [
     "mypy>=1.10",
     "types-markdown>=3.6",
     "types-pyyaml>=6.0",
+{%- if is_library %}
+    "griffe>=1.0",
+{%- endif %}
 ]
  docs = [
     "markdown-callouts>=0.4",
@@ -102,11 +105,11 @@ ci = [
     "mkdocs-section-index>=0.3",
     "mkdocstrings[python]>=0.29",
 ]
-{% if include_notebooks %}
+{%- if include_notebooks %}
 notebooks = [
     "marimo[recommended]>=0.18",
 ]
-{% endif %}
+{%- endif %}
 
 [tool.uv]
 default-groups = ["maintain", "ci", "docs"{% if include_notebooks %}, "notebooks"{% endif %}]

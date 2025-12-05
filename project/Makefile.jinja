@@ -14,7 +14,9 @@ actions = \
 	build \
 	changelog \
 	check \
+	{%- if is_library %}
 	check-api \
+	{%- endif %}
 	check-docs \
 	check-quality \
 	check-types \

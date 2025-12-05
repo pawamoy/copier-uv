@@ -84,15 +84,15 @@ known-first-party = ["{{ python_package_import_name }}"]
 convention = "google"
 
 [format]
-{% if include_notebooks %}
+{%- if include_notebooks %}
 exclude = [
     "tests/fixtures/*.py",
     "notebooks/*.py",  # Marimo notebooks are formatted automatically
 ]
-{% else %}
+{%- else %}
 exclude = [
     "tests/fixtures/*.py",
 ]
-{% endif %}
+{%- endif %}
 docstring-code-format = true
 docstring-code-line-length = 80
