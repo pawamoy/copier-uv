@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.2.0](https://github.com/oedokumaci/copier-uv/releases/tag/0.2.0) - 2025-12-05
+
+<small>[Compare with 0.1.18](https://github.com/oedokumaci/copier-uv/compare/0.1.18...0.2.0)</small>
+
+### Features
+
+- Add library mode support for griffe API checks ([dca8731](https://github.com/oedokumaci/copier-uv/commit/dca8731f85b1e41e1215dcdefd9e38d38a7876f3) by oedokumaci).
+
 ## [0.1.18](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.18) - 2025-12-05
 
 <small>[Compare with 0.1.17](https://github.com/oedokumaci/copier-uv/compare/0.1.17...0.1.18)</small>
