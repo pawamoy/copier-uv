@@ -152,13 +152,16 @@ uv run marimo run notebooks/starter.py            # Run as app
 {% endif %}
 ## Logging
 
-Use `logger` from `_internal.logging` (not `loguru.logger` directly):
+Import `logger` directly from loguru (it's a singleton):
 
 ```python
-from {{ python_package_import_name }}._internal.logging import logger
+from loguru import logger
 
 logger.info("Action", user_id=123, action="login")  # Structured data as kwargs
 ```
+
+Use `configure_logging` from `_internal.logging` only to set up handlers.
+Example: `configure_logging(level="INFO", json_logs=False)`
 
 ## Key Files
 
@@ -188,4 +191,4 @@ logger.info("Action", user_id=123, action="login")  # Structured data as kwargs
 - ❌ Skip type hints
 - ❌ Relative imports
 - ❌ `print()` for debugging (use `logger`)
-- ❌ `loguru.logger` directly
+- ❌ `print()` for logging (use `logger`)

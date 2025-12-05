@@ -29,7 +29,8 @@ def configure_logging(
         log_file: Optional file path to write logs to (in addition to stderr).
 
     Examples:
-        >>> from {{ python_package_import_name }}._internal.logging import configure_logging, logger
+        >>> from {{ python_package_import_name }}._internal.logging import configure_logging
+        >>> from loguru import logger
         >>> configure_logging(level="DEBUG", json_logs=True)
         >>> logger.info("Application started", user_id=123)
     """
@@ -66,4 +67,4 @@ def configure_logging(
         )
 
 
-__all__ = ["configure_logging", "logger"]
+__all__ = ["configure_logging"]

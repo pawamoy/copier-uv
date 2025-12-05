@@ -9,10 +9,11 @@ from pathlib import Path
 from unittest import mock
 
 import pytest
+from loguru import logger
 
 from {{ python_package_import_name }} import main
 from {{ python_package_import_name }}._internal import debug
-from {{ python_package_import_name }}._internal.logging import configure_logging, logger
+from {{ python_package_import_name }}._internal.logging import configure_logging
 
 # =============================================================================
 # CLI Tests
