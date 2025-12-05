@@ -5,15 +5,19 @@
 
 from __future__ import annotations
 
-from loguru import logger
-
 {% if python_package_command_line_name -%}
 from {{ python_package_import_name }}._internal.cli import get_parser, main
 {% endif -%}
+{% if not is_library -%}
 from {{ python_package_import_name }}._internal.logging import configure_logging
+{% endif -%}
 
-{% if python_package_command_line_name -%}
-__all__: list[str] = ["configure_logging", "get_parser", "logger", "main"]
+{% if python_package_command_line_name and not is_library -%}
+__all__: list[str] = ["configure_logging", "get_parser", "main"]
+{% elif python_package_command_line_name -%}
+__all__: list[str] = ["get_parser", "main"]
+{% elif not is_library -%}
+__all__: list[str] = ["configure_logging"]
 {% else -%}
-__all__: list[str] = ["configure_logging", "logger"]
+__all__: list[str] = []
 {% endif -%}
