@@ -1,629 +1,191 @@
 # CLAUDE.md
 
-This file provides guidance for AI assistants (Claude, Cursor, etc.) working on this codebase.
+This file provides guidance for AI assistants working on this codebase.
 
 ## Project Overview
 
-**{{ project_name }}** is a Python package managed with [uv](https://github.com/astral-sh/uv) and built with [PDM backend](https://pdm-backend.fming.dev/). The project uses [duty](https://github.com/pawamoy/duty) for task automation.
+**{{ project_name }}** - Python package managed with [uv](https://github.com/astral-sh/uv).
 
-- **Package name**: `{{ python_package_distribution_name }}`
-- **Import name**: `{{ python_package_import_name }}`
+| Attribute | Value |
+|-----------|-------|
+| Package | `{{ python_package_distribution_name }}` |
+| Import | `{{ python_package_import_name }}` |
 {%- if python_package_command_line_name %}
-- **CLI command**: `{{ python_package_command_line_name }}`
+| CLI | `{{ python_package_command_line_name }}` |
 {%- endif %}
-- **Python versions**: 3.12, 3.13, 3.14
+| Python | 3.12, 3.13, 3.14 |
 
 ## Quick Reference
 
 ```bash
-make setup          # Install all dependencies
-make check          # Run all quality checks
-make test           # Run test suite
-make format         # Auto-format code
-make docs           # Serve documentation locally
-make build          # Build source and wheel distributions
+make setup    # Install dependencies
+make format   # Auto-format code
+make check    # Run all quality checks
+make test     # Run tests
+make docs     # Serve docs locally
 ```
 
-## Commit Message Convention
+## Standard Workflow
 
-**CRITICAL**: All commits MUST follow the Angular/Karma convention for automatic changelog generation.
+1. **Explore** - Read relevant code first
+2. **Plan** - Ask clarifying questions for architectural changes
+3. **Test First** - Write failing test (TDD)
+4. **Code** - Minimal code to pass test
+5. **Refactor** - Clean up, keep tests green
+6. **Verify** - `make format && make check && make test`
 
-### Format
+**Ask before:** Adding dependencies, changing public API, modifying structure.
 
-```
-<type>[(scope)]: Subject
+## Clean Code (Uncle Bob)
 
-[Body]
-```
+### SOLID Principles
 
-### Rules
+| Principle | Description |
+|-----------|-------------|
+| **S**ingle Responsibility | One reason to change |
+| **O**pen/Closed | Open for extension, closed for modification |
+| **L**iskov Substitution | Subtypes substitutable for base types |
+| **I**nterface Segregation | Specific interfaces > general interfaces |
+| **D**ependency Inversion | Depend on abstractions |
 
-1. **Subject**: Proper casing (uppercase first letter), no period at end
-2. **Type** (required): One of the following:
-   - `feat`: New feature
-   - `fix`: Bug fix
-   - `docs`: Documentation only
-   - `style`: Code style/formatting (no logic change)
-   - `refactor`: Code change that neither fixes a bug nor adds a feature
-   - `perf`: Performance improvement
-   - `test`: Adding or updating tests
-   - `build`: Build system or external dependencies
-   - `ci`: CI configuration
-   - `chore`: Maintenance tasks
-   - `deps`: Dependency updates
-3. **Scope** (optional): Component or area affected
-4. **Body** (optional): Detailed explanation
+### Guidelines
 
-### Examples
+- **Functions**: Small (<20 lines), do one thing, few args (0-2), no side effects
+- **Classes**: Small, cohesive, encapsulated
+- **General**: DRY, YAGNI, meaningful names, Boy Scout Rule
 
-```bash
-# Good
-feat: Add user authentication endpoint
-fix(parser): Handle empty input gracefully
-docs: Update API reference for v2
-refactor: Extract validation logic into separate module
-test: Add integration tests for payment flow
+## TDD (Test-Driven Development)
 
-# Bad
-Fixed bug                    # No type
-feat: added new feature.     # Lowercase, period at end
-FEAT: Something              # Uppercase type
-```
+**Uncle Bob's Three Laws:**
+1. No production code without a failing test
+2. Write only enough test to fail
+3. Write only enough code to pass
 
-### Changelog Sections
+**Cycle:** 🔴 Red → 🟢 Green → 🔵 Refactor → Repeat
 
-Only these types appear in the changelog: `build`, `deps`, `feat`, `fix`, `refactor`
+**Test behavior, not implementation.** Tests verify *what* code does, not *how*.
 
-## Code Style Requirements
+**FIRST:** **F**ast, **I**ndependent, **R**epeatable, **S**elf-validating, **T**imely
 
-### Type Hints (MANDATORY)
+## Code Style
 
-**Every function, method, and variable MUST have type hints.** This is non-negotiable.
+### Required in Every File
 
 ```python
-# ✅ CORRECT - Fully typed
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from collections.abc import Iterator, Sequence
-
-def process_items(items: Sequence[str], *, limit: int = 10) -> list[str]:
-    """Process a sequence of items.
-
-    Parameters:
-        items: Items to process.
-        limit: Maximum items to return.
-
-    Returns:
-        Processed items.
-    """
-    result: list[str] = []
-    for item in items:
-        if len(result) >= limit:
-            break
-        result.append(item.strip())
-    return result
-
-
-# ❌ WRONG - Missing types
-def process_items(items, limit=10):
-    result = []
-    for item in items:
-        result.append(item.strip())
-    return result
+    from collections.abc import Sequence
 ```
 
-### Import Style
+### Type Hints (Mandatory)
 
-```python
-# Always use this at the top of every file
-from __future__ import annotations
-
-# Type-checking imports go in TYPE_CHECKING block
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from collections.abc import Callable, Iterator
-    from pathlib import Path
-```
+Every function, method, and variable MUST have type hints.
 
 ### Docstrings (Google Style)
 
-All public functions, classes, and methods MUST have docstrings:
-
 ```python
-def calculate_total(
-    prices: list[float],
-    *,
-    tax_rate: float = 0.0,
-    discount: float = 0.0,
-) -> float:
-    """Calculate the total price with tax and discount.
+def calculate(prices: list[float], *, tax: float = 0.0) -> float:
+    """Calculate total with tax.
 
     Parameters:
-        prices: List of item prices.
-        tax_rate: Tax rate as decimal (e.g., 0.08 for 8%).
-        discount: Discount as decimal (e.g., 0.1 for 10%).
+        prices: Item prices.
+        tax: Tax rate as decimal.
 
     Returns:
-        The final calculated total.
-
-    Raises:
-        ValueError: If prices is empty or contains negative values.
-
-    Examples:
-        >>> calculate_total([10.0, 20.0], tax_rate=0.1)
-        33.0
+        Final total.
     """
 ```
 
-### Class Structure
+### Ruff Config
 
-```python
-from __future__ import annotations
+- Line length: 120
+- Target: Python 3.12+
+- Docstrings: Google convention
+- Imports: Absolute only
 
-from dataclasses import dataclass
-from typing import TYPE_CHECKING
+## Commit Messages
 
-if TYPE_CHECKING:
-    from pathlib import Path
+**Format:** `<type>[(scope)]: Subject`
 
+**Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `deps`
 
-@dataclass
-class Configuration:
-    """Application configuration.
-
-    Attributes:
-        debug: Enable debug mode.
-        log_level: Logging level.
-        output_dir: Output directory path.
-    """
-
-    debug: bool = False
-    log_level: str = "INFO"
-    output_dir: Path | None = None
-
-    def validate(self) -> None:
-        """Validate configuration values.
-
-        Raises:
-            ValueError: If configuration is invalid.
-        """
-        valid_levels = {"DEBUG", "INFO", "WARNING", "ERROR"}
-        if self.log_level not in valid_levels:
-            raise ValueError(f"Invalid log level: {self.log_level}")
+**Examples:**
 ```
+feat: Add user authentication
+fix(parser): Handle empty input
+```
+
+**Changelog types:** `build`, `deps`, `feat`, `fix`, `refactor`
 
 ## Project Structure
 
 ```
 {{ repository_name }}/
-├── src/
-│   └── {{ python_package_import_name }}/
-│       ├── __init__.py          # Public API exports
-│       ├── _internal/           # Internal implementation (not public API)
-│       │   ├── __init__.py
-{%- if python_package_command_line_name %}
-│       │   ├── cli.py           # CLI implementation
-{%- endif %}
-│       │   ├── debug.py         # Debug utilities
-│       │   └── logging.py       # Loguru configuration (JSON logging)
-{%- if python_package_command_line_name %}
-│       └── __main__.py          # Entry point for `uv run python -m`
-{%- endif %}
+├── src/{{ python_package_import_name }}/
+│   ├── __init__.py       # Public API
+│   └── _internal/        # Private implementation
 ├── tests/
-│   ├── conftest.py              # Pytest fixtures
-{%- if python_package_command_line_name %}
-│   ├── test_cli.py              # CLI tests
-{%- endif %}
-│   └── test_api.py              # API tests
-├── docs/                        # Documentation (MkDocs)
-├── config/                      # Tool configurations
-│   ├── coverage.ini
-│   ├── mypy.ini
-│   ├── pytest.ini
-│   └── ruff.toml
+├── docs/
+├── config/               # Tool configs (ruff, mypy, pytest)
 {%- if include_notebooks %}
-├── notebooks/                   # Marimo notebooks
+├── notebooks/            # Marimo notebooks
 {%- endif %}
-├── scripts/
-│   └── make.py                  # Build/task runner
-├── pyproject.toml               # Project metadata and dependencies
-└── duties.py                    # Task definitions (duty)
+├── pyproject.toml
+└── duties.py             # Task definitions
 ```
 
-### Internal vs Public API
-
-- **Public API**: Everything exported in `src/{{ python_package_import_name }}/__init__.py`
-- **Internal**: Everything in `_internal/` - implementation details, not for external use
-- Names starting with `_` are private
-
-## Developer Workflow
-
-### 1. Setup
-
-```bash
-# Clone and setup
-git clone {{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}
-cd {{ repository_name }}
-make setup
-```
-
-### 2. Create Feature Branch
-
-```bash
-git switch -c feat/my-feature
-# or
-git switch -c fix/bug-description
-```
-
-### 3. Development Cycle
-
-```bash
-# Make changes, then:
-make format       # Auto-format code
-make check        # Run all checks (quality, types, docs, API)
-make test         # Run tests
-
-# If working on docs:
-make docs         # Serve at localhost:8000
-```
-
-### 4. Before Committing
-
-Run the full check suite:
-
-```bash
-make format && make check && make test
-```
-
-### 5. Commit with Proper Message
-
-```bash
-git add .
-git commit -m "feat: Add new validation logic"
-```
-
-## Quality Checks
-
-The `make check` command runs:
-
-1. **check-quality**: Ruff linting (code quality, style)
-2. **check-types**: Mypy type checking
-3. **check-docs**: MkDocs build verification
-4. **check-api**: Griffe API breaking changes detection
-
-### Ruff Configuration
-
-- Line length: 120 characters
-- Target: Python 3.12+
-- Style: Comprehensive (A, ANN, ARG, B, C, D, E, F, I, N, PL, PT, RUF, S, T, UP, W, etc.)
-- Docstrings: Google convention
-- Imports: Absolute only (no relative imports)
-
-### Type Checking (Mypy)
-
-- All code must pass `mypy` with strict settings
-- Use `# type: ignore[error-code]` sparingly and with specific error codes
-
-## Testing
-
-### Running Tests
-
-```bash
-make test                    # Run all tests
-make run pytest tests/ -x    # Stop on first failure
-make run pytest tests/ -k "test_name"  # Run specific test
-```
-
-### Writing Tests
-
-```python
-"""Tests for the feature module."""
-
-from __future__ import annotations
-
-import pytest
-
-from {{ python_package_import_name }} import some_function
-
-
-def test_some_function_basic() -> None:
-    """Test basic functionality."""
-    result = some_function("input")
-    assert result == "expected"
-
-
-def test_some_function_edge_case() -> None:
-    """Test edge case handling."""
-    with pytest.raises(ValueError, match="Invalid input"):
-        some_function("")
-
-
-@pytest.fixture
-def sample_data() -> list[str]:
-    """Provide sample test data."""
-    return ["a", "b", "c"]
-
-
-def test_with_fixture(sample_data: list[str]) -> None:
-    """Test using fixture data."""
-    assert len(sample_data) == 3
-```
-
-### Test Requirements
-
-- All tests must have type hints
-- All tests must have docstrings
-- Use `pytest.raises` for exception testing
-- Use fixtures for shared test data
-- Tests run in parallel with `pytest-xdist`
-
-### Testing Philosophy: TDD with Behavior-Based Tests
-
-**Always write tests first** following Test-Driven Development:
-
-1. **Red**: Write a failing test that describes the desired behavior
-2. **Green**: Write the minimum code to make the test pass
-3. **Refactor**: Clean up the code while keeping tests green
-
-**Test behavior, not implementation.** Tests should verify *what* the code does, not *how* it does it. This makes tests resilient to refactoring.
-
-```python
-# ✅ GOOD: Tests behavior/outcome
-def test_user_can_be_found_after_registration() -> None:
-    """Registered users can be retrieved by email."""
-    register_user(email="test@example.com", password="secure123")
-    user = get_user_by_email("test@example.com")
-    assert user is not None
-    assert user.email == "test@example.com"
-
-# ❌ BAD: Tests implementation details (brittle, breaks on refactor)
-def test_registration_calls_database_insert() -> None:
-    """Test that internal SQL method is called."""
-    with patch("app._internal.db._execute_sql") as mock:
-        register_user(email="test@example.com", password="secure123")
-        mock.assert_called_once()  # Breaks if we switch ORMs
-```
-
-**Guidelines for resilient tests:**
-
-| DO | DON'T |
-|----|-------|
-| Test public API and observable outcomes | Test private methods or internal state |
-| Assert on return values and side effects | Assert on exact method call sequences |
-| Use meaningful test data | Tie tests to implementation details |
-| Test edge cases and error conditions | Mock internal collaborators excessively |
-| Mock external dependencies (I/O, network, time) | Mock everything |
-
-## Dependencies
-
-### Adding Dependencies
-
-Edit `pyproject.toml`:
-
-```toml
-# Runtime dependencies
-dependencies = [
-    "httpx>=0.27",
-    "pydantic>=2.0",
-]
-
-# Development dependencies (in dependency-groups)
-[dependency-groups]
-ci = [
-    "pytest>=8.0",
-    "mypy>=1.10",
-]
-```
-
-Then run:
-
-```bash
-make setup  # Reinstall with new dependencies
-```
-
-## Documentation
-
-- Built with [MkDocs](https://www.mkdocs.org/) + [Material theme](https://squidfunk.github.io/mkdocs-material/)
-- API docs auto-generated by [mkdocstrings](https://mkdocstrings.github.io/)
-- All public API must be documented
-
-```bash
-make docs           # Serve locally at localhost:8000
-make check-docs     # Verify build
-```
+- **Public API**: Exports in `__init__.py`
+- **Internal**: `_internal/` - not for external use
 {% if include_notebooks %}
 ## Notebooks
 
-This project uses [marimo](https://marimo.io/) for interactive notebooks.
+**Do not run marimo notebooks directly.** Provide the command to the user instead.
 
 ```bash
-uv run marimo edit notebooks/starter.py    # Edit starter notebook
-uv run marimo edit notebooks/my.py         # Edit specific notebook
-uv run marimo run notebooks/starter.py     # Run starter as app
-uv run marimo run notebooks/my.py          # Run specific notebook as app
-uv run marimo tutorial intro               # Run marimo tutorial
+uv run marimo edit notebooks/starter.py           # Edit
+uv run marimo edit --sandbox --watch notebooks/   # Edit with flags
+uv run marimo run notebooks/starter.py            # Run as app
 ```
-
-**Recommended edit flags:**
-- `--sandbox`: Track dependencies in notebook header for reproducibility
-- `--watch`: Auto-reload when imported modules change
-
-Example with flags:
-
-```bash
-uv run marimo edit --sandbox --watch notebooks/starter.py
-```
-
-See `notebooks/README.md` for guidelines.
 {% endif %}
-## CI/CD Pipeline
+## Logging
 
-GitHub Actions runs on every push/PR to `main`:
+Use `logger` from `_internal.logging` (not `loguru.logger` directly):
 
-1. **Quality checks** on Ubuntu, macOS, Windows × Python 3.12, 3.13, 3.14
-2. **Tests** with highest and lowest-direct dependency resolutions
-3. **API breaking change detection**
+```python
+from {{ python_package_import_name }}._internal.logging import logger
 
-## Key Files to Know
+logger.info("Action", user_id=123, action="login")  # Structured data as kwargs
+```
+
+## Key Files
 
 | File | Purpose |
 |------|---------|
-| `pyproject.toml` | Project metadata, dependencies |
-| `duties.py` | Task definitions for `duty` |
-| `scripts/make.py` | CLI for running tasks |
-| `config/ruff.toml` | Linting and formatting rules |
-| `config/mypy.ini` | Type checking configuration |
-| `mkdocs.yml` | Documentation configuration |
-| `CLAUDE.md` | AI assistant guidance (this file) |
-| `.cursorrules` | Symlink to `CLAUDE.md` for Cursor IDE |
-
-## Cursor IDE Integration
-
-This project includes a `.cursorrules` symlink pointing to `CLAUDE.md`. This allows Cursor IDE to automatically load project-specific AI guidance.
-
-**Note**: The VSCode setting `"cursor.rules.includeRulesInContext": false` is configured in `config/vscode/settings.json` to prevent duplicate context loading (since CLAUDE.md content is already included via the symlink).
-
-**Platform compatibility**: Git handles symlinks well on Unix-like systems (macOS, Linux). On Windows, symlinks require Developer Mode or admin privileges. If symlinks don't work on your system, you can copy `CLAUDE.md` to `.cursorrules` instead.
-
-## Common Patterns
-
-### Error Handling
-
-```python
-from __future__ import annotations
-
-
-class {{ python_package_import_name | title | replace("_", "") }}Error(Exception):
-    """Base exception for {{ python_package_import_name }}."""
-
-
-class ValidationError({{ python_package_import_name | title | replace("_", "") }}Error):
-    """Raised when validation fails."""
-
-    def __init__(self, field: str, message: str) -> None:
-        self.field = field
-        super().__init__(f"{field}: {message}")
-```
-
-### Logging (Loguru with JSON Lines)
-
-This project uses [loguru](https://github.com/Delgan/loguru) for structured JSON logging.
-
-```python
-from __future__ import annotations
-
-from {{ python_package_import_name }}._internal.logging import configure_logging, logger
-
-
-# Configure at application startup
-configure_logging(level="INFO", json_logs=True)
-
-
-def process(data: str) -> str:
-    """Process data with logging."""
-    # Structured logging with extra fields
-    logger.debug("Processing data", input_data=data, length=len(data))
-    result = data.upper()
-    logger.info("Processing complete", output_data=result)
-    return result
-
-
-# Log with context
-logger.info("User action", user_id=123, action="login", ip="192.168.1.1")
-
-# Log exceptions with traceback
-try:
-    risky_operation()
-except Exception:
-    logger.exception("Operation failed")
-```
-
-**JSON Output Example:**
-```json
-{"text": "User action", "record": {"level": {"name": "INFO"}, "time": {"timestamp": 1234567890.123}, "extra": {"user_id": 123, "action": "login", "ip": "192.168.1.1"}}}
-```
-
-**Configuration Options:**
-
-```python
-from {{ python_package_import_name }}._internal.logging import configure_logging
-
-# JSON logs (default) - for production/log aggregation
-configure_logging(level="INFO", json_logs=True)
-
-# Human-readable logs - for development
-configure_logging(level="DEBUG", json_logs=False)
-
-# With file output
-from pathlib import Path
-configure_logging(level="INFO", json_logs=True, log_file=Path("app.log"))
-```
-
-**Key Points:**
-- Always use `logger` from `_internal.logging`, not `loguru.logger` directly
-- Pass structured data as keyword arguments, not in the message string
-- JSON logs are the default for production compatibility
-- Use `-v` (INFO) or `-vv` (DEBUG) CLI flags for verbosity
-
-### Context Managers
-
-```python
-from __future__ import annotations
-
-from contextlib import contextmanager
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from collections.abc import Iterator
-
-
-@contextmanager
-def temporary_state(value: int) -> Iterator[int]:
-    """Temporarily set a state value.
-
-    Parameters:
-        value: The temporary value.
-
-    Yields:
-        The temporary value.
-    """
-    previous = get_state()
-    set_state(value)
-    try:
-        yield value
-    finally:
-        set_state(previous)
-```
+| `pyproject.toml` | Metadata, dependencies |
+| `duties.py` | Task definitions |
+| `config/ruff.toml` | Linting rules |
+| `config/mypy.ini` | Type checking |
 
 ## Do's and Don'ts
 
-### DO
+**DO:**
+- ✅ Write tests FIRST (TDD)
+- ✅ Keep changes small and modular
+- ✅ Test behavior, not implementation
+- ✅ Type hints on everything
+- ✅ Google-style docstrings
+- ✅ `from __future__ import annotations` in every file
+- ✅ Absolute imports only
+- ✅ Run `make format && make check && make test`
 
-- ✅ Add type hints to ALL functions, methods, and class attributes
-- ✅ Write Google-style docstrings for all public APIs
-- ✅ Use `from __future__ import annotations` in every file
-- ✅ Follow commit message conventions exactly
-- ✅ Run `make format && make check && make test` before committing
-- ✅ Commit changes when explicitly asked (user handles push/release/deploy)
-- ✅ Use absolute imports only
-- ✅ Keep functions focused and small
-- ✅ Write tests for new functionality
-
-### DON'T
-
-- ❌ Push, release, deploy, or publish (user handles these manually)
-- ❌ Skip type hints (even for "obvious" types)
-- ❌ Use relative imports
-- ❌ Commit without running checks
-- ❌ Write commit messages without type prefix
-- ❌ Add dependencies without updating `pyproject.toml`
-- ❌ Ignore mypy or ruff errors (fix them or document why ignored)
-- ❌ Write docstrings for internal module `__init__.py` files
-- ❌ Use `print()` for debugging (use `logger` from `_internal.logging`)
-- ❌ Use `loguru.logger` directly (use the configured `logger` from `_internal.logging`)
-- ❌ Put data in log message strings (use keyword arguments for structured logging)
-
+**DON'T:**
+- ❌ Production code without failing test
+- ❌ Test implementation details
+- ❌ Push/release/deploy (user handles)
+- ❌ Skip type hints
+- ❌ Relative imports
+- ❌ `print()` for debugging (use `logger`)
+- ❌ `loguru.logger` directly
