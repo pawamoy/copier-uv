@@ -207,6 +207,15 @@ files, so make sure to back them up:**
 - `.vscode/settings.json`
 - `.vscode/tasks.json`
 
+## Logging
+
+- Logging uses [loguru](https://github.com/Delgan/loguru) and writes to **stderr** by default (JSON format).
+- No log file is created unless you explicitly request one:
+  - Programmatic: `configure_logging(log_file=Path("app.log"), json_logs=True, level="INFO")`
+  - CLI (if generated): `--log-file PATH` writes JSON logs with rotation (10 MB), retention (1 week), and gzip compression.
+- Console format can be switched to human-readable with `--no-json-logs` (or `json_logs=False` when calling `configure_logging`).
+- In library mode (`is_library=true`), logging is **not** configured automatically; the consuming application should configure logging.
+
 ## Workflow
 
 The first thing you should run when entering your repository is:
