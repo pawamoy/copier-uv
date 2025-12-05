@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.1.18](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.18) - 2025-12-05
+
+<small>[Compare with 0.1.17](https://github.com/oedokumaci/copier-uv/compare/0.1.17...0.1.18)</small>
+
+### Code Refactoring
+
+- Update logging imports to use loguru directly ([21891dc](https://github.com/oedokumaci/copier-uv/commit/21891dc42ff3fd96eeeb4be56363af16530402c6) by oedokumaci).
+
 ## [0.1.17](https://github.com/oedokumaci/copier-uv/releases/tag/0.1.17) - 2025-12-05
 
 <small>[Compare with 0.1.16](https://github.com/oedokumaci/copier-uv/compare/0.1.16...0.1.17)</small>
