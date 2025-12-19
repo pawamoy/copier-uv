@@ -60,20 +60,22 @@ The full name will appear as "author" in the project's metadata.
 ```
 Your email
 author_email? Format: str
-🎤 [None]: your@email.com
+🎤 [your@email.com]: 
 ```
 
 The email will appear as "author email" in the project's metadata.
+It defaults to your git config `user.email` value.
 
 ---
 
 ```
 Your username (e.g. on GitHub)
 author_username? Format: str
-🎤 [None]: your-username
+🎤 [your-username]: 
 ```
 
 The username you are using on the git repository provider.
+It defaults to your git config `user.name` value.
 
 ---
 

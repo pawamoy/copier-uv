@@ -29,7 +29,10 @@ for Python projects managed by [uv](https://github.com/astral-sh/uv).
 - **[loguru](https://github.com/Delgan/loguru)** for structured JSON logging
 - **CLAUDE.md** for AI assistant guidance
 - **Cursor IDE integration** via `.cursorrules` symlink (points to `CLAUDE.md`)
-- **Library mode** (`is_library=true`): enables [Griffe](https://github.com/mkdocstrings/griffe) for API breaking change detection
+- **Library mode** (`is_library=false` by default): if `is_library` is set to `true`, enables [Griffe](https://github.com/mkdocstrings/griffe) for API breaking change detection
+- **Smart defaults** for author info:
+  - Git email defaults to your git config `user.email` value.
+  - Git username defaults to your git config `user.name` value.
 
 ## Quick setup and usage
 

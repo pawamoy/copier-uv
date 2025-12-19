@@ -27,17 +27,16 @@ project_description:
 author_fullname:
   type: str
   help: Your full name
-  default: "Oral Ersoy Dokumaci"
 
 author_email:
   type: str
   help: Your email
-  default: "{{ git_user_email }}"
+  default: "{{ '' | git_user_email }}"
 
 author_username:
   type: str
   help: Your username (e.g. on GitHub)
-  default: oedokumaci
+  default: "{{ '' | git_user_name }}"
 
 repository_provider:
   type: str
