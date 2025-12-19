@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.3.0](https://github.com/oedokumaci/copier-uv/releases/tag/0.3.0) - 2025-12-19
+
+<small>[Compare with 0.2.0](https://github.com/oedokumaci/copier-uv/compare/0.2.0...0.3.0)</small>
+
+### Features
+
+- add git user name for default author_username also remove author_fullname default ([08d9bb4](https://github.com/oedokumaci/copier-uv/commit/08d9bb4b3e2783861b59c9dc01f0a9398c723a5d) by oedokumaci).
+
+### Bug Fixes
+
+- Update git user name in CI configuration and adjust copyright date in tests ([3e3b65a](https://github.com/oedokumaci/copier-uv/commit/3e3b65a8114e672627b67619e50e6a9eb265d3d7) by oedokumaci).
+
 ## [0.2.0](https://github.com/oedokumaci/copier-uv/releases/tag/0.2.0) - 2025-12-05
 
 <small>[Compare with 0.1.18](https://github.com/oedokumaci/copier-uv/compare/0.1.18...0.2.0)</small>
