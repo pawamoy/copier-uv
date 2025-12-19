@@ -40,7 +40,7 @@ for license in licenses:
         author_email="oral.ersoy.dokumaci@gmail.com",
         copyright_license=license,
         copyright_holder="Oral Ersoy Dokumaci",
-        copyright_date="2024",
+        copyright_date="2025",
     )
 
     assert rendered, "License is empty!"

@@ -76,9 +76,11 @@ jobs:
 
     - name: Check if the code is correctly typed
       run: make check-types
+{%- if is_library %}
 
     - name: Check for breaking changes in the API
       run: make check-api
+{%- endif %}
 
     - name: Store objects inventory for tests
       uses: actions/upload-artifact@v5
