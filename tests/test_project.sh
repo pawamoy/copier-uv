@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
 set -eu
 
-PYTHON_VERSIONS="${PYTHON_VERSIONS-3.12 3.13 3.14}"
-
 . tests/helpers.sh
 output=tests/tmp
-make() {
-    ./scripts/make "$@"
-}
 
 echo
 echo "///////////////////////////////////////////"
@@ -38,32 +33,19 @@ git add -A .
 git commit -am "feat: Initial commit"
 git tag -m "" -a 0.1.0
 echo
-echo ">>> Printing help"
-make help
+echo ">>> Listing available tasks"
+uvx task --list
 echo
 if [ -z "${SKIP_SETUP:-}" ]; then
-    echo ">>> Setting up Python environments"
-    make setup
+    echo ">>> Setting up Python environment"
+    uvx task setup
     echo
-    echo ">>> Printing help again"
-    make help
+    echo ">>> Listing tasks again"
+    uvx task --list
     echo
 fi
-echo ">>> Configuring VSCode"
-make vscode
-echo
-echo ">>> Testing arbitrary commands"
-pycode="import sys; print(sys.version.split(' ', 1)[0].rsplit('.', 1)[0])"
-make run python -c "print('run: ', end=''); ${pycode}"
-make multirun python -c "print('multirun: ', end=''); ${pycode}"
-make allrun python -c "print('allrun: ', end=''); ${pycode}"
-if [ -n "${PYTHON_VERSIONS}" ]; then
-    version="$(uv run python -c "${pycode}")"
-    make "${version}" python -c "print('3.x: ', end=''); ${pycode}" | grep -F "${version}"
-fi
-echo
 echo ">>> Formatting and asserting there are no changes"
-make format
+uvx task format
 diff="$(git status --porcelain=v1 2>/dev/null)"
 if [ -n "${diff}" ]; then
     echo
@@ -75,28 +57,23 @@ if [ -n "${diff}" ]; then
 fi
 echo
 echo ">>> Running quality checks"
-make check
-echo
-echo ">>> Running ty checks (experimental)"
-make multirun uv pip install ty
-make multirun ty check scripts/*.py duties.py src tests || true
+uvx task check
 echo
 echo ">>> Running tests"
-make test
+uvx task test
 echo
 echo ">>> Creating second commit (fix)"
 touch empty
 git add empty
 git commit -m "fix: Fix all bugs"
 echo
-echo ">>> Updating changelog and releasing version"
-make changelog release version=0.1.1
+echo ">>> Updating changelog"
+uvx task changelog
 echo
 echo ">>> Checking changelog's contents"
-make run failprint -- grep '0\.1\.0' CHANGELOG.md
-make run failprint -- grep '0\.1\.1' CHANGELOG.md
-make run failprint -- grep 'Features' CHANGELOG.md
-make run failprint -- grep 'Bug Fixes' CHANGELOG.md
+grep '0\.1\.0' CHANGELOG.md
+grep 'Features' CHANGELOG.md
+grep 'Bug Fixes' CHANGELOG.md
 echo
 echo ">>> Cleaning directory"
-make clean
+uvx task clean
