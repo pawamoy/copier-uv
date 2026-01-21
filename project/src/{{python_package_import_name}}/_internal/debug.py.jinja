@@ -79,7 +79,10 @@ def _get_debug_info() -> _Environment:
     """
     py_name, py_version = _interpreter_name_version()
     packages = ["{{ python_package_distribution_name }}"]
-    variables = ["PYTHONPATH", *[var for var in os.environ if var.startswith("{{ python_package_distribution_name.upper().replace("-", "_") }}")]]
+    variables = [
+        "PYTHONPATH",
+        *[var for var in os.environ if var.startswith("{{ python_package_distribution_name.upper().replace('-', '_') }}")],
+    ]
     return _Environment(
         interpreter_name=py_name,
         interpreter_version=py_version,
