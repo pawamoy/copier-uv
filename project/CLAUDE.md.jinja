@@ -18,11 +18,11 @@ This file provides guidance for AI assistants working on this codebase.
 ## Quick Reference
 
 ```bash
-make setup    # Install dependencies
-make format   # Auto-format code
-make check    # Run all quality checks
-make test     # Run tests
-make docs     # Serve docs locally
+uvx task setup    # Install dependencies
+uvx task format   # Auto-format code
+uvx task check    # Run all quality checks (lint + typecheck)
+uvx task test     # Run tests
+uvx task docs     # Serve docs locally
 ```
 
 ## Standard Workflow
@@ -32,7 +32,7 @@ make docs     # Serve docs locally
 3. **Test First** - Write failing test (TDD)
 4. **Code** - Minimal code to pass test
 5. **Refactor** - Clean up, keep tests green
-6. **Verify** - `make format && make check && make test`
+6. **Verify** - `uvx task format && uvx task check && uvx task test`
 
 **Ask before:** Adding dependencies, changing public API, modifying structure.
 
@@ -61,7 +61,7 @@ make docs     # Serve docs locally
 2. Write only enough test to fail
 3. Write only enough code to pass
 
-**Cycle:** 🔴 Red → 🟢 Green → 🔵 Refactor → Repeat
+**Cycle:** Red -> Green -> Refactor -> Repeat
 
 **Test behavior, not implementation.** Tests verify *what* code does, not *how*.
 
@@ -129,12 +129,11 @@ fix(parser): Handle empty input
 │   └── _internal/        # Private implementation
 ├── tests/
 ├── docs/
-├── config/               # Tool configs (ruff, mypy, pytest)
+├── config/               # Tool configs (ruff, pytest, coverage)
 {%- if include_notebooks %}
 ├── notebooks/            # Marimo notebooks
 {%- endif %}
-├── pyproject.toml
-└── duties.py             # Task definitions
+└── pyproject.toml        # Metadata, dependencies, and tasks
 ```
 
 - **Public API**: Exports in `__init__.py`
@@ -163,32 +162,58 @@ logger.info("Action", user_id=123, action="login")  # Structured data as kwargs
 Use `configure_logging` from `_internal.logging` only to set up handlers.
 Example: `configure_logging(level="INFO", json_logs=False)`
 
+## Available Tasks
+
+Run with `uvx task <name>`:
+
+| Task | Description |
+|------|-------------|
+| `setup` | Install dependencies |
+| `format` | Format code and auto-fix lint issues |
+| `format_check` | Check code formatting (CI) |
+| `check` | Run lint and type checks |
+| `lint` | Run linting only |
+| `typecheck` | Run type checking only |
+| `test` | Run test suite |
+| `test_cov` | Run tests with coverage |
+| `docs` | Serve documentation locally |
+| `docs_build` | Build documentation |
+| `build` | Build source and wheel distributions |
+| `publish` | Publish to PyPI |
+| `changelog` | Update changelog |
+| `clean` | Delete build artifacts and caches |
+| `profile` | Profile with Scalene |
+| `profile_memory` | Profile memory with Memray |
+{%- if is_library %}
+| `check_api` | Check for API breaking changes |
+{%- endif %}
+
 ## Key Files
 
 | File | Purpose |
 |------|---------|
-| `pyproject.toml` | Metadata, dependencies |
-| `duties.py` | Task definitions |
+| `pyproject.toml` | Metadata, dependencies, tasks |
 | `config/ruff.toml` | Linting rules |
-| `config/mypy.ini` | Type checking |
+| `config/pytest.ini` | Test configuration |
+| `.pre-commit-config.yaml` | Pre-commit hooks |
 
 ## Do's and Don'ts
 
 **DO:**
-- ✅ Write tests FIRST (TDD)
-- ✅ Keep changes small and modular
-- ✅ Test behavior, not implementation
-- ✅ Type hints on everything
-- ✅ Google-style docstrings
-- ✅ `from __future__ import annotations` in every file
-- ✅ Absolute imports only
-- ✅ Run `make format && make check && make test`
+- Write tests FIRST (TDD)
+- Keep changes small and modular
+- Test behavior, not implementation
+- Type hints on everything
+- Google-style docstrings
+- `from __future__ import annotations` in every file
+- Absolute imports only
+- Run `uvx task format && uvx task check && uvx task test`
 
 **DON'T:**
-- ❌ Production code without failing test
-- ❌ Test implementation details
-- ❌ Push/release/deploy (user handles)
-- ❌ Skip type hints
-- ❌ Relative imports
-- ❌ `print()` for debugging (use `logger`)
-- ❌ `print()` for logging (use `logger`)
+- Production code without failing test
+- Test implementation details
+- Push/release/deploy (user handles)
+- Skip type hints
+- Relative imports
+- `print()` for debugging (use `logger`)
+- `print()` for logging (use `logger`)
