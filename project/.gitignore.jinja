@@ -23,3 +23,27 @@ uv.lock
 .mypy_cache/
 .ruff_cache/
 __pycache__/
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate*
+terraform.tfvars
+*.tfvars
+crash.log
+crash.*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Profiling
+*.prof
+*.pstat
+*.lprof
+memray-*.bin
+memray-*.html
+scalene-*.html
+py-spy-*.svg
+flamegraph*.svg
