@@ -1,0 +1,27 @@
+# Pre-commit hooks configuration
+# Install with: uvx pre-commit install
+# Run manually: uvx pre-commit run --all-files
+
+repos:
+  - repo: local
+    hooks:
+      - id: format
+        name: Format code
+        entry: uvx ruff format src tests
+        language: system
+        types: [python]
+        pass_filenames: false
+
+      - id: lint
+        name: Lint code
+        entry: uvx ruff check src tests
+        language: system
+        types: [python]
+        pass_filenames: false
+
+      - id: typecheck
+        name: Type check
+        entry: uvx ty check src
+        language: system
+        types: [python]
+        pass_filenames: false
