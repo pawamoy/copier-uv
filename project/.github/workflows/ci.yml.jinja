@@ -22,30 +22,10 @@ env:
   LC_ALL: en_US.utf-8
   PYTHONIOENCODING: UTF-8
   PYTHONWARNDEFAULTENCODING: "1"
-  PYTHON_VERSIONS: ""
 
 jobs:
-
   quality:
-    strategy:
-      matrix:
-        os:
-        - ubuntu-latest
-        - macos-latest
-        - windows-latest
-        python-version:
-        - "3.12"
-        - "3.13"
-        - "3.14"
-        include:
-        - os: ubuntu-latest
-          python-version: "3.12"
-        - os: ubuntu-latest
-          python-version: "3.13"
-        - os: ubuntu-latest
-          python-version: "3.14"
-
-    runs-on: {% raw %}${{ matrix.os }}{% endraw %}
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
@@ -57,7 +37,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v6
       with:
-        python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
+        python-version: "3.13"
 
     - name: Setup uv
       uses: astral-sh/setup-uv@v7
@@ -66,33 +46,34 @@ jobs:
         cache-dependency-glob: pyproject.toml
 
     - name: Install dependencies
-      run: make setup
+      run: uvx task setup
 
-    - name: Check if the documentation builds correctly
-      run: make check-docs
+    - name: Check code formatting
+      run: uvx task format_check
 
-    - name: Check the code quality
-      run: make check-quality
+    - name: Check code quality (lint)
+      run: uvx task lint
 
-    - name: Check if the code is correctly typed
-      run: make check-types
+    - name: Check types
+      run: uvx task typecheck
 {%- if is_library %}
 
-    - name: Check for breaking changes in the API
-      run: make check-api
+    - name: Check for API breaking changes
+      run: uvx task check_api
+      continue-on-error: true
 {%- endif %}
+
+    - name: Build documentation
+      run: uvx task docs_build
 
     - name: Store objects inventory for tests
       uses: actions/upload-artifact@v5
-      if: {% raw %}${{ matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13' }}{% endraw %}
       with:
         name: objects.inv
         path: site/objects.inv
 
   tests:
-
-    needs:
-    - quality
+    needs: quality
     strategy:
       matrix:
         os:
@@ -111,8 +92,9 @@ jobs:
           resolution: lowest-direct
         - os: windows-latest
           resolution: lowest-direct
+
     runs-on: {% raw %}${{ matrix.os }}{% endraw %}
-    continue-on-error: true
+    continue-on-error: {% raw %}${{ matrix.python-version == '3.14' }}{% endraw %}
 
     steps:
     - name: Checkout
@@ -137,7 +119,7 @@ jobs:
     - name: Install dependencies
       env:
         UV_RESOLUTION: {% raw %}${{ matrix.resolution }}{% endraw %}
-      run: make setup
+      run: uvx task setup
 
     - name: Download objects inventory
       uses: actions/download-artifact@v6
@@ -145,5 +127,5 @@ jobs:
         name: objects.inv
         path: site/
 
-    - name: Run the test suite
-      run: make test
+    - name: Run tests
+      run: uvx task test
