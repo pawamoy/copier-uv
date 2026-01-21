@@ -102,8 +102,8 @@ default-groups = ["test", "docs"{% if include_notebooks %}, "notebooks"{% endif 
 # ==============================
 # taskipy - Task Runner
 # ==============================
-# Run tasks with: uvx task <task-name>
-# List tasks with: uvx task --list
+# Run tasks with: uvx --from taskipy task <task-name>
+# List tasks with: uvx --from taskipy task --list
 
 [tool.taskipy.settings]
 use_vars = true

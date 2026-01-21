@@ -18,11 +18,11 @@ This file provides guidance for AI assistants working on this codebase.
 ## Quick Reference
 
 ```bash
-uvx task setup    # Install dependencies
-uvx task format   # Auto-format code
-uvx task check    # Run all quality checks (lint + typecheck)
-uvx task test     # Run tests
-uvx task docs     # Serve docs locally
+uvx --from taskipy task setup    # Install dependencies
+uvx --from taskipy task format   # Auto-format code
+uvx --from taskipy task check    # Run all quality checks (lint + typecheck)
+uvx --from taskipy task test     # Run tests
+uvx --from taskipy task docs     # Serve docs locally
 ```
 
 ## Standard Workflow
@@ -32,7 +32,7 @@ uvx task docs     # Serve docs locally
 3. **Test First** - Write failing test (TDD)
 4. **Code** - Minimal code to pass test
 5. **Refactor** - Clean up, keep tests green
-6. **Verify** - `uvx task format && uvx task check && uvx task test`
+6. **Verify** - `uvx --from taskipy task format && uvx --from taskipy task check && uvx --from taskipy task test`
 
 **Ask before:** Adding dependencies, changing public API, modifying structure.
 
@@ -164,7 +164,7 @@ Example: `configure_logging(level="INFO", json_logs=False)`
 
 ## Available Tasks
 
-Run with `uvx task <name>`:
+Run with `uvx --from taskipy task <name>`:
 
 | Task | Description |
 |------|-------------|
@@ -207,7 +207,7 @@ Run with `uvx task <name>`:
 - Google-style docstrings
 - `from __future__ import annotations` in every file
 - Absolute imports only
-- Run `uvx task format && uvx task check && uvx task test`
+- Run `uvx --from taskipy task format && uvx --from taskipy task check && uvx --from taskipy task test`
 
 **DON'T:**
 - Production code without failing test

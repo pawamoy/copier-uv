@@ -34,18 +34,18 @@ git commit -am "feat: Initial commit"
 git tag -m "" -a 0.1.0
 echo
 echo ">>> Listing available tasks"
-uvx task --list
+uvx --from taskipy task --list
 echo
 if [ -z "${SKIP_SETUP:-}" ]; then
     echo ">>> Setting up Python environment"
-    uvx task setup
+    uvx --from taskipy task setup
     echo
     echo ">>> Listing tasks again"
-    uvx task --list
+    uvx --from taskipy task --list
     echo
 fi
 echo ">>> Formatting and asserting there are no changes"
-uvx task format
+uvx --from taskipy task format
 diff="$(git status --porcelain=v1 2>/dev/null)"
 if [ -n "${diff}" ]; then
     echo
@@ -57,10 +57,10 @@ if [ -n "${diff}" ]; then
 fi
 echo
 echo ">>> Running quality checks"
-uvx task check
+uvx --from taskipy task check
 echo
 echo ">>> Running tests"
-uvx task test
+uvx --from taskipy task test
 echo
 echo ">>> Creating second commit (fix)"
 touch empty
@@ -68,7 +68,7 @@ git add empty
 git commit -m "fix: Fix all bugs"
 echo
 echo ">>> Updating changelog"
-uvx task changelog
+uvx --from taskipy task changelog
 echo
 echo ">>> Checking changelog's contents"
 grep '0\.1\.0' CHANGELOG.md
@@ -76,4 +76,4 @@ grep 'Features' CHANGELOG.md
 grep 'Bug Fixes' CHANGELOG.md
 echo
 echo ">>> Cleaning directory"
-uvx task clean
+uvx --from taskipy task clean

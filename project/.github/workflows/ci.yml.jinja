@@ -46,25 +46,25 @@ jobs:
         cache-dependency-glob: pyproject.toml
 
     - name: Install dependencies
-      run: uvx task setup
+      run: uvx --from taskipy task setup
 
     - name: Check code formatting
-      run: uvx task format_check
+      run: uvx --from taskipy task format_check
 
     - name: Check code quality (lint)
-      run: uvx task lint
+      run: uvx --from taskipy task lint
 
     - name: Check types
-      run: uvx task typecheck
+      run: uvx --from taskipy task typecheck
 {%- if is_library %}
 
     - name: Check for API breaking changes
-      run: uvx task check_api
+      run: uvx --from taskipy task check_api
       continue-on-error: true
 {%- endif %}
 
     - name: Build documentation
-      run: uvx task docs_build
+      run: uvx --from taskipy task docs_build
 
     - name: Store objects inventory for tests
       uses: actions/upload-artifact@v5
@@ -119,7 +119,7 @@ jobs:
     - name: Install dependencies
       env:
         UV_RESOLUTION: {% raw %}${{ matrix.resolution }}{% endraw %}
-      run: uvx task setup
+      run: uvx --from taskipy task setup
 
     - name: Download objects inventory
       uses: actions/download-artifact@v6
@@ -128,4 +128,4 @@ jobs:
         path: site/
 
     - name: Run tests
-      run: uvx task test
+      run: uvx --from taskipy task test

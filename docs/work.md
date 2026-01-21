@@ -103,12 +103,12 @@ test = [
 ## Tasks
 
 Tasks are defined in `pyproject.toml` using [taskipy](https://github.com/taskipy/taskipy).
-Run tasks with `uvx task <name>`.
+Run tasks with `uvx --from taskipy task <name>`.
 
 List all available tasks:
 
 ```bash
-uvx task --list
+uvx --from taskipy task --list
 ```
 
 Available tasks:
@@ -167,36 +167,36 @@ The hooks run:
 The first thing you should run when entering your repository is:
 
 ```bash
-uvx task setup
+uvx --from taskipy task setup
 ```
 
 This will install the project's dependencies in a virtual environment (`.venv/`).
 
 Now you can start writing and editing code in `src/your_package`.
 
-- You can auto-format the code with `uvx task format`.
-- You can run a quality analysis with `uvx task check`.
+- You can auto-format the code with `uvx --from taskipy task format`.
+- You can run a quality analysis with `uvx --from taskipy task check`.
 - Once you wrote tests for your new code,
-  you can run the test suite with `uvx task test`.
+  you can run the test suite with `uvx --from taskipy task test`.
 - Once you are ready to publish a new release,
-  run `uvx task changelog`, then tag the commit and push.
+  run `uvx --from taskipy task changelog`, then tag the commit and push.
 
 To summarize, the typical workflow is:
 
 ```bash
-uvx task setup  # only once
+uvx --from taskipy task setup  # only once
 
 <write code>
-uvx task format  # to auto-format the code
+uvx --from taskipy task format  # to auto-format the code
 
 <write tests>
-uvx task test  # to run the test suite
+uvx --from taskipy task test  # to run the test suite
 
-uvx task check  # to check if everything is OK
+uvx --from taskipy task check  # to check if everything is OK
 
 <commit your changes>
 
-uvx task changelog  # to update the changelog
+uvx --from taskipy task changelog  # to update the changelog
 <edit changelog if needed>
 <commit and tag>
 ```
@@ -206,7 +206,7 @@ uvx task changelog  # to update the changelog
 The quality checks are started with:
 
 ```bash
-uvx task check
+uvx --from taskipy task check
 ```
 
 This runs both linting (Ruff) and type checking (ty).
@@ -214,8 +214,8 @@ This runs both linting (Ruff) and type checking (ty).
 For individual checks:
 
 ```bash
-uvx task lint      # linting only
-uvx task typecheck # type checking only
+uvx --from taskipy task lint      # linting only
+uvx --from taskipy task typecheck # type checking only
 ```
 
 ### Linting
@@ -253,7 +253,7 @@ This runs [Griffe](https://github.com/mkdocstrings/griffe)
 to search for API breaking changes since the latest version:
 
 ```bash
-uvx task check_api
+uvx --from taskipy task check_api
 ```
 
 ## Tests
@@ -261,7 +261,7 @@ uvx task check_api
 Run the test suite with:
 
 ```bash
-uvx task test
+uvx --from taskipy task test
 ```
 
 Behind the scenes, it uses [`pytest`](https://docs.pytest.org/en/stable/)
@@ -270,7 +270,7 @@ and plugins to collect and run the tests, and output a report.
 For tests with coverage:
 
 ```bash
-uvx task test_cov
+uvx --from taskipy task test_cov
 ```
 
 ## Profiling
@@ -279,11 +279,11 @@ Profile your code with various tools:
 
 ```bash
 # CPU, memory, and GPU profiling with Scalene
-uvx task profile -- your_script.py
+uvx --from taskipy task profile -- your_script.py
 
 # Memory profiling with Memray
-uvx task profile_memory -- your_script.py
-uvx task profile_memory_report  # Generate flamegraph
+uvx --from taskipy task profile_memory -- your_script.py
+uvx --from taskipy task profile_memory_report  # Generate flamegraph
 ```
 
 ## Continuous Integration
@@ -301,7 +301,7 @@ that were added or the bugs that were fixed.
 Update the changelog with:
 
 ```bash
-uvx task changelog
+uvx --from taskipy task changelog
 ```
 
 This uses [git-changelog](https://github.com/pawamoy/git-changelog)
@@ -335,13 +335,13 @@ Scope and body are optional. Type can be:
 
 To release a new version:
 
-1. Update the changelog: `uvx task changelog`
+1. Update the changelog: `uvx --from taskipy task changelog`
 2. Review and edit if needed
 3. Commit the changes
 4. Tag with the version: `git tag vX.Y.Z`
 5. Push commits and tags: `git push && git push --tags`
-6. Build: `uvx task build`
-7. Publish: `uvx task publish`
+6. Build: `uvx --from taskipy task build`
+7. Publish: `uvx --from taskipy task publish`
 
 ## Documentation
 
@@ -352,14 +352,14 @@ and the [mkdocstrings](https://github.com/pawamoy/mkdocstrings) plugin.
 ### Serving
 
 MkDocs provides a development server with files watching and live-reload.
-Run `uvx task docs` to serve your documentation on `localhost:8000`.
+Run `uvx --from taskipy task docs` to serve your documentation on `localhost:8000`.
 
 ### Building
 
 Build the documentation with:
 
 ```bash
-uvx task docs_build
+uvx --from taskipy task docs_build
 ```
 
 ### Deploying
