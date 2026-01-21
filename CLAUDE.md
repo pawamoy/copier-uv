@@ -17,7 +17,7 @@ This file provides guidance for AI assistants working on this **Copier template*
 ## Quick Reference
 
 ```bash
-# Generate test project
+# Generate test project (interactive - requires terminal)
 copier copy --trust . /tmp/test-project
 copier copy --trust -d include_notebooks=true . /tmp/test-project
 
@@ -27,6 +27,13 @@ cd tests && ./test_project.sh && ./test_filenames.sh
 # Serve docs
 make docs  # or: uv run mkdocs serve
 ```
+
+## Testing Note
+
+**Important:** The `copier copy` command requires interactive input and cannot be run programmatically without a terminal. When verifying template changes:
+- Use the existing test scripts in `tests/` for automated validation
+- Manual interactive testing with `copier copy` should be done by the user
+- Do not attempt to automate copier with piped input or data files in CI-like environments
 
 ## Standard Workflow
 
@@ -61,7 +68,7 @@ copier-uv/
 | New feature | `project/` templates, `copier.yml`, `docs/`, `README.md` |
 | Template variable | `copier.yml`, all `.jinja` files using it |
 | Tool config | `project/config/`, `project/pyproject.toml.jinja` |
-| Makefile target | `project/Makefile.jinja`, `project/duties.py.jinja`, `project/CLAUDE.md.jinja` |
+| Task (make target) | `project/pyproject.toml.jinja` (taskipy), `project/CLAUDE.md.jinja` |
 
 ## Jinja2 Syntax
 
@@ -85,8 +92,8 @@ copier-uv/
 | `copier.yml` | Template config, variables |
 | `extensions.py` | Custom Jinja2 extensions |
 | `project/CLAUDE.md.jinja` | AI guidance for generated projects |
-| `project/pyproject.toml.jinja` | Generated project's dependencies |
-| `project/Makefile.jinja` | Generated project's make targets |
+| `project/pyproject.toml.jinja` | Dependencies and taskipy tasks |
+| `project/.pre-commit-config.yaml.jinja` | Pre-commit hooks config |
 
 ## Do's and Don'ts
 
