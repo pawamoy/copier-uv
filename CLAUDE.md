@@ -18,8 +18,9 @@ This file provides guidance for AI assistants working on this **Copier template*
 
 ```bash
 # Generate test project (interactive - requires terminal)
-copier copy --trust . /tmp/test-project
-copier copy --trust -d include_notebooks=true . /tmp/test-project
+# IMPORTANT: Use --vcs-ref HEAD to test uncommitted changes
+copier copy --trust --vcs-ref HEAD . /tmp/test-project
+copier copy --trust --vcs-ref HEAD -d include_notebooks=true . /tmp/test-project
 
 # Run tests
 cd tests && ./test_project.sh && ./test_filenames.sh
@@ -31,6 +32,7 @@ make docs  # or: uv run mkdocs serve
 ## Testing Note
 
 **Important:** The `copier copy` command requires interactive input and cannot be run programmatically without a terminal. When verifying template changes:
+- **Always use `--vcs-ref HEAD`** to test uncommitted changes (without it, copier uses the last committed version)
 - Use the existing test scripts in `tests/` for automated validation
 - Manual interactive testing with `copier copy` should be done by the user
 - Do not attempt to automate copier with piped input or data files in CI-like environments
@@ -40,7 +42,7 @@ make docs  # or: uv run mkdocs serve
 1. **Explore** - Understand current state of relevant files
 2. **Plan** - Ask clarifying questions for architectural changes
 3. **Implement** - Update ALL affected files (see consistency table)
-4. **Verify** - Test with `copier copy`
+4. **Verify** - Test with `copier copy --trust --vcs-ref HEAD . /tmp/test-project`
 
 **Ask before:** Adding template variables, modifying file structure, multi-file changes.
 
@@ -99,7 +101,7 @@ copier-uv/
 
 **DO:**
 - ✅ Update ALL related files when making changes
-- ✅ Test with `copier copy`
+- ✅ Test with `copier copy --trust --vcs-ref HEAD . /tmp/test-project`
 - ✅ Document variables in `copier.yml`
 - ✅ Use conditional blocks for optional features
 

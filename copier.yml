@@ -119,17 +119,16 @@ python_package_import_name:
   help: Your Python package import name (for `import NAME` in Python code)
   default: "{{ project_name | slugify('_') }}"
 
-python_package_command_line_name:
+python_version:
   type: str
-  help: Your CLI name if any (for use in the shell)
-  default: "{{ project_name | slugify }}"
+  help: Python version for your project
+  default: "3.13"
+  choices:
+    - "3.12"
+    - "3.13"
+    - "3.14"
 
 include_notebooks:
   type: bool
   help: Include marimo notebooks support for data science workflows
   default: true
-
-is_library:
-  type: bool
-  help: Is this project a library? (enables API checks with Griffe)
-  default: false

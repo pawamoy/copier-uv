@@ -46,9 +46,9 @@ copyright_holder_email: your@email.com
 copyright_license: ISC License
 project_description: My awesome project description.
 project_name: my-project
-python_package_command_line_name: my-project
 python_package_distribution_name: my-project
 python_package_import_name: my_project
+python_version: "3.13"
 repository_name: my-project
 repository_namespace: your-username
 repository_provider: github.com

@@ -1,4 +1,4 @@
-target-version = "py312"
+target-version = "py{{ python_version | replace('.', '') }}"
 line-length = 120
 
 [lint]
@@ -47,9 +47,6 @@ ignore = [
 ]
 
 [lint.per-file-ignores]
-"src/**/cli.py" = [
-    "T201",  # Print statement
-]
 "src/*/debug.py" = [
     "T201",  # Print statement
 ]

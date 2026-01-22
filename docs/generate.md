@@ -213,17 +213,6 @@ python_package_import_name? Format: str
 The name that will be used to import your package in Python code.
 Yes, distribution name and import name can be different!
 
----
-
-```
-Your CLI name if any (for use in the shell)
-python_package_command_line_name? Format: str
-🎤 [my-project]: 
-```
-
-The name of the command users will type in the command line
-to run your program.
-
 ## Output
 
 At this point, Copier will generate the project in the specified directory:
@@ -231,52 +220,44 @@ At this point, Copier will generate the project in the specified directory:
 ```
     create  pyproject.toml
     create  mkdocs.yml
-    create  duties.py
     create  .copier-answers.yml
     create  README.md
-    create  Makefile
     create  LICENSE
-    create  CREDITS.md
     create  CONTRIBUTING.md
     create  CHANGELOG.md
+    create  CLAUDE.md
     create  .gitignore
     create  tests/
-    create  tests/test_cli.py
     create  tests/conftest.py
     create  tests/__init__.py
     create  src/
     create  src/my_project/
-    create  src/my_project/cli.py
-    create  src/my_project/__main__.py
     create  src/my_project/__init__.py
+    create  src/my_project/_internal/
+    create  src/my_project/_internal/__init__.py
+    create  src/my_project/_internal/debug.py
+    create  src/my_project/_internal/logging.py
     create  scripts/
-    create  scripts/setup.sh
-    create  scripts/post_generation.py
-    create  scripts/multirun.sh
+    create  scripts/gen_credits.py
     create  docs/
     create  docs/index.md
-    create  docs/credits.md
     create  docs/contributing.md
     create  docs/changelog.md
-    create  docs/reference/
-    create  docs/reference/cli.md
     create  docs/css/
     create  docs/css/mkdocstrings.css
     create  config/
     create  config/pytest.ini
-    create  config/mypy.ini
+    create  config/ruff.toml
     create  config/coverage.ini
     create  .github/
-    create  .github/FUNDING.yml
     create  .github/workflows/
     create  .github/workflows/ci.yml
     create  .github/ISSUE_TEMPLATE/
-    create  .github/ISSUE_TEMPLATE/feature_request.md
-    create  .github/ISSUE_TEMPLATE/bug_report.md
+    create  .github/ISSUE_TEMPLATE/1-bug.md
+    create  .github/ISSUE_TEMPLATE/2-feature.md
 
- > Running task 1 of 1: python scripts/post_generation.py
 Project successfully generated!
-Run `make` to show the available actions.
+Run `uvx --from taskipy task --list` to show the available tasks.
 ```
 
 See the next chapter to learn how to work on this new project.

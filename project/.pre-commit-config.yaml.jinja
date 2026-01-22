@@ -14,7 +14,7 @@ repos:
 
       - id: lint
         name: Lint code
-        entry: uvx ruff check src tests
+        entry: uvx ruff check --fix src tests
         language: system
         types: [python]
         pass_filenames: false

@@ -1,6 +1,6 @@
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "{{ python_package_distribution_name }}"
@@ -9,7 +9,7 @@ authors = [{name = "{{ author_fullname }}", email = "{{ author_email }}"}]
 license = "{{ copyright_license }}"
 license-files = ["LICENSE"]
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = "=={{ python_version }}.*"
 keywords = []
 dynamic = ["version"]
 classifiers = [
@@ -18,9 +18,7 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: {{ python_version }}",
     "Topic :: Documentation",
     "Topic :: Software Development",
     "Topic :: Utilities",
@@ -39,44 +37,14 @@ Issues = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ reposi
 Discussions = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}/discussions"
 Gitter = "https://gitter.im/{% if repository_namespace != author_username %}{{ repository_namespace }}/{{ repository_name }}{% else %}{{ repository_name }}/community{% endif %}"
 
-{% if python_package_command_line_name -%}
-[project.scripts]
-{{ python_package_command_line_name }} = "{{ python_package_import_name }}.cli:main"
-
-{% endif -%}
-
-[tool.pdm.version]
-source = "call"
-getter = "scripts.get_version:get_version"
-
-[tool.pdm.build]
-# Include as much as possible in the source distribution, to help redistributors.
-excludes = ["**/.pytest_cache", "**/.mypy_cache", "**/.ruff_cache"]
-source-includes = [
-    "config",
-    "docs",
-    "scripts",
-    "share",
-    "tests",
-    "mkdocs.yml",
-    "*.md",
-    "LICENSE",
-]
-
-[tool.pdm.build.wheel-data]
-# Manual pages can be included in the wheel.
-# Depending on the installation tool, they will be accessible to users.
-# pipx supports it, uv does not yet, see https://github.com/astral-sh/uv/issues/4731.
-data = [
-    {path = "share/**/*", relative-to = "."},
-]
+[tool.hatch.version]
+path = "src/{{ python_package_import_name }}/__init__.py"
 
 [dependency-groups]
 test = [
     "pytest>=8.2",
     "pytest-cov>=5.0",
     "pytest-randomly>=3.15",
-    "pytest-xdist>=3.6",
 ]
 docs = [
     "markdown-callouts>=0.4",
@@ -123,20 +91,18 @@ format_check = { cmd = "uvx ruff format --check {all}", help = "Check code forma
 
 # Quality checks
 check = { cmd = "uvx ruff check {all} && uvx ty check {src}", help = "Run lint and type checks" }
-lint = { cmd = "uvx ruff check {all}", help = "Run linting only" }
+lint = { cmd = "uvx ruff check --fix {all}", help = "Run linting only" }
 typecheck = { cmd = "uvx ty check {src}", help = "Run type checking only" }
 
 # Testing
-test = { cmd = "uv run pytest {tests} -n auto", help = "Run test suite" }
-test_cov = { cmd = "uv run pytest {tests} -n auto --cov={src} --cov-report=html --cov-report=term", help = "Run tests with coverage" }
+test = { cmd = "uv run pytest {tests}", help = "Run test suite" }
+test_cov = { cmd = "uv run pytest {tests} --cov={src} --cov-report=html --cov-report=term", help = "Run tests with coverage" }
 
 # Documentation
 docs = { cmd = "uv run mkdocs serve", help = "Serve documentation locally" }
 docs_build = { cmd = "uv run mkdocs build --strict", help = "Build documentation" }
 
-# Build & Release
-build = { cmd = "uvx --from build pyproject-build", help = "Build source and wheel distributions" }
-publish = { cmd = "uvx twine upload dist/*", help = "Publish to PyPI" }
+# Release
 changelog = { cmd = "uvx git-changelog --bump auto", help = "Update changelog" }
 
 # Utilities
@@ -146,8 +112,3 @@ clean = { cmd = "rm -rf build dist htmlcov site .coverage* .pdm-build .pytest_ca
 profile = { cmd = "uvx scalene", help = "Profile with Scalene (CPU, memory, GPU)" }
 profile_memory = { cmd = "uvx memray run -o memray-output.bin", help = "Profile memory with Memray" }
 profile_memory_report = { cmd = "uvx memray flamegraph memray-output.bin -o memray-flamegraph.html", help = "Generate Memray flamegraph report" }
-{%- if is_library %}
-
-# API checks (library mode)
-check_api = { cmd = "uvx griffe check {{ python_package_import_name }} --search src", help = "Check for API breaking changes" }
-{%- endif %}

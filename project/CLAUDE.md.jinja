@@ -10,10 +10,7 @@ This file provides guidance for AI assistants working on this codebase.
 |-----------|-------|
 | Package | `{{ python_package_distribution_name }}` |
 | Import | `{{ python_package_import_name }}` |
-{%- if python_package_command_line_name %}
-| CLI | `{{ python_package_command_line_name }}` |
-{%- endif %}
-| Python | 3.12, 3.13, 3.14 |
+| Python | {{ python_version }} |
 
 ## Quick Reference
 
@@ -102,7 +99,7 @@ def calculate(prices: list[float], *, tax: float = 0.0) -> float:
 ### Ruff Config
 
 - Line length: 120
-- Target: Python 3.12+
+- Target: Python {{ python_version }}+
 - Docstrings: Google convention
 - Imports: Absolute only
 
@@ -178,15 +175,10 @@ Run with `uvx --from taskipy task <name>`:
 | `test_cov` | Run tests with coverage |
 | `docs` | Serve documentation locally |
 | `docs_build` | Build documentation |
-| `build` | Build source and wheel distributions |
-| `publish` | Publish to PyPI |
 | `changelog` | Update changelog |
 | `clean` | Delete build artifacts and caches |
 | `profile` | Profile with Scalene |
 | `profile_memory` | Profile memory with Memray |
-{%- if is_library %}
-| `check_api` | Check for API breaking changes |
-{%- endif %}
 
 ## Key Files
 

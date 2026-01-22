@@ -37,7 +37,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v6
       with:
-        python-version: "3.13"
+        python-version: "{{ python_version }}"
 
     - name: Setup uv
       uses: astral-sh/setup-uv@v7
@@ -56,12 +56,6 @@ jobs:
 
     - name: Check types
       run: uvx --from taskipy task typecheck
-{%- if is_library %}
-
-    - name: Check for API breaking changes
-      run: uvx --from taskipy task check_api
-      continue-on-error: true
-{%- endif %}
 
     - name: Build documentation
       run: uvx --from taskipy task docs_build
@@ -74,27 +68,7 @@ jobs:
 
   tests:
     needs: quality
-    strategy:
-      matrix:
-        os:
-        - ubuntu-latest
-        - macos-latest
-        - windows-latest
-        python-version:
-        - "3.12"
-        - "3.13"
-        - "3.14"
-        resolution:
-        - highest
-        - lowest-direct
-        exclude:
-        - os: macos-latest
-          resolution: lowest-direct
-        - os: windows-latest
-          resolution: lowest-direct
-
-    runs-on: {% raw %}${{ matrix.os }}{% endraw %}
-    continue-on-error: {% raw %}${{ matrix.python-version == '3.14' }}{% endraw %}
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout
@@ -106,19 +80,15 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v6
       with:
-        python-version: {% raw %}${{ matrix.python-version }}{% endraw %}
-        allow-prereleases: true
+        python-version: "{{ python_version }}"
 
     - name: Setup uv
       uses: astral-sh/setup-uv@v7
       with:
         enable-cache: true
         cache-dependency-glob: pyproject.toml
-        cache-suffix: {% raw %}${{ matrix.resolution }}{% endraw %}
 
     - name: Install dependencies
-      env:
-        UV_RESOLUTION: {% raw %}${{ matrix.resolution }}{% endraw %}
       run: uvx --from taskipy task setup
 
     - name: Download objects inventory

@@ -1,5 +1,7 @@
 # direnv configuration
 # Allow with: direnv allow
 
-# Automatically activate the virtual environment
-layout python
+# Automatically activate the virtual environment when .venv exists
+if [[ -d .venv ]]; then
+  source .venv/bin/activate
+fi

@@ -35,23 +35,18 @@ The generated project has this structure:
 ├── 📄 pyproject.toml ------------- # project metadata, dependencies, and tasks
 ├── 📄 README.md ------------------ #
 ├── 📁 scripts -------------------- # helper scripts
-│   ├── 📄 gen_credits.py --------- # script to generate credits
-│   └── 📄 get_version.py --------- # script for dynamic versioning
+│   └── 📄 gen_credits.py --------- # script to generate credits
 ├── 📁 src ------------------------ # the source code directory
 │   └── 📁 your_package ----------- # your package
 │       ├── 📄 __init__.py -------- # public API exports
-│       ├── 📄 __main__.py -------- # entry point for python -m
 │       ├── 📁 _internal ---------- # internal implementation
 │       │   ├── 📄 __init__.py ---- #
-│       │   ├── 📄 cli.py --------- # CLI implementation
 │       │   ├── 📄 debug.py ------- # debug utilities
 │       │   └── 📄 logging.py ----- # loguru configuration
 │       └── 📄 py.typed ----------- #
 └── 📁 tests ---------------------- # the tests directory
     ├── 📄 conftest.py ------------ # pytest fixtures, etc.
-    ├── 📄 __init__.py ------------ #
-    ├── 📄 test_api.py ------------ #
-    └── 📄 test_cli.py ------------ #
+    └── 📄 __init__.py ------------ #
 ```
 
 ## Environment
@@ -125,14 +120,11 @@ Available tasks:
 | `test_cov` | Run tests with coverage |
 | `docs` | Serve documentation locally |
 | `docs_build` | Build documentation |
-| `build` | Build source and wheel distributions |
-| `publish` | Publish to PyPI |
 | `changelog` | Update changelog |
 | `clean` | Delete build artifacts and caches |
 | `profile` | Profile with Scalene (CPU, memory, GPU) |
 | `profile_memory` | Profile memory with Memray |
 | `profile_memory_report` | Generate Memray flamegraph report |
-| `check_api` | Check for API breaking changes (library mode only) |
 
 ## Pre-commit Hooks
 
@@ -158,9 +150,7 @@ The hooks run:
 - Logging uses [loguru](https://github.com/Delgan/loguru) and writes to **stderr** by default (JSON format).
 - No log file is created unless you explicitly request one:
   - Programmatic: `configure_logging(log_file=Path("app.log"), json_logs=True, level="INFO")`
-  - CLI (if generated): `--log-file PATH` writes JSON logs with rotation (10 MB), retention (1 week), and gzip compression.
-- Console format can be switched to human-readable with `--no-json-logs` (or `json_logs=False` when calling `configure_logging`).
-- In library mode (`is_library=true`), logging is **not** configured automatically; the consuming application should configure logging.
+- Console format can be switched to human-readable with `json_logs=False` when calling `configure_logging`.
 
 ## Workflow
 
@@ -243,17 +233,6 @@ as a last resort you can ignore this specific error with a comment:
 
 ```python title="src/your_package/module.py"
 result = data_dict.get(key, None).value  # ty: ignore[ID]
-```
-
-### API checks (library mode)
-
-NOTE: This task is only available when the project is generated with `is_library=true`.
-
-This runs [Griffe](https://github.com/mkdocstrings/griffe)
-to search for API breaking changes since the latest version:
-
-```bash
-uvx --from taskipy task check_api
 ```
 
 ## Tests
@@ -340,8 +319,6 @@ To release a new version:
 3. Commit the changes
 4. Tag with the version: `git tag vX.Y.Z`
 5. Push commits and tags: `git push && git push --tags`
-6. Build: `uvx --from taskipy task build`
-7. Publish: `uvx --from taskipy task publish`
 
 ## Documentation
 

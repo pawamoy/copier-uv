@@ -31,14 +31,6 @@
             "command": "scripts/make",
             "args": ["check-docs"]
         },
-{%- if is_library %}
-        {
-            "label": "check-api",
-            "type": "process",
-            "command": "scripts/make",
-            "args": ["check-api"]
-        },
-{%- endif %}
         {
             "label": "clean",
             "type": "process",
@@ -64,12 +56,6 @@
             "args": ["format"]
         },
         {
-            "label": "release",
-            "type": "process",
-            "command": "scripts/make",
-            "args": ["release", "${input:version}"]
-        },
-        {
             "label": "setup",
             "type": "process",
             "command": "scripts/make",
@@ -87,13 +73,6 @@
             "type": "process",
             "command": "scripts/make",
             "args": ["vscode"]
-        }
-    ],
-    "inputs": [
-        {
-            "id": "version",
-            "type": "promptString",
-            "description": "Version"
         }
     ]
 }

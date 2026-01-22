@@ -23,13 +23,7 @@ pip install git+https://{{ repository_provider }}/{{ repository_namespace }}/{{ 
 ## Logging
 
 - Uses [loguru](https://github.com/Delgan/loguru) with JSON output to stderr by default (no log file is written unless you ask for one).
-{% if python_package_command_line_name -%}
-- CLI flags:
-  - `--no-json-logs` for human-readable console output.
-  - `--log-file PATH` to also write JSON logs to disk (10 MB rotation, 1 week retention, gzip compression).
-{% endif -%}
 - Programmatic control: `from {{ python_package_import_name }}._internal.logging import configure_logging` to customize level, JSON/human format, and optional `log_file`.
-- Library mode: when generated with `is_library=true`, logging is not configured automatically—configure it in the consuming application.
 
 ## Developer Workflow
 
