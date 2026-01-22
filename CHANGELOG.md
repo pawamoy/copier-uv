@@ -6,6 +6,31 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.4.0](https://github.com/oedokumaci/copier-uv/releases/tag/0.4.0) - 2026-01-22
+
+<small>[Compare with 0.3.0](https://github.com/oedokumaci/copier-uv/compare/0.3.0...0.4.0)</small>
+
+### Features
+
+- Add module entry point and CLI support ([62381e5](https://github.com/oedokumaci/copier-uv/commit/62381e541c486c325b53a031285cec0ccf8494d2) by oedokumaci). Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+- Add pre-commit hooks with local uvx commands (#29) ([cf19e75](https://github.com/oedokumaci/copier-uv/commit/cf19e7549732d7fe9d132c54d1bf5f0d04af1780) by oedokumaci). Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+- Add taskipy task runner with uvx-based tools (#31, #32, #33, #35) ([f26cfb2](https://github.com/oedokumaci/copier-uv/commit/f26cfb245240159df60ffa039dad6ae48161059b) by oedokumaci). Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+- Add .env and profiling patterns to gitignore (#28, #34) ([4f15c30](https://github.com/oedokumaci/copier-uv/commit/4f15c30475a38e98a9dee03d961c4e39779b3566) by oedokumaci). Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+- Add --log-file CLI argument for file logging ([7214854](https://github.com/oedokumaci/copier-uv/commit/7214854b69a12c9acd23558307546449a8cea084) by oedokumaci).
+
+### Bug Fixes
+
+- Update requirements and changelog commands for packaging compatibility ([84803c6](https://github.com/oedokumaci/copier-uv/commit/84803c64022dae1e074b978c03dbc3b8df4ad839) by oedokumaci). Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+- Format cli.py and debug.py templates for ruff compliance ([0a25a63](https://github.com/oedokumaci/copier-uv/commit/0a25a638e8cee2822a4017516c89274581bb2554) by oedokumaci). Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+- Use correct uvx syntax for taskipy (uvx --from taskipy task) ([2a52f27](https://github.com/oedokumaci/copier-uv/commit/2a52f27c00aa0e800168c1e288a0a20c6302519d) by oedokumaci). Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+- Apply Python logging best practices to generated __init__.py ([94dc33e](https://github.com/oedokumaci/copier-uv/commit/94dc33e80c2a9d2bcc37be938e85ce55b3a54fbc) by oedokumaci).
+
+### Code Refactoring
+
+- Simplify .envrc to use direnv layout (#31) ([50bea44](https://github.com/oedokumaci/copier-uv/commit/50bea44357cb1b2a980b14a8c7b8488306d6b09f) by oedokumaci). Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+- Simplify CI workflow with uvx task commands (#30) ([a86cc4a](https://github.com/oedokumaci/copier-uv/commit/a86cc4a33bbb6cc3e1c30df2efc8252dba8a3303) by oedokumaci). Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+- Remove duty, mypy, and make-based tooling (#31, #32, #33) ([4ec3bc5](https://github.com/oedokumaci/copier-uv/commit/4ec3bc5e075ee78d9296a5605d3fd97535676304) by oedokumaci). Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
+
 ## [0.3.0](https://github.com/oedokumaci/copier-uv/releases/tag/0.3.0) - 2025-12-19
 
 <small>[Compare with 0.2.0](https://github.com/oedokumaci/copier-uv/compare/0.2.0...0.3.0)</small>
