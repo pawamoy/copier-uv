@@ -5,7 +5,8 @@
 
 from __future__ import annotations
 
+from {{ python_package_import_name }}._internal.cli import main
 from {{ python_package_import_name }}._internal.logging import configure_logging
 
 __version__ = "0.0.0"
-__all__: list[str] = ["configure_logging"]
+__all__: list[str] = ["configure_logging", "main"]

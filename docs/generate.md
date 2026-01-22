@@ -230,11 +230,14 @@ At this point, Copier will generate the project in the specified directory:
     create  tests/
     create  tests/conftest.py
     create  tests/__init__.py
+    create  tests/test_main.py
     create  src/
     create  src/my_project/
     create  src/my_project/__init__.py
+    create  src/my_project/__main__.py
     create  src/my_project/_internal/
     create  src/my_project/_internal/__init__.py
+    create  src/my_project/_internal/cli.py
     create  src/my_project/_internal/debug.py
     create  src/my_project/_internal/logging.py
     create  scripts/
@@ -256,8 +259,10 @@ At this point, Copier will generate the project in the specified directory:
     create  .github/ISSUE_TEMPLATE/1-bug.md
     create  .github/ISSUE_TEMPLATE/2-feature.md
 
+Initialized empty Git repository in /path/to/your/new/project/.git/
+
 Project successfully generated!
 Run `uvx --from taskipy task --list` to show the available tasks.
 ```
 
-See the next chapter to learn how to work on this new project.
+The project includes an initialized git repository. See the next chapter to learn how to work on this new project.

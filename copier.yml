@@ -15,6 +15,9 @@ _jinja_extensions:
 _skip_if_exists:
 - CHANGELOG.md
 
+_tasks:
+- "git init ."
+
 # PROMPT --------------------------------
 project_name:
   type: str

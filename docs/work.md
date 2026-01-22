@@ -39,14 +39,17 @@ The generated project has this structure:
 ├── 📁 src ------------------------ # the source code directory
 │   └── 📁 your_package ----------- # your package
 │       ├── 📄 __init__.py -------- # public API exports
+│       ├── 📄 __main__.py -------- # module entry point
 │       ├── 📁 _internal ---------- # internal implementation
 │       │   ├── 📄 __init__.py ---- #
+│       │   ├── 📄 cli.py --------- # CLI implementation
 │       │   ├── 📄 debug.py ------- # debug utilities
 │       │   └── 📄 logging.py ----- # loguru configuration
 │       └── 📄 py.typed ----------- #
 └── 📁 tests ---------------------- # the tests directory
     ├── 📄 conftest.py ------------ # pytest fixtures, etc.
-    └── 📄 __init__.py ------------ #
+    ├── 📄 __init__.py ------------ #
+    └── 📄 test_main.py ----------- # tests for main entry point
 ```
 
 ## Environment
@@ -54,16 +57,9 @@ The generated project has this structure:
 The project uses [uv](https://github.com/astral-sh/uv) for dependency management
 and [taskipy](https://github.com/taskipy/taskipy) for task running.
 
-Optionally, if you use [direnv](https://direnv.net/), allow it in the project with
-`direnv allow` to automatically activate the virtual environment.
+## Git Repository
 
-## Initialize Git Repository
-
-This project uses dynamic versioning based on Git tags. Initialize your project as a Git repository:
-
-```
-git init .
-```
+This project uses dynamic versioning based on Git tags. The git repository is automatically initialized when you generate the project.
 
 ## Dependencies and virtual environments
 
@@ -110,20 +106,23 @@ Available tasks:
 
 | Task | Description |
 |------|-------------|
+| `run` | Run module entrypoint |
 | `setup` | Install dependencies |
-| `format` | Format code and auto-fix lint issues |
+| `format` | Format code (writes changes) |
+| `lint` | Lint and auto-fix (writes changes) |
+| `fix` | Format + lint auto-fix |
 | `format_check` | Check code formatting (CI) |
-| `check` | Run lint and type checks |
-| `lint` | Run linting only |
-| `typecheck` | Run type checking only |
+| `lint_check` | Check linting (CI) |
+| `typecheck` | Run type checking |
 | `test` | Run test suite |
 | `test_cov` | Run tests with coverage |
+| `ci` | Run all CI checks (format, lint, typecheck, test) |
 | `docs` | Serve documentation locally |
-| `docs_build` | Build documentation |
+| `docs_build` | Build documentation (strict) |
 | `changelog` | Update changelog |
 | `clean` | Delete build artifacts and caches |
-| `profile` | Profile with Scalene (CPU, memory, GPU) |
-| `profile_memory` | Profile memory with Memray |
+| `profile` | Profile module with Scalene (CPU, memory, GPU) |
+| `profile_memory` | Profile module memory with Memray |
 | `profile_memory_report` | Generate Memray flamegraph report |
 
 ## Pre-commit Hooks
@@ -164,8 +163,9 @@ This will install the project's dependencies in a virtual environment (`.venv/`)
 
 Now you can start writing and editing code in `src/your_package`.
 
-- You can auto-format the code with `uvx --from taskipy task format`.
-- You can run a quality analysis with `uvx --from taskipy task check`.
+- Run your application with `uvx --from taskipy task run`.
+- Auto-format and lint-fix the code with `uvx --from taskipy task fix`.
+- Run a quality analysis with `uvx --from taskipy task ci`.
 - Once you wrote tests for your new code,
   you can run the test suite with `uvx --from taskipy task test`.
 - Once you are ready to publish a new release,
@@ -177,12 +177,14 @@ To summarize, the typical workflow is:
 uvx --from taskipy task setup  # only once
 
 <write code>
-uvx --from taskipy task format  # to auto-format the code
+uvx --from taskipy task run    # to run your application
+
+uvx --from taskipy task fix    # to auto-format and lint-fix
 
 <write tests>
-uvx --from taskipy task test  # to run the test suite
+uvx --from taskipy task test   # to run the test suite
 
-uvx --from taskipy task check  # to check if everything is OK
+uvx --from taskipy task ci     # to run all CI checks
 
 <commit your changes>
 
@@ -193,19 +195,20 @@ uvx --from taskipy task changelog  # to update the changelog
 
 ## Quality analysis
 
-The quality checks are started with:
+The CI checks are started with:
 
 ```bash
-uvx --from taskipy task check
+uvx --from taskipy task ci
 ```
 
-This runs both linting (Ruff) and type checking (ty).
+This runs format checking, linting, type checking, and tests.
 
 For individual checks:
 
 ```bash
-uvx --from taskipy task lint      # linting only
+uvx --from taskipy task lint      # linting with auto-fix
 uvx --from taskipy task typecheck # type checking only
+uvx --from taskipy task test      # run tests
 ```
 
 ### Linting
@@ -254,16 +257,18 @@ uvx --from taskipy task test_cov
 
 ## Profiling
 
-Profile your code with various tools:
+Profile your module with various tools:
 
 ```bash
 # CPU, memory, and GPU profiling with Scalene
-uvx --from taskipy task profile -- your_script.py
+uvx --from taskipy task profile
 
 # Memory profiling with Memray
-uvx --from taskipy task profile_memory -- your_script.py
+uvx --from taskipy task profile_memory
 uvx --from taskipy task profile_memory_report  # Generate flamegraph
 ```
+
+These profiling tasks run your module's `__main__.py` entry point.
 
 ## Continuous Integration
 

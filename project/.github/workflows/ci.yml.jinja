@@ -52,7 +52,7 @@ jobs:
       run: uvx --from taskipy task format_check
 
     - name: Check code quality (lint)
-      run: uvx --from taskipy task lint
+      run: uvx --from taskipy task lint_check
 
     - name: Check types
       run: uvx --from taskipy task typecheck

@@ -16,8 +16,9 @@ This file provides guidance for AI assistants working on this codebase.
 
 ```bash
 uvx --from taskipy task setup    # Install dependencies
-uvx --from taskipy task format   # Auto-format code
-uvx --from taskipy task check    # Run all quality checks (lint + typecheck)
+uvx --from taskipy task run      # Run the application
+uvx --from taskipy task fix      # Auto-format + lint fix
+uvx --from taskipy task ci       # Run all CI checks (format, lint, typecheck, test)
 uvx --from taskipy task test     # Run tests
 uvx --from taskipy task docs     # Serve docs locally
 ```
@@ -29,7 +30,7 @@ uvx --from taskipy task docs     # Serve docs locally
 3. **Test First** - Write failing test (TDD)
 4. **Code** - Minimal code to pass test
 5. **Refactor** - Clean up, keep tests green
-6. **Verify** - `uvx --from taskipy task format && uvx --from taskipy task check && uvx --from taskipy task test`
+6. **Verify** - `uvx --from taskipy task fix && uvx --from taskipy task ci`
 
 **Ask before:** Adding dependencies, changing public API, modifying structure.
 
@@ -123,7 +124,9 @@ fix(parser): Handle empty input
 {{ repository_name }}/
 ├── src/{{ python_package_import_name }}/
 │   ├── __init__.py       # Public API
+│   ├── __main__.py       # Module entry point (run via `task run`)
 │   └── _internal/        # Private implementation
+│       └── cli.py        # CLI implementation
 ├── tests/
 ├── docs/
 ├── config/               # Tool configs (ruff, pytest, coverage)
@@ -135,6 +138,7 @@ fix(parser): Handle empty input
 
 - **Public API**: Exports in `__init__.py`
 - **Internal**: `_internal/` - not for external use
+- **CLI**: `__main__.py` entry point calls `_internal/cli.py`
 {% if include_notebooks %}
 ## Notebooks
 
@@ -165,20 +169,23 @@ Run with `uvx --from taskipy task <name>`:
 
 | Task | Description |
 |------|-------------|
+| `run` | Run module entrypoint |
 | `setup` | Install dependencies |
-| `format` | Format code and auto-fix lint issues |
+| `format` | Format code (writes changes) |
+| `lint` | Lint and auto-fix (writes changes) |
+| `fix` | Format + lint auto-fix |
 | `format_check` | Check code formatting (CI) |
-| `check` | Run lint and type checks |
-| `lint` | Run linting only |
-| `typecheck` | Run type checking only |
+| `lint_check` | Check linting (CI) |
+| `typecheck` | Run type checking |
 | `test` | Run test suite |
 | `test_cov` | Run tests with coverage |
+| `ci` | Run all CI checks (format, lint, typecheck, test) |
 | `docs` | Serve documentation locally |
-| `docs_build` | Build documentation |
+| `docs_build` | Build documentation (strict) |
 | `changelog` | Update changelog |
 | `clean` | Delete build artifacts and caches |
-| `profile` | Profile with Scalene |
-| `profile_memory` | Profile memory with Memray |
+| `profile` | Profile module with Scalene |
+| `profile_memory` | Profile module memory with Memray |
 
 ## Key Files
 
@@ -199,7 +206,7 @@ Run with `uvx --from taskipy task <name>`:
 - Google-style docstrings
 - `from __future__ import annotations` in every file
 - Absolute imports only
-- Run `uvx --from taskipy task format && uvx --from taskipy task check && uvx --from taskipy task test`
+- Run `uvx --from taskipy task fix && uvx --from taskipy task ci`
 
 **DON'T:**
 - Production code without failing test

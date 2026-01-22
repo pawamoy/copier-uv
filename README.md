@@ -18,13 +18,14 @@ for Python projects managed by [uv](https://github.com/astral-sh/uv).
 - Documentation built with [MkDocs](https://github.com/mkdocs/mkdocs)
   ([Material theme](https://github.com/squidfunk/mkdocs-material)
   and "autodoc" [mkdocstrings plugin](https://github.com/mkdocstrings/mkdocstrings))
-- Cross-platform tasks with [duty](https://github.com/pawamoy/duty)
+- Cross-platform tasks with [taskipy](https://github.com/taskipy/taskipy)
 - Support for GitHub workflows
 - Auto-generated `CHANGELOG.md` from Git (conventional) commits
 - All licenses from [choosealicense.com](https://choosealicense.com/appendix/)
 
 ### Additional Features (this fork)
 
+- **CLI support** with `__main__.py` entry point (run via `uvx --from taskipy task run`)
 - **[marimo](https://marimo.io/) notebooks** support (use `uv run marimo`)
 - **[loguru](https://github.com/Delgan/loguru)** for structured JSON logging
 - **CLAUDE.md** for AI assistant guidance

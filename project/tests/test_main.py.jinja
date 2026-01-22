@@ -1,0 +1,24 @@
+"""Tests for the main module entry point."""
+
+from __future__ import annotations
+
+import subprocess
+import sys
+
+
+def test_main_runs_successfully() -> None:
+    """Test that the main module can be executed."""
+    result = subprocess.run(
+        [sys.executable, "-m", "{{ python_package_import_name }}"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 0
+
+
+def test_main_function_import() -> None:
+    """Test that main function can be imported."""
+    from {{ python_package_import_name }} import main
+
+    assert callable(main)

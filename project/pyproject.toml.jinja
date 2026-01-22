@@ -13,15 +13,10 @@ requires-python = "=={{ python_version }}.*"
 keywords = []
 dynamic = ["version"]
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: {{ python_version }}",
-    "Topic :: Documentation",
-    "Topic :: Software Development",
-    "Topic :: Utilities",
     "Typing :: Typed",
 ]
 dependencies = [
@@ -35,7 +30,6 @@ Changelog = "https://{{ repository_namespace }}.{{ repository_provider.rsplit('.
 Repository = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}"
 Issues = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}/issues"
 Discussions = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}/discussions"
-Gitter = "https://gitter.im/{% if repository_namespace != author_username %}{{ repository_namespace }}/{{ repository_name }}{% else %}{{ repository_name }}/community{% endif %}"
 
 [tool.hatch.version]
 path = "src/{{ python_package_import_name }}/__init__.py"
@@ -80,35 +74,43 @@ use_vars = true
 src = "src"
 tests = "tests"
 all = "src tests"
+module = "{{ python_package_import_name }}"
 
 [tool.taskipy.tasks]
+# Module runner
+run = { cmd = "uv run python -m {module}", help = "Run module entrypoint" }
+
 # Setup
 setup = { cmd = "uv sync", help = "Install dependencies" }
 
-# Formatting
-format = { cmd = "uvx ruff format {all} && uvx ruff check --fix --exit-zero {all}", help = "Format code and auto-fix lint issues" }
+# Always write changes
+format = { cmd = "uvx ruff format {all}", help = "Format code (writes changes)" }
+lint = { cmd = "uvx ruff check --fix {all}", help = "Lint and auto-fix (writes changes)" }
+
+# Convenience: run both
+fix = { cmd = "task format && task lint", help = "Format + lint auto-fix" }
+
+# Quality checks (read-only, for CI)
 format_check = { cmd = "uvx ruff format --check {all}", help = "Check code formatting (CI)" }
-
-# Quality checks
-check = { cmd = "uvx ruff check {all} && uvx ty check {src}", help = "Run lint and type checks" }
-lint = { cmd = "uvx ruff check --fix {all}", help = "Run linting only" }
-typecheck = { cmd = "uvx ty check {src}", help = "Run type checking only" }
-
-# Testing
+lint_check = { cmd = "uvx ruff check {all}", help = "Check linting (CI)" }
+typecheck = { cmd = "uvx ty check {src}", help = "Run type checking" }
 test = { cmd = "uv run pytest {tests}", help = "Run test suite" }
 test_cov = { cmd = "uv run pytest {tests} --cov={src} --cov-report=html --cov-report=term", help = "Run tests with coverage" }
 
+# CI: all checks in one command (read-only)
+ci = { cmd = "task format_check && task lint_check && task typecheck && task test", help = "Run all CI checks (format, lint, typecheck, test)" }
+
 # Documentation
 docs = { cmd = "uv run mkdocs serve", help = "Serve documentation locally" }
-docs_build = { cmd = "uv run mkdocs build --strict", help = "Build documentation" }
+docs_build = { cmd = "uv run mkdocs build --strict", help = "Build documentation (strict)" }
 
 # Release
 changelog = { cmd = "uvx git-changelog --bump auto", help = "Update changelog" }
 
 # Utilities
-clean = { cmd = "rm -rf build dist htmlcov site .coverage* .pdm-build .pytest_cache .mypy_cache .ruff_cache __pycache__ .venvs", help = "Delete build artifacts and caches" }
+clean = { cmd = "rm -rf build dist htmlcov site .coverage* .pytest_cache .mypy_cache .ruff_cache __pycache__ .venvs .venv", help = "Delete build artifacts and caches" }
 
-# Profiling
-profile = { cmd = "uvx scalene", help = "Profile with Scalene (CPU, memory, GPU)" }
-profile_memory = { cmd = "uvx memray run -o memray-output.bin", help = "Profile memory with Memray" }
+# Profiling (using module variable)
+profile = { cmd = "uvx scalene -m {module}", help = "Profile module with Scalene (CPU, memory, GPU)" }
+profile_memory = { cmd = "uvx memray run -m {module} -o memray-output.bin", help = "Profile module memory with Memray" }
 profile_memory_report = { cmd = "uvx memray flamegraph memray-output.bin -o memray-flamegraph.html", help = "Generate Memray flamegraph report" }

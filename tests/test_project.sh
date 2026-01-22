@@ -12,7 +12,6 @@ echo
 generate "${PWD}" "${output}"
 cd "${output}"
 cat .copier-answers.yml
-git init .
 git remote add origin git@github.com:oedokumaci/oedokumaci-testing
 
 echo
@@ -44,8 +43,8 @@ if [ -z "${SKIP_SETUP:-}" ]; then
     uvx --from taskipy task --list
     echo
 fi
-echo ">>> Formatting and asserting there are no changes"
-uvx --from taskipy task format
+echo ">>> Formatting/linting and asserting there are no changes"
+uvx --from taskipy task fix
 diff="$(git status --porcelain=v1 2>/dev/null)"
 if [ -n "${diff}" ]; then
     echo
@@ -56,8 +55,8 @@ if [ -n "${diff}" ]; then
     exit 1
 fi
 echo
-echo ">>> Running quality checks"
-uvx --from taskipy task check
+echo ">>> Running CI checks"
+uvx --from taskipy task ci
 echo
 echo ">>> Running tests"
 uvx --from taskipy task test

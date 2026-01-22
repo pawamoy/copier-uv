@@ -1,0 +1,22 @@
+"""Command-line interface for {{ python_package_import_name }}."""
+
+from __future__ import annotations
+
+from loguru import logger
+
+from {{ python_package_import_name }}._internal.logging import configure_logging
+
+
+def main() -> None:
+    """Main entry point for the CLI."""
+    # json_logs=False for human-readable output during development
+    # Set to True for production (structured JSON logs)
+    configure_logging(level="INFO", json_logs=False)
+    logger.info("Starting {{ project_name }}...")
+
+    # Your application logic here
+
+    logger.info("Run finished.")
+
+
+__all__ = ["main"]

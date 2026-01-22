@@ -31,11 +31,11 @@ class _Package:
 class _Environment:
     """Dataclass to store environment information."""
 
-    interpreter_name: str
+    intp_name: str
     """Python interpreter name."""
-    interpreter_version: str
+    intp_version: str
     """Python interpreter version."""
-    interpreter_path: str
+    intp_path: str
     """Path to Python executable."""
     platform: str
     """Operating System."""
@@ -84,9 +84,9 @@ def _get_debug_info() -> _Environment:
         *[var for var in os.environ if var.startswith("{{ python_package_distribution_name.upper().replace('-', '_') }}")],
     ]
     return _Environment(
-        interpreter_name=py_name,
-        interpreter_version=py_version,
-        interpreter_path=sys.executable,
+        intp_name=py_name,
+        intp_version=py_version,
+        intp_path=sys.executable,
         platform=platform.platform(),
         variables=[_Variable(var, val) for var in variables if (val := os.getenv(var))],
         packages=[_Package(pkg, _get_version(pkg)) for pkg in packages],
@@ -97,7 +97,7 @@ def _print_debug_info() -> None:
     """Print debug/environment information."""
     info = _get_debug_info()
     print(f"- __System__: {info.platform}")
-    print(f"- __Python__: {info.interpreter_name} {info.interpreter_version} ({info.interpreter_path})")
+    print(f"- __Python__: {info.intp_name} {info.intp_version} ({info.intp_path})")
     print("- __Environment variables__:")
     for var in info.variables:
         print(f"  - `{var.name}`: `{var.value}`")
