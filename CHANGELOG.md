@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.4.2](https://github.com/oedokumaci/copier-uv/releases/tag/0.4.2) - 2026-01-22
+
+<small>[Compare with 0.4.1](https://github.com/oedokumaci/copier-uv/compare/0.4.1...0.4.2)</small>
+
+### Bug Fixes
+
+- Handle missing classifier key in gen_credits.py template ([94b48c7](https://github.com/oedokumaci/copier-uv/commit/94b48c7e843249faa96bb93daaa86b542053a4d9) by oedokumaci).
+
 ## [0.4.1](https://github.com/oedokumaci/copier-uv/releases/tag/0.4.1) - 2026-01-22
 
 <small>[Compare with 0.4.0](https://github.com/oedokumaci/copier-uv/compare/0.4.0...0.4.1)</small>
