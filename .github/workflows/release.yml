@@ -22,7 +22,7 @@ jobs:
     - name: Setup uv
       uses: astral-sh/setup-uv@v7
     - name: Prepare release notes
-      run: uv tool run git-changelog --release-notes > release-notes.md
+      run: uv tool run --with 'packaging<26' git-changelog --release-notes > release-notes.md
     - name: Create release
       uses: softprops/action-gh-release@v2
       with:

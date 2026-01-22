@@ -105,7 +105,7 @@ docs = { cmd = "uv run mkdocs serve", help = "Serve documentation locally" }
 docs_build = { cmd = "uv run mkdocs build --strict", help = "Build documentation (strict)" }
 
 # Release
-changelog = { cmd = "uvx git-changelog --bump auto", help = "Update changelog" }
+changelog = { cmd = "uvx --with 'packaging<26' git-changelog --bump auto", help = "Update changelog" }
 
 # Utilities
 clean = { cmd = "rm -rf build dist htmlcov site .coverage* .pytest_cache .mypy_cache .ruff_cache __pycache__ .venvs .venv", help = "Delete build artifacts and caches" }
