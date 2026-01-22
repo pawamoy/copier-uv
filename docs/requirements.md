@@ -15,10 +15,10 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv python install 3.12
 ```
 
-To install Copier, use [`uv`](https://docs.astral.sh/uv/) or [`pipx`](https://pipx.pypa.io/stable/):
+To install Copier, use [`uvx`](https://docs.astral.sh/uv/) or [`pipx`](https://pipx.pypa.io/stable/):
 
 ```bash
-uv tool install copier --with copier-templates-extensions
+uvx copier --with copier-templates-extensions
 ```
 
 ```bash

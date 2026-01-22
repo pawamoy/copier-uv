@@ -17,6 +17,9 @@ _skip_if_exists:
 
 _tasks:
 - "git init ."
+- "echo ''"
+- "echo 'Project successfully generated!'"
+- "echo 'Run `uvx --from taskipy task --list` to show the available tasks.'"
 
 # PROMPT --------------------------------
 project_name:

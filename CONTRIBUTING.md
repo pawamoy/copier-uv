@@ -10,7 +10,7 @@ and [Copier](https://github.com/copier-org/copier).
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
-uv tool install copier --with copier-templates-extensions
+uvx copier --with copier-templates-extensions
 ```
 
 Then you can clone the repository, enter it and set it up with:
