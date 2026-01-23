@@ -61,6 +61,14 @@ and [taskipy](https://github.com/taskipy/taskipy) for task running.
 
 This project uses dynamic versioning based on Git tags. The git repository is automatically initialized when you generate the project.
 
+To add remote, you can do the following:                                        
+                                                                                                                                
+  `git add . && git commit -m "Initial commit from template"`                                                                     
+                                                                                                                                
+Then you can run the repo create command if you have `gh` installed:                                                                                       
+                                                                                                                                
+  `gh repo create <insert-name> --source=. --private --push`  
+
 ## Dependencies and virtual environments
 
 Dependencies are managed by [uv](https://github.com/astral-sh/uv).
