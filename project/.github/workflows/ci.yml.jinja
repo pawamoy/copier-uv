@@ -58,7 +58,10 @@ jobs:
       run: uvx --from taskipy task typecheck
 
     - name: Build documentation
-      run: uvx --from taskipy task docs_build
+      run: |
+        mkdir -p htmlcov
+        touch htmlcov/index.html
+        uvx --from taskipy task docs_build
 
     - name: Store objects inventory for tests
       uses: actions/upload-artifact@v5

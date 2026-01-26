@@ -94,8 +94,8 @@ fix = { cmd = "task format && task lint", help = "Format + lint auto-fix" }
 format_check = { cmd = "uvx ruff format --check {all}", help = "Check code formatting (CI)" }
 lint_check = { cmd = "uvx ruff check {all}", help = "Check linting (CI)" }
 typecheck = { cmd = "uvx ty check {src}", help = "Run type checking" }
-test = { cmd = "uv run pytest {tests}", help = "Run test suite" }
-test_cov = { cmd = "uv run pytest {tests} --cov={src} --cov-report=html --cov-report=term", help = "Run tests with coverage" }
+test = { cmd = "uv run pytest {tests} --cov={src} --cov-report=html --cov-report=term", help = "Run tests with coverage" }
+test_no_cov = { cmd = "uv run pytest {tests}", help = "Run test suite" }
 
 # CI: all checks in one command (read-only)
 ci = { cmd = "task format_check && task lint_check && task typecheck && task test", help = "Run all CI checks (format, lint, typecheck, test)" }
