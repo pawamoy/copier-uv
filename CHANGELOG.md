@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.4.5](https://github.com/oedokumaci/copier-uv/releases/tag/0.4.5) - 2026-01-26
+
+<small>[Compare with 0.4.4](https://github.com/oedokumaci/copier-uv/compare/0.4.4...0.4.5)</small>
+
+### Bug Fixes
+
+- Change default copyright license from ISC to MIT ([1f61db1](https://github.com/oedokumaci/copier-uv/commit/1f61db127875984e5eddb9c0ee9260d396ca3d14) by oedokumaci).
+
 ## [0.4.4](https://github.com/oedokumaci/copier-uv/releases/tag/0.4.4) - 2026-01-26
 
 <small>[Compare with 0.4.3](https://github.com/oedokumaci/copier-uv/compare/0.4.3...0.4.4)</small>
