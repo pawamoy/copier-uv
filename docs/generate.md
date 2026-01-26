@@ -144,15 +144,15 @@ copyright_license? Format: str
 (2) Apache License 2.0
 (3) Artistic License 2.0
 ...
-(22) ISC License
+(24) MIT License
 ...
 (32) The Unlicense
 (33) zlib License
-Choice [22]: 
+Choice [24]: 
 ```
 
 A license from [choosealicense.com](https://choosealicense.com/).
-It defaults to ISC License.
+It defaults to MIT License.
 
 ---
 
