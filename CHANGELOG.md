@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.4.4](https://github.com/oedokumaci/copier-uv/releases/tag/0.4.4) - 2026-01-26
+
+<small>[Compare with 0.4.3](https://github.com/oedokumaci/copier-uv/compare/0.4.3...0.4.4)</small>
+
+### Bug Fixes
+
+- Add new test command options and update CI workflow ([86dd2d0](https://github.com/oedokumaci/copier-uv/commit/86dd2d062643e270253802d685b6a2a6d66488f5) by oedokumaci).
+
 ## [0.4.3](https://github.com/oedokumaci/copier-uv/releases/tag/0.4.3) - 2026-01-26
 
 <small>[Compare with 0.4.2](https://github.com/oedokumaci/copier-uv/compare/0.4.2...0.4.3)</small>
