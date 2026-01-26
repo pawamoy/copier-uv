@@ -16,7 +16,10 @@ _skip_if_exists:
 - CHANGELOG.md
 
 _tasks:
+- "echo 'Initializing git repository...'"
 - "git init ."
+- "echo 'Installing pre-commit hooks...'"
+- "uvx pre-commit install"
 - "echo ''"
 - "echo 'Project successfully generated!'"
 - "echo 'Run `uvx --from taskipy task --list` to show the available tasks.'"
