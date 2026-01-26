@@ -41,13 +41,7 @@ Make sure all the
 are met, then:
 
 ```bash
-copier copy --trust "https://github.com/oedokumaci/copier-uv.git" /path/to/your/new/project
-```
-
-Or even shorter:
-
-```bash
-copier copy --trust "gh:oedokumaci/copier-uv" /path/to/your/new/project
+uvx --with copier-templates-extensions copier copy --trust "gh:oedokumaci/copier-uv" /path/to/your/new/project
 ```
 
 See the [documentation](https://oedokumaci.github.io/copier-uv)

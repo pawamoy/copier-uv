@@ -3,18 +3,6 @@
 To generate a project, run the following command:
 
 ```bash
-copier copy --trust "https://github.com/oedokumaci/copier-uv.git" /path/to/your/new/project
-```
-
-Or with a shorter command:
-
-```bash
-copier copy --trust "gh:oedokumaci/copier-uv" /path/to/your/new/project
-```
-
-You can even generate a project without installing Copier, using [uv](https://docs.astral.sh/uv/):
-
-```bash
 uvx --with copier-templates-extensions copier copy --trust "gh:oedokumaci/copier-uv" /path/to/your/new/project
 ```
 
