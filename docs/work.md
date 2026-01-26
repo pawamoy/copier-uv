@@ -62,12 +62,16 @@ and [taskipy](https://github.com/taskipy/taskipy) for task running.
 This project uses dynamic versioning based on Git tags. The git repository is automatically initialized when you generate the project.
 
 To add remote, you can do the following:                                        
-                                                                                                                                
-  `git add . && git commit -m "Initial commit from template"`                                                                     
-                                                                                                                                
-Then you can run the repo create command if you have `gh` installed:                                                                                       
-                                                                                                                                
-  `gh repo create <insert-name> --source=. --private --push`  
+
+```bash
+git add . && git commit -m "chore: Initialize repository from template"
+```
+
+Then you can create the repository on GitHub using `gh` CLI:
+
+```bash
+gh repo create <org-name/repo-name> --source=. --private --push
+```
 
 ## Dependencies and virtual environments
 
@@ -103,6 +107,15 @@ test = [
 
 Tasks are defined in `pyproject.toml` using [taskipy](https://github.com/taskipy/taskipy).
 Run tasks with `uvx --from taskipy task <name>`.
+
+!!! tip "Shell Alias"
+    For convenience, you can add an alias to your shell configuration (e.g., `~/.zshrc` or `~/.bashrc`):
+
+    ```bash
+    alias t='uvx --from taskipy task'
+    ```
+
+    Then run tasks with just `t <name>`, e.g., `t fix`, `t test`, `t ci`.
 
 List all available tasks:
 
@@ -350,13 +363,4 @@ Build the documentation with:
 
 ```bash
 uvx --from taskipy task docs_build
-```
-
-### Deploying
-
-MkDocs has a `gh-deploy` command that will deploy
-your documentation on GitHub pages:
-
-```bash
-uv run mkdocs gh-deploy --force
 ```
