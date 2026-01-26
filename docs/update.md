@@ -13,7 +13,7 @@ Example: the template fixed a bug in the Makefile.
 You don't want to apply it manually to your projects.
 
 To update your project, go into its directory,
-and run `copier update`. Your repository must be clean
+and run `uvx --with copier-templates-extensions copier update`. Your repository must be clean
 (no modified files) when running this command.
 
 Copier will use the previous answers you gave when
@@ -56,7 +56,7 @@ repository_provider: github.com
 
 If you want to use all previous answers
 without copier prompting you for each answer,
-run `copier update --force`.
+run `uvx --with copier-templates-extensions copier update --force`.
 
 Since we are generally using Git in our projects,
 my recommendation is to not think at all
