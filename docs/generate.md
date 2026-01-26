@@ -143,41 +143,16 @@ copyright_license? Format: str
 (1) Academic Free License v3.0
 (2) Apache License 2.0
 (3) Artistic License 2.0
-(4) BSD 2-Clause "Simplified" License
-(5) BSD 3-Clause Clear License
-(6) BSD 3-Clause "New" or "Revised" License
-(7) Boost Software License 1.0
-(8) Creative Commons Attribution 4.0
-(9) Creative Commons Attribution Share Alike 4.0
-(10) Creative Commons Zero v1.0 Universal
-(11) Do What The F*ck You Want To Public License
-(12) Educational Community License v2.0
-(13) Eclipse Public License 1.0
-(14) Eclipse Public License 2.0
-(15) European Union Public License 1.1
-(16) European Union Public License 1.2
-(17) GNU Affero General Public License v3.0
-(18) GNU General Public License v2.0
-(19) GNU General Public License v3.0
-(20) GNU Lesser General Public License v2.1
-(21) GNU Lesser General Public License v3.0
+...
 (22) ISC License
-(23) LaTeX Project Public License v1.3c
-(24) MIT License
-(25) Mozilla Public License 2.0
-(26) Microsoft Public License
-(27) Microsoft Reciprocal License
-(28) University of Illinois/NCSA Open Source License
-(29) SIL Open Font License 1.1
-(30) Open Software License 3.0
-(31) PostgreSQL License
+...
 (32) The Unlicense
 (33) zlib License
 Choice [22]: 
 ```
 
-A license from choosealicence.com.
-It defaults to ISC License (my personal preference).
+A license from [choosealicense.com](https://choosealicense.com/).
+It defaults to ISC License.
 
 ---
 
@@ -200,6 +175,32 @@ python_package_import_name? Format: str
 
 The name that will be used to import your package in Python code.
 Yes, distribution name and import name can be different!
+
+---
+
+```
+Python version for your project
+python_version? Format: str
+🎤
+(1) 3.12
+(2) 3.13
+(3) 3.14
+Choice [2]: 
+```
+
+The Python version to use for your project.
+It defaults to 3.13.
+
+---
+
+```
+Include marimo notebooks support for data science workflows
+include_notebooks? Format: bool
+🎤 [True]: 
+```
+
+Whether to include marimo notebooks support.
+It defaults to true.
 
 ## Output
 
