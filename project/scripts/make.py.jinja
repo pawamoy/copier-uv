@@ -118,7 +118,7 @@ def clean() -> None:
         shutil.rmtree(path, ignore_errors=True)
 
     cache_dirs = {".cache", ".pytest_cache", ".ruff_cache", "__pycache__"}
-    for dirpath in Path(".").rglob("*/"):
+    for dirpath in Path().rglob("*/"):
         if dirpath.parts[0] not in (".venv", ".venvs") and dirpath.name in cache_dirs:
             shutil.rmtree(dirpath, ignore_errors=True)
 
@@ -151,7 +151,7 @@ def main() -> int:
                 ),
                 flush=True,
             )
-            if os.path.exists(".venv"):
+            if Path(".venv").exists():
                 print("\nAvailable tasks", flush=True)
                 run("default", "duty", "--list")
         return 0
