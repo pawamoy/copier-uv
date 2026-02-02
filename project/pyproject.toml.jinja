@@ -54,7 +54,7 @@ getter = "scripts.get_version:get_version"
 
 [tool.pdm.build]
 # Include as much as possible in the source distribution, to help redistributors.
-excludes = ["**/.pytest_cache", "**/.mypy_cache"]
+excludes = ["**/.pytest_cache"]
 source-includes = [
     "config",
     "docs",
@@ -89,7 +89,7 @@ ci = [
     "pytest-cov>=5.0",
     "pytest-randomly>=3.15",
     "pytest-xdist>=3.6",
-    "mypy>=1.10",
+    "ty>=0.0.14",
     "types-markdown>=3.6",
     "types-pyyaml>=6.0",
 ]

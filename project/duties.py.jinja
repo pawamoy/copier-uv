@@ -35,7 +35,7 @@ def pyprefix(title: str) -> str:
 def _get_changelog_version() -> str:
     changelog_version_re = re.compile(r"^## \[(\d+\.\d+\.\d+)\].*$")
     with Path(__file__).parent.joinpath("CHANGELOG.md").open("r", encoding="utf8") as file:
-        return next(filter(bool, map(changelog_version_re.match, file))).group(1)  # type: ignore[union-attr]
+        return next(filter(bool, map(changelog_version_re.match, file))).group(1)  # ty: ignore[invalid-argument-type]
 
 
 @duty
@@ -77,9 +77,9 @@ def check_docs(ctx: Context) -> None:
 @duty(nofail=PY_VERSION == PY_DEV)
 def check_types(ctx: Context) -> None:
     """Check that the code is correctly typed."""
-    os.environ["FORCE_COLOR"] = "1"
+    py = f"{sys.version_info.major}.{sys.version_info.minor}"
     ctx.run(
-        tools.mypy(*PY_SRC_LIST, config_file="config/mypy.ini"),
+        tools.ty.check(*PY_SRC_LIST, color=True, error_on_warning=True, python_version=py),
         title=pyprefix("Type-checking"),
     )
 

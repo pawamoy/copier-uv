@@ -8,7 +8,6 @@ The generated project has this structure:
 ├── 📄 CODE_OF_CONDUCT.md --------- #
 ├── 📁 config --------------------- # tools configuration files
 │   ├── 📄 coverage.ini ----------- #
-│   ├── 📄 mypy.ini --------------- #
 │   ├── 📄 pytest.ini ------------- #
 │   └── 📄 ruff.toml -------------- #
 ├── 📄 CONTRIBUTING.md ------------ #
@@ -345,14 +344,14 @@ See the [Documentation section](#documentation) for more information.
 
 ### check-types
 
-This action runs [`mypy`](http://mypy-lang.org/) on the source code
+This action runs [`ty`](https://docs.astral.sh/ty/) on the source code
 to find potential typing errors.
 
 If you cannot or don't know how to fix a typing error in your code,
 as a last resort you can ignore this specific error with a comment:
 
 ```python title="src/your_package/module.py"
-result = data_dict.get(key, None).value  # type: ignore[ID]
+result = data_dict.get(key, None).value  # ty: ignore[ID]
 ```
 
 ...where ID is the name of the warning, for example `arg-type` or `union-attr`.

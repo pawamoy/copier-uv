@@ -264,7 +264,6 @@ At this point, Copier will generate the project in the specified directory:
     create  docs/css/mkdocstrings.css
     create  config/
     create  config/pytest.ini
-    create  config/mypy.ini
     create  config/coverage.ini
     create  .github/
     create  .github/FUNDING.yml
