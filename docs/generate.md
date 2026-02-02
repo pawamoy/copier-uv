@@ -82,7 +82,7 @@ Your repository provider
 repository_provider? Format: str
 🎤
 (1) github.com
-Choice [1]: 
+Choice [1]:
 ```
 
 The repository provider on which you plan to store your project.
@@ -94,7 +94,7 @@ case we add support for more providers in the future.
 ```
 Your repository namespace
 repository_namespace? Format: str
-🎤 [pawamoy]: 
+🎤 [pawamoy]:
 ```
 
 The namespace (or account) on which the project will be stored.
@@ -105,7 +105,7 @@ It defaults to the username you provided.
 ```
 Your repository name
 repository_name? Format: str
-🎤 [my-project]: 
+🎤 [my-project]:
 ```
 
 The repository name on the selected provider.
@@ -116,7 +116,7 @@ It defaults to a slugified version of your project's name.
 ```
 The name of the person/entity holding the copyright
 copyright_holder? Format: str
-🎤 [Timothée Mazzucotelli]: 
+🎤 [Timothée Mazzucotelli]:
 ```
 
 The name of the person or entity holding the copyright on the project.
@@ -127,7 +127,7 @@ It defaults to the full name your provided.
 ```
 The email of the person/entity holding the copyright
 copyright_holder_email? Format: str
-🎤 [dev@pawamoy.frr]: 
+🎤 [dev@pawamoy.frr]:
 ```
 
 The email of the person or entity holding the copyright on the project.
@@ -138,7 +138,7 @@ It defaults to the email your provided.
 ```
 The copyright date
 copyright_date? Format: str
-🎤 [2021]: 
+🎤 [2021]:
 ```
 
 The date to apply to the copyright.
@@ -183,7 +183,7 @@ copyright_license? Format: str
 (31) PostgreSQL License
 (32) The Unlicense
 (33) zlib License
-Choice [22]: 
+Choice [22]:
 ```
 
 A license from choosealicence.com.
@@ -194,7 +194,7 @@ It defaults to ISC License (my personal preference).
 ```
 Your Python package distribution name (for `pip install NAME`)
 python_package_distribution_name? Format: str
-🎤 [my-project]: 
+🎤 [my-project]:
 ```
 
 The name under which your Python package will be distributed.
@@ -205,7 +205,7 @@ This will be the name of your project on pypi.org for example.
 ```
 Your Python package import name (for `import NAME` in Python code)
 python_package_import_name? Format: str
-🎤 [my_project]: 
+🎤 [my_project]:
 ```
 
 The name that will be used to import your package in Python code.
@@ -216,7 +216,7 @@ Yes, distribution name and import name can be different!
 ```
 Your CLI name if any (for use in the shell)
 python_package_command_line_name? Format: str
-🎤 [my-project]: 
+🎤 [my-project]:
 ```
 
 The name of the command users will type in the command line
