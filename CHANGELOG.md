@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.6](https://github.com/pawamoy/copier-uv/releases/tag/1.11.6) - 2026-02-05
+
+<small>[Compare with 1.11.5](https://github.com/pawamoy/copier-uv/compare/1.11.5...1.11.6)</small>
+
+### Code Refactoring
+
+- Ignore EM102 lint rule (f-string as exception messages) ([0edf8bf](https://github.com/pawamoy/copier-uv/commit/0edf8bf67bd5f2679a28f5103e2972778f52092c) by Timothée Mazzucotelli).
+
 ## [1.11.5](https://github.com/pawamoy/copier-uv/releases/tag/1.11.5) - 2026-02-05
 
 <small>[Compare with 1.11.4](https://github.com/pawamoy/copier-uv/compare/1.11.4...1.11.5)</small>
