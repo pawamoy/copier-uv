@@ -228,8 +228,8 @@ At this point, Copier will generate the project in the specified directory:
 
 ```
     create  pyproject.toml
-    create  mkdocs.yml
     create  duties.py
+    create  zensical.toml
     create  .copier-answers.yml
     create  README.md
     create  Makefile
@@ -261,7 +261,7 @@ At this point, Copier will generate the project in the specified directory:
     create  docs/reference/
     create  docs/reference/cli.md
     create  docs/css/
-    create  docs/css/mkdocstrings.css
+    create  docs/css/apidocs.css
     create  config/
     create  config/pytest.ini
     create  config/coverage.ini
