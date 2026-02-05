@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.3](https://github.com/pawamoy/copier-uv/releases/tag/1.11.3) - 2026-02-05
+
+<small>[Compare with 1.11.2](https://github.com/pawamoy/copier-uv/compare/1.11.2...1.11.3)</small>
+
+### Code Refactoring
+
+- Select all Ruff rules ([2189474](https://github.com/pawamoy/copier-uv/commit/218947453e0a07a2eb2d5783ce05b54806816dc0) by Timothée Mazzucotelli).
+- Update Python dev version to 3.15 ([e9c68a3](https://github.com/pawamoy/copier-uv/commit/e9c68a3542af4f4792b1b20773d6381841aa1c0e) by Timothée Mazzucotelli).
+- Use ty instead of mypy ([cedd137](https://github.com/pawamoy/copier-uv/commit/cedd137f67ce3675f26328343ce876bbb4390ce0) by Timothée Mazzucotelli).
+
 ## [1.11.2](https://github.com/pawamoy/copier-uv/releases/tag/1.11.2) - 2025-11-20
 
 <small>[Compare with 1.11.1](https://github.com/pawamoy/copier-uv/compare/1.11.1...1.11.2)</small>
