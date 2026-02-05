@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.4](https://github.com/pawamoy/copier-uv/releases/tag/1.11.4) - 2026-02-05
+
+<small>[Compare with 1.11.3](https://github.com/pawamoy/copier-uv/compare/1.11.3...1.11.4)</small>
+
+### Bug Fixes
+
+- Use 3.15-dev in GHA ([c75aa14](https://github.com/pawamoy/copier-uv/commit/c75aa144666c9c8cd8ac3eef625680284ee57b49) by Timothée Mazzucotelli).
+
 ## [1.11.3](https://github.com/pawamoy/copier-uv/releases/tag/1.11.3) - 2026-02-05
 
 <small>[Compare with 1.11.2](https://github.com/pawamoy/copier-uv/compare/1.11.2...1.11.3)</small>
