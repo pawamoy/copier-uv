@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.7](https://github.com/pawamoy/copier-uv/releases/tag/1.11.7) - 2026-02-09
+
+<small>[Compare with 1.11.6](https://github.com/pawamoy/copier-uv/compare/1.11.6...1.11.7)</small>
+
+### Code Refactoring
+
+- Update code for 3.10 style target ([2a076e8](https://github.com/pawamoy/copier-uv/commit/2a076e8ae58d34c97cd3d251ea89f5e65ff6dad4) by Timothée Mazzucotelli).
+- Don't hard-wrap lines in Markdown docs ([184cea2](https://github.com/pawamoy/copier-uv/commit/184cea2b6809a434373ae3455913eb84b6d4e0be) by Timothée Mazzucotelli).
+- Update Ruff config (Python target, ignored rules, concise output format) ([2b0ebda](https://github.com/pawamoy/copier-uv/commit/2b0ebda9542ce7cf427eed60f6cd3136608b383f) by Timothée Mazzucotelli).
+- Ensure colored output for Ruff and ty ([ffe4dd5](https://github.com/pawamoy/copier-uv/commit/ffe4dd58c30566d1a6d98ae84e4c514b089118ae) by Timothée Mazzucotelli).
+- Switch from MkDocs to Zensical ([558c6e9](https://github.com/pawamoy/copier-uv/commit/558c6e9bbf882c323ab646c61de591a88cc4dd4a) by Timothée Mazzucotelli).
+
 ## [1.11.6](https://github.com/pawamoy/copier-uv/releases/tag/1.11.6) - 2026-02-05
 
 <small>[Compare with 1.11.5](https://github.com/pawamoy/copier-uv/compare/1.11.5...1.11.6)</small>
