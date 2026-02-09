@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.8](https://github.com/pawamoy/copier-uv/releases/tag/1.11.8) - 2026-02-09
+
+<small>[Compare with 1.11.7](https://github.com/pawamoy/copier-uv/compare/1.11.7...1.11.8)</small>
+
+### Bug Fixes
+
+- Fix accent color in slate palette ([aa0cb55](https://github.com/pawamoy/copier-uv/commit/aa0cb55370cde8d3f57e89c1126da6489cc1ece4) by Timothée Mazzucotelli).
+
 ## [1.11.7](https://github.com/pawamoy/copier-uv/releases/tag/1.11.7) - 2026-02-09
 
 <small>[Compare with 1.11.6](https://github.com/pawamoy/copier-uv/compare/1.11.6...1.11.7)</small>
