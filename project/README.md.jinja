@@ -15,17 +15,20 @@
 pip install {{ python_package_distribution_name }}
 ```
 
-{% if python_package_command_line_name -%}
+{%- if python_package_command_line_name %}
+
 With [`uv`](https://docs.astral.sh/uv/):
 
 ```bash
 uv tool install {{ python_package_distribution_name }}
 ```
-{%- endif -%}
 
-{% if author_username == "pawamoy" %}
+{%- endif %}
+
+{%- if author_username == "pawamoy" %}
+
 ## Sponsors
 
 <!-- sponsors-start -->
 <!-- sponsors-end -->
-{% endif %}
+{%- endif %}
