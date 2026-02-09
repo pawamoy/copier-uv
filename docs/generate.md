@@ -20,8 +20,7 @@ uvx --with copier-templates-extensions copier copy --trust "gh:pawamoy/copier-uv
 
 ## Questions
 
-*The following examples are not up-to-date,
-they simply illustrate how the template works.*
+*The following examples are not up-to-date, they simply illustrate how the template works.*
 
 Copier will ask you to answer some questions:
 
@@ -31,8 +30,7 @@ project_name? Format: str
 🎤 [None]: My Project
 ```
 
-The project name can use spaces and capitals.
-It will be used as the main heading in the README for example.
+The project name can use spaces and capitals. It will be used as the main heading in the README for example.
 
 ---
 
@@ -42,8 +40,7 @@ project_description? Format: str
 🎤 [None]: My super project!
 ```
 
-The project description can be as long as you want,
-and use any character you want.
+The project description can be as long as you want, and use any character you want.
 
 ---
 
@@ -85,9 +82,7 @@ repository_provider? Format: str
 Choice [1]:
 ```
 
-The repository provider on which you plan to store your project.
-This template only supports GitHub, but the question is left in
-case we add support for more providers in the future.
+The repository provider on which you plan to store your project. This template only supports GitHub, but the question is left in case we add support for more providers in the future.
 
 ---
 
@@ -97,8 +92,7 @@ repository_namespace? Format: str
 🎤 [pawamoy]:
 ```
 
-The namespace (or account) on which the project will be stored.
-It defaults to the username you provided.
+The namespace (or account) on which the project will be stored. It defaults to the username you provided.
 
 ---
 
@@ -108,8 +102,7 @@ repository_name? Format: str
 🎤 [my-project]:
 ```
 
-The repository name on the selected provider.
-It defaults to a slugified version of your project's name.
+The repository name on the selected provider. It defaults to a slugified version of your project's name.
 
 ---
 
@@ -119,8 +112,7 @@ copyright_holder? Format: str
 🎤 [Timothée Mazzucotelli]:
 ```
 
-The name of the person or entity holding the copyright on the project.
-It defaults to the full name your provided.
+The name of the person or entity holding the copyright on the project. It defaults to the full name your provided.
 
 ---
 
@@ -130,8 +122,7 @@ copyright_holder_email? Format: str
 🎤 [dev@pawamoy.frr]:
 ```
 
-The email of the person or entity holding the copyright on the project.
-It defaults to the email your provided.
+The email of the person or entity holding the copyright on the project. It defaults to the email your provided.
 
 ---
 
@@ -141,8 +132,7 @@ copyright_date? Format: str
 🎤 [2021]:
 ```
 
-The date to apply to the copyright.
-It defaults to the current year.
+The date to apply to the copyright. It defaults to the current year.
 
 ---
 
@@ -186,8 +176,7 @@ copyright_license? Format: str
 Choice [22]:
 ```
 
-A license from choosealicence.com.
-It defaults to ISC License (my personal preference).
+A license from choosealicence.com. It defaults to ISC License (my personal preference).
 
 ---
 
@@ -197,8 +186,7 @@ python_package_distribution_name? Format: str
 🎤 [my-project]:
 ```
 
-The name under which your Python package will be distributed.
-This will be the name of your project on pypi.org for example.
+The name under which your Python package will be distributed. This will be the name of your project on pypi.org for example.
 
 ---
 
@@ -208,8 +196,7 @@ python_package_import_name? Format: str
 🎤 [my_project]:
 ```
 
-The name that will be used to import your package in Python code.
-Yes, distribution name and import name can be different!
+The name that will be used to import your package in Python code. Yes, distribution name and import name can be different!
 
 ---
 
@@ -219,8 +206,7 @@ python_package_command_line_name? Format: str
 🎤 [my-project]:
 ```
 
-The name of the command users will type in the command line
-to run your program.
+The name of the command users will type in the command line to run your program.
 
 ## Output
 

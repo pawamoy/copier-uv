@@ -44,34 +44,23 @@ The generated project has this structure:
 
 ## Environment
 
-The project is configured to use [direnv](https://direnv.net/).
-If direnv is loaded in your shell, allow it in the project with
-`direnv allow`. It will add the `scripts` folder to your PATH
-when you enter the repository (and remove it when you exit it).
-The `scripts` folder has a `make` Bash script in it:
-it will shadow any `make` command you have in your PATH
-(this is indented!).
+The project is configured to use [direnv](https://direnv.net/). If direnv is loaded in your shell, allow it in the project with `direnv allow`. It will add the `scripts` folder to your PATH when you enter the repository (and remove it when you exit it). The `scripts` folder has a `make` Bash script in it: it will shadow any `make` command you have in your PATH (this is indented!).
 
-If you don't have or don't use direnv, you can still use
-the official `make` command, though you won't be able
-to pass arguments to some of the actions.
+If you don't have or don't use direnv, you can still use the official `make` command, though you won't be able to pass arguments to some of the actions.
 
-In the rest of the documentation, we will use `make` commands,
-but you can also directly call `scripts/make`.
+In the rest of the documentation, we will use `make` commands, but you can also directly call `scripts/make`.
 
 See [Tasks](#tasks) to learn more.
 
 ## Python versions
 
-To specify which Python versions you would like to work with,
-define the `PYTHON_VERSIONS` environment variable:
+To specify which Python versions you would like to work with, define the `PYTHON_VERSIONS` environment variable:
 
 ```bash
 export PYTHON_VERSIONS="3.10 3.11 3.12"
 ```
 
-By default it is set to active versions of Python
-(non-EOL, in development).
+By default it is set to active versions of Python (non-EOL, in development).
 
 ## Initialize Git Repository
 
@@ -87,9 +76,7 @@ Dependencies are managed by [uv](https://github.com/astral-sh/uv).
 
 Use `make setup` or `uv sync` to install the dependencies.
 
-Dependencies are written in `pyproject.toml`.
-Runtime dependencies are listed under the `[project]` and `[project.optional-dependencies]` sections,
-and development dependencies are listed under the `[dependency-groups]` section.
+Dependencies are written in `pyproject.toml`. Runtime dependencies are listed under the `[project]` and `[project.optional-dependencies]` sections, and development dependencies are listed under the `[dependency-groups]` section.
 
 Example:
 
@@ -113,10 +100,7 @@ ci = [
 
 ## Tasks
 
-The tasks are written in Python (for cross-platform compatibility),
-and based on the task-runner called [duty](https://github.com/pawamoy/duty).
-They are written in the `duties.py` file,
-and decorated with the `@duty` decorator.
+The tasks are written in Python (for cross-platform compatibility), and based on the task-runner called [duty](https://github.com/pawamoy/duty). They are written in the `duties.py` file, and decorated with the `@duty` decorator.
 
 Example:
 
@@ -127,67 +111,41 @@ def check_docs(ctx):
     ctx.run("mkdocs build -s", title="Building documentation")
 ```
 
-To run a task, use `make TASK [ARG=VALUE...]`.
-You can run multiple tasks at once: `make TASK1 ARG=VALUE TASK2`.
-You can list the available tasks with `make help`.
+To run a task, use `make TASK [ARG=VALUE...]`. You can run multiple tasks at once: `make TASK1 ARG=VALUE TASK2`. You can list the available tasks with `make help`.
 
 Available tasks:
 
 - `build`: Build source and wheel distributions.
-- `changelog`: Update the changelog in-place with latest commits.
-  See [the Changelog section](#changelog).
-- `check`: Check it all!
-  See [the Quality Analysis section](#quality-analysis).
-- `check-quality`: Check the code quality.
-  See [the check-quality section](#check-quality).
-- `check-docs`: Check if the documentation builds correctly.
-  See [the check-docs section](#check-docs).
-- `check-types`: Check that the code is correctly typed.
-  See [the check-types section](#check-types).
+- `changelog`: Update the changelog in-place with latest commits. See [the Changelog section](#changelog).
+- `check`: Check it all! See [the Quality Analysis section](#quality-analysis).
+- `check-quality`: Check the code quality. See [the check-quality section](#check-quality).
+- `check-docs`: Check if the documentation builds correctly. See [the check-docs section](#check-docs).
+- `check-types`: Check that the code is correctly typed. See [the check-types section](#check-types).
 - `clean`: Delete temporary files.
 - `coverage`: Report coverage as text and HTML.
-- `docs`: Serve the documentation (localhost:8000).
-  See [the Documentation section](#documentation).
-  Arguments:
+- `docs`: Serve the documentation (localhost:8000). See [the Documentation section](#documentation). Arguments:
     - `host="127.0.0.1"`: The host to serve the docs from.
     - `port=8000`: The port to serve the docs on.
 - `format`: Run formatting tools on the code.
 - `publish`: Publish source and wheel distributions to PyPI.
-- `release`: Release a new Python package.
-  See [the Releases section](#releases).
-  Arguments:
+- `release`: Release a new Python package. See [the Releases section](#releases). Arguments:
     - `version` The Python package version.
-- `test`: Run the test suite.
-  See [the Tests section](#tests).
-  Arguments:
+- `test`: Run the test suite. See [the Tests section](#tests). Arguments:
     - `match=""`: A pytest expression to filter selected tests.
-- `vscode`: Configure VSCode for the project.
-  See [VSCode setup](#vscode-setup).
+- `vscode`: Configure VSCode for the project. See [VSCode setup](#vscode-setup).
 
 The `make` script provides some additional commands:
 
 - `make help`: Print available commands and tasks.
-- `make setup`: Install project and dependencies for all configured Python versions,
-  as well as in a default virtual environment (`.venv` + `.venvs/*`).
-- `make run command --args`: run arbitrary commands in the default Python virtual environment (`.venv`).
-  This command can be useful to run a Python interpreter without having to activate the venv:
-  `make run python`.
-- `make multirun command --args`: run arbitrary commands for all configured Python versions (`.venvs/*`).
-  This command can be useful to check something on all Python versions:
-  `make multirun python -c 'import sys; print(sys.version_info)'`.
-- `make allrun command --args`: run arbitrary commands in *all* Python virtual environments (`.venv` + `.venvs/*`).
-  This command can be useful to override some of the installed dependencies,
-  or to install local packages as editable:
-  `make allrun pip install -U some-dependency==2.0`, `make allrun pip install -e ../some-project`.
-- `make 3.x command --args`: run arbitrary commands for a specific Python versions (`.venvs/3.x`).
-  This command can be useful to check something on a specific Python version:
-  `make 3.13 duty docs`.
+- `make setup`: Install project and dependencies for all configured Python versions, as well as in a default virtual environment (`.venv` + `.venvs/*`).
+- `make run command --args`: run arbitrary commands in the default Python virtual environment (`.venv`). This command can be useful to run a Python interpreter without having to activate the venv: `make run python`.
+- `make multirun command --args`: run arbitrary commands for all configured Python versions (`.venvs/*`). This command can be useful to check something on all Python versions: `make multirun python -c 'import sys; print(sys.version_info)'`.
+- `make allrun command --args`: run arbitrary commands in *all* Python virtual environments (`.venv` + `.venvs/*`). This command can be useful to override some of the installed dependencies, or to install local packages as editable: `make allrun pip install -U some-dependency==2.0`, `make allrun pip install -e ../some-project`.
+- `make 3.x command --args`: run arbitrary commands for a specific Python versions (`.venvs/3.x`). This command can be useful to check something on a specific Python version: `make 3.13 duty docs`.
 
 ### VSCode setup
 
-If you work in VSCode, we provide a `make vscode` action
-that configures settings and tasks. **It will overwrite the following existing
-files, so make sure to back them up:**
+If you work in VSCode, we provide a `make vscode` action that configures settings and tasks. **It will overwrite the following existing files, so make sure to back them up:**
 
 - `.vscode/launch.json`
 - `.vscode/settings.json`
@@ -201,14 +159,9 @@ The first thing you should run when entering your repository is:
 make setup
 ```
 
-If you don't have the `make` command,
-you can use `scripts/make setup` directly,
-or even just `uv venv; uv pip install`
-if you don't plan on using multiple Python versions.
+If you don't have the `make` command, you can use `scripts/make setup` directly, or even just `uv venv; uv pip install` if you don't plan on using multiple Python versions.
 
-This will install the project's dependencies in virtual environments:
-one venv per chosen Python version in `.venvs/$python_version`,
-and one default venv in `.venv/`.
+This will install the project's dependencies in virtual environments: one venv per chosen Python version in `.venvs/$python_version`, and one default venv in `.venv/`.
 
 The chosen Python versions are defined in the `scripts/make` Bash script.
 
@@ -216,11 +169,8 @@ Now you can start writing and editing code in `src/your_package`.
 
 - You can auto-format the code with `make format`.
 - You can run a quality analysis with `make check`.
-- Once you wrote tests for your new code,
-  you can run the test suite with `make test`.
-- Once you are ready to publish a new release,
-  run `make changelog`, then `make release version=x.y.z`,
-  where `x.y.z` is the version added to the changelog.
+- Once you wrote tests for your new code, you can run the test suite with `make test`.
+- Once you are ready to publish a new release, run `make changelog`, then `make release version=x.y.z`, where `x.y.z` is the version added to the changelog.
 
 To summarize, the typical workflow is:
 
@@ -258,21 +208,13 @@ This action is actually a composition of several checks:
 - `check-types`: Check if the code is correctly typed.
 - `check-api`: Check for breaking changes in your Python API.
 
-For example, if you are only interested in checking types,
-run `make check-types`.
+For example, if you are only interested in checking types, run `make check-types`.
 
 ### check-quality
 
-The code quality analysis is done
-with [Ruff](https://github.com/astral-sh/ruff).
-The analysis is configured in `config/ruff.toml`.
-In this file, you can deactivate rules
-or activate others to customize your analysis.
-Rules identifiers always start with one or more capital letters,
-like `D`, `S` or `BLK`, then followed by a number.
+The code quality analysis is done with [Ruff](https://github.com/astral-sh/ruff). The analysis is configured in `config/ruff.toml`. In this file, you can deactivate rules or activate others to customize your analysis. Rules identifiers always start with one or more capital letters, like `D`, `S` or `BLK`, then followed by a number.
 
-You can ignore a rule on a specific code line by appending
-a `noqa` comment ("no quality analysis/assurance"):
+You can ignore a rule on a specific code line by appending a `noqa` comment ("no quality analysis/assurance"):
 
 ```python title="src/your_package/module.py"
 print("a code line that triggers a Ruff warning")  # noqa: ID
@@ -304,8 +246,7 @@ $ make check-quality
 ✓ Checking code quality
 ```
 
-You can disable multiple different warnings on a single line
-by separating them with commas:
+You can disable multiple different warnings on a single line by separating them with commas:
 
 ```python title="src/your_package/module.py"
 markdown_docstring = """
@@ -319,8 +260,7 @@ markdown_docstring = """
 """  # noqa: D300,D301
 ```
 
-You can disable a warning globally by adding its ID
-into the list in `config/ruff.toml`.
+You can disable a warning globally by adding its ID into the list in `config/ruff.toml`.
 
 You can also disable warnings per file, like so:
 
@@ -333,21 +273,17 @@ You can also disable warnings per file, like so:
 
 ### check-docs
 
-This action builds the documentation with strict behavior:
-any warning will be considered an error and the command will fail.
+This action builds the documentation with strict behavior: any warning will be considered an error and the command will fail.
 
-The warnings/errors can be about incorrect docstring format,
-or invalid cross-references.
+The warnings/errors can be about incorrect docstring format, or invalid cross-references.
 
 See the [Documentation section](#documentation) for more information.
 
 ### check-types
 
-This action runs [`ty`](https://docs.astral.sh/ty/) on the source code
-to find potential typing errors.
+This action runs [`ty`](https://docs.astral.sh/ty/) on the source code to find potential typing errors.
 
-If you cannot or don't know how to fix a typing error in your code,
-as a last resort you can ignore this specific error with a comment:
+If you cannot or don't know how to fix a typing error in your code, as a last resort you can ignore this specific error with a comment:
 
 ```python title="src/your_package/module.py"
 result = data_dict.get(key, None).value  # ty: ignore[ID]
@@ -357,10 +293,7 @@ result = data_dict.get(key, None).value  # ty: ignore[ID]
 
 ### check-api
 
-This actions runs [Griffe](https://github.com/mkdocstrings/griffe)
-to search for API breaking changes since latest version. It is set
-to allow failures, and is more about providing information than
-preventing CI to pass.
+This actions runs [Griffe](https://github.com/mkdocstrings/griffe) to search for API breaking changes since latest version. It is set to allow failures, and is more about providing information than preventing CI to pass.
 
 ## Tests
 
@@ -370,17 +303,11 @@ Run the test suite with:
 make test
 ```
 
-Behind the scenes, it uses [`pytest`](https://docs.pytest.org/en/stable/)
-and plugins to collect and run the tests, and output a report.
+Behind the scenes, it uses [`pytest`](https://docs.pytest.org/en/stable/) and plugins to collect and run the tests, and output a report.
 
-Code source coverage is computed thanks to
-[coveragepy](https://coverage.readthedocs.io/en/coverage-5.1/).
+Code source coverage is computed thanks to [coveragepy](https://coverage.readthedocs.io/en/coverage-5.1/).
 
-Sometimes you don't want to run the whole test suite,
-but rather one particular test, or group of tests.
-Pytest provides a `-k` option to allow filtering the tests.
-The `test` command therefore accept a `match=` argument
-to specify the value of Pytest's `-k` option:
+Sometimes you don't want to run the whole test suite, but rather one particular test, or group of tests. Pytest provides a `-k` option to allow filtering the tests. The `test` command therefore accept a `match=` argument to specify the value of Pytest's `-k` option:
 
 ```
 make test match=training
@@ -414,27 +341,17 @@ Results (0.76s):
 
 ## Continuous Integration
 
-The quality checks and tests are executed in parallel
-in a [GitHub Workflow](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions).
-The CI is configured in `.github/workflows/ci.yml`.
+The quality checks and tests are executed in parallel in a [GitHub Workflow](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). The CI is configured in `.github/workflows/ci.yml`.
 
-To force a step to pass even when it fails,
-add `nofail=CI` or `nofail=True` to the corresponding
-`ctx.run` instruction in `duties.py`
+To force a step to pass even when it fails, add `nofail=CI` or `nofail=True` to the corresponding `ctx.run` instruction in `duties.py`
 
 ## Changelog
 
-Changelogs are absolutely useful when your software
-is updated regularly, to inform your users about the new features
-that were added or the bugs that were fixed.
+Changelogs are absolutely useful when your software is updated regularly, to inform your users about the new features that were added or the bugs that were fixed.
 
 But writing a changelog manually is a cumbersome process.
 
-This is why we offer, with this template,
-a way to automatically update the changelog.
-There is one requirement though for it to work:
-you must use the
-[Angular commit message convention](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit).
+This is why we offer, with this template, a way to automatically update the changelog. There is one requirement though for it to work: you must use the [Angular commit message convention](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit).
 
 For a quick reference:
 
@@ -457,11 +374,9 @@ Scope and body are optional. Type can be:
 - `style`: A change in code style/format.
 - `tests`: About tests.
 
-The two most important are `feat` and `fix` types.
-For other types of commits, you can do as you like.
+The two most important are `feat` and `fix` types. For other types of commits, you can do as you like.
 
-Subject (and body) must be valid Markdown.
-If you write a body, please add issues references at the end:
+Subject (and body) must be valid Markdown. If you write a body, please add issues references at the end:
 
 ```
 Body.
@@ -480,47 +395,23 @@ feat: Add training route
 fix: Stop deleting user data
 ```
 
-Following that convention will allow to generate
-new entries in the changelog while following the rules
-of [semantic versioning](https://semver.org/).
+Following that convention will allow to generate new entries in the changelog while following the rules of [semantic versioning](https://semver.org/).
 
-Once you are ready to publish a new release of your package,
-run the following command:
+Once you are ready to publish a new release of your package, run the following command:
 
 ```
 make changelog
 ```
 
-This will update the changelog in-place, using the latest,
-unpublished-yet commits.
+This will update the changelog in-place, using the latest, unpublished-yet commits.
 
-If this group of commits contains only bug fixes (`fix:`)
-and/or commits that are not interesting for users (`chore:`, `style:`, etc.),
-the changelog will gain a new **patch** entry.
-It means that the new suggested version will be a patch bump
-of the previous one: `0.1.1` becomes `0.1.2`.
+If this group of commits contains only bug fixes (`fix:`) and/or commits that are not interesting for users (`chore:`, `style:`, etc.), the changelog will gain a new **patch** entry. It means that the new suggested version will be a patch bump of the previous one: `0.1.1` becomes `0.1.2`.
 
-If this group of commits contains at least one feature (`feat:`),
-the changelog will gain a new **minor** entry.
-It means that the new suggested version will be a minor bump
-of the previous one: `0.1.1` becomes `0.2.0`.
+If this group of commits contains at least one feature (`feat:`), the changelog will gain a new **minor** entry. It means that the new suggested version will be a minor bump of the previous one: `0.1.1` becomes `0.2.0`.
 
-If there is, in this group, a commit whose body contains
-something like `Breaking change`,
-the changelog will gain a new **major** entry,
-unless the version is still an "alpha" version
-(starting with 0), in which case it gains a **minor** entry.
-It means that the new suggested version will be a major bump
-of the previous one: `1.2.1` becomes `2.0.0`,
-but `0.2.1` is only bumped up to `0.3.0`.
-Moving from "alpha" status to "beta" or "stable" status
-is a choice left to the developers,
-when they consider the package is ready for it.
+If there is, in this group, a commit whose body contains something like `Breaking change`, the changelog will gain a new **major** entry, unless the version is still an "alpha" version (starting with 0), in which case it gains a **minor** entry. It means that the new suggested version will be a major bump of the previous one: `1.2.1` becomes `2.0.0`, but `0.2.1` is only bumped up to `0.3.0`. Moving from "alpha" status to "beta" or "stable" status is a choice left to the developers, when they consider the package is ready for it.
 
-Finally, once your changelog has been updated,
-make sure its contents are correct (add, remove or edit anything
-you need), and use the new version (the one that was added
-into the changelog) to create a new release:
+Finally, once your changelog has been updated, make sure its contents are correct (add, remove or edit anything you need), and use the new version (the one that was added into the changelog) to create a new release:
 
 ```
 make release version=x.y.z
@@ -530,16 +421,11 @@ make release version=x.y.z
 
 ## Releases
 
-As seen in the previous section, you can use the `release` command
-to publish new versions of the Python package.
+As seen in the previous section, you can use the `release` command to publish new versions of the Python package.
 
-Usually, just before running `make release version=x.y.z`,
-you run `make changelog` to update the changelog and
-use the newly added version as the argument to `make release`.
+Usually, just before running `make release version=x.y.z`, you run `make changelog` to update the changelog and use the newly added version as the argument to `make release`.
 
-For example, if after running `make changelog`, the diff
-shows a new `0.5.1` entry in the changelog, you must
-release this exact same version with `make release version=0.5.1`.
+For example, if after running `make changelog`, the diff shows a new `0.5.1` entry in the changelog, you must release this exact same version with `make release version=0.5.1`.
 
 The `release` action does several things, in this order:
 
@@ -560,11 +446,7 @@ The documentation is built with [Zensical](https://zensical.org/).
 
 Pages and Python docstrings are written in Markdown.
 
-The documentation configuration is written into `zensical.toml`,
-at the root of the project. The Markdown pages are written
-in the `docs/` directory. You can use any level of nesting you want.
-The left-sidebar navigation is configured through the `nav` key
-in `zensical.toml`.
+The documentation configuration is written into `zensical.toml`, at the root of the project. The Markdown pages are written in the `docs/` directory. You can use any level of nesting you want. The left-sidebar navigation is configured through the `nav` key in `zensical.toml`.
 
 For example, with these docs structure:
 
@@ -590,19 +472,16 @@ nav = [
 ]
 ```
 
-Note that we matched the sections in the navigation with the folder tree,
-but that is not mandatory.
+Note that we matched the sections in the navigation with the folder tree, but that is not mandatory.
 
-`mkdocstrings` allows you to inject documentation of Python objects
-in Markdown pages with the following syntax:
+`mkdocstrings` allows you to inject documentation of Python objects in Markdown pages with the following syntax:
 
 ```md
 ::: path.to.object
     OPTIONS
 ```
 
-...where `OPTIONS` is a YAML block containing configuration options
-for both the selection of Python objects and their rendering.
+...where `OPTIONS` is a YAML block containing configuration options for both the selection of Python objects and their rendering.
 
 You can document an entire module or even package with a single instruction:
 
@@ -612,20 +491,15 @@ You can document an entire module or even package with a single instruction:
 
 ...but it's usually better to have each module injected in a separate page.
 
-The generated projects will by default render only the top-level module in the API reference page.
-The template expects that all the API be exposed at the top-level. If you expose public submodules,
-add a new page for each one of these submodules.
+The generated projects will by default render only the top-level module in the API reference page. The template expects that all the API be exposed at the top-level. If you expose public submodules, add a new page for each one of these submodules.
 
-For more information about `mkdocstrings`,
-check [its documentation](https://pawamoy.github.io/mkdocstrings).
+For more information about `mkdocstrings`, check [its documentation](https://pawamoy.github.io/mkdocstrings).
 
 ### Serving
 
-Zensical provides a development server with files watching and live-reload.
-Run `make docs` to serve your documentation on `localhost:8000`.
+Zensical provides a development server with files watching and live-reload. Run `make docs` to serve your documentation on `localhost:8000`.
 
-If you run it in a remote host (Linux VM) and would like to access it
-from your local browser, bind the server to 0.0.0.0 instead:
+If you run it in a remote host (Linux VM) and would like to access it from your local browser, bind the server to 0.0.0.0 instead:
 
 ```bash
 make docs host=0.0.0.0
@@ -645,7 +519,4 @@ To deploy your docs to GitHub Pages, use the `make docs-deploy` command:
 make docs-deploy
 ```
 
-If you'd prefer to deploy on ReadTheDocs instead,
-you will likely have to write
-a `readthedocs.yml` configuration file
-and enable the project on ReadTheDocs.
+If you'd prefer to deploy on ReadTheDocs instead, you will likely have to write a `readthedocs.yml` configuration file and enable the project on ReadTheDocs.
