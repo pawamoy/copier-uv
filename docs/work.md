@@ -17,15 +17,14 @@ The generated project has this structure:
 │   ├── 📄 contributing.md -------- #
 │   ├── 📄 credits.md ------------- #
 │   ├── 📁 css -------------------- # extra CSS files
-│   │   ├── 📄 material.css ------- #
-│   │   └── 📄 mkdocstrings.css --- #
+│   │   └── 📄 apidocs.css -------- #
 │   ├── 📄 index.md --------------- #
 │   └── 📄 license.md ------------- #
 ├── 📄 duties.py ------------------ # the project's tasks
 ├── 📄 LICENSE -------------------- #
 ├── 📄 Makefile ------------------- # for auto-completion (it calls scripts/make)
-├── 📄 mkdocs.yml ----------------- # docs configuration
 ├── 📄 pyproject.toml ------------- # project metadata and dependencies
+├── 📄 zensical.toml -------------- # docs configuration
 ├── 📄 README.md ------------------ #
 ├── 📁 scripts -------------------- # helper scripts
 │   ├── 📄 gen_credits.py --------- # script to generate credits
@@ -555,23 +554,17 @@ The `release` action does several things, in this order:
 
 ## Documentation
 
-The documentation is built with [Mkdocs](https://www.mkdocs.org/),
-the [Material for Mkdocs](https://squidfunk.github.io/mkdocs-material/) theme,
-and the [mkdocstrings](https://github.com/pawamoy/mkdocstrings) plugin.
+The documentation is built with [Zensical](https://zensical.org/).
 
 ### Writing
 
-The pages are written in Markdown, and thanks to `mkdocstrings`,
-even your Python docstrings can be written in Markdown.
-`mkdocstrings` particularly supports the
-[Google-style](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
-for docstrings.
+Pages and Python docstrings are written in Markdown.
 
-The documentation configuration is written into `mkdocs.yml`,
+The documentation configuration is written into `zensical.toml`,
 at the root of the project. The Markdown pages are written
 in the `docs/` directory. You can use any level of nesting you want.
 The left-sidebar navigation is configured through the `nav` key
-in `mkdocs.yml`.
+in `zensical.toml`.
 
 For example, with these docs structure:
 
@@ -584,15 +577,17 @@ For example, with these docs structure:
     └── 📄 logic.md
 ```
 
-...you can have these navigation items in `mkdocs.yml`:
+...you can have these navigation items in `zensical.toml`:
 
-```yaml title="mkdocs.yml"
-nav:
-- Overview: index.md
-- Code Reference:
-  - cli.py: reference/cli.md
-  - logic.py: reference/logic.md
-- Changelog: changelog.md
+```toml title="zensical.toml"
+nav = [
+  { "Overview" = "index.md" },
+  { "Code Reference" = [
+    { "cli.py" = "reference/cli.md" },
+    { "logic.py" = "reference/logic.md" },
+  ] },
+  { "Changelog" = "changelog.md" },
+]
 ```
 
 Note that we matched the sections in the navigation with the folder tree,
@@ -626,7 +621,7 @@ check [its documentation](https://pawamoy.github.io/mkdocstrings).
 
 ### Serving
 
-MkDocs provides a development server with files watching and live-reload.
+Zensical provides a development server with files watching and live-reload.
 Run `make docs` to serve your documentation on `localhost:8000`.
 
 If you run it in a remote host (Linux VM) and would like to access it
@@ -644,9 +639,7 @@ make docs host=0.0.0.0 port=5000
 
 ### Deploying
 
-MkDocs has a `gh-deploy` command that will deploy
-you documentation on GitHub pages.
-We make use of this command in the `docs-deploy` action:
+To deploy your docs to GitHub Pages, use the `make docs-deploy` command:
 
 ```bash
 make docs-deploy

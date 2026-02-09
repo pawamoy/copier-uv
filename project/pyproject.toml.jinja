@@ -62,7 +62,7 @@ source-includes = [
     "share",
     "tests",
     "duties.py",
-    "mkdocs.yml",
+    "zensical.toml",
     "*.md",
     "LICENSE",
 ]
@@ -77,7 +77,6 @@ data = [
 
 [dependency-groups]
 maintain = [
-    "build>=1.2",
     "git-changelog>=2.5",
     "twine>=5.1",
     "yore>=0.3.3",
@@ -94,18 +93,13 @@ ci = [
     "types-pyyaml>=6.0",
 ]
  docs = [
+    "ghp-import>=2.1",
     "markdown-callouts>=0.4",
     "markdown-exec>=1.8",
-    "mkdocs>=1.6",
-    "mkdocs-coverage>=1.0",
-    "mkdocs-git-revision-date-localized-plugin>=1.2",
-    "mkdocs-llmstxt>=0.2",
-    "mkdocs-material>=9.5",
-    "mkdocs-minify-plugin>=0.8",
-    "mkdocs-section-index>=0.3",
     "mkdocstrings[python]>=0.29",
     # YORE: EOL 3.10: Remove line.
     "tomli>=2.0; python_version < '3.11'",
+    "zensical>=0.0.21",
 ]
 
 [tool.uv]
