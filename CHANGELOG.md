@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.9](https://github.com/pawamoy/copier-uv/releases/tag/1.11.9) - 2026-02-12
+
+<small>[Compare with 1.11.8](https://github.com/pawamoy/copier-uv/compare/1.11.8...1.11.9)</small>
+
+### Code Refactoring
+
+- Support ty's VSCode extension (specify config file) ([43058fb](https://github.com/pawamoy/copier-uv/commit/43058fb554ce5055d14268df92b701d15d82f438) by Timothée Mazzucotelli).
+
 ## [1.11.8](https://github.com/pawamoy/copier-uv/releases/tag/1.11.8) - 2026-02-09
 
 <small>[Compare with 1.11.7](https://github.com/pawamoy/copier-uv/compare/1.11.7...1.11.8)</small>
