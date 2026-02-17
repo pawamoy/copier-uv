@@ -26,7 +26,7 @@ copier copy --trust --vcs-ref HEAD -d include_notebooks=true . /tmp/test-project
 cd tests && ./test_project.sh && ./test_filenames.sh
 
 # Serve docs
-make docs  # or: uv run mkdocs serve
+make docs  # or: uv run zensical serve
 ```
 
 ## Testing Note

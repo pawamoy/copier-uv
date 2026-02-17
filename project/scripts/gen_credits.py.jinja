@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import os
 import tomllib
 from collections import defaultdict
 from collections.abc import Iterable
@@ -15,7 +14,7 @@ from jinja2 import StrictUndefined
 from jinja2.sandbox import SandboxedEnvironment
 from packaging.requirements import Requirement
 
-project_dir = Path(os.getenv("MKDOCS_CONFIG_DIR", "."))
+project_dir = Path.cwd()
 with project_dir.joinpath("pyproject.toml").open("rb") as pyproject_file:
     pyproject = tomllib.load(pyproject_file)
 project = pyproject["project"]

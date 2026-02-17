@@ -41,16 +41,11 @@ test = [
     "pytest-randomly>=3.15",
 ]
 docs = [
+    "ghp-import>=2.1",
     "markdown-callouts>=0.4",
     "markdown-exec>=1.8",
-    "mkdocs>=1.6",
-    "mkdocs-coverage>=1.0",
-    "mkdocs-git-revision-date-localized-plugin>=1.2",
-    "mkdocs-llmstxt>=0.2",
-    "mkdocs-material>=9.5",
-    "mkdocs-minify-plugin>=0.8",
-    "mkdocs-section-index>=0.3",
     "mkdocstrings[python]>=0.29",
+    "zensical>=0.0.21",
 ]
 {%- if include_notebooks %}
 notebooks = [
@@ -101,8 +96,8 @@ test_no_cov = { cmd = "uv run pytest {tests}", help = "Run test suite" }
 ci = { cmd = "task format_check && task lint_check && task typecheck && task test", help = "Run all CI checks (format, lint, typecheck, test)" }
 
 # Documentation
-docs = { cmd = "uv run mkdocs serve", help = "Serve documentation locally" }
-docs_build = { cmd = "uv run mkdocs build --strict", help = "Build documentation (strict)" }
+docs = { cmd = "uv run zensical serve", help = "Serve documentation locally" }
+docs_build = { cmd = "uv run zensical build --clean --strict", help = "Build documentation (strict)" }
 
 # Release
 changelog = { cmd = "uvx --with 'packaging<26' git-changelog --bump auto", help = "Update changelog" }

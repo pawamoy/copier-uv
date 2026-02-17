@@ -1,0 +1,82 @@
+[project]
+site_name = "Copier UV"
+site_description = "Copier template for Python projects managed by uv"
+site_url = "https://oedokumaci.github.io/copier-uv"
+repo_url = "https://github.com/oedokumaci/copier-uv"
+repo_name = "oedokumaci/copier-uv"
+extra_css = ["css/custom.css"]
+nav = [
+  { "Home" = [
+    { "Overview" = "index.md" },
+    { "Contributing" = "contributing.md" },
+    { "Changelog" = "changelog.md" },
+    { "License" = "license.md" },
+  ] },
+  { "Usage" = [
+    { "Requirements" = "requirements.md" },
+    { "Generating a project" = "generate.md" },
+    { "Working on a project" = "work.md" },
+    { "Updating a project" = "update.md" },
+  ] },
+  { "Original Author" = "https://pawamoy.github.io/" },
+]
+
+[project.theme]
+language = "en"
+features = [
+    "content.action.edit",
+    "content.action.view",
+    "content.code.annotate",
+    "content.code.copy",
+    "content.tooltips",
+    "navigation.footer",
+    "navigation.indexes",
+    "navigation.sections",
+    "navigation.tabs",
+    "navigation.tabs.sticky",
+    "navigation.top",
+    "search.highlight",
+    "toc.follow",
+]
+
+[project.theme.icon]
+logo = "material/content-copy"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "material/brightness-auto"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "teal"
+accent = "purple"
+toggle.icon = "material/weather-sunny"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "black"
+accent = "lime"
+toggle.icon = "material/weather-night"
+toggle.name = "Switch to system preference"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/oedokumaci"
+
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.pymdownx.emoji]
+emoji_generator = "zensical.extensions.emoji.to_svg"
+emoji_index = "zensical.extensions.emoji.twemoji"
+[project.markdown_extensions.pymdownx.snippets]
+check_paths = true
+[project.markdown_extensions.pymdownx.superfences]
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
+[project.markdown_extensions.toc]
+permalink = true

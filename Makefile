@@ -12,10 +12,10 @@ cleantests:
 	@rm -rf tests/tmp/CHANGELOG.md
 
 docs:
-	@.venv/bin/mkdocs serve
+	@.venv/bin/zensical serve
 
 docs-deploy:
-	@.venv/bin/mkdocs gh-deploy
+	@.venv/bin/zensical build --clean && .venv/bin/ghp-import -pfno site
 
 format:
 	@.venv/bin/ruff format .

@@ -22,13 +22,12 @@ The generated project has this structure:
 │   ├── 📄 contributing.md -------- #
 │   ├── 📄 credits.md ------------- #
 │   ├── 📁 css -------------------- # extra CSS files
-│   │   ├── 📄 material.css ------- #
-│   │   └── 📄 mkdocstrings.css --- #
+│   │   └── 📄 apidocs.css -------- #
 │   ├── 📄 index.md --------------- #
 │   ├── 📄 license.md ------------- #
 │   └── 📄 notebooks.md ----------- # (if notebooks enabled)
 ├── 📄 LICENSE -------------------- #
-├── 📄 mkdocs.yml ----------------- # docs configuration
+├── 📄 zensical.toml -------------- # docs configuration
 ├── 📁 notebooks ------------------ # marimo notebooks (if enabled)
 │   ├── 📄 README.md -------------- #
 │   └── 📄 starter.py ------------- #
@@ -348,13 +347,12 @@ To release a new version:
 
 ## Documentation
 
-The documentation is built with [Mkdocs](https://www.mkdocs.org/),
-the [Material for Mkdocs](https://squidfunk.github.io/mkdocs-material/) theme,
+The documentation is built with [Zensical](https://zensical.org/)
 and the [mkdocstrings](https://github.com/pawamoy/mkdocstrings) plugin.
 
 ### Serving
 
-MkDocs provides a development server with files watching and live-reload.
+Zensical provides a development server with files watching and live-reload.
 Run `uvx --from taskipy task docs` to serve your documentation on `localhost:8000`.
 
 ### Building
