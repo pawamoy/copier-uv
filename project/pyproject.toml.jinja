@@ -93,7 +93,7 @@ fix = { cmd = "task format && task lint", help = "Format + lint auto-fix" }
 # Quality checks (read-only, for CI)
 format_check = { cmd = "uvx ruff format --check {all}", help = "Check code formatting (CI)" }
 lint_check = { cmd = "uvx ruff check {all}", help = "Check linting (CI)" }
-typecheck = { cmd = "uvx ty check {src}", help = "Run type checking" }
+typecheck = { cmd = "uvx ty check --config-file=config/ty.toml {src}", help = "Run type checking" }
 test = { cmd = "uv run pytest {tests} --cov={src} --cov-report=html --cov-report=term", help = "Run tests with coverage" }
 test_no_cov = { cmd = "uv run pytest {tests}", help = "Run test suite" }
 
@@ -108,7 +108,7 @@ docs_build = { cmd = "uv run mkdocs build --strict", help = "Build documentation
 changelog = { cmd = "uvx --with 'packaging<26' git-changelog --bump auto", help = "Update changelog" }
 
 # Utilities
-clean = { cmd = "rm -rf build dist htmlcov site .coverage* .pytest_cache .mypy_cache .ruff_cache __pycache__ .venvs .venv", help = "Delete build artifacts and caches" }
+clean = { cmd = "rm -rf build dist htmlcov site .coverage* .pytest_cache .ruff_cache __pycache__ .venvs .venv", help = "Delete build artifacts and caches" }
 
 # Profiling (using module variable)
 profile = { cmd = "uvx scalene -m {module}", help = "Profile module with Scalene (CPU, memory, GPU)" }
