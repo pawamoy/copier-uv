@@ -78,9 +78,7 @@ Dependencies are managed by [uv](https://github.com/astral-sh/uv).
 
 Use `uv sync` to install the dependencies and create the virtual environment.
 
-Dependencies are written in `pyproject.toml`.
-Runtime dependencies are listed under the `[project]` and `[project.optional-dependencies]` sections,
-and development dependencies are listed under the `[dependency-groups]` section.
+Dependencies are written in `pyproject.toml`. Runtime dependencies are listed under the `[project]` and `[project.optional-dependencies]` sections, and development dependencies are listed under the `[dependency-groups]` section.
 
 Example:
 
@@ -186,10 +184,8 @@ Now you can start writing and editing code in `src/your_package`.
 - Run your application with `uvx --from taskipy task run`.
 - Auto-format and lint-fix the code with `uvx --from taskipy task fix`.
 - Run a quality analysis with `uvx --from taskipy task ci`.
-- Once you wrote tests for your new code,
-  you can run the test suite with `uvx --from taskipy task test`.
-- Once you are ready to publish a new release,
-  run `uvx --from taskipy task changelog`, then tag the commit and push.
+- Once you wrote tests for your new code, you can run the test suite with `uvx --from taskipy task test`.
+- Once you are ready to publish a new release, run `uvx --from taskipy task changelog`, then tag the commit and push.
 
 To summarize, the typical workflow is:
 
@@ -238,8 +234,7 @@ The analysis is configured in `config/ruff.toml`.
 In this file, you can deactivate rules
 or activate others to customize your analysis.
 
-You can ignore a rule on a specific code line by appending
-a `noqa` comment ("no quality analysis/assurance"):
+You can ignore a rule on a specific code line by appending a `noqa` comment ("no quality analysis/assurance"):
 
 ```python title="src/your_package/module.py"
 print("a code line that triggers a Ruff warning")  # noqa: ID
@@ -251,8 +246,7 @@ print("a code line that triggers a Ruff warning")  # noqa: ID
 
 Type checking is done with [ty](https://github.com/astral-sh/ty).
 
-If you cannot or don't know how to fix a typing error in your code,
-as a last resort you can ignore this specific error with a comment:
+If you cannot or don't know how to fix a typing error in your code, as a last resort you can ignore this specific error with a comment:
 
 ```python title="src/your_package/module.py"
 result = data_dict.get(key, None).value  # ty: ignore[ID]
@@ -266,8 +260,7 @@ Run the test suite with:
 uvx --from taskipy task test
 ```
 
-Behind the scenes, it uses [`pytest`](https://docs.pytest.org/en/stable/)
-and plugins to collect and run the tests, and output a report.
+Behind the scenes, it uses [`pytest`](https://docs.pytest.org/en/stable/) and plugins to collect and run the tests, and output a report.
 
 For tests with coverage:
 
@@ -292,15 +285,11 @@ These profiling tasks run your module's `__main__.py` entry point.
 
 ## Continuous Integration
 
-The quality checks and tests are executed in parallel
-in a [GitHub Workflow](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions).
-The CI is configured in `.github/workflows/ci.yml`.
+The quality checks and tests are executed in parallel in a [GitHub Workflow](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions). The CI is configured in `.github/workflows/ci.yml`.
 
 ## Changelog
 
-Changelogs are absolutely useful when your software
-is updated regularly, to inform your users about the new features
-that were added or the bugs that were fixed.
+Changelogs are absolutely useful when your software is updated regularly, to inform your users about the new features that were added or the bugs that were fixed.
 
 Update the changelog with:
 
@@ -308,11 +297,9 @@ Update the changelog with:
 uvx --from taskipy task changelog
 ```
 
-This uses [git-changelog](https://github.com/pawamoy/git-changelog)
-to automatically update the changelog based on your commit messages.
+This uses [git-changelog](https://github.com/pawamoy/git-changelog) to automatically update the changelog based on your commit messages.
 
-For this to work properly, use the
-[Angular commit message convention](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit).
+For this to work properly, use the [Angular commit message convention](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit).
 
 For a quick reference:
 
@@ -347,8 +334,7 @@ To release a new version:
 
 ## Documentation
 
-The documentation is built with [Zensical](https://zensical.org/)
-and the [mkdocstrings](https://github.com/pawamoy/mkdocstrings) plugin.
+The documentation is built with [Zensical](https://zensical.org/) and the [mkdocstrings](https://github.com/pawamoy/mkdocstrings) plugin.
 
 ### Serving
 

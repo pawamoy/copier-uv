@@ -3,17 +3,14 @@
 [![ci](https://github.com/oedokumaci/copier-uv/workflows/ci/badge.svg)](https://github.com/oedokumaci/copier-uv/actions?query=workflow%3Aci)
 [![documentation](https://img.shields.io/badge/docs-zensical-blue.svg?style=flat)](https://oedokumaci.github.io/copier-uv/)
 
-[Copier](https://github.com/copier-org/copier) template
-for Python projects managed by [uv](https://github.com/astral-sh/uv).
+[Copier](https://github.com/copier-org/copier) template for Python projects managed by [uv](https://github.com/astral-sh/uv).
 
 > **Credits**: This template is a fork of [pawamoy/copier-uv](https://github.com/pawamoy/copier-uv) by [Timothée Mazzucotelli](https://pawamoy.github.io/). Full credit to the original author for the excellent foundation.
 
 ## Features
 
 - [uv](https://github.com/astral-sh/uv) setup, with pre-defined `pyproject.toml`
-- Pre-configured tools for code formatting, quality, and type checking:
-  [ruff](https://github.com/charliermarsh/ruff),
-  [ty](https://github.com/astral-sh/ty)
+- Pre-configured tools for code formatting, quality, and type checking: [ruff](https://github.com/charliermarsh/ruff), [ty](https://github.com/astral-sh/ty)
 - Tests run with [pytest](https://github.com/pytest-dev/pytest) and plugins, with [coverage](https://github.com/nedbat/coveragepy) support
 - Documentation built with [Zensical](https://zensical.org/) and [mkdocstrings](https://github.com/mkdocstrings/mkdocstrings)
 - Cross-platform tasks with [taskipy](https://github.com/taskipy/taskipy)
@@ -34,16 +31,13 @@ for Python projects managed by [uv](https://github.com/astral-sh/uv).
 
 ## Quick setup and usage
 
-Make sure all the
-[requirements](https://oedokumaci.github.io/copier-uv/requirements)
-are met, then:
+Make sure all the [requirements](https://oedokumaci.github.io/copier-uv/requirements) are met, then:
 
 ```bash
 uvx --with copier-templates-extensions copier copy --trust "gh:oedokumaci/copier-uv" /path/to/your/new/project
 ```
 
-See the [documentation](https://oedokumaci.github.io/copier-uv)
-for more details.
+See the [documentation](https://oedokumaci.github.io/copier-uv) for more details.
 
 ## Acknowledgements
 
