@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.13](https://github.com/pawamoy/copier-uv/releases/tag/1.11.13) - 2026-02-20
+
+<small>[Compare with 1.11.12](https://github.com/pawamoy/copier-uv/compare/1.11.12...1.11.13)</small>
+
+### Code Refactoring
+
+- Enable callouts and magiclink Markdown extensions for docs ([0040152](https://github.com/pawamoy/copier-uv/commit/0040152739e8a65d1cc2440b7c94d85976d9737d) by Timothée Mazzucotelli).
+
 ## [1.11.12](https://github.com/pawamoy/copier-uv/releases/tag/1.11.12) - 2026-02-20
 
 <small>[Compare with 1.11.11](https://github.com/pawamoy/copier-uv/compare/1.11.11...1.11.12)</small>
