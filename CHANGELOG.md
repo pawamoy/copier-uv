@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.11](https://github.com/pawamoy/copier-uv/releases/tag/1.11.11) - 2026-02-20
+
+<small>[Compare with 1.11.10](https://github.com/pawamoy/copier-uv/compare/1.11.10...1.11.11)</small>
+
+### Bug Fixes
+
+- Fix build duty (use uv instead of pyproject-build) ([b39a30f](https://github.com/pawamoy/copier-uv/commit/b39a30fb342fb9d9aaa0941d8539d3da5beec796) by Timothée Mazzucotelli).
+
 ## [1.11.10](https://github.com/pawamoy/copier-uv/releases/tag/1.11.10) - 2026-02-20
 
 <small>[Compare with 1.11.9](https://github.com/pawamoy/copier-uv/compare/1.11.9...1.11.10)</small>
