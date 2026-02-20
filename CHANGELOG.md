@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.12](https://github.com/pawamoy/copier-uv/releases/tag/1.11.12) - 2026-02-20
+
+<small>[Compare with 1.11.11](https://github.com/pawamoy/copier-uv/compare/1.11.11...1.11.12)</small>
+
+### Bug Fixes
+
+- Fix publish duty (uv adds a gitignore file in the dist folder) ([aff56b8](https://github.com/pawamoy/copier-uv/commit/aff56b8ccacc427a0adb2fe3e9ccff6ebe25a6b3) by Timothée Mazzucotelli).
+
 ## [1.11.11](https://github.com/pawamoy/copier-uv/releases/tag/1.11.11) - 2026-02-20
 
 <small>[Compare with 1.11.10](https://github.com/pawamoy/copier-uv/compare/1.11.10...1.11.11)</small>
