@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.11.14](https://github.com/pawamoy/copier-uv/releases/tag/1.11.14) - 2026-02-21
+
+<small>[Compare with 1.11.13](https://github.com/pawamoy/copier-uv/compare/1.11.13...1.11.14)</small>
+
+### Bug Fixes
+
+- Paths return .gz suffix, not .tar.gz ([dacaa09](https://github.com/pawamoy/copier-uv/commit/dacaa09d405ee4c498214cec1bf4ce31304937d0) by Timothée Mazzucotelli).
+
 ## [1.11.13](https://github.com/pawamoy/copier-uv/releases/tag/1.11.13) - 2026-02-20
 
 <small>[Compare with 1.11.12](https://github.com/pawamoy/copier-uv/compare/1.11.12...1.11.13)</small>
