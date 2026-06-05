@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+
+## [1.12.0](https://github.com/pawamoy/copier-uv/releases/tag/1.12.0) - 2026-06-05
+
+<small>[Compare with 1.11.15](https://github.com/pawamoy/copier-uv/compare/1.11.15...1.12.0)</small>
+
+### Features
+
+- Add AI policy ([17cd5c2](https://github.com/pawamoy/copier-uv/commit/17cd5c2914986d09042ef140b6a8d803794ac296) by Timothée Mazzucotelli).
+
+### Bug Fixes
+
+- Fix CLI entrypoint (`pkg:main` instead of `pkg.cli:main`) ([be5d3a8](https://github.com/pawamoy/copier-uv/commit/be5d3a8edd51268694e35dd0ac0bb993ae404ac2) by J-M). [Issue-84](https://github.com/pawamoy/copier-uv/issues/84), [PR-85](https://github.com/pawamoy/copier-uv/pull/85)
+
+### Code Refactoring
+
+- Update contributing guidelines ([0905a41](https://github.com/pawamoy/copier-uv/commit/0905a41f46ddb69ad520d71bac710a326eef7075) by Timothée Mazzucotelli).
+
 ## [1.11.15](https://github.com/pawamoy/copier-uv/releases/tag/1.11.15) - 2026-03-05
 
 <small>[Compare with 1.11.14](https://github.com/pawamoy/copier-uv/compare/1.11.14...1.11.15)</small>
