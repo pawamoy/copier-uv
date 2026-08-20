@@ -133,6 +133,7 @@ Available tasks:
 - `test`: Run the test suite. See [the Tests section](#tests). Arguments:
     - `match=""`: A pytest expression to filter selected tests.
 - `vscode`: Configure VSCode for the project. See [VSCode setup](#vscode-setup).
+- `zed`: Configure Zed for the project. See [Zed setup](#zed-setup).
 
 The `make` script provides some additional commands:
 
@@ -150,6 +151,14 @@ If you work in VSCode, we provide a `make vscode` action that configures setting
 - `.vscode/launch.json`
 - `.vscode/settings.json`
 - `.vscode/tasks.json`
+
+### Zed setup
+
+If you work in Zed, we provide a `make zed` action that configures settings and tasks. **It will overwrite the following existing files, so make sure to back them up:**
+
+- `.zed/debug.json`
+- `.zed/settings.json`
+- `.zed/tasks.json`
 
 ## Workflow
 
