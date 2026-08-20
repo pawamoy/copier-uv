@@ -8,9 +8,7 @@ _templates_suffix: .jinja
 _preserve_symlinks: true
 _jinja_extensions:
 - copier_template_extensions.TemplateExtensionLoader
-- extensions.py:CurrentYearExtension
-- extensions.py:GitExtension
-- extensions.py:SlugifyExtension
+- extensions.py:FiltersAndGlobals
 - extensions.py:GitHubIDsforGiscusExtension
 _skip_if_exists:
 - CHANGELOG.md

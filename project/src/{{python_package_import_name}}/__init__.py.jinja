@@ -1,3 +1,9 @@
+{% filter python_comment -%}
+SPDX-License-Identifier: {{ copyright_license }}
+
+{% include "project/LICENSE.jinja" with context -%}
+{% endfilter %}
+
 """{{ project_name }} package.
 
 {{ project_description }}

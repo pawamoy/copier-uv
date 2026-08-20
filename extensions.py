@@ -23,22 +23,17 @@ def slugify(value, separator="-"):
     return re.sub(r"[-_\s]+", separator, value).strip("-_")
 
 
-class GitExtension(Extension):
+def python_comment(value: str) -> str:
+    return "\n".join(f"# {line}" if line else "#" for line in value.splitlines())
+
+
+class FiltersAndGlobals(Extension):
     def __init__(self, environment):
         super().__init__(environment)
         environment.filters["git_user_name"] = git_user_name
         environment.filters["git_user_email"] = git_user_email
-
-
-class SlugifyExtension(Extension):
-    def __init__(self, environment):
-        super().__init__(environment)
         environment.filters["slugify"] = slugify
-
-
-class CurrentYearExtension(Extension):
-    def __init__(self, environment):
-        super().__init__(environment)
+        environment.filters["python_comment"] = python_comment
         environment.globals["current_year"] = date.today().year
 
 

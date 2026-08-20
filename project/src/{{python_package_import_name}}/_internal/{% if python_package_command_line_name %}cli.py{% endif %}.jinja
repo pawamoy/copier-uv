@@ -1,3 +1,9 @@
+{% filter python_comment -%}
+SPDX-License-Identifier: {{ copyright_license }}
+
+{% include "project/LICENSE.jinja" with context -%}
+{% endfilter %}
+
 # Why does this file exist, and why not put this in `__main__`?
 #
 # You might be tempted to import things from `__main__` later,
