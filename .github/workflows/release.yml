@@ -22,6 +22,8 @@ jobs:
     - name: Prepare release notes
       run: uv tool run git-changelog --release-notes > release-notes.md
     - name: Create release
+      env:
+        GH_TOKEN: ${{ github.token }}
       run: |
         gh release new "${GITHUB_REF_NAME}" \
           --title "${GITHUB_REF_NAME}" \
