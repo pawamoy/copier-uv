@@ -3,6 +3,9 @@
 changelog:
 	@.venv/bin/git-changelog -Tio CHANGELOG.md -Bauto -c angular -n pep440
 
+check-security:
+	@uvx zizmor .
+
 clean:
 	@rm -rf tests/tmp
 

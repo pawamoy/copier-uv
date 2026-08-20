@@ -1,0 +1,37 @@
+name: security
+
+on:
+  push:
+  pull_request:
+    branches:
+    - main
+  schedule:
+  - cron: "0 6 * * 1"
+
+permissions: {}
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  LANG: "en_US.utf-8"
+  LC_ALL: "en_US.utf-8"
+  PYTHONIOENCODING: "UTF-8"
+  PYTHON_VERSIONS: ""
+
+jobs:
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
+
+    - name: Setup uv
+      uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+
+    - name: Check for security vulnerabilities
+      run: make check-security
