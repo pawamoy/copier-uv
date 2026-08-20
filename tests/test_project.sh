@@ -77,6 +77,9 @@ echo
 echo ">>> Running quality checks"
 make check
 echo
+echo ">>> Running security checks"
+make check-security
+echo
 echo ">>> Running tests"
 make test
 echo

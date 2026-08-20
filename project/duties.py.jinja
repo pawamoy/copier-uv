@@ -106,6 +106,21 @@ def check_api(ctx: Context, *cli_args: str) -> None:
 
 
 @duty
+def check_security(ctx: Context) -> None:
+    """Check for security vulnerabilities."""
+    ctx.run(
+        ["uv", "audit"],
+        title="Auditing dependencies",
+        pty=PTY,
+    )
+    ctx.run(
+        ["zizmor", "."],
+        title="Auditing GitHub Actions workflows",
+        pty=PTY,
+    )
+
+
+@duty
 def docs(ctx: Context, *cli_args: str, host: str = "127.0.0.1", port: int = 8000) -> None:
     """Serve the documentation (localhost:8000).
 
