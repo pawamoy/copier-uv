@@ -28,7 +28,7 @@ WINDOWS = os.name == "nt"
 PTY = not WINDOWS and not CI
 MULTIRUN = os.environ.get("MULTIRUN", "0") == "1"
 PY_VERSION = f"{sys.version_info.major}{sys.version_info.minor}"
-PY_DEV = "315"
+PY_DEV = "316"
 
 
 def pyprefix(title: str) -> str:

@@ -12,7 +12,7 @@ To install Python 3, download and install it from [the official website](https:/
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
-uv python install 3.12
+uv python install 3.14
 ```
 
 To install Copier, use [`uv`](https://docs.astral.sh/uv/) or [`pipx`](https://pipx.pypa.io/stable/):

@@ -37,7 +37,7 @@ jobs:
         - windows-latest
         python-version:
         - "3.10"
-        - "3.14"
+        - "3.15"
         include:
         - os: ubuntu-latest
           python-version: "3.11"
@@ -46,7 +46,7 @@ jobs:
         - os: ubuntu-latest
           python-version: "3.13"
         - os: ubuntu-latest
-          python-version: "3.15-dev"
+          python-version: "3.14"
 
     runs-on: {% raw %}${{ matrix.os }}{% endraw %}
     continue-on-error: true
@@ -104,7 +104,7 @@ jobs:
         - "3.12"
         - "3.13"
         - "3.14"
-        - "3.15-dev"
+        - "3.15"
         resolution:
         - highest
         - lowest-direct
