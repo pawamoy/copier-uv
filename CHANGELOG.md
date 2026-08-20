@@ -6,6 +6,21 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.13.0](https://github.com/pawamoy/copier-uv/releases/tag/1.13.0) - 2026-08-20
+
+<small>[Compare with 1.12.1](https://github.com/pawamoy/copier-uv/compare/1.12.1...1.13.0)</small>
+
+### Features
+
+- Add security workflow ([eb1261a](https://github.com/pawamoy/copier-uv/commit/eb1261ad729729a7d00a944e44c5e02ca6759adc) by Timothée Mazzucotelli).
+- Add security check (uv audit and zizmor) ([3707355](https://github.com/pawamoy/copier-uv/commit/3707355b372853e7135545892f68d3e5330f58ec) by Timothée Mazzucotelli).
+- Add `make zed` command to configure Zed ([3901759](https://github.com/pawamoy/copier-uv/commit/3901759632ca63e9d78a1a57968d5b87a4cce37a) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Python 3.15 is not a dev version anymore ([e42edb9](https://github.com/pawamoy/copier-uv/commit/e42edb9b97d2933fae3483cfe1f8c8166ee9a13b) by Timothée Mazzucotelli).
+- Add license headers to Python files ([ce5c9f0](https://github.com/pawamoy/copier-uv/commit/ce5c9f031ad86276bd9e51f142fbf56a12ae13c3) by Timothée Mazzucotelli).
+
 ## [1.12.1](https://github.com/pawamoy/copier-uv/releases/tag/1.12.1) - 2026-06-06
 
 <small>[Compare with 1.12.0](https://github.com/pawamoy/copier-uv/compare/1.12.0...1.12.1)</small>
