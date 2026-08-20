@@ -52,6 +52,7 @@ DUTIES = \
 	test-check-api \
 	test-check-docs \
 	test-check-quality \
+	test-check-security \
 	test-check-types \
 	test-clean \
 	test-coverage \

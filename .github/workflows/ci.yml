@@ -6,6 +6,8 @@ on:
     branches:
     - main
 
+permissions: {}
+
 defaults:
   run:
     shell: bash
@@ -22,7 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
     - name: Test file names
       run: bash tests/test_filenames.sh
 
@@ -30,18 +34,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      with:
+        persist-credentials: false
     - name: Configure Git
       run: |
         git config --global init.defaultBranch main
         git config --global user.email "dev@pawamoy.fr"
         git config --global user.name "Timothée Mazzucotelli"
-    - name: Setup Python
-      uses: actions/setup-python@v6
-      with:
-        python-version: "3.13"
     - name: Setup uv
-      uses: astral-sh/setup-uv@v5
+      uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
     - name: Test licenses
       run: uv run --with jinja2 --with pyyaml --with reuse python tests/test_licenses.py
 
@@ -61,10 +63,11 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         fetch-depth: 0
         fetch-tags: true
+        persist-credentials: false
 
     - name: Configure Git
       run: |
@@ -72,17 +75,12 @@ jobs:
         git config --global user.email "dev@pawamoy.fr"
         git config --global user.name "Timothée Mazzucotelli"
 
-    - name: Setup Python
-      uses: actions/setup-python@v6
-      with:
-        python-version: ${{ matrix.python-version }}
-        allow-prereleases: true
-
     - name: Setup uv
-      uses: astral-sh/setup-uv@v5
+      uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
       with:
         enable-cache: true
         cache-dependency-glob: project/pyproject.toml.jinja
+        python-version: ${{ matrix.python-version }}
 
     - name: Install Copier
       env:
@@ -97,10 +95,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with:
         fetch-depth: 0
         fetch-tags: true
+        persist-credentials: false
 
     - name: Configure Git
       run: |
@@ -108,13 +107,8 @@ jobs:
         git config --global user.email "dev@pawamoy.fr"
         git config --global user.name "Timothée Mazzucotelli"
 
-    - name: Setup Python
-      uses: actions/setup-python@v6
-      with:
-        python-version: "3.13"
-
     - name: Setup uv
-      uses: astral-sh/setup-uv@v5
+      uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
       with:
         enable-cache: true
         cache-dependency-glob: project/pyproject.toml.jinja
