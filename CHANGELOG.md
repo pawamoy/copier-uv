@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.13.1](https://github.com/pawamoy/copier-uv/releases/tag/1.13.1) - 2026-08-29
+
+<small>[Compare with 1.13.0](https://github.com/pawamoy/copier-uv/compare/1.13.0...1.13.1)</small>
+
+### Bug Fixes
+
+- Re-allow sponsors workflow to create PR ([3b5b5ce](https://github.com/pawamoy/copier-uv/commit/3b5b5ce2bcfe821da3c4670766da835e6e5c531e) by Timothée Mazzucotelli).
+
 ## [1.13.0](https://github.com/pawamoy/copier-uv/releases/tag/1.13.0) - 2026-08-20
 
 <small>[Compare with 1.12.1](https://github.com/pawamoy/copier-uv/compare/1.12.1...1.13.0)</small>
