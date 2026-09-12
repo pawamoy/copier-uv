@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.14.0](https://github.com/pawamoy/copier-uv/releases/tag/1.14.0) - 2026-09-12
+
+<small>[Compare with 1.13.2](https://github.com/pawamoy/copier-uv/compare/1.13.2...1.14.0)</small>
+
+### Features
+
+- Get PyPI password/token from configured shell command ([315c4ff](https://github.com/pawamoy/copier-uv/commit/315c4ff145263422810049e85ce434d6b38dab9d) by Timothée Mazzucotelli).
+
 ## [1.13.2](https://github.com/pawamoy/copier-uv/releases/tag/1.13.2) - 2026-09-10
 
 <small>[Compare with 1.13.1](https://github.com/pawamoy/copier-uv/compare/1.13.1...1.13.2)</small>
