@@ -447,6 +447,18 @@ The `release` action does several things, in this order:
 - Publish the dist and wheel to PyPI.org
 - Build and deploy the documentation site
 
+To retrieve your PyPI password or API token automatically, set `PUBLISH_PASS_CMD` in your project's git-ignored `.env` file:
+
+```sh title=".env"
+PUBLISH_PASS_CMD='pass show pypi/{project} | head -n 1'
+```
+
+Replace the example with a shell command that prints your password or token to standard output. The project's `.envrc` loads `.env` when using [direnv](https://direnv.net/man/direnv-stdlib.1.html). Otherwise, export `PUBLISH_PASS_CMD` in your shell before releasing.
+
+The command is formatted with `{project}` (the PyPI package name) before execution. You can use this placeholder in a password prompt, such as `"Publish {project}"`. Double any literal braces in the command (`{{` and `}}`).
+
+Both `make release` and `make publish` run this command when publishing, strip surrounding whitespace from its output, and pass the result to Twine without displaying it. A failed command stops publishing. If `PUBLISH_PASS_CMD` is unset or empty, Twine uses its usual authentication behavior, including prompting for credentials when needed.
+
 ## Documentation
 
 The documentation is built with [Zensical](https://zensical.org/).

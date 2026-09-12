@@ -181,8 +181,19 @@ def publish(ctx: Context) -> None:
     if not Path("dist").exists():
         ctx.run("false", title="No distribution files found")
     dists = [str(dist) for dist in Path("dist").iterdir() if dist.suffix in (".gz", ".whl")]
+    password = None
+    if password_cmd := os.getenv("PUBLISH_PASS_CMD"):
+        password = ctx.run(
+            password_cmd.format(project="{{ python_package_distribution_name }}"),
+            capture="stdout",
+            pty=False,
+            silent=True,
+            allow_overrides=False,
+        ).strip()
     ctx.run(
-        tools.twine.upload(*dists, skip_existing=True),
+        tools.twine.upload(*dists, skip_existing=True, password=password),
+        # Keep the password out of the displayed command, including on failure.
+        command=tools.twine.upload(*dists, skip_existing=True).cli_command,
         title="Publishing distributions to PyPI",
         pty=PTY,
     )
