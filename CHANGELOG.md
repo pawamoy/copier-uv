@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.15.1](https://github.com/pawamoy/copier-uv/releases/tag/1.15.1) - 2026-09-26
+
+<small>[Compare with 1.15.0](https://github.com/pawamoy/copier-uv/compare/1.15.0...1.15.1)</small>
+
+### Bug Fixes
+
+- Add ty-ignore comment in gen-credits script ([da278b4](https://github.com/pawamoy/copier-uv/commit/da278b43cf451fea89cb25ae1fa17429ce38048b) by Timothée Mazzucotelli).
+- Fix syntax in duties ([a12289b](https://github.com/pawamoy/copier-uv/commit/a12289b06c2aa23c9b9f6957932b70c9c5849c0f) by Timothée Mazzucotelli).
+
 ## [1.15.0](https://github.com/pawamoy/copier-uv/releases/tag/1.15.0) - 2026-09-26
 
 <small>[Compare with 1.14.0](https://github.com/pawamoy/copier-uv/compare/1.14.0...1.15.0)</small>
