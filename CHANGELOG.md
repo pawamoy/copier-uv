@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.15.0](https://github.com/pawamoy/copier-uv/releases/tag/1.15.0) - 2026-09-26
+
+<small>[Compare with 1.14.0](https://github.com/pawamoy/copier-uv/compare/1.14.0...1.15.0)</small>
+
+### Features
+
+- Automatically get release version from changelog when publishing ([055c514](https://github.com/pawamoy/copier-uv/commit/055c51452bc078901ed42f761682fa9e57cdf765) by Timothée Mazzucotelli).
+
 ## [1.14.0](https://github.com/pawamoy/copier-uv/releases/tag/1.14.0) - 2026-09-12
 
 <small>[Compare with 1.13.2](https://github.com/pawamoy/copier-uv/compare/1.13.2...1.14.0)</small>
