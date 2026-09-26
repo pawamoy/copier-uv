@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.15.2](https://github.com/pawamoy/copier-uv/releases/tag/1.15.2) - 2026-09-26
+
+<small>[Compare with 1.15.1](https://github.com/pawamoy/copier-uv/compare/1.15.1...1.15.2)</small>
+
+### Code Refactoring
+
+- Make git-changelog silent when releasing ([2204125](https://github.com/pawamoy/copier-uv/commit/22041258aabd69a3f306e2c5ed86071056c144ad) by Timothée Mazzucotelli).
+
 ## [1.15.1](https://github.com/pawamoy/copier-uv/releases/tag/1.15.1) - 2026-09-26
 
 <small>[Compare with 1.15.0](https://github.com/pawamoy/copier-uv/compare/1.15.0...1.15.1)</small>
