@@ -75,10 +75,19 @@ if [ -n "${diff}" ]; then
 fi
 echo
 echo ">>> Running quality checks"
-make check
+make check-quality
+echo
+echo ">>> Running typing checks"
+make check-types
+echo
+echo ">>> Running docs checks"
+make check-docs
 echo
 echo ">>> Running security checks"
 make check-security
+echo
+echo ">>> Running API checks"
+make check-api
 echo
 echo ">>> Running tests"
 make test
