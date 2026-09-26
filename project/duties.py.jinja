@@ -206,8 +206,8 @@ def release(ctx: Context, version: str = "") -> None:
     Parameters:
         version: The new version number to use.
     """
-    if not (version := (version or ctx.run(tools.git_changelog(latest_version=True)).strip())):
-        ctx.run("false", title="A version must be provided")
+    if not version:
+        version = ctx.run(tools.git_changelog(latest_version=True), silent=True).strip())):
     ctx.run("git add pyproject.toml CHANGELOG.md", title="Staging files", pty=PTY)
     ctx.run(["git", "commit", "-m", f"chore: Prepare release {version}"], title="Committing changes", pty=PTY)
     ctx.run(f"git tag -m '' -a {version}", title="Tagging commit", pty=PTY)
