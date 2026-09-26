@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.15.3](https://github.com/pawamoy/copier-uv/releases/tag/1.15.3) - 2026-09-27
+
+<small>[Compare with 1.15.2](https://github.com/pawamoy/copier-uv/compare/1.15.2...1.15.3)</small>
+
+### Bug Fixes
+
+- Fix release duty again ([8b56d87](https://github.com/pawamoy/copier-uv/commit/8b56d874cc2601d310fa68455ab60d9574c4c932) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Run security checks as part of make check ([e65ec7d](https://github.com/pawamoy/copier-uv/commit/e65ec7da919c84b5290e6cc0877d32fe80944268) by Timothée Mazzucotelli).
+
 ## [1.15.2](https://github.com/pawamoy/copier-uv/releases/tag/1.15.2) - 2026-09-26
 
 <small>[Compare with 1.15.1](https://github.com/pawamoy/copier-uv/compare/1.15.1...1.15.2)</small>
