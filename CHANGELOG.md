@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.15.4](https://github.com/pawamoy/copier-uv/releases/tag/1.15.4) - 2026-10-01
+
+<small>[Compare with 1.15.3](https://github.com/pawamoy/copier-uv/compare/1.15.3...1.15.4)</small>
+
+### Code Refactoring
+
+- Drop support for Python 3.10 ([b4e9e2c](https://github.com/pawamoy/copier-uv/commit/b4e9e2c80dd131631ac3a529d174f829cfd112ea) by Timothée Mazzucotelli).
+
 ## [1.15.3](https://github.com/pawamoy/copier-uv/releases/tag/1.15.3) - 2026-09-27
 
 <small>[Compare with 1.15.2](https://github.com/pawamoy/copier-uv/compare/1.15.2...1.15.3)</small>
