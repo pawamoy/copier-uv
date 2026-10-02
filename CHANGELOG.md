@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.15.5](https://github.com/pawamoy/copier-uv/releases/tag/1.15.5) - 2026-10-02
+
+<small>[Compare with 1.15.4](https://github.com/pawamoy/copier-uv/compare/1.15.4...1.15.5)</small>
+
+### Code Refactoring
+
+- Don't warn about encoding in security workflow ([7196e0e](https://github.com/pawamoy/copier-uv/commit/7196e0ea027d0f4d400ffe17da8992202e82e2fa) by Timothée Mazzucotelli).
+- Add Python 3.15 trove classifier ([3e90ee1](https://github.com/pawamoy/copier-uv/commit/3e90ee175720c653cd8c24171d00ec1afe97ba81) by Timothée Mazzucotelli).
+
 ## [1.15.4](https://github.com/pawamoy/copier-uv/releases/tag/1.15.4) - 2026-10-01
 
 <small>[Compare with 1.15.3](https://github.com/pawamoy/copier-uv/compare/1.15.3...1.15.4)</small>
