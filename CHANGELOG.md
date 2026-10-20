@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.15.7](https://github.com/pawamoy/copier-uv/releases/tag/1.15.7) - 2026-10-20
+
+<small>[Compare with 1.15.6](https://github.com/pawamoy/copier-uv/compare/1.15.6...1.15.7)</small>
+
+### Bug Fixes
+
+- Type with `Generator` instead of `Iterator` ([52a02ea](https://github.com/pawamoy/copier-uv/commit/52a02eac8c4976c1a18005e5813af5a06530a354) by Timothée Mazzucotelli).
+
 ## [1.15.6](https://github.com/pawamoy/copier-uv/releases/tag/1.15.6) - 2026-10-20
 
 <small>[Compare with 1.15.5](https://github.com/pawamoy/copier-uv/compare/1.15.5...1.15.6)</small>
