@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.15.6](https://github.com/pawamoy/copier-uv/releases/tag/1.15.6) - 2026-10-20
+
+<small>[Compare with 1.15.5](https://github.com/pawamoy/copier-uv/compare/1.15.5...1.15.6)</small>
+
+### Code Refactoring
+
+- Ignore Ruff's COM812 trailing comma ([6b7e487](https://github.com/pawamoy/copier-uv/commit/6b7e487480582a5a2375a7359708a4bec989fd6b) by Timothée Mazzucotelli).
+
 ## [1.15.5](https://github.com/pawamoy/copier-uv/releases/tag/1.15.5) - 2026-10-02
 
 <small>[Compare with 1.15.4](https://github.com/pawamoy/copier-uv/compare/1.15.4...1.15.5)</small>
