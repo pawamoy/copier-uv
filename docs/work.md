@@ -457,7 +457,9 @@ Replace the example with a shell command that prints your password or token to s
 
 The command is formatted with `{project}` (the PyPI package name) before execution. You can use this placeholder in a password prompt, such as `"Publish {project}"`. Double any literal braces in the command (`{{` and `}}`).
 
-Both `make release` and `make publish` run this command when publishing, strip surrounding whitespace from its output, and pass the result to Twine without displaying it. A failed command stops publishing. If `PUBLISH_PASS_CMD` is unset or empty, Twine uses its usual authentication behavior, including prompting for credentials when needed.
+Both `make release` and `make publish` run this command when publishing and strip surrounding whitespace from its output. They pass the result to `uv publish --password` without displaying it. A failed command stops publishing. For a PyPI API token, set `UV_PUBLISH_USERNAME=__token__`.
+
+If `PUBLISH_PASS_CMD` is unset or empty, `uv publish` uses its usual authentication behavior. You can set credentials with `UV_PUBLISH_TOKEN`, or with `UV_PUBLISH_USERNAME` and `UV_PUBLISH_PASSWORD`. See the [uv publishing documentation](https://docs.astral.sh/uv/guides/package/#publishing-your-package) for other authentication options.
 
 ## Documentation
 

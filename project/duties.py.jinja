@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import os
 import re
+import shlex
 import sys
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -190,10 +191,11 @@ def publish(ctx: Context) -> None:
             silent=True,
             allow_overrides=False,
         ).strip()
+    command = ["uv", "publish", *dists]
     ctx.run(
-        tools.twine.upload(*dists, skip_existing=True, password=password),
+        [*command, "--password", password] if password is not None else command,
         # Keep the password out of the displayed command, including on failure.
-        command=tools.twine.upload(*dists, skip_existing=True).cli_command,
+        command=shlex.join(command),
         title="Publishing distributions to PyPI",
         pty=PTY,
     )
