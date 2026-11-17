@@ -1,5 +1,15 @@
 {% raw %}{% extends "base.html" %}{% endraw %}
 
+{% raw %}{% block outdated %}{% endraw %}
+  {% raw %}{# Mike appends the deployed version to site_url. #}{% endraw %}
+  {% raw %}{% if config.site_url[-4:] == "/dev" or config.site_url[-5:] == "/dev/" %}{% endraw %}
+    You are viewing documentation for an <strong>unreleased version</strong>.
+  {% raw %}{% else %}{% endraw %}
+    You are not viewing documentation for the <strong>latest stable release</strong>.
+  {% raw %}{% endif %}{% endraw %}
+  {% raw %}<a href="{{ '../' ~ base_url }}"><strong>Go to the latest release.</strong></a>{% endraw %}
+{% raw %}{% endblock %}{% endraw %}
+{% if author_username == "pawamoy" %}
 {% raw %}{% block announce %}{% endraw %}
   <strong>Fund this project</strong> through
   <a href="https://github.com/sponsors/pawamoy"><strong>sponsorship</strong></a>
@@ -16,3 +26,4 @@
   </a>
   for updates
 {% raw %}{% endblock %}{% endraw %}
+{% endif -%}

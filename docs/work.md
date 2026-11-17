@@ -126,6 +126,8 @@ Available tasks:
 - `docs`: Serve the documentation (localhost:8000). See [the Documentation section](#documentation). Arguments:
     - `host="127.0.0.1"`: The host to serve the docs from.
     - `port=8000`: The port to serve the docs on.
+- `docs-deploy`: Deploy versioned documentation to GitHub Pages. See [Deploying](#deploying). Arguments:
+    - `version=""`: The version to deploy. By default, use the current Git tag or `dev` for untagged commits.
 - `format`: Run formatting tools on the code.
 - `publish`: Publish source and wheel distributions to PyPI.
 - `release`: Release a new Python package. See [the Releases section](#releases). Arguments:
@@ -536,10 +538,41 @@ make docs host=0.0.0.0 port=5000
 
 ### Deploying
 
-To deploy your docs to GitHub Pages, use the `make docs-deploy` command:
+Documentation versions are deployed to the `gh-pages` branch with [Mike's Zensical-compatible fork](https://zensical.org/docs/compatibility/mkdocs/mike/).
+The version selector lets readers switch between deployed versions.
+
+To deploy documentation to GitHub Pages, run:
 
 ```bash
 make docs-deploy
 ```
+
+On a tagged commit, this command deploys documentation for that tag.
+On an untagged commit, it deploys documentation under `dev`.
+You can also select the version explicitly:
+
+```bash
+make docs-deploy version=1.2.3
+make docs-deploy version=dev
+```
+
+Each stable release updates the `latest` alias and redirects the site root to that alias.
+`make release` deploys documentation for the new release automatically.
+Development versions keep the existing `latest` alias and root redirect.
+Deploy a stable release first to create that redirect.
+
+When an existing project is updated, a Copier migration fetches its `gh-pages` branch and prepares redirects from unversioned pages to `latest`.
+The migration commits these redirects to the local `gh-pages` branch without pushing them.
+After reviewing the template update, deploy a release first to publish the redirects together with the `latest` alias.
+Query strings and anchors are preserved for readers with JavaScript enabled.
+The migration skips projects that already use Mike or already have these redirects.
+
+Previous versions remain available under their version identifiers.
+A banner warns readers when they view a version other than the latest stable release.
+The `dev` banner identifies the documentation as unreleased.
+
+In the repository's GitHub Pages settings, select deployment from the `gh-pages` branch and its root directory.
+Keep `site_url` in `zensical.toml` set to the site root, with a trailing slash.
+Mike adds the version directory during each build.
 
 If you'd prefer to deploy on ReadTheDocs instead, you will likely have to write a `readthedocs.yml` configuration file and enable the project on ReadTheDocs.

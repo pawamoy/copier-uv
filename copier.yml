@@ -1,5 +1,5 @@
 # CONFIGURATION -------------------------
-_min_copier_version: "9"
+_min_copier_version: "9.3"
 _envops:
   autoescape: false
   keep_trailing_newline: true
@@ -12,6 +12,10 @@ _jinja_extensions:
 - extensions.py:GitHubIDsforGiscusExtension
 _skip_if_exists:
 - CHANGELOG.md
+_migrations:
+- command:
+  - "{{ _copier_python }}"
+  - "{{ _copier_conf.src_path }}/migrations/docs_versioning.py"
 
 # PROMPT --------------------------------
 project_name:

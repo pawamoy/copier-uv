@@ -2,7 +2,7 @@
 site_name = "{{ project_name }}"
 site_description = "{{ project_description }}"
 site_author = "{{ author_fullname }}"
-site_url = "https://{{ repository_namespace }}.{{ repository_provider.rsplit('.', 1)[0] }}.io/{{ repository_name }}"
+site_url = "https://{{ repository_namespace }}.{{ repository_provider.rsplit('.', 1)[0] }}.io/{{ repository_name }}/"
 repo_url = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}"
 repo_name = "{{ repository_namespace }}/{{ repository_name }}"
 edit_uri = "edit/main/docs/"
@@ -83,8 +83,12 @@ logo = "material/currency-sign"
 
 {% endif -%}
 # ----------------------------------------------------------------------------
-# Social configuration
+# Extra configuration
 # ----------------------------------------------------------------------------
+[project.extra.version]
+provider = "mike"
+default = "latest"
+
 [[project.extra.social]]
 icon = "fontawesome/brands/{{ repository_provider.rsplit(".", 1)[0] }}"
 link = "https://{{ repository_provider }}/{{ author_username }}"

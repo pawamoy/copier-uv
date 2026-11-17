@@ -33,7 +33,7 @@ dependencies = []
 [project.urls]
 Homepage = "https://{{ repository_namespace }}.{{ repository_provider.rsplit('.', 1)[0] }}.io/{{ repository_name }}"
 Documentation = "https://{{ repository_namespace }}.{{ repository_provider.rsplit('.', 1)[0] }}.io/{{ repository_name }}"
-Changelog = "https://{{ repository_namespace }}.{{ repository_provider.rsplit('.', 1)[0] }}.io/{{ repository_name }}/changelog"
+Changelog = "https://{{ repository_namespace }}.{{ repository_provider.rsplit('.', 1)[0] }}.io/{{ repository_name }}/latest/changelog/"
 Repository = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}"
 Issues = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}/issues"
 Discussions = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ repository_name }}/discussions"
@@ -94,11 +94,12 @@ ci = [
     "zizmor>=1.0",
 ]
  docs = [
-    "ghp-import>=2.1",
     "markdown-callouts>=0.4",
     "markdown-exec>=1.8",
+    # Zensical requires its compatible Mike fork until native versioning is available.
+    "mike @ git+https://github.com/squidfunk/mike.git@2d4ad799442f4592db8ad53b179bfb33db8c69ac",
     "mkdocstrings[python]>=0.29",
-    "zensical>=0.0.21",
+    "zensical>=0.1",
 ]
 
 [tool.uv]
