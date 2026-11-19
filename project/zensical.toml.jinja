@@ -172,7 +172,22 @@ configurations = [{targets.include = ["reference/api.md"]}]
 # ----------------------------------------------------------------------------
 # Plugins configuration
 # ----------------------------------------------------------------------------
-{#- TODO: Provide llms.txt files again when Zensical supports it. #}
+[project.plugins.llmstxt]
+full_output = "llms-full.txt"
+
+[project.plugins.llmstxt.sections]
+Usage = ["index.md"]
+API = ["reference/api.md"]
+
+[project.plugins.minify]
+minify_html = true
+minify_js = true
+minify_css = true
+minify_inline_js = true
+minify_inline_css = true
+js_files = ["js/feedback.js"]
+css_files = ["css/apidocs.css"]
+
 [project.plugins.mkdocstrings.handlers.python]
 paths = ["src"]
 inventories = ["https://docs.python.org/3/objects.inv"]
@@ -196,3 +211,6 @@ show_symbol_type_toc = true
 signature_crossrefs = true
 summary = true
 unwrap_annotated = true
+
+[project.plugins.optimize]
+[project.plugins.privacy]
