@@ -297,7 +297,7 @@ This action runs [`ty`](https://docs.astral.sh/ty/) on the source code to find p
 If you cannot or don't know how to fix a typing error in your code, as a last resort you can ignore this specific error with a comment:
 
 ```python title="src/your_package/module.py"
-result = data_dict.get(key, None).value  # ty: ignore[ID]
+result = data_dict.get(key, None).value  # ty:ignore[ID]
 ```
 
 ...where ID is the name of the warning, for example `arg-type` or `union-attr`.
