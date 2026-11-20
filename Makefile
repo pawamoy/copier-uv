@@ -15,10 +15,11 @@ cleantests:
 	@rm -rf tests/tmp/CHANGELOG.md
 
 docs:
-	@.venv/bin/mkdocs serve
+	@.venv/bin/zensical serve
 
 docs-deploy:
-	@.venv/bin/mkdocs gh-deploy
+	@.venv/bin/zensical build --clean --strict
+	@.venv/bin/ghp-import --no-jekyll --push site
 
 format:
 	@.venv/bin/ruff format . project/scripts/make

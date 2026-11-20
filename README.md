@@ -1,8 +1,10 @@
+<img src="docs/assets/images/logo.svg" alt="copier-uv logo" width="270" height="215">
+
+<!-- --8<-- [start:content] -->
 # Copier UV
 
 [![ci](https://github.com/pawamoy/copier-uv/workflows/ci/badge.svg)](https://github.com/pawamoy/copier-uv/actions?query=workflow%3Aci)
-[![documentation](https://img.shields.io/badge/docs-zensical%20material-orange.svg?style=flat)](https://pawamoy.github.io/copier-uv/)
-[![gitter](https://badges.gitter.im/join%20chat.svg)](https://app.gitter.im/#/room/#copier-uv/community:gitter.im)
+[![documentation](https://img.shields.io/badge/docs-zensical-FF9100.svg?style=flat)](https://pawamoy.github.io/copier-uv/)
 
 [Copier](https://github.com/copier-org/copier) template for Python projects managed by [uv](https://github.com/astral-sh/uv).
 
@@ -39,3 +41,4 @@ copier copy --trust "gh:pawamoy/copier-uv" /path/to/your/new/project
 ```
 
 See the [documentation](https://pawamoy.github.io/copier-uv) for more details.
+<!-- --8<-- [end:content] -->

@@ -108,7 +108,7 @@ Example:
 @duty
 def check_docs(ctx):
     """Check if the documentation builds correctly."""
-    ctx.run("mkdocs build -s", title="Building documentation")
+    ctx.run("zensical build --strict", title="Building documentation")
 ```
 
 To run a task, use `make TASK [ARG=VALUE...]`. You can run multiple tasks at once: `make TASK1 ARG=VALUE TASK2`. You can list the available tasks with `make help`.
@@ -487,6 +487,7 @@ For example, with these docs structure:
 ...you can have these navigation items in `zensical.toml`:
 
 ```toml title="zensical.toml"
+[project]
 nav = [
   { "Overview" = "index.md" },
   { "Code Reference" = [

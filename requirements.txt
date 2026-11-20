@@ -1,9 +1,9 @@
 copier
 copier-templates-extensions
+ghp-import
 git-changelog
 jinja2
 markdown-callouts
-mkdocs
-mkdocs-material
 reuse
 ruff
+zensical>=0.1
