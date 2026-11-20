@@ -246,8 +246,11 @@ At this point, Copier will generate the project in the specified directory:
     create  docs/changelog.md
     create  docs/reference/
     create  docs/reference/cli.md
-    create  docs/css/
-    create  docs/css/apidocs.css
+    create  docs/assets/
+    create  docs/assets/css/
+    create  docs/assets/css/apidocs.css
+    create  docs/assets/js/
+    create  docs/assets/js/feedback.js
     create  config/
     create  config/pytest.ini
     create  config/coverage.ini

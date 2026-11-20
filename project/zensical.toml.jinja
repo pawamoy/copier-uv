@@ -7,8 +7,8 @@ repo_url = "https://{{ repository_provider }}/{{ repository_namespace }}/{{ repo
 repo_name = "{{ repository_namespace }}/{{ repository_name }}"
 edit_uri = "edit/main/docs/"
 copyright = "Copyright &copy; {{ copyright_date }} {{ copyright_holder }}"
-extra_css = ["css/apidocs.css"]
-extra_javascript = ["js/feedback.js"]
+extra_css = ["assets/css/apidocs.css"]
+extra_javascript = ["assets/js/feedback.js"]
 nav = [
   { "Home" = [
     { "Overview" = "index.md" },
@@ -185,8 +185,8 @@ minify_js = true
 minify_css = true
 minify_inline_js = true
 minify_inline_css = true
-js_files = ["js/feedback.js"]
-css_files = ["css/apidocs.css"]
+js_files = ["assets/js/feedback.js"]
+css_files = ["assets/css/apidocs.css"]
 
 [project.plugins.mkdocstrings.handlers.python]
 paths = ["src"]

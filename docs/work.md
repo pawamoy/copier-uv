@@ -12,12 +12,15 @@ The generated project has this structure:
 │   └── 📄 ruff.toml -------------- #
 ├── 📄 CONTRIBUTING.md ------------ #
 ├── 📁 docs ----------------------- # documentation pages
+│   ├── 📁 assets ----------------- # documentation assets
+│   │   ├── 📁 css ---------------- # extra CSS files
+│   │   │   └── 📄 apidocs.css ---- #
+│   │   └── 📁 js ----------------- # extra JavaScript files
+│   │       └── 📄 feedback.js ---- #
 │   ├── 📄 changelog.md ----------- #
 │   ├── 📄 code_of_conduct.md ----- #
 │   ├── 📄 contributing.md -------- #
 │   ├── 📄 credits.md ------------- #
-│   ├── 📁 css -------------------- # extra CSS files
-│   │   └── 📄 apidocs.css -------- #
 │   ├── 📄 index.md --------------- #
 │   └── 📄 license.md ------------- #
 ├── 📄 duties.py ------------------ # the project's tasks
