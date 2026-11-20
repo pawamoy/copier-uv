@@ -32,6 +32,9 @@ nav = [
 # ----------------------------------------------------------------------------
 [project.theme]
 custom_dir = "docs/.overrides"
+{%- if author_username == "pawamoy" %}
+favicon = "assets/img/favicon.svg"
+{%- endif %}
 language = "en"
 features = [
     "announce.dismiss",
