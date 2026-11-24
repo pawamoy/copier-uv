@@ -55,9 +55,9 @@ def _extra_marker(req: Requirement) -> str | None:
         return None
     try:
         return next(
-            marker[2].value  # ty:ignore[missing-union-attribute]
+            marker[2].value
             for marker in req.marker._markers
-            if getattr(marker[0], "value", None) == "extra"
+            if isinstance(marker, tuple) and getattr(marker[0], "value", None) == "extra"
         )
     except StopIteration:
         return None
