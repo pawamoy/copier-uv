@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.16.0](https://github.com/pawamoy/copier-uv/releases/tag/1.16.0) - 2026-11-27
+
+<small>[Compare with 1.15.7](https://github.com/pawamoy/copier-uv/compare/1.15.7...1.16.0)</small>
+
+### Features
+
+- Enable llmstxt, minify, optimize and privacy plugins ([4124367](https://github.com/pawamoy/copier-uv/commit/4124367747683d41470f7cf9e34c27e2f09aaddf) by Timothée Mazzucotelli).
+- Deploy docs with versioning ([8040fdb](https://github.com/pawamoy/copier-uv/commit/8040fdb1edf0cf3eb830f3ec928e810367f267cb) by Timothée Mazzucotelli). [Issue-34](https://github.com/pawamoy/copier-uv/issues/34)
+
+### Bug Fixes
+
+- Tell optimize plugin to ignore favicon.png ([3ac8df1](https://github.com/pawamoy/copier-uv/commit/3ac8df1da163a7f19975d0b52d962e500b795a2c) by Timothée Mazzucotelli).
+
+### Code Refactoring
+
+- Resolve type-ignore comments ([9a48efd](https://github.com/pawamoy/copier-uv/commit/9a48efdae17f361c18ccf7cb034f224a695aa927) by Timothée Mazzucotelli).
+- Add default SVG favicon to my own projects ([61c37ce](https://github.com/pawamoy/copier-uv/commit/61c37ce4b3f7b54b2beafaf02be5f78e58dad127) by Timothée Mazzucotelli).
+- Remove Gitter badge ([b0e7ab4](https://github.com/pawamoy/copier-uv/commit/b0e7ab4d04c8500f558b46ae3ad390d863e12ace) by Timothée Mazzucotelli).
+- Move assets into subfolder ([147fd2c](https://github.com/pawamoy/copier-uv/commit/147fd2c197b6aa155156e1128623620509382b8c) by Timothée Mazzucotelli).
+- Rename CI workflows ([1442cac](https://github.com/pawamoy/copier-uv/commit/1442cac3e27fb543edc998ef87370cf297668bf8) by Timothée Mazzucotelli).
+- Use uv instead of Twine to publish ([260bf9e](https://github.com/pawamoy/copier-uv/commit/260bf9e67e8fb1c0cbe89b04b9ee99052326ecd3) by Timothée Mazzucotelli). [Issue-43](https://github.com/pawamoy/copier-uv/issues/43)
+
 ## [1.15.7](https://github.com/pawamoy/copier-uv/releases/tag/1.15.7) - 2026-10-20
 
 <small>[Compare with 1.15.6](https://github.com/pawamoy/copier-uv/compare/1.15.6...1.15.7)</small>
