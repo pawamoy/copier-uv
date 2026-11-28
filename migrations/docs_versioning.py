@@ -86,7 +86,9 @@ def migrate() -> None:
         commit = git("commit-tree", tree, "-p", base, input="docs: Redirect unversioned URLs to latest\n").stdout.strip()
         git("update-ref", branch, commit, local or "0" * len(base))
 
-    print(f"Prepared {len(pages)} redirects on local gh-pages. Deploy a release before deploying dev to publish them with latest.")
+    print(f"Prepared {len(pages)} redirects on local gh-pages.")
+    print("Deploy release docs with `make docs-deploy version=1.2.3`.")
+    print("Deploy development docs with `make docs-deploy`.")
 
 
 if __name__ == "__main__":
